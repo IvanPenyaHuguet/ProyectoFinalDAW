@@ -10,6 +10,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+
+/**
+ * Model for a commentary
+ */
 @Entity
 public class Commentary {
     
@@ -25,34 +29,66 @@ public class Commentary {
     @Column(nullable = false) 
     private String commentary;
 
+    
+    /** 
+     * @return long
+     */
     public long getId() {
         return this.id;
     }
 
+    
+    /** 
+     * @param id
+     */
     public void setId(long id) {
         this.id = id;
     }
 
+    
+    /** 
+     * @return Reagent
+     */
     public Reagent getReagent() {
         return this.reagent;
     }
 
+    
+    /** 
+     * @param reagent
+     */
     public void setReagent(Reagent reagent) {
         this.reagent = reagent;
     }
 
+    
+    /** 
+     * @return User
+     */
     public User getUser() {
         return this.user;
     }
 
+    
+    /** 
+     * @param user
+     */
     public void setUser(User user) {
         this.user = user;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getCommentary() {
         return this.commentary;
     }
 
+    
+    /** 
+     * @param commentary
+     */
     public void setCommentary(String commentary) {
         this.commentary = commentary;
     }

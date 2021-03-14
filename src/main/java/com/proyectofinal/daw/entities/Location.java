@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+/**
+ * Model for a location
+ */
 @Entity
 public class Location {
     
@@ -22,27 +25,70 @@ public class Location {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "location_id")
     private List<Reagent> reagents;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "location_id")
+    private List<StandardSol> solutions;
 
+    
+    /** 
+     * @return List<StandardSol>
+     */
+    public List<StandardSol> getSolutions() {
+        return this.solutions;
+    }
+
+    
+    /** 
+     * @param solutions
+     */
+    public void setSolutions(List<StandardSol> solutions) {
+        this.solutions = solutions;
+    }
+
+    
+    /** 
+     * @return long
+     */
     public long getId() {
         return this.id;
     }
 
+    
+    /** 
+     * @param id
+     */
     public void setId(long id) {
         this.id = id;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getName() {
         return this.name;
     }
 
+    
+    /** 
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    
+    /** 
+     * @return List<Reagent>
+     */
     public List<Reagent> getReagents() {
         return this.reagents;
     }
 
+    
+    /** 
+     * @param reagents
+     */
     public void setReagents(List<Reagent> reagents) {
         this.reagents = reagents;
     }
