@@ -1,30 +1,14 @@
 package com.proyectofinal.daw.entities;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
+@DiscriminatorValue("Inorganic")
 public class InorganicReagent extends Reagent{
     
-    private String utilization;
-    private String cas;
+    private String utilization;   
 
-    
-    /** 
-     * @return String
-     */
-    public String getCas() {
-        return this.cas;
-    }
-
-    
-    /** 
-     * @param cas
-     */
-    public void setCas(String cas) {
-        this.cas = cas;
-    }
-
-    
     /** 
      * @return String
      */

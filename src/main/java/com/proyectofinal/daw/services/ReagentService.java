@@ -4,7 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import com.proyectofinal.daw.entities.Reagent;
-import com.proyectofinal.daw.repositories.ReagentRepository;
+import com.proyectofinal.daw.exceptions.ReagentNotFoundException;
+import com.proyectofinal.daw.repositories.ReagentRepositoryImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class ReagentService {
     
     @Autowired
-    ReagentRepository reagentRepo;
+    ReagentRepositoryImpl reagentRepo;    
 
     public List<Reagent> findAll() {
         return (List<Reagent>) reagentRepo.findAll();
@@ -24,20 +25,14 @@ public class ReagentService {
         if (reagentRepo.existsById(id)) {
             reagentRepo.deleteById(id);
             deleted = true;
-        }  
-           
+        } 
         return deleted;
     }
 
-    public Reagent findById(Long id) {        
-        Reagent foundReagent = null;
-        Optional<Reagent> optionalReagent = reagentRepo.findById(id);
-        if (optionalReagent.isPresent()) {
-            foundReagent = optionalReagent.get();
-        }
-        return foundReagent;
-    }
-
+    public Optional<Reagent> findById(Long id) {       
+        return reagentRepo.findById(id);        
+    }    
+    
     public boolean save (Reagent newReagent) {
         boolean saved;
         try {
@@ -49,5 +44,16 @@ public class ReagentService {
         }
 
         return saved;
+    }
+
+    public Reagent modifyReagent (Reagent reagentToChange, Long id) {
+        
+        return reagentRepo.findById(id)
+        .map(reagent-> {
+            reagent.setSpanishName(reagentToChange.getSpanishName());
+            reagent.setEnglishName(reagentToChange.getEnglishName());            
+            return reagentRepo.save(reagent);
+        })
+        .orElseThrow(() -> new ReagentNotFoundException(id));        
     }
 }

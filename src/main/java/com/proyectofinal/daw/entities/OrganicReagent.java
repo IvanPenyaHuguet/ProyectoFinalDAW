@@ -1,12 +1,13 @@
 package com.proyectofinal.daw.entities;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 
 @Entity
-public class OrganicReagent extends Reagent{
+@DiscriminatorValue("Organic")
+public class OrganicReagent extends Reagent{    
     
-    private String cas;
     private String secondaryIntReference;
     @Lob    
     private byte[] image;
@@ -42,20 +43,6 @@ public class OrganicReagent extends Reagent{
     public void setSecondaryIntReference(String secondaryIntReference) {
         this.secondaryIntReference = secondaryIntReference;
     }
-
     
-    /** 
-     * @return String
-     */
-    public String getCas() {
-        return this.cas;
-    }
-
     
-    /** 
-     * @param cas
-     */
-    public void setCas(String cas) {
-        this.cas = cas;
-    }
 }

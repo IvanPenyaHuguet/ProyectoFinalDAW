@@ -7,6 +7,8 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -19,6 +21,10 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.*;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+
 import org.hibernate.annotations.ColumnDefault;
 
 /**
@@ -29,6 +35,12 @@ import org.hibernate.annotations.ColumnDefault;
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE) //(Una sola tabla con todos los campos adicionales de hijos)
 // @Inheritance(strategy = InheritanceType.JOINED) //(Una tabla con los campos en comun y otras tablas con los campos diferentes)
 //@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS) // Una table por cada clase, parecido a @MappedSuperClass
+@DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, name = "reagentType")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = As.PROPERTY, property = "reagentType")
+@JsonSubTypes({
+    @JsonSubTypes.Type(value = InorganicReagent.class, name = "inorganic"),
+    @JsonSubTypes.Type(value = OrganicReagent.class, name = "organic")
+})
 public abstract class Reagent {
     
     @Id
@@ -37,7 +49,7 @@ public abstract class Reagent {
     @Column(unique = true, nullable = false)
     private String spanishName;
     private String englishName;
-    @Column(nullable = false)
+    @Column(nullable = false, unique=true)
     private String internalReference;   
     @ColumnDefault("1") 
     private int quantity;  
@@ -50,6 +62,15 @@ public abstract class Reagent {
     @Basic
     @Temporal(TemporalType.DATE)
     private Calendar entryDate;
+    private String cas;
+
+    public String getCas() {
+        return this.cas;
+    }
+
+    public void setCas(String cas) {
+        this.cas = cas;
+    }
 
     
     /** 
