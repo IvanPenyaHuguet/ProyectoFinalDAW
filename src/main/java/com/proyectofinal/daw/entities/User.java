@@ -26,7 +26,7 @@ public class User {
     private String name;
     private String surname;
     @Column(nullable = false, unique = true)
-    private String userName;
+    private String username;
     @Column(nullable = false)
     private String pass;
     @OneToMany(mappedBy = "user", cascade = {
@@ -103,16 +103,16 @@ public class User {
     /** 
      * @return String
      */
-    public String getUserName() {
-        return this.userName;
+    public String getUsername() {
+        return this.username;
     }
 
     
     /** 
-     * @param userName
+     * @param username
      */
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     

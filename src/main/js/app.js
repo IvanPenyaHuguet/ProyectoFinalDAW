@@ -19,7 +19,7 @@ class App extends React.Component {
 		return (
             <>
 			<h1 className = "bg-red-500">Hello world Andrea e Ivan  </h1>
-            <h2 className="bg-grey-200">This is react</h2>
+            <h2 className="text-red-800">This is react</h2>
             </>
 		)
 	}
