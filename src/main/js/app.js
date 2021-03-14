@@ -1,6 +1,6 @@
 const React = require('react'); 
 const ReactDOM = require('react-dom');
-
+import "tailwindcss/tailwind.css";
 
 class App extends React.Component { 
 
@@ -18,8 +18,8 @@ class App extends React.Component {
 	render() { 
 		return (
             <>
-			<h1>Hello world Andrea e Ivan  </h1>
-            <h2>This is react</h2>
+			<h1 className = "bg-red-500">Hello world Andrea e Ivan  </h1>
+            <h2 className="bg-grey-200">This is react</h2>
             </>
 		)
 	}
