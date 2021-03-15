@@ -28,16 +28,14 @@ import java.util.Date;
 public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter
 {
     private AuthenticationManager authenticationManager;
-    public AuthenticationFilter(AuthenticationManager authenticationManager)
-    {
+    public AuthenticationFilter(AuthenticationManager authenticationManager){
         this.authenticationManager = authenticationManager;
-        setFilterProcessesUrl("/login");
+        setFilterProcessesUrl("/");
     }
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException{
         try
-        {
-            System.out.println("Authentication token " + request.getInputStream());
+        {            
             com.proyectofinal.daw.entities.User creds = new ObjectMapper().readValue(request.getInputStream(), com.proyectofinal.daw.entities.User.class);
             return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(creds.getUsername(), creds.getPass(),new ArrayList<>()));
         }
@@ -52,11 +50,12 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter
         
         String token = Jwts.builder()
                 .setSubject(((User) authentication.getPrincipal()).getUsername())
-                .setExpiration(new Date(System.currentTimeMillis() + 864_000_000))
+                .setExpiration(new Date(System.currentTimeMillis() + 864000000))
                 .signWith(key)
                 .compact();
 
         response.addHeader("Authorization","Bearer " + token);
+        System.out.println("Authentication token " + token);
 
     }
 
