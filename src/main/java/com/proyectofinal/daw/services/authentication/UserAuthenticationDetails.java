@@ -6,8 +6,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.core.userdetails.User.UserBuilder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -26,18 +24,8 @@ public class UserAuthenticationDetails implements UserDetailsService{
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(username));
-        // UserBuilder  builder=null;
-        // if(user == null){
-        //     throw new UsernameNotFoundException(username);
-        // }
-        // else {
-            // builder=org.springframework.security.core.userdetails.User.withUsername(user.getUsername());
-            // builder.password(new BCryptPasswordEncoder().encode(user.getPass()));
-            // builder.roles(user.getRole().getAuthority());            
-        // }
-        // return builder.build();
-        List rolesList = new ArrayList();
+        User user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(username));        
+        List<GrantedAuthority> rolesList = new ArrayList<>();
         GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(user.getRole().getAuthority());
         rolesList.add(grantedAuthority);
         UserDetails securityUser = (UserDetails) new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPass(), rolesList);

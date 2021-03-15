@@ -25,12 +25,11 @@ import java.util.Date;
 /**
  * dzone
  */
-public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter
-{
+public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter{
     private AuthenticationManager authenticationManager;
-    public AuthenticationFilter(AuthenticationManager authenticationManager){
+    public JWTAuthenticationFilter(AuthenticationManager authenticationManager){
         this.authenticationManager = authenticationManager;
-        setFilterProcessesUrl("/");
+        setFilterProcessesUrl("/login");
     }
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException{
@@ -44,7 +43,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter
             throw new RuntimeException("Could not read request" + e);
         }
     }
-
+    @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain, Authentication authentication){
         SecretKey key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
         
