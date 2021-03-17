@@ -9,12 +9,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 
 /**
  * Model for a commentary
  */
 @Entity
+@Table
 public class Commentary {
     
     @Id

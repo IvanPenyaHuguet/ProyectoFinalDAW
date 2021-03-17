@@ -6,8 +6,10 @@ import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Table;
 
 @Entity
+@Table
 public class AqueousStandardSolution extends StandardSol{
       
     

@@ -1,0 +1,32 @@
+/**
+    Azul: #007cba
+    Rojo: #882136
+    Rojo oscuro: #A11931
+    Azul: #24BFFF
+    Amarillo: #E6DE4E
+**/
+:root {
+    --var-primary-color: #882136;
+    --var-secondary-color: #24BFFF;
+    --var-terciary-color: #FFF;
+}
+html {
+    height: 100%;  
+    padding: 0;
+    margin: 0;  
+}
+body {
+    padding: 0;
+    margin: 0;
+    position:absolute; 
+    top:0; 
+    bottom:0; 
+    right:0; 
+    left:0;  
+}
+#react {
+    height: 100%;
+}
+.AppContainer {
+    height: 100%;
+}

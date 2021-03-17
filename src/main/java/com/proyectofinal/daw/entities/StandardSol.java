@@ -14,9 +14,11 @@ import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Table;
 
 
 @Entity
+@Table
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class StandardSol {
     

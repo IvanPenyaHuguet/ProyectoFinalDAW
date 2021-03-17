@@ -24,7 +24,8 @@
   "homepage": "https://github.com/IvanPenyaHuguet/ProyectoFinalDAW#readme",
   "dependencies": {
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.13.10",
@@ -37,7 +38,6 @@
     "postcss": "^8.2.8",
     "postcss-loader": "^5.2.0",
     "style-loader": "^2.0.0",
-    "tailwindcss": "^2.0.3",
     "webpack": "^5.25.0",
     "webpack-cli": "^4.5.0"
   }

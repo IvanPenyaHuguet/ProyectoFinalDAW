@@ -49,7 +49,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         
         String token = Jwts.builder()
                 .setSubject(((User) authentication.getPrincipal()).getUsername())
-                .setExpiration(new Date(System.currentTimeMillis() + 864000000))
+                .setExpiration(new Date(System.currentTimeMillis() + 240 * 60 * 60 * 1000))
                 .signWith(key)
                 .compact();
 

@@ -1,30 +1,22 @@
 const React = require('react'); 
 const ReactDOM = require('react-dom');
-import "tailwindcss/tailwind.css";
+import { BrowserRouter } from "react-router-dom";
+import Router  from "./Router";
+import Index from "./Index";
+import Login from "./pages/user/Login";
 
-class App extends React.Component { 
-
-	constructor(props) {
-		super(props);
-	// 	this.state = {employees: []};
-	}
-
-	// componentDidMount() {
-	// 	client({method: 'GET', path: '/api/employees'}).done(response => {
-	// 		this.setState({employees: response.entity._embedded.employees});
-	// 	});
-	// }
-
-	render() { 
-		return (
-            <>
-			<h1 className = "bg-red-500">Hello world Andrea e Ivan  </h1>
-            <h2 className="text-red-800">This is react</h2>
-            </>
-		)
-	}
+function App () { 
+	return (
+		<div className="AppContainer">
+			<Login />
+			<Router />
+		</div>		          
+	)
+	
 }
-ReactDOM.render(
-	<App />,
+ReactDOM.render((
+	<BrowserRouter>
+		<App />
+	</BrowserRouter>),
 	document.getElementById('react')
 )
