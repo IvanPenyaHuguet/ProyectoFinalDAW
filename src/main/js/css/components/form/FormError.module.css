@@ -1,0 +1,5 @@
+.formError {
+    color: var(--var-error-color);
+    margin-top: 0.3rem;
+    padding: 0 0.4rem;
+}

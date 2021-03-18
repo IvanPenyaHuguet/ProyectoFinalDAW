@@ -5,10 +5,19 @@
     Azul: #24BFFF
     Amarillo: #E6DE4E
 **/
+@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@700&family=Newsreader:wght@500&display=swap');
+
 :root {
     --var-primary-color: #882136;
-    --var-secondary-color: #24BFFF;
+    --var-primary-dark-color: #5f1730;
+    --var-secondary-color: #328821;
+    --var-secondary-dark-color: #235f17;
     --var-terciary-color: #FFF;
+    --var-quaternary-color: #ffcfe0;
+    --var-primary-font: 'Bitter', serif;
+    --var-secondary-font: 'Newsreader', serif;
+    --var-error-color: #ff0000;
+    --var-grey-color: #D3D3D3;
 }
 html {
     height: 100%;  

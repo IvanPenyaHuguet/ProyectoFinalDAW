@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import PrimaryButton from "../button/PrimaryButton";
+import SecondaryButton from "../button/SecondaryButton";
+import FormInput from "./FormInput";
+import ErrorSmall from "./ErrorSmall";
 import styles from "../../css/components/form/LoginForm.module.css";
 
 /**
@@ -54,7 +58,7 @@ export default function Login() {
             username: formData.username,
             password: formData.password,
           }),
-        };
+        };      
         fetch("/login", options)
           .then((res) => console.log(res))
           .catch((e) => console.log(e));
@@ -67,55 +71,35 @@ export default function Login() {
    */
   const onButtonClick = (e) => {
     e.preventDefault();
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+      },
+      body: new URLSearchParams({
+        username: "guest",
+        password: "guest",
+      }),
+    };   
+    fetch("/login", options)
+      .then((res) => console.log(res))
+      .catch((e) => console.log(e));
+  
   };
 
   return (
-    <form onSubmit={onFormSubmit} className={styles.form}>
-      <h2 className={styles.formTitle}>Inicia sesión</h2>
+    <form className={styles.form}>
+      <h2 className={styles.formTitle}>Inicia sesión</h2>   
       <div className={styles.inputContainer}>
-        <label htmlFor="username" className="text-xl">
-          Nombre de usuario:
-        </label>
-        <input
-          type="text"
-          name="username"
-          className="w-full px-1 border-0 border-b-2 outline-none border-primary focus:ring-0 focus:shadow-lg focus:border-secondary"
-          placeholder="Nombre de usuario ... "
-          onChange={onInputChange}
-          value={formData.username}
-        />
-        {errors.username == true && (
-          <small>El campo no puede estar vacío.</small>
-        )}
+        <FormInput name="username" label="Usuario" onChange={onInputChange} value={formData.username} />        
+        {errors.username === true && <ErrorSmall message="El campo no puede estar vacío"/>}        
       </div>
       <div className={styles.inputContainer}>
-        <label htmlFor="password" className="text-xl">
-          Contraseña:
-        </label>
-        <input
-          type="password"
-          name="password"
-          className="w-full px-1 border-0 border-b-2 outline-none border-primary focus:ring-0 focus:shadow-lg focus:border-secondary"
-          placeholder="Contraseña ... "
-          onChange={onInputChange}
-          value={formData.password}
-        />
-        {errors.password == true && <small>Al menos 3 carácteres.</small>}
+        <FormInput name="password" label="Contraseña" onChange={onInputChange} value={formData.password} type="password" />
+        {errors.password == true && <ErrorSmall message="Al menos 3 carácteres"/>}       
       </div>
-
-      <button
-        type="submit"
-        className="w-1/2 bg-primary text-terciary py-2 outline-none border-2 text-xl self-center rounded-lg my-4 shadow-lg hover:text-quaternary transform hover:scale-105"
-      >
-        Entrar
-      </button>
-      <button
-        type="button"
-        onClick={onButtonClick}
-        className="w-full text-primary border-primary outline-none border-2 py-2 text-xl rounded-lg shadow-lg hover:text-terciary hover:bg-primary"
-      >
-        Invitado
-      </button>
+          <PrimaryButton onClick={onFormSubmit}>Entrar</PrimaryButton>   
+          <SecondaryButton onClick={onButtonClick}>Invitado</SecondaryButton>      
     </form>
   );
 }

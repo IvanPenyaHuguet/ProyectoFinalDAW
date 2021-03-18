@@ -1,0 +1,43 @@
+.mainButton {
+    position: relative;
+    height: 2.5rem;
+    width: 200px;
+    margin: 0 auto;
+    text-decoration: none;
+    transition: 0.3s ease all;
+    color: var(--var-secondary-color);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    border: 2px solid var(--var-secondary-color);
+    border-radius: 5px;
+    display: inline-block;
+    box-sizing: border-box;
+    background-color: var(--var-terciary-color);
+    z-index: -2;
+    font-size: 1rem;
+    font-weight: bold;
+    box-shadow: 2px 2px 2px var(--var-secondary-color);
+  }
+  .mainButton:before {
+    transition: 0.5s all ease;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    opacity: 0;
+    content: "";
+    background-color: var(--var-secondary-color);
+    z-index: -2;
+  }
+  .mainButton:hover {
+    color: var(--var-terciary-color);
+    cursor: pointer;
+  }
+  .mainButton:hover:before {
+    transition: 0.5s all ease;
+    left: 0;
+    right: 0;
+    opacity: 1;
+  }
