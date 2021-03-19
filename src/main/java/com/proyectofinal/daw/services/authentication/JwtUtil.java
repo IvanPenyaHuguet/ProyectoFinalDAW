@@ -41,8 +41,7 @@ public class JwtUtil {
     }
     public List<GrantedAuthority> extractRole (String token) throws Exception { 
         final Claims claims = extractAllClaims(token); 
-        final Map<String,String> roles =  claims.get("roles", Map.class);
-        System.out.println("Role in token " + roles.get("authority"));
+        final Map<String,String> roles =  claims.get("roles", Map.class);        
         List<GrantedAuthority> rolesList = new ArrayList<>();
         GrantedAuthority authority =  new SimpleGrantedAuthority("ROLE_" + roles.get("authority"));
         rolesList.add(authority);
@@ -60,8 +59,7 @@ public class JwtUtil {
     }
     public String generateToken (UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("roles", userDetails.getAuthorities().toArray()[0]);
-        System.out.println("User details authorities " + userDetails.getAuthorities().toArray()[0]);
+        claims.put("roles", userDetails.getAuthorities().toArray()[0]);        
         claims.put("user", userDetails.getUsername());
         return createToken(claims, userDetails.getUsername());
     }

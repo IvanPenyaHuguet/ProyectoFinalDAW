@@ -12,6 +12,8 @@ import com.proyectofinal.daw.services.authentication.JwtUtil;
 import com.proyectofinal.daw.services.authentication.UserAuthenticationDetails;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -54,11 +56,10 @@ public class JwtRequestFilter extends OncePerRequestFilter{
                SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
             }
         } 
-         
-        } catch (Exception e) {           
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);                          
-        } 
-        filterChain.doFilter(request, response);      
+        filterChain.doFilter(request, response); 
+        } catch (Exception e) {                     
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "The token is not valid.");  
+        }              
     }
     
 }

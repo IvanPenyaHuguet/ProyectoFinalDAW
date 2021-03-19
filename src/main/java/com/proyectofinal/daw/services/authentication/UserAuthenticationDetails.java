@@ -29,8 +29,7 @@ public class UserAuthenticationDetails implements UserDetailsService{
         User user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(username));        
         List<GrantedAuthority> rolesList = new ArrayList<>();
         GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(user.getRole().getAuthority());
-        rolesList.add(grantedAuthority);
-        System.out.println(user.getRole().getAuthority());
+        rolesList.add(grantedAuthority);        
         UserDetails securityUser = (UserDetails) new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPass(), rolesList);        
         return securityUser;
     }
