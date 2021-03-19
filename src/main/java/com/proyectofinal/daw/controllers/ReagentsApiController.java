@@ -11,6 +11,7 @@ import com.proyectofinal.daw.exceptions.ReagentNotFoundException;
 import com.proyectofinal.daw.services.ReagentService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,23 +30,23 @@ import org.springframework.web.bind.annotation.RestController;
 public class ReagentsApiController implements BaseApiController{   
     
     @Autowired
-    ReagentService reagentService;
+    ReagentService reagentService;    
     
-    /** 
-     * @return List<Reagent>
-     */    
+  
     @GetMapping("/reagent")              
     public List<Reagent> getAll() {      
         return reagentService.findAll();
     }
 
+    @PreAuthorize("hasRole('ADMIN') OR hasRole('TECH')")
     @GetMapping("/reagent/{id}")           
     public Reagent getById(@PathVariable Long id) {      
         return reagentService.findById(id)
             .orElseThrow(() -> new ReagentNotFoundException(id));
     }
-        
-    @DeleteMapping("/reagent/{id}")           
+       
+    @DeleteMapping("/reagent/{id}") 
+    @PreAuthorize("hasRole('ADMIN') OR hasRole('TECH')")           
     public boolean deleteById(@PathVariable Long id) {      
         return reagentService.deleteById(id);
     }

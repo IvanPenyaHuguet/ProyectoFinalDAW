@@ -13,9 +13,11 @@ import java.util.List;
 
 import com.proyectofinal.daw.entities.User;
 import com.proyectofinal.daw.repositories.UserRepository;
+
 /**
- * dzone
+ * Component in charge of the process of authorizating the users to the web
  */
+
 @Component
 public class UserAuthenticationDetails implements UserDetailsService{
 
@@ -28,7 +30,10 @@ public class UserAuthenticationDetails implements UserDetailsService{
         List<GrantedAuthority> rolesList = new ArrayList<>();
         GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(user.getRole().getAuthority());
         rolesList.add(grantedAuthority);
-        UserDetails securityUser = (UserDetails) new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPass(), rolesList);
+        System.out.println(user.getRole().getAuthority());
+        UserDetails securityUser = (UserDetails) new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPass(), rolesList);        
         return securityUser;
     }
+
+    
 }

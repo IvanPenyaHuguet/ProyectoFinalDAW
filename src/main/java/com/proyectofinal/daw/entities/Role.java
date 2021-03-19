@@ -2,7 +2,7 @@ package com.proyectofinal.daw.entities;
 
 import org.springframework.security.core.GrantedAuthority;
 
-public enum Role implements GrantedAuthority{
+public enum Role{
     GUEST,
     TECH,    
     ADMIN;
