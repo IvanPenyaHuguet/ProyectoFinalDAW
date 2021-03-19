@@ -15,7 +15,7 @@
   padding: 30px 30px;
   font-family: var(--var-secondary-font);
   background-color: var(--var-terciary-color);
-  box-shadow: 2px 2px 8px var(--var-terciary-color);
+  box-shadow: 1px 1px 2px var(--var-primary-color);
   outline: none;
 }
 .form:focus {
