@@ -1,18 +1,25 @@
-import React, {createContext, useState, useEffect} from 'react';
+import React, {createContext, useState, useLayoutEffect} from 'react';
 import authService from '../service/AuthService';
 
 export const AuthContext = createContext();
 
 
 const AuthContextProvider = ({children}) => {  
-    const [ user, setUser] = useState(null);    
+    const [ user, setUser] = useState(stateFunction());    
 
-    useEffect( () => {
-        const localUser = authService.getUser();        
-        if ( localUser ) {
-            setUser(localUser);            
-        }        
-    }, [])
+    function stateFunction () {
+        const localUser = authService.getUser();  
+        let user;      
+        if ( localUser ) {        
+            authService.validate()
+                .then(res => user = localUser)
+                .catch(e => user = null)                        
+        }
+        else {
+            user = null;
+        }  
+        return user; 
+    }    
    
 
     return (

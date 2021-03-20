@@ -1,18 +1,25 @@
-import React from "react";
-import { Switch, Route } from "react-router-dom";
+import React, {useContext} from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 import Login from "./pages/user/Login";
+import Index from "./pages/Index";
+import PrivateRoute from "./service/PrivateRoute";
+
+import { AuthContext } from "./context/AuthContextProvider";
 
 export default function Router() {
+  const { user, setUser} = useContext(AuthContext);
+
   return (
-    <Switch>
-      <Route path="/reagent"></Route>
-      <Route path="/reagent/add"></Route>
-      <Route path="/admin/index">        
+    <Switch>  
+      <Route exact strict path="/">        
+        { user !== null ? <Redirect push to="/chemdata" /> : <Redirect push to="/login" /> }
       </Route>
-      <Route path="/user/signup">
-        <Login />
-      </Route>
+      <Route exact path="/login" component={Login} />      
+      <PrivateRoute exact path="/chemdata" component={Index} /> 
+      <Route path="/reagent/add" />
+          
+       
     </Switch>
   );
 }

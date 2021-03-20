@@ -17,6 +17,9 @@ class AuthenticationService {
                 return false;
             });
     }
+    validate () {        
+        return axios.post("/validate", this.getUser());            
+    }
     signout() {        
         localStorage.removeItem("user");
     }    

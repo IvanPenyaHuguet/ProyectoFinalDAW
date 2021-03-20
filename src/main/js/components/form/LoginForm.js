@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import PrimaryButton from "../button/PrimaryButton";
 import SecondaryButton from "../button/SecondaryButton";
 import FormInput from "./FormInput";
@@ -11,8 +12,8 @@ import { AuthContext } from "../../context/AuthContextProvider";
  * React component for the login form
  * @returns React component for the login form
  */
-export default function Login() {
-
+export default function Login(props) {
+  const history = useHistory();
   /**
    * Context use from react
    */
@@ -57,7 +58,10 @@ export default function Login() {
       } else {
         setErrors({ ...errors, password: false });        
         authService.signin(formData.username, formData.password)  
-        .then(res => setUser(res))      
+        .then(res => {
+          setUser(res);
+          history.push("/chemdata");
+        })      
         .catch( e => console.log(e));
       }
     }
@@ -69,9 +73,21 @@ export default function Login() {
   const onButtonClick = (e) => {
     e.preventDefault();
     authService.signin("guest", "guest")  
-    .then(res => setUser(res))       
+    .then(res => {
+      setUser(res);
+      history.push("/chemdata");      
+    })       
     .catch( e => console.log(e));  
   };
+  /**
+   * Send form with enter key
+   * @param {event} e 
+   */
+  const handleKeyDown = (e) => {    
+    if (e.key === 'Enter') {
+      onFormSubmit(e);
+    }
+  }
 
   return (
     <form className={styles.form}>
@@ -81,7 +97,7 @@ export default function Login() {
         {errors.username === true && <ErrorSmall message="El campo no puede estar vacío"/>}        
       </div>
       <div className={styles.inputContainer}>
-        <FormInput name="password" label="Contraseña" onChange={onInputChange} value={formData.password} type="password" />
+        <FormInput name="password" label="Contraseña" onChange={onInputChange} value={formData.password} type="password" onKeyDown={handleKeyDown}/>
         {errors.password == true && <ErrorSmall message="Al menos 3 carácteres"/>}       
       </div>
           <PrimaryButton onClick={onFormSubmit}>Entrar</PrimaryButton>   

@@ -2,7 +2,7 @@ import React from "react";
 import styles from "../../css/components/form/FormInput.module.css";
 import Container from "../container/Container";
 
-export default function FormInput({ name , label, onChange, value, type ="text" }) {
+export default function FormInput({ name , label, onChange, value, type ="text", onKeyDown = null }) {
   return (
     <Container className={styles.container}>      
       <input
@@ -10,6 +10,7 @@ export default function FormInput({ name , label, onChange, value, type ="text" 
         name={name}
         className={styles.formInput}        
         onChange={onChange}
+        onKeyDown={onKeyDown}
         value={value}
         required
       />

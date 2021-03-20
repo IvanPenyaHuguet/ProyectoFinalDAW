@@ -72,6 +72,26 @@ public class UserAuthController {
         final String jwt = jwtUtil.generateToken(userDetails);
         return ResponseEntity.ok(new JwtAuthenticationResponse(jwt, user.getUsername(), (String)userDetails.getAuthorities().toArray()[0].toString()));
     }
+    /**
+     * Api for check if a JWT is still valid
+     * @param token Token to verify
+     * @return  Token is valid or not
+     */    
+    @PostMapping("/validate")
+    public ResponseEntity<?> checkValidationToken(@RequestBody JwtAuthenticationResponse user) {
+        
+        try {
+            final UserDetails userDetails = UserAuthenticationDetails.loadUserByUsername(user.getUser());
+            final Boolean valid = jwtUtil. validateToken(user.getToken(), userDetails);
+            if ( valid == false) {
+                throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Token not valid");
+            }
+        }
+        catch (BadCredentialsException e) {
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Token not valid", e);
+        }       
+        return ResponseEntity.ok("Token is valid");
+    }
  
 
 }
