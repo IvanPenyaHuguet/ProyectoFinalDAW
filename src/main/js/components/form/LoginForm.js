@@ -1,15 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import PrimaryButton from "../button/PrimaryButton";
 import SecondaryButton from "../button/SecondaryButton";
 import FormInput from "./FormInput";
 import ErrorSmall from "./ErrorSmall";
 import styles from "../../css/components/form/LoginForm.module.css";
+import authService from "../../service/AuthService";
+import { AuthContext } from "../../context/AuthContextProvider";
 
 /**
  * React component for the login form
  * @returns React component for the login form
  */
 export default function Login() {
+
+  /**
+   * Context use from react
+   */
+  const { user, setUser} = useContext(AuthContext);  
     /**
      * Hook to control the info of the form
      */
@@ -48,20 +55,10 @@ export default function Login() {
       if (formData.password.length < 3) {
         setErrors({ ...errors, password: true });
       } else {
-        setErrors({ ...errors, password: false });
-        const options = {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-          },
-          body: new URLSearchParams({
-            username: formData.username,
-            password: formData.password,
-          }),
-        };      
-        fetch("/login", options)
-          .then((res) => console.log(res))
-          .catch((e) => console.log(e));
+        setErrors({ ...errors, password: false });        
+        authService.signin(formData.username, formData.password)  
+        .then(res => setUser(res))      
+        .catch( e => console.log(e));
       }
     }
   };
@@ -71,20 +68,9 @@ export default function Login() {
    */
   const onButtonClick = (e) => {
     e.preventDefault();
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-      },
-      body: new URLSearchParams({
-        username: "guest",
-        password: "guest",
-      }),
-    };   
-    fetch("/login", options)
-      .then((res) => console.log(res))
-      .catch((e) => console.log(e));
-  
+    authService.signin("guest", "guest")  
+    .then(res => setUser(res))       
+    .catch( e => console.log(e));  
   };
 
   return (
