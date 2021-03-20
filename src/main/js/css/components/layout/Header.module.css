@@ -1,0 +1,16 @@
+.bar {
+    background-color: var(--var-primary-dark-color);
+    height: 5rem;   
+    border-bottom: 2px solid var(--var-grey-color);     
+}
+.container {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.title {
+    margin: 0;
+    color: var(--var-terciary-color);
+}

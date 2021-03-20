@@ -1,0 +1,38 @@
+.menu {    
+    background-color: var(--var-primary-dark-color);
+    height: 100%;
+    width: 100%;
+    border: 2px solid var(--var-quaternary-color);
+    box-sizing: border-box;
+    width: 80px;
+    transition: width 2s ease-out;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.menuopen {
+    width: 210px;
+}
+.fullcontainer {
+    width: calc(100% - 60px);
+    height: 100%;
+    margin-left: 60px;
+    transition: margin 2s ease-out, width 2s ease-out; 
+}
+.fullcontaineropen {
+    grid-template: auto / 250px auto;
+    margin-left: 210px;
+    width: calc(100% - 210px);
+}
+.body {    
+    width: 100%;
+    height: 100%;
+}
+.contburgerbutton {
+    border-bottom: 2px solid var(--var-quaternary-color);
+    box-sizing: border-box;
+    height: 5rem;
+    display: flex;    
+    align-items: center;
+    position: relative;
+}

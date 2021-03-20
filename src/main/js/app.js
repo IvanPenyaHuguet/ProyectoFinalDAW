@@ -14,9 +14,9 @@ function App ({Component, pageProps}) {
 	return (
 		<AuthContextProvider>
 			<HashRouter>
-				<div className="AppContainer">					
+				<main className="AppContainer">					
 					<Router />
-				</div>
+				</main>
 			</HashRouter>
 		</AuthContextProvider>				          
 	)	
