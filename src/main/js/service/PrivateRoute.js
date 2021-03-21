@@ -5,7 +5,7 @@ import { AuthContext } from "../context/AuthContextProvider";
 export default function PrivateRoute ({component: Component, ...rest}) {
     const { user, setUser} = useContext(AuthContext);
 
-    return (        // Otherwise, redirect the user to /signin page
+    return (        
         <Route {...rest} render={props => (
             user!==null ?
                 <Component {...props} />

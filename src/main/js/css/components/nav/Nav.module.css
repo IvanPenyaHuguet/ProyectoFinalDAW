@@ -36,3 +36,9 @@
     align-items: center;
     position: relative;
 }
+.buttonmenu {
+    margin: 50px 20px;
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;    
+}

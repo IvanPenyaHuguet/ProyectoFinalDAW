@@ -8,7 +8,7 @@ import Nav from "../components/nav/Nav";
 
 export default function Index() {
   return (
-    <Nav>    
+    <>    
       <Header >
       </Header >
       <Container className={styles.main}>
@@ -17,6 +17,6 @@ export default function Index() {
         <IndexButton url="/reagent/inorganic" title="Reactivos Inorgánicos" description="Muestra los reactivos inorgánicos"/>
 
       </Container>      
-    </Nav>
+    </>
   );
 }
