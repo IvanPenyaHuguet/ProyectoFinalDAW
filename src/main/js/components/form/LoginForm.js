@@ -91,17 +91,17 @@ export default function Login(props) {
 
   return (
     <form className={styles.form}>
-      <h2 className={styles.formTitle}>Inicia sesión</h2>   
+      <h2 className={styles.formTitle}>Log in</h2>   
       <div className={styles.inputContainer}>
-        <FormInput name="username" label="Usuario" onChange={onInputChange} value={formData.username} />        
-        {errors.username === true && <ErrorSmall message="El campo no puede estar vacío"/>}        
+        <FormInput name="username" label="Username" onChange={onInputChange} value={formData.username} />        
+        {errors.username === true && <ErrorSmall message="The field can not be empty."/>}        
       </div>
       <div className={styles.inputContainer}>
-        <FormInput name="password" label="Contraseña" onChange={onInputChange} value={formData.password} type="password" onKeyDown={handleKeyDown}/>
-        {errors.password == true && <ErrorSmall message="Al menos 3 carácteres"/>}       
+        <FormInput name="password" label="Password" onChange={onInputChange} value={formData.password} type="password" onKeyDown={handleKeyDown}/>
+        {errors.password == true && <ErrorSmall message="At least 3 characters."/>}       
       </div>
-          <PrimaryButton onClick={onFormSubmit}>Entrar</PrimaryButton>   
-          <SecondaryButton onClick={onButtonClick}>Invitado</SecondaryButton>      
+          <PrimaryButton onClick={onFormSubmit}>Log in</PrimaryButton>   
+          <SecondaryButton onClick={onButtonClick}>Guest</SecondaryButton>      
     </form>
   );
 }

@@ -9,7 +9,7 @@ import Container from "../container/Container";
 export default function MainTitle () {
     return (
         <Container>
-            <h1 className={styles.title}>CHEMDATA</h1>
+            <h1 className={styles.title}>Laboratory Application for Reagents and Standards (LARS)</h1>
         </Container>
     )
 }

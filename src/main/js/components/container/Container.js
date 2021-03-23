@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "../../css/components/container/BaseContainer.module.css";
+
 /**
  * Generic component for containers
  * @param {React.Component} children Children components

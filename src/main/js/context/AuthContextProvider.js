@@ -1,16 +1,16 @@
-import React, {createContext, useState, useLayoutEffect} from 'react';
+import React, {createContext, useState, useEffect, useRef, useContext} from 'react';
 import authService from '../service/AuthService';
 
-export const AuthContext = createContext();
+export const AuthContext = createContext(authService.getUser());
 
 
 const AuthContextProvider = ({children}) => {  
-    const [ user, setUser] = useState(stateFunction());    
-
-    function stateFunction () {
-        const localUser = authService.getUser();  
-        let user;      
-        if ( localUser ) {        
+    const [ user, setUser] = useState(authService.getUser());       
+    
+    useEffect( () => {
+        const localUser = authService.getUser();
+        let user; 
+            if ( localUser ) {        
             authService.validate()
                 .then(res => user = localUser)
                 .catch(e => user = null)                        
@@ -18,8 +18,9 @@ const AuthContextProvider = ({children}) => {
         else {
             user = null;
         }  
-        return user; 
-    }    
+        return user;
+    }, []);  
+   
    
 
     return (

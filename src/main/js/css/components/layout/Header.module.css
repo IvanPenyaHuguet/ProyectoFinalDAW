@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 .bar {
     background-color: var(--var-primary-dark-color);
     height: 5rem;   
@@ -8,9 +9,44 @@
     display: flex;
     align-items: center;
     height: 100%;
+    justify-content: space-between;
+    margin: auto;    
 }
-
+.div {
+  display: flex;
+  align-items: center;  
+}
 .title {
     margin: 0;
     color: var(--var-terciary-color);
+    font-size: 3rem;
+    text-shadow: 3px 2px 6px var(--var-terciary-color);
 }
+.subtitle {
+    color: var(--var-terciary-color);
+    margin: 0 20px;
+    animation: appearWithJump 2s linear 2s both;
+    font-family: 'Pacifico', cursive;
+    font-weight: 200;
+    font-size: 0.8rem;
+}
+@keyframes appearWithJump {
+    from {
+      opacity: 0;
+      transform: scale(0.1) rotate(30deg);
+      transform-origin: center bottom;
+    }
+  
+    50% {
+      transform: rotate(-10deg);
+    }
+  
+    70% {
+      transform: rotate(3deg);
+    }
+  
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
