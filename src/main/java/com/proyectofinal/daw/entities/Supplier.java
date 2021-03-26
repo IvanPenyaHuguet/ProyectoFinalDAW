@@ -42,23 +42,17 @@ public class Supplier {
             joinColumns = {@JoinColumn(name = "supplier_id")},
             inverseJoinColumns = {@JoinColumn(name = "standard_id")}
     )
-    private List<Reagent> standards;
+    private List<StandardSol> standards;
 
-    
-    /** 
-     * @return List<Reagent>
-     */
-    public List<Reagent> getStandards() {
+
+    public List<StandardSol> getStandards() {
         return this.standards;
     }
 
-    
-    /** 
-     * @param standards
-     */
-    public void setStandards(List<Reagent> standards) {
+    public void setStandards(List<StandardSol> standards) {
         this.standards = standards;
-    }
+    }   
+   
 
     
     /** 
