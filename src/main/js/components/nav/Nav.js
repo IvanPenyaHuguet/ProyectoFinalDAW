@@ -33,7 +33,7 @@ export default function Nav ({children}) {
     }
 
     return (
-        <Container className={`${styles.fullcontainer} ${isOpen ? styles.fullcontaineropen :""}`} >
+        <nav className={`${styles.fullcontainer} ${isOpen ? styles.fullcontaineropen :""}`} >
             <Container className={`${styles.menu} ${isOpen ? styles.menuopen :""}`}>  
                 <Container className={styles.contburgerbutton}>
                     <BurgerButton isOpen={ isOpen } onClick={onBurgerButtonClick}/>
@@ -51,6 +51,6 @@ export default function Nav ({children}) {
             <Container className={styles.body}>
                 { children }                
             </Container>            
-        </Container>        
+        </nav>        
     );
 }

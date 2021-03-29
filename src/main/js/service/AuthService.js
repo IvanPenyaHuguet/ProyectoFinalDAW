@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { useHistory } from "react-router-dom";
+import BackendServiceConf from "./BackendServiceConf";
 
 /**
  * Service Class for working with authentication context
@@ -17,8 +19,16 @@ class AuthenticationService {
                 return false;
             });
     }
-    validate () {        
-        return axios.post("/validate", this.getUser());            
+    validate () { 
+        try {  
+            BackendServiceConf.config(axios);
+            return axios.post("/validate", this.getUser());    
+        } catch (e) {
+            this.signout();
+            const history = useHistory();
+            history.push("/login");
+            console.log("Validate bad");
+        }        
     }
     signout() {        
         localStorage.removeItem("user");

@@ -8,6 +8,8 @@ import com.proyectofinal.daw.exceptions.ReagentNotFoundException;
 import com.proyectofinal.daw.repositories.ReagentRepositoryImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -55,5 +57,9 @@ public class ReagentService {
             return reagentRepo.save(reagent);
         })
         .orElseThrow(() -> new ReagentNotFoundException(id));        
+    }
+
+    public Page <Reagent> getAllPage(Pageable pageable) {
+        return reagentRepo.findAll(pageable);
     }
 }

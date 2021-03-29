@@ -14,9 +14,9 @@
     width: 210px;
 }
 .fullcontainer {
-    width: calc(100% - 60px);
+    width: calc(100% - 80px);
     height: 100%;
-    margin-left: 60px;
+    margin-left: 80px;
     transition: margin 2s ease-out, width 2s ease-out; 
 }
 .fullcontaineropen {

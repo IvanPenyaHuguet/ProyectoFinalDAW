@@ -64,6 +64,7 @@ public abstract class Reagent {
     @Basic
     @Temporal(TemporalType.DATE)
     private Calendar entryDate;
+    @Column(unique=true)
     private String cas;
 
     public String getCas() {

@@ -2,10 +2,13 @@ package com.proyectofinal.daw.repositories;
 
 import com.proyectofinal.daw.entities.Reagent;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ReagentBaseRepository<T extends Reagent> extends CrudRepository <T, Long>{
+
+public interface ReagentBaseRepository<T extends Reagent> extends JpaRepository <T, Long>{
     
     // @Query("select u from #{#entityName} as u where u.email = ?1 ")
     public T findBySpanishName(String spanishName);
+    public T findByInternalReference(String internalReference);
+    public T findByCas(String cas);
 }

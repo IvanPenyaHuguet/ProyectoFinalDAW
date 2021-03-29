@@ -12,7 +12,7 @@ import HeaderButtonGroup from '../nav/HeaderButtonGroup';
 export default function Header ({children}) {
 
     return (
-        <Container className={styles.bar}>
+        <header className={styles.bar}>
             <Container className={styles.container} >
                 <div className={styles.div}>
                     <h1 className={styles.title}>LARS</h1>
@@ -22,6 +22,6 @@ export default function Header ({children}) {
                 </div>                  
                 <HeaderButtonGroup />              
             </Container>            
-        </Container>
+        </header>
     )
 }
