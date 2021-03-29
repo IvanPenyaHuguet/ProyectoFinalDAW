@@ -7,7 +7,7 @@ import TableBase from './TableBase';
 
 const ReagentTable = () => {
    
-    
+    const TITLE = "REAGENTS";
     const [ data , setData ] = useState([]);   
     const [ loading, setLoading ] = useState(false); 
     const [ controlledPageCount, setControlledPageCount ] = useState(0);
@@ -30,9 +30,25 @@ const ReagentTable = () => {
         },{
             Header: "Type",
             accessor: "reagentType"
+        },{
+            Header: "Quantity",
+            accessor: "quantity"
+        },{
+            Header: "CAS",
+            accessor: "cas"
+        },{
+            Header: "Reception Date",
+            accessor: "entryDate"
+        },{
+            Header: "Molecular Weight",
+            accessor: "molecularWeight"
+        },{
+            Header: "Supplier",
+            accesor: "suppliers.name"
         }
 
     ], []);
+    
 
     const fetchData = useCallback((pageindex, pagesize) => {
         const fetchId = ++fetchIdRef.current;
@@ -44,7 +60,7 @@ const ReagentTable = () => {
                 setLoading(false);       
                 setControlledPageCount(result.data.numPages);  
                 setTotalElements(result.data.totalElements);  
-                setData(result.data.data); 
+                setData(result.data.data);                
             });           
         }     
     },[]);
@@ -59,6 +75,7 @@ const ReagentTable = () => {
             data={data} 
             controlledPageCount={controlledPageCount} 
             totalElements={totalElements}
+            title={TITLE}
             fetchData={fetchData}
             />
         </>

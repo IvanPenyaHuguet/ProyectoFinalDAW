@@ -8,15 +8,16 @@ import TableBody from '@material-ui/core/TableBody';
 import Loader from '../container/Loader';
 import TableHead from './TableHead';
 import TablePagination from './TablePagination';
+import Toolbar from './Toolbar';
 
 
 import { useSortBy, useTable, usePagination } from 'react-table';
 
 
 
-export default function TableBase ({columns,  data, fetchData, loading, controlledPageCount, totalElements}) {
+export default function TableBase ({columns,  data, fetchData, loading, controlledPageCount, totalElements, title}) {
 
-    const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, 
+    const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, allColumns, getToggleHideAllColumnsProps, toggleHideAllColumns, 
         page, canPreviousPage, canNextPage, pageOptions, pageCount, gotoPage, nextPage, previousPage, setPageSize, state: { pageIndex, pageSize} 
     } = useTable({
         columns,
@@ -39,8 +40,9 @@ export default function TableBase ({columns,  data, fetchData, loading, controll
     return (
         <>
         { loading
-            ? <Loader /> 
-            : <MUITheme>           
+            ? <Loader />             
+            : <MUITheme> 
+                <Toolbar allColumns={allColumns} getToggleHideAllColumnsProps={getToggleHideAllColumnsProps} toggleHideAllColumns={toggleHideAllColumns} title={title}/>          
                 <MUITable {...getTableProps()}>
                     <TableHead headerGroups={headerGroups}>                   
                     </TableHead>             
