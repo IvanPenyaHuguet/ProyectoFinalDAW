@@ -23,7 +23,11 @@ export default function TableBase ({columns,  data, fetchData, loading, controll
         columns,
         data: data,
         initialState: { 
-            pageIndex: 0 
+            pageIndex: 0,
+            pageSize: 10,
+            hiddenColumns: columns.map( col => {
+                if (col.show === false) return col.accessor || col.id;
+            }), 
         },
         manualPagination: true,
         pageCount: controlledPageCount,

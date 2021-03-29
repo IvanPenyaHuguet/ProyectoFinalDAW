@@ -17,7 +17,8 @@ const ReagentTable = () => {
     const columns = useMemo (() => [
         {
             Header: "ID",
-            accessor: "id"
+            accessor: "id",
+            show: false
         },{
             Header: "Reference",
             accessor: "internalReference"
@@ -26,7 +27,8 @@ const ReagentTable = () => {
             accessor: "spanishName"
         },{
             Header: "English Name",
-            accessor: "englishName"
+            accessor: "englishName",
+            show: false
         },{
             Header: "Type",
             accessor: "reagentType"
@@ -38,13 +40,15 @@ const ReagentTable = () => {
             accessor: "cas"
         },{
             Header: "Reception Date",
-            accessor: "entryDate"
+            accessor: "entryDate",
+            show: false
         },{
             Header: "Molecular Weight",
             accessor: "molecularWeight"
         },{
             Header: "Supplier",
-            accesor: "suppliers.name"
+            accesor: "suppliers.name",
+            show: false
         }
 
     ], []);
@@ -64,6 +68,7 @@ const ReagentTable = () => {
             });           
         }     
     },[]);
+   
     
 
     return (
