@@ -51,6 +51,11 @@ Here's why:
 
 * [React](https://es.reactjs.org)
 * [Spring](https://spring.io)
+
+Has been used in the frontend material ui on the tables, react router to do routes on react and axios to the requests.
+And webpack with babel and postcss loader with autoprefixer to do the front usable on almost all browsers.
+On the backend spring security to keep the api protected and hibernate search for the search feature.
+
   
 
 
@@ -79,6 +84,8 @@ spring.datasource.username=finaldaw
 spring.datasource.password=finaldaw
 
 ```
+* JDK 14
+  
 
 ### Installation
 
