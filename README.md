@@ -7,9 +7,9 @@ link: [LINK](https://github.com/IvanPenyaHuguet)
 -->
 
 <!-- PROJECT SHIELDS -->
-[![Forks][forks-shield]][https://github.com/IvanPenyaHuguet/ProyectoFinalDAW/fork]
-[![Issues][issues-shield]][https://github.com/IvanPenyaHuguet/ProyectoFinalDAW/issues]
-[![LinkedIn][linkedin-shield]][https://www.linkedin.com/in/ivan-pena-huguet/]
+[![Forks][forks-shield]][forks-url]
+[![Issues][issues-shield]][issues-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
 
 
