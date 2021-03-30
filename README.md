@@ -6,12 +6,6 @@ link: [LINK](https://github.com/IvanPenyaHuguet)
 
 -->
 
-<!-- PROJECT SHIELDS -->
-[![Forks][forks-shield]][forks-url]
-[![Issues][issues-shield]][issues-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
-
 
 <!-- PROJECT LOGO -->
 <br />
