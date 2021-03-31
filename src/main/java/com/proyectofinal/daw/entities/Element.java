@@ -1,5 +1,6 @@
 package com.proyectofinal.daw.entities;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,9 +14,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table
-public class Element {
+public class Element implements Serializable{
     
     @Id    
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,11 +40,31 @@ public class Element {
         joinColumns = {@JoinColumn(name = "element_id")},
         inverseJoinColumns = {@JoinColumn(name = "standard_id")}
     )
+    @JsonIgnoreProperties("elements")
     private List<StandardSol> standards;
     @Column(nullable = false)
     private int period;    
     private int tableGroup;    
     private float electronegativity;
+    @ManyToMany(cascade = {
+        CascadeType.PERSIST,
+        CascadeType.MERGE
+    })
+    @JoinTable(
+        name = "elements_reagents",
+        joinColumns = {@JoinColumn(name = "element_id")},
+        inverseJoinColumns = {@JoinColumn(name = "reagent_id")}
+    )
+    @JsonIgnoreProperties("elements")
+    private List<Reagent> reagents;
+
+    public List<Reagent> getReagents() {
+        return this.reagents;
+    }
+
+    public void setReagents(List<Reagent> reagents) {
+        this.reagents = reagents;
+    }
 
     
     /** 

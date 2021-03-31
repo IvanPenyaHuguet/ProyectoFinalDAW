@@ -1,5 +1,6 @@
 package com.proyectofinal.daw.entities;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,10 +14,12 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 @Entity
 @Table
-public class Supplier {
+public class Supplier implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +35,7 @@ public class Supplier {
             joinColumns = {@JoinColumn(name = "supplier_id")},
             inverseJoinColumns = {@JoinColumn(name = "reagent_id")}
     )
+    @JsonIgnoreProperties("suppliers")
     private List<Reagent> reagents;
     @ManyToMany(cascade = {
         CascadeType.PERSIST,
@@ -42,6 +46,7 @@ public class Supplier {
             joinColumns = {@JoinColumn(name = "supplier_id")},
             inverseJoinColumns = {@JoinColumn(name = "standard_id")}
     )
+    @JsonIgnoreProperties("suppliers")
     private List<StandardSol> standards;
 
 

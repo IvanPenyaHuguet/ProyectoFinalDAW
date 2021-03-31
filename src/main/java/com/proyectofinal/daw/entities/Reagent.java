@@ -1,6 +1,7 @@
 package com.proyectofinal.daw.entities;
 
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
 
@@ -17,6 +18,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,6 +26,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 
 import org.hibernate.annotations.ColumnDefault;
@@ -43,7 +46,7 @@ import org.hibernate.annotations.ColumnDefault;
     @JsonSubTypes.Type(value = InorganicReagent.class, name = "inorganic"),
     @JsonSubTypes.Type(value = OrganicReagent.class, name = "organic")
 })
-public abstract class Reagent {
+public abstract class Reagent implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -56,9 +59,11 @@ public abstract class Reagent {
     @ColumnDefault("1") 
     private int quantity;  
     private String formula;
-    @OneToOne(mappedBy = "reagent", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private Commentary commentary;
+    @OneToMany(mappedBy = "reagent", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("reagent")
+    private List<Commentary> commentary;    
     @ManyToMany(mappedBy = "reagents")
+    @JsonIgnoreProperties("reagents")
     private List<Supplier> suppliers;
     private float molecularWeight;
     @Basic
@@ -66,6 +71,18 @@ public abstract class Reagent {
     private Calendar entryDate;
     @Column(unique=true)
     private String cas;
+    @ManyToMany(mappedBy = "reagents")
+    @JsonIgnoreProperties("reagents")
+    private List<Element> elements;
+
+    public List<Element> getElements() {
+        return this.elements;
+    }
+
+    public void setElements(List<Element> elements) {
+        this.elements = elements;
+    }
+
 
     public String getCas() {
         return this.cas;
@@ -75,6 +92,13 @@ public abstract class Reagent {
         this.cas = cas;
     }
 
+    public List<Commentary> getCommentary() {
+        return this.commentary;
+    }
+
+    public void setCommentary(List<Commentary> commentary) {
+        this.commentary = commentary;
+    }
     
     /** 
      * @return long
@@ -172,22 +196,7 @@ public abstract class Reagent {
     }
 
     
-    /** 
-     * @return Commentary
-     */
-    public Commentary getCommentary() {
-        return this.commentary;
-    }
-
-    
-    /** 
-     * @param commentary
-     */
-    public void setCommentary(Commentary commentary) {
-        this.commentary = commentary;
-    }
-
-    
+   
     /** 
      * @return List<Supplier>
      */

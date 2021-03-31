@@ -1,5 +1,6 @@
 package com.proyectofinal.daw.entities;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
 
@@ -14,13 +15,16 @@ import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.Table;
 
 
 @Entity
 @Table
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class StandardSol {
+public abstract class StandardSol implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,8 +33,10 @@ public abstract class StandardSol {
     private String internalReference; 
     private String name;
     @ManyToMany(mappedBy = "standards")
+    @JsonIgnoreProperties("standards")
     private List<Element> elements;
     @ManyToMany(mappedBy = "standards")
+    @JsonIgnoreProperties("standards")
     private List<Element> suppliers;
     private int concentration;
     @Basic

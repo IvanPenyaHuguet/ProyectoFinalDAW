@@ -1,5 +1,6 @@
 package com.proyectofinal.daw.entities;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,9 +15,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table
-public class User {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,6 +38,7 @@ public class User {
         CascadeType.PERSIST,
         CascadeType.MERGE
     }, orphanRemoval = true,fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("user")
     private List<Commentary> commentaries;
     
     

@@ -1,5 +1,6 @@
 package com.proyectofinal.daw.entities;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -17,7 +18,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table
-public class Location {
+public class Location implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

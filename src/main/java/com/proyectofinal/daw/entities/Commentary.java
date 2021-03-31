@@ -1,5 +1,8 @@
 package com.proyectofinal.daw.entities;
 
+import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,8 +11,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 /**
@@ -17,19 +23,32 @@ import javax.persistence.Table;
  */
 @Entity
 @Table
-public class Commentary {
+public class Commentary implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @JoinColumn(name = "reagent_id", nullable = false)
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("commentary")
     private Reagent reagent;
     @ManyToOne()    
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnoreProperties("commentaries")
     private User user;   
     @Column(nullable = false) 
     private String commentary;
+    @Column(nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date creationDate;
+
+    public Date getCreationDate() {
+        return this.creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
 
     
     /** 
