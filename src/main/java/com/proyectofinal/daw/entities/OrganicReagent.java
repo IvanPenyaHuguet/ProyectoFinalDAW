@@ -8,6 +8,10 @@ import javax.persistence.Lob;
 @DiscriminatorValue("Organic")
 public class OrganicReagent extends Reagent{    
     
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     private String secondaryIntReference;
     @Lob    
     private byte[] image;

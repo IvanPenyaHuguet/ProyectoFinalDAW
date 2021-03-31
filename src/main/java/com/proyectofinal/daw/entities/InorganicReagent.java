@@ -9,6 +9,10 @@ import javax.persistence.Entity;
 @DiscriminatorValue("Inorganic")
 public class InorganicReagent extends Reagent{
     
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     private String utilization;   
 
     /** 

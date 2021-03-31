@@ -13,6 +13,10 @@ import javax.persistence.Table;
 public class AqueousStandardSolution extends StandardSol{
       
     
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     @Basic
     @Temporal(TemporalType.DATE)
     private Calendar expiryDate;

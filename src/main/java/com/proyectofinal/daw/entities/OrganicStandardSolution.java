@@ -10,6 +10,10 @@ import javax.persistence.Table;
 @Table
 public class OrganicStandardSolution extends StandardSol{
         
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     @Column
     private String medium;
 
