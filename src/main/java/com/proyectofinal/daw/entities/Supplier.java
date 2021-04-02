@@ -51,8 +51,17 @@ public class Supplier implements Serializable{
             inverseJoinColumns = {@JoinColumn(name = "standard_id")}
     )
     @JsonIgnoreProperties("suppliers")
-    private List<StandardSol> standards;
+    private List<StandardSol> standards;    
+    private Seller seller;
 
+    public Seller getSeller() {
+        return this.seller;
+    }
+
+    public void setSeller(Seller seller) {
+        this.seller = seller;
+    }  
+   
 
     public List<StandardSol> getStandards() {
         return this.standards;

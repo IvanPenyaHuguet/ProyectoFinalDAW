@@ -1,6 +1,7 @@
 package com.proyectofinal.daw.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,6 +15,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -44,6 +47,8 @@ public class User implements Serializable {
     }, orphanRemoval = true,fetch = FetchType.LAZY)
     @JsonIgnoreProperties("user")
     private List<Commentary> commentaries;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date creationDate;
     
     
     /** 

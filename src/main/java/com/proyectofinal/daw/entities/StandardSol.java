@@ -1,7 +1,7 @@
 package com.proyectofinal.daw.entities;
 
 import java.io.Serializable;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Basic;
@@ -45,26 +45,17 @@ public abstract class StandardSol implements Serializable{
     private int concentration;
     @Basic
     @Temporal(TemporalType.DATE)
-    private Calendar entryDate;
+    private Date entryDate;
 
-    
-    /** 
-     * @return Calendar
-     */
-    public Calendar getEntryDate() {
+    public Date getEntryDate() {
         return this.entryDate;
     }
 
-    
-    /** 
-     * @param entryDate
-     */
-    public void setEntryDate(Calendar entryDate) {
+    public void setEntryDate(Date entryDate) {
         this.entryDate = entryDate;
-    }
-
-    
-    /** 
+    } 
+   
+     /** 
      * @return String
      */
     public String getName() {

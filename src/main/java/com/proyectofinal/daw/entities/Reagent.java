@@ -77,6 +77,24 @@ public abstract class Reagent implements Serializable {
     @ManyToMany(mappedBy = "reagents")
     @JsonIgnoreProperties("reagents")
     private List<Element> elements;
+    private String supplierCode;
+    private User user_buyer;
+
+    public User getUser_buyer() {
+        return this.user_buyer;
+    }
+
+    public void setUser_buyer(User user_buyer) {
+        this.user_buyer = user_buyer;
+    }
+
+    public String getSupplierCode() {
+        return this.supplierCode;
+    }
+
+    public void setSupplierCode(String supplierCode) {
+        this.supplierCode = supplierCode;
+    }
 
     public List<Element> getElements() {
         return this.elements;
