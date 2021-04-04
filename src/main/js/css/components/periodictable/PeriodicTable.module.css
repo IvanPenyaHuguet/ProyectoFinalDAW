@@ -1,0 +1,14 @@
+.table {
+    display: grid;
+    grid-template-columns: repeat(17, auto) 1fr;
+    grid-template-rows: auto;
+}
+.wrapper {
+    width: 90%;
+    margin: 0 auto;
+    max-width: 1700px;
+    
+}
+.elementBox {
+
+}

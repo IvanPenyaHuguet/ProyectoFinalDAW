@@ -16,7 +16,7 @@ export default function Header ({children}) {
         <header className={styles.bar}>
             <Container className={styles.container} >
                 <div className={styles.div}>
-                    <Link exact to={"/chemdata"} className={styles.title}>
+                    <Link to="/chemdata" className={styles.title}>
                         <h1 className={styles.title}>LARS</h1>                        
                     </Link>
                         <Container className={styles.subtitle}>
