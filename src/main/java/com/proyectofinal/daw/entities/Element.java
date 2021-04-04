@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table
+@JsonIgnoreProperties({"elements", "standards", "reagents"})
 public class Element implements Serializable{
     
     /**
@@ -44,7 +45,7 @@ public class Element implements Serializable{
         joinColumns = {@JoinColumn(name = "element_id")},
         inverseJoinColumns = {@JoinColumn(name = "standard_id")}
     )
-    @JsonIgnoreProperties("elements")
+    @JsonIgnoreProperties("standards")
     private List<StandardSol> standards;
     @Column(nullable = false)
     private int period;    
@@ -59,7 +60,7 @@ public class Element implements Serializable{
         joinColumns = {@JoinColumn(name = "element_id")},
         inverseJoinColumns = {@JoinColumn(name = "reagent_id")}
     )
-    @JsonIgnoreProperties("elements")
+    @JsonIgnoreProperties("reagents")
     private List<Reagent> reagents;
 
     public List<Reagent> getReagents() {

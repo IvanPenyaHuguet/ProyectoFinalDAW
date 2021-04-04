@@ -1,5 +1,8 @@
 package com.proyectofinal.daw.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.proyectofinal.daw.entities.User;
 import com.proyectofinal.daw.repositories.UserRepository;
 import com.proyectofinal.daw.services.authentication.AuthenticationUser;
@@ -13,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -62,7 +66,7 @@ public class UserAuthController {
     public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationUser user) {
         try {
             authenticationManager.authenticate(
-            new UsernamePasswordAuthenticationToken( user.getUsername(), user.getPassword()
+                new UsernamePasswordAuthenticationToken( user.getUsername(), user.getPassword()
         ));
         }
         catch (BadCredentialsException e) {
@@ -70,7 +74,11 @@ public class UserAuthController {
         }
         final UserDetails userDetails = UserAuthenticationDetails.loadUserByUsername(user.getUsername());
         final String jwt = jwtUtil.generateToken(userDetails);
-        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt, user.getUsername(), (String)userDetails.getAuthorities().toArray()[0].toString()));
+        List<String> roles = new ArrayList<String>();
+        for (GrantedAuthority ga :  userDetails.getAuthorities()) {
+            roles.add(ga.getAuthority());
+        }        
+        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt, user.getUsername(), roles));
     }
     /**
      * Api for check if a JWT is still valid

@@ -41,10 +41,13 @@ public class JwtUtil {
     }
     public List<GrantedAuthority> extractRole (String token) throws Exception { 
         final Claims claims = extractAllClaims(token); 
-        final Map<String,String> roles =  claims.get("roles", Map.class);        
+        final List<Map<String,String>> roles =  claims.get("roles", List.class);        
         List<GrantedAuthority> rolesList = new ArrayList<>();
-        GrantedAuthority authority =  new SimpleGrantedAuthority("ROLE_" + roles.get("authority"));
-        rolesList.add(authority);
+        for (Map<String, String> rol: roles) {
+            rolesList.add(new SimpleGrantedAuthority(rol.get("authority")));
+        }    
+        //GrantedAuthority authority =  new SimpleGrantedAuthority("ROLE_" + roles.get("authority"));
+        //rolesList.add(authority);
         return rolesList;        
     }
     public <T> T extractClaim(String token, Function<Claims,T> claimsResolver) throws Exception{
@@ -59,7 +62,7 @@ public class JwtUtil {
     }
     public String generateToken (UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("roles", userDetails.getAuthorities().toArray()[0]);        
+        claims.put("roles", userDetails.getAuthorities().toArray());        
         claims.put("user", userDetails.getUsername());
         return createToken(claims, userDetails.getUsername());
     }

@@ -26,6 +26,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.*;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 
 import org.hibernate.annotations.ColumnDefault;
@@ -42,9 +43,10 @@ import org.hibernate.annotations.ColumnDefault;
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, name = "reagentType")
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = As.PROPERTY, property = "reagentType")
 @JsonSubTypes({
-    @JsonSubTypes.Type(value = InorganicReagent.class, name = "inorganic"),
-    @JsonSubTypes.Type(value = OrganicReagent.class, name = "organic")
+    @JsonSubTypes.Type(value = InorganicReagent.class, name = "Inorganic"),
+    @JsonSubTypes.Type(value = OrganicReagent.class, name = "Organic")
 })
+@JsonIgnoreProperties({"reagents", "standards"})
 public abstract class Reagent implements Serializable {
     
     /**
@@ -65,17 +67,15 @@ public abstract class Reagent implements Serializable {
     @OneToMany(mappedBy = "reagent", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JsonIgnoreProperties("reagent")
     private List<Commentary> commentary;    
-    @ManyToMany(mappedBy = "reagents")
-    @JsonIgnoreProperties("reagents")
+    @ManyToMany(mappedBy = "reagents")    
+    @JsonManagedReference
     private List<Supplier> suppliers;
     private float molecularWeight;
     @Basic
     @Temporal(TemporalType.DATE)
-    private Calendar entryDate;
-    @Column(unique=true)
+    private Calendar entryDate;    
     private String cas;
-    @ManyToMany(mappedBy = "reagents")
-    @JsonIgnoreProperties("reagents")
+    @ManyToMany(mappedBy = "reagents")    
     private List<Element> elements;
     private String supplierCode;
     private User user_buyer;

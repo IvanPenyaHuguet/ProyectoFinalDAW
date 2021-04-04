@@ -17,6 +17,9 @@ import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 
 /**
  * Model for a commentary
@@ -44,7 +47,19 @@ public class Commentary implements Serializable{
     private String commentary;
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private Date creationDate;
+    @Temporal(TemporalType.TIMESTAMP)
+    @UpdateTimestamp
+    private Date updatedDate;
+
+    public Date getUpdatedDate() {
+        return this.updatedDate;
+    }
+
+    public void setUpdatedDate(Date updatedDate) {
+        this.updatedDate = updatedDate;
+    }
 
     public Date getCreationDate() {
         return this.creationDate;

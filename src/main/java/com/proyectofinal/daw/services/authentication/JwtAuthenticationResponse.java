@@ -1,5 +1,8 @@
 package com.proyectofinal.daw.services.authentication;
 
+import java.util.List;
+
+
 /**
  * Response JWT object for the auntentication process
  */
@@ -15,16 +18,18 @@ public class JwtAuthenticationResponse {
         this.token = token;
     }
     private String user;
-    private String role;
+    private List<String> role;
 
-    public String getRole() {
+    public List<String> getRole() {
         return this.role;
     }
 
-    public void setRole(String role) {
+    public void setRole(List<String> role) {
         this.role = role;
     }
 
+   
+    
     public String getUser() {
         return this.user;
     }
@@ -44,7 +49,7 @@ public class JwtAuthenticationResponse {
         this.token = jwt;
         this.user = user;
     }
-    public JwtAuthenticationResponse( String jwt ,String user, String role) {
+    public JwtAuthenticationResponse( String jwt ,String user, List<String> role) {
         this.token = jwt;
         this.user = user;
         this.role = role;

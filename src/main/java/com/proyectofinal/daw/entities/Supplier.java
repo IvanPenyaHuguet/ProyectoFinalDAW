@@ -12,13 +12,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @Entity
 @Table
+@JsonIgnoreProperties({"suppliers", "standards", "reagents"})
 public class Supplier implements Serializable{
     
     /**
@@ -38,8 +41,8 @@ public class Supplier implements Serializable{
             name = "reagent_supplier",
             joinColumns = {@JoinColumn(name = "supplier_id")},
             inverseJoinColumns = {@JoinColumn(name = "reagent_id")}
-    )
-    @JsonIgnoreProperties("suppliers")
+    )    
+    @JsonBackReference
     private List<Reagent> reagents;
     @ManyToMany(cascade = {
         CascadeType.PERSIST,
@@ -49,9 +52,10 @@ public class Supplier implements Serializable{
             name = "standardSol_supplier",
             joinColumns = {@JoinColumn(name = "supplier_id")},
             inverseJoinColumns = {@JoinColumn(name = "standard_id")}
-    )
-    @JsonIgnoreProperties("suppliers")
-    private List<StandardSol> standards;    
+    )    
+    private List<StandardSol> standards;  
+    @ManyToOne()
+    @JoinColumn(name = "seller_id")    
     private Seller seller;
 
     public Seller getSeller() {
