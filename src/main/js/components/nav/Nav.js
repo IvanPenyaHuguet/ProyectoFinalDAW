@@ -33,8 +33,8 @@ export default function Nav ({children}) {
     }
 
     return (
-        <nav className={`${styles.fullcontainer} ${isOpen ? styles.fullcontaineropen :""}`} >
-            <Container className={`${styles.menu} ${isOpen ? styles.menuopen :""}`}>  
+        <Container className={`${styles.fullcontainer} ${isOpen ? styles.fullcontaineropen :""}`} >
+            <nav className={`${styles.menu} ${isOpen ? styles.menuopen :""}`}>  
                 <Container className={styles.contburgerbutton}>
                     <BurgerButton isOpen={ isOpen } onClick={onBurgerButtonClick}/>
                 </Container>
@@ -45,12 +45,12 @@ export default function Nav ({children}) {
                     <LinkOfMenu to="/solution/water" text="Standard Solution" icon={<WaterSolIcon />} isOpen={isOpen}/>
                     <LinkOfMenu to="/solution/organic" text="Organic Std. Solution" icon={<OrganicSolIcon />} isOpen={isOpen}/>
                     <LinkOfMenu to="/standard/all" text="Standards" icon={<StandardIcon />} isOpen={isOpen}/>
-                    {userRole == "ADMIN" && <LinkOfMenu to="/admin" text="Manage" icon={<AdminIcon />}isOpen={isOpen} />}
+                    {userRole.includes("ROLE_MODIFY_USERS") && <LinkOfMenu to="/admin" text="Manage" icon={<AdminIcon />}isOpen={isOpen} />}
                 </Container>              
-            </Container>
+            </nav>
             <Container className={styles.body}>
                 { children }                
             </Container>            
-        </nav>        
+        </Container>        
     );
 }

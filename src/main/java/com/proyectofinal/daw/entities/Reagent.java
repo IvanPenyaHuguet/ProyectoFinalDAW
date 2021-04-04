@@ -17,7 +17,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,7 +28,6 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.*;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 
 import org.hibernate.annotations.ColumnDefault;
@@ -41,12 +42,12 @@ import org.hibernate.annotations.ColumnDefault;
 // @Inheritance(strategy = InheritanceType.JOINED) //(Una tabla con los campos en comun y otras tablas con los campos diferentes)
 //@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS) // Una table por cada clase, parecido a @MappedSuperClass
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, name = "reagentType")
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = As.PROPERTY, property = "reagentType")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = As.PROPERTY, property = "reagentType", visible=true)
 @JsonSubTypes({
     @JsonSubTypes.Type(value = InorganicReagent.class, name = "Inorganic"),
     @JsonSubTypes.Type(value = OrganicReagent.class, name = "Organic")
 })
-@JsonIgnoreProperties({"reagents", "standards"})
+@JsonIgnoreProperties({"reagents", "standards", "reagent"})
 public abstract class Reagent implements Serializable {
     
     /**
@@ -67,34 +68,41 @@ public abstract class Reagent implements Serializable {
     @OneToMany(mappedBy = "reagent", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JsonIgnoreProperties("reagent")
     private List<Commentary> commentary;    
-    @ManyToMany(mappedBy = "reagents")    
-    @JsonManagedReference
-    private List<Supplier> suppliers;
+    @OneToMany(mappedBy = "reagent")   
+    private List<ReagentSuppplier> suppliers;
     private float molecularWeight;
     @Basic
     @Temporal(TemporalType.DATE)
     private Calendar entryDate;    
     private String cas;
     @ManyToMany(mappedBy = "reagents")    
-    private List<Element> elements;
-    private String supplierCode;
-    private User user_buyer;
+    private List<Element> elements;    
+    private User userBuyer;
+    @ManyToOne() 
+    @JoinColumn(name = "location_id")
+    private Location location; 
+    @Column(name="reagentType", insertable = false, updatable = false)
+    protected String reagentType;
 
-    public User getUser_buyer() {
-        return this.user_buyer;
+    public String getReagentType() {
+        return this.reagentType;
+    }    
+
+    public Location getLocation() {
+        return this.location;
     }
 
-    public void setUser_buyer(User user_buyer) {
-        this.user_buyer = user_buyer;
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
-    public String getSupplierCode() {
-        return this.supplierCode;
+    public User getUserBuyer() {
+        return this.userBuyer;
     }
 
-    public void setSupplierCode(String supplierCode) {
-        this.supplierCode = supplierCode;
-    }
+    public void setUserBuyer(User userBuyer) {
+        this.userBuyer = userBuyer;
+    }  
 
     public List<Element> getElements() {
         return this.elements;
@@ -214,24 +222,7 @@ public abstract class Reagent implements Serializable {
      */
     public void setFormula(String formula) {
         this.formula = formula;
-    }
-
-    
-   
-    /** 
-     * @return List<Supplier>
-     */
-    public List<Supplier> getSuppliers() {
-        return this.suppliers;
-    }
-
-    
-    /** 
-     * @param suppliers
-     */
-    public void setSuppliers(List<Supplier> suppliers) {
-        this.suppliers = suppliers;
-    }
+    }   
 
     
     /** 
@@ -264,5 +255,13 @@ public abstract class Reagent implements Serializable {
     public void setEntryDate(Calendar entryDate) {
         this.entryDate = entryDate;
     }
+    
+    public List<ReagentSuppplier> getSuppliers() {
+        return this.suppliers;
+    }
 
+    public void setSuppliers(List<ReagentSuppplier> suppliers) {
+        this.suppliers = suppliers;
+    }
+   
 }

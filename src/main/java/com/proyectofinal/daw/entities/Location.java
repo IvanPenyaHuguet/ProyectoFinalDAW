@@ -13,11 +13,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * Model for a location
  */
 @Entity
 @Table
+@JsonIgnoreProperties({"reagents", "solutions"})
 public class Location implements Serializable {
     
     /**
@@ -29,8 +32,7 @@ public class Location implements Serializable {
     private long id;
     @Column(nullable = false, unique = true)
     private String name;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "location_id")
+    @OneToMany(mappedBy = "location",cascade = CascadeType.ALL, orphanRemoval = true)   
     private List<Reagent> reagents;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "location_id")

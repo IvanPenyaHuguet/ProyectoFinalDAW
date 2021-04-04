@@ -21,6 +21,7 @@
     color: var(--var-terciary-color);
     font-size: 3rem;
     text-shadow: 3px 2px 6px var(--var-terciary-color);
+    text-decoration: none;
 }
 .subtitle {
     color: var(--var-terciary-color);
