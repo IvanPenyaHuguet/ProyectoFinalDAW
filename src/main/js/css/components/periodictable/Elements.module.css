@@ -22,10 +22,6 @@
   box-sizing: border-box;
   position: relative;
 }
-.active {
-  background: #fff;
-}
-/* Categories and Groups */
 
 /* Noble Gas  */
 .noble {
@@ -103,4 +99,7 @@
 
 .element-57 {
   margin: 0;
+}
+.active {
+    background: #fff;
 }
