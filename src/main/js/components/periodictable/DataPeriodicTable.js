@@ -31,7 +31,7 @@ module.exports = {
     {
       name: 'Helium',
       appearance:
-        'colorless gas, exhibiting a red-orange glow when placed in a high-voltage electric field',
+        'colorless gas',
       atomic_mass: 4.0026022,
       boil: 4.222,
       category: 'noble gas',
@@ -224,7 +224,7 @@ module.exports = {
     {
       name: 'Neon',
       appearance:
-        'colorless gas exhibiting an orange-red glow when placed in a high voltage electric field',
+        'colorless gas',
       atomic_mass: 20.17976,
       boil: 27.104,
       category: 'noble gas',
@@ -320,7 +320,7 @@ module.exports = {
     },
     {
       name: 'Silicon',
-      appearance: 'crystalline, reflective with bluish-tinged faces',
+      appearance: null,
       atomic_mass: 28.085,
       boil: 3538,
       category: 'metalloid',
@@ -344,7 +344,7 @@ module.exports = {
     },
     {
       name: 'Phosphorus',
-      appearance: 'colourless, waxy white, yellow, scarlet, red, violet, black',
+      appearance: 'colourless, yellow, scarlet, red, violet, black',
       atomic_mass: 30.9737619985,
       boil: null,
       category: 'polyatomic nonmetal',
@@ -368,7 +368,7 @@ module.exports = {
     },
     {
       name: 'Sulfur',
-      appearance: 'lemon yellow sintered microcrystals',
+      appearance: 'lemon yellow',
       atomic_mass: 32.06,
       boil: 717.8,
       category: 'polyatomic nonmetal',
@@ -418,7 +418,7 @@ module.exports = {
     {
       name: 'Argon',
       appearance:
-        'colorless gas exhibiting a lilac/violet glow when placed in a high voltage electric field',
+        'colorless gas',
       atomic_mass: 39.9481,
       boil: 87.302,
       category: 'noble gas',
@@ -610,7 +610,7 @@ module.exports = {
     },
     {
       name: 'Iron',
-      appearance: 'lustrous metallic with a grayish tinge',
+      appearance: 'metallic grayish',
       atomic_mass: 55.8452,
       boil: 3134,
       category: 'transition metal',
@@ -658,7 +658,7 @@ module.exports = {
     },
     {
       name: 'Nickel',
-      appearance: 'lustrous, metallic, and silver with a gold tinge',
+      appearance: 'silver with a gold tinge',
       atomic_mass: 58.69344,
       boil: 3003,
       category: 'transition metal',
@@ -802,7 +802,7 @@ module.exports = {
     },
     {
       name: 'Selenium',
-      appearance: 'black, red, and gray (not pictured) allotropes',
+      appearance: 'black, red',
       atomic_mass: 78.9718,
       boil: 958,
       category: 'polyatomic nonmetal',
@@ -851,7 +851,7 @@ module.exports = {
     {
       name: 'Krypton',
       appearance:
-        'colorless gas, exhibiting a whitish glow in a high electric field',
+        'colorless gas',
       atomic_mass: 83.7982,
       boil: 119.93,
       category: 'noble gas',
@@ -971,7 +971,7 @@ module.exports = {
     },
     {
       name: 'Niobium',
-      appearance: 'gray metallic, bluish when oxidized',
+      appearance: 'gray metallic, bluish',
       atomic_mass: 92.906372,
       boil: 5017,
       category: 'transition metal',
@@ -1187,7 +1187,7 @@ module.exports = {
     },
     {
       name: 'Tin',
-      appearance: 'silvery-white (beta, \u03b2) or gray (alpha, \u03b1)',
+      appearance: 'silvery-white or gray',
       atomic_mass: 118.7107,
       boil: 2875,
       category: 'post-transition metal',
@@ -1283,8 +1283,7 @@ module.exports = {
     },
     {
       name: 'Xenon',
-      appearance:
-        'colorless gas, exhibiting a blue glow when placed in a high voltage electric field',
+      appearance: 'colorless gas',
       atomic_mass: 131.2936,
       boil: 165.051,
       category: 'noble gas',
@@ -2030,7 +2029,7 @@ module.exports = {
     },
     {
       name: 'Astatine',
-      appearance: 'unknown, probably metallic',
+      appearance: null,
       atomic_mass: 210,
       boil: 610,
       category: 'metalloid',
@@ -2054,8 +2053,7 @@ module.exports = {
     },
     {
       name: 'Radon',
-      appearance:
-        'colorless gas, occasionally glows green or red in discharge tubes',
+      appearance: 'colorless gas',
       atomic_mass: 222,
       boil: 211.5,
       category: 'noble gas',
@@ -2247,7 +2245,7 @@ module.exports = {
     },
     {
       name: 'Plutonium',
-      appearance: 'silvery white, tarnishing to dark gray in air',
+      appearance: 'silvery white to dark gray',
       atomic_mass: 244,
       boil: 3505,
       category: 'actinide',

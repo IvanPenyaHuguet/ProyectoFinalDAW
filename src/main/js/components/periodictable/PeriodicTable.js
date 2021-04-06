@@ -1,11 +1,10 @@
-import { Container } from '@material-ui/core';
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 
+import Container from '../container/Container';
 import Element from './ElementOfTable';
-import { elements } from './DataPeriodicTable';
 import styles from '../../css/components/periodictable/PeriodicTable.module.css';
 
-export default function PeriodicTable () {
+export default function PeriodicTable ({size = "lg"}) {
     const [ infoElement, setInfoElement ] = useState ({
         showInfo: false,
         element: {}
@@ -28,16 +27,36 @@ export default function PeriodicTable () {
     }
 
     return (
-        <Container className={styles.wrapper}>
+        <Container className={`${styles.wrapper} ${styles[size]}`}>
             <div className={styles.table}>
                 <Element setShowInfo={setInfoElement} elementNum="1" />
                 <Element setShowInfo={setInfoElement} elementNum="2" />
                 <Element setShowInfo={setInfoElement} elementNum="3" />
                 <Element setShowInfo={setInfoElement} elementNum="4" />
                 { infoElement.showInfo=== true && (
-                    <Fragment>
-                        <Element elementNum={elements.indexOf(infoElement.element)} />
-                    </Fragment>
+                    <>
+                        <Container className={`${styles.element} ${styles[infoElement.element.category.split(" ")[0]]}`}>
+                            <div className={styles.number}>{infoElement.element.number}</div>
+                            <div className={styles.symbol}>{infoElement.element.symbol}</div>
+                            <div className={styles.elementName}>{infoElement.element.name}</div>
+                        </Container>
+                        <Container className={styles.information}>                           
+                            <h1 className={styles.hone}>{infoElement.element.name}</h1>
+                            <span className={`${styles.categ} ${infoElement.element.category}`}>{infoElement.element.category}</span>
+                            <div className={styles.atom}>
+                                <span>Atomic Mass: {infoElement.element.atomic_mass} | </span>
+                                <span>Density: {infoElement.element.density}</span>
+                                {infoElement.element.molar_heat && <span> | Molar Heat: {infoElement.element.molar_heat}</span> }
+                                {infoElement.element.melt && <span> | Melt: {infoElement.element.melt}K</span> }
+                                {infoElement.element.boil && <span> | Boil: {infoElement.element.boil}K</span> }
+                            </div>
+                            {infoElement.element.appearance && (
+                                <div className={styles.appearance}>
+                                <strong>Appearance:</strong> {infoElement.element.appearance}
+                                </div>
+                            )}
+                        </Container>
+                    </>
                 )}
                 {middleRows}                
             </div>

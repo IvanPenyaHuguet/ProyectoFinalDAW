@@ -1,14 +1,96 @@
+.wrapper {  
+  margin: 0 auto;
+  max-width: 900px;
+}
+.lg {
+    width: 900px;
+    min-width: 900px;
+}
 .table {
-    display: grid;
-    grid-template-columns: repeat(17, auto) 1fr;
-    grid-template-rows: auto;
+  display: grid;
+  grid-template-columns: repeat(17, auto) 1fr;
+  grid-template-rows: auto;
 }
-.wrapper {
-    width: 90%;
-    margin: 0 auto;
-    max-width: 1700px;
-    
+.element {
+  grid-column: 3/5;
+  grid-row: 2/4;
+  margin: 5px;  
+  overflow: hidden;
+  border: 1px solid black;
+  box-sizing: border-box;
+  position: relative;
 }
-.elementBox {
-
+.number {
+  font-size: 20px;
+    top: 1px;
+    left: 3px
+}
+.symbol {
+  font-size: 40px;
+  text-align: center;
+}
+.elementName {
+  font-size: 15px;
+  text-align: center;
+}
+.information {
+  grid-column: 5/13;
+  grid-row: 2/4;  
+  font-size: 15px;
+  max-height: 100px;
+  box-sizing: border-box;
+  padding: 0 0 0 5px;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+.hone {
+  margin: 0 0 1px 0;
+  display: inline-block;
+  font-size: 25px;
+}
+.categ {   
+  margin-left: 5px;
+  font-style: italic;
+}
+.appearance {
+  font-size: 14px;  
+}
+.atom {
+  margin-bottom: 5px;
+  font-size: 18px;
+  color: #998100;
+}
+.noble {
+  background: #f3d2e8;
+}
+.alkali {
+  background: #f88379;
+}
+.alkaline {
+  background: #ffc3a0;
+}
+.transition {
+  background: #e9ff08;
+}
+.polyatomic {
+  background: #a3d2d5;
+}
+.diatomic {
+  background: #a3d5bf;
+}
+.post-transition {
+  background: #8eb1e7;
+}
+.metalloid {
+  background: #5ed89c;
+}
+.lanthanide {
+  background: #cc99ff;
+}
+.actinide {
+  background: #ad87bd;
+}
+.unknown {
+  background: #ccffff;
 }

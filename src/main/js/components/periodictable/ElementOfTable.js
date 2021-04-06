@@ -40,7 +40,6 @@ export default function ElementOfTable ({ setShowInfo, elementNum }) {
             className={`${styles.element} ${styles["element-"+elementNum]} ${styles[category]} ${hovered===true ? styles.active : ''}`}>
                 <div className={styles.number}>{element.number}</div>
                 <div className={styles.symbol}>{element.symbol}</div>
-                <div className={styles.elementName}>{element.name}</div>
         </div>
     )
 
