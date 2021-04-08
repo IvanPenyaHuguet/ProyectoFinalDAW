@@ -2,11 +2,11 @@
   "comp": {
     "periodictable": {
       "appearance": "Apariencia",
-      "atomicmass": "Masa Atómica",
+      "atomicmass": "Masa",
       "boil": "Ebullición",
       "density": "Densidad",
       "melt": "Fusión",
-      "molarheat": "Capacidad calorífica"
+      "molarheat": "Cap. calorífica"
     }
   },
   "date_format": "{{date, 'es-ES'}}",

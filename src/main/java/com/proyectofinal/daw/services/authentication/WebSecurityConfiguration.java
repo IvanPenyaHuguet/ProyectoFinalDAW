@@ -42,8 +42,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter{
                     .antMatchers("/built/*").permitAll()
                     .antMatchers("/authenticate").permitAll()
                     .antMatchers("/validate").permitAll()
-                    .antMatchers("/favicon.ico").permitAll()
-                    .antMatchers("/target/classes/static/built/**").permitAll() //Only development
+                    .antMatchers("/favicon.ico").permitAll()                    
                     .antMatchers(HttpMethod.POST,"/signup").permitAll() // Temporal
                     //.antMatchers(HttpMethod.POST, "/api/**").authenticated()
                     //.antMatchers("/api/**").hasRole("TECH")

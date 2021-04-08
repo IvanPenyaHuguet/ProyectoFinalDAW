@@ -11,30 +11,31 @@ export default function PeriodicTable ({size = "lg"}) {
         element: {}
     });
     const { t } = useTranslation();
+    const [ selectedElements, setSelectedElements ] = useState ({});
     const middleRows = [];
     for (let i=5; i <= 57; i++) {
-        middleRows.push(<Element setShowInfo={setInfoElement} elementNum={i} key={i}/>);
+        middleRows.push(<Element setShowInfo={setInfoElement} elementNum={i} key={i} selectedElements={selectedElements} setSelectedElements={setSelectedElements}/>);
     }    
     for (let i=72; i <= 89; i++) {
-        middleRows.push(<Element setShowInfo={setInfoElement} elementNum={i} key={i}/>);
+        middleRows.push(<Element setShowInfo={setInfoElement} elementNum={i} key={i} selectedElements={selectedElements} setSelectedElements={setSelectedElements}/>);
     }
     for (let i=104; i <= 118; i++) {
-        middleRows.push(<Element setShowInfo={setInfoElement} elementNum={i} key={i}/>);
+        middleRows.push(<Element setShowInfo={setInfoElement} elementNum={i} key={i} selectedElements={selectedElements} setSelectedElements={setSelectedElements}/>);
     }
     for (let i=58; i <= 71; i++) {
-        middleRows.push(<Element setShowInfo={setInfoElement} elementNum={i} key={i}/>);
+        middleRows.push(<Element setShowInfo={setInfoElement} elementNum={i} key={i} selectedElements={selectedElements} setSelectedElements={setSelectedElements}/>);
     }
     for (let i=90; i <= 103; i++) {
-        middleRows.push(<Element setShowInfo={setInfoElement} elementNum={i} key={i}/>);
+        middleRows.push(<Element setShowInfo={setInfoElement} elementNum={i} key={i} selectedElements={selectedElements} setSelectedElements={setSelectedElements}/>);
     }
 
     return (
         <Container className={`${styles.wrapper} ${styles[size]}`}>
             <div className={styles.table}>
-                <Element setShowInfo={setInfoElement} elementNum="1" />
-                <Element setShowInfo={setInfoElement} elementNum="2" />
-                <Element setShowInfo={setInfoElement} elementNum="3" />
-                <Element setShowInfo={setInfoElement} elementNum="4" />
+                <Element setShowInfo={setInfoElement} elementNum="1" selectedElements={selectedElements} setSelectedElements={setSelectedElements}/>
+                <Element setShowInfo={setInfoElement} elementNum="2" selectedElements={selectedElements} setSelectedElements={setSelectedElements}/>
+                <Element setShowInfo={setInfoElement} elementNum="3" selectedElements={selectedElements} setSelectedElements={setSelectedElements}/>
+                <Element setShowInfo={setInfoElement} elementNum="4" selectedElements={selectedElements} setSelectedElements={setSelectedElements}/>
                 { infoElement.showInfo=== true && (
                     <>
                         <Container className={`${styles.element} ${styles[infoElement.element.category.split(" ")[0]]}`}>
