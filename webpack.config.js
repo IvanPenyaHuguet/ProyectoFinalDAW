@@ -5,9 +5,11 @@ module.exports = {
     entry: './src/main/js/app.js',       
     cache: true,    
     output: {
-        path: __dirname,
-        // filename: './src/main/resources/static/built/bundle.js' // Production
-        filename: "./target/classes/static/built/bundle.js"     // Development
+        //path: __dirname, //Dev
+        // filename: './src/main/resources/static/built/[name]bundle.js' // Production
+        path: __dirname + "/target/classes/static/built",
+        filename: "[name].bundle.js",     // Development
+        publicPath: '/built/'
     },
     module: {
         rules: [
@@ -30,5 +32,11 @@ module.exports = {
             }
         ]
     },    
-    devtool: 'source-map',    
+    devtool: 'source-map',  
+    optimization: {
+        splitChunks: {
+            chunks: 'async',
+            minSize: 20000,
+        }
+    }
 };

@@ -22,8 +22,7 @@ export default function ElementOfTable ({ setShowInfo, elementNum }) {
             showInfo: false, 
             element: {}
         });
-        setHovered(false);
-        console.log(hovered);
+        setHovered(false);       
     }
     const onClick = () => {
         setInfoPop(true);

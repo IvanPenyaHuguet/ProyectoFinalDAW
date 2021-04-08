@@ -1,0 +1,16 @@
+{
+  "comp": {
+    "periodictable": {
+      "appearance": "Appearance",
+      "atomicmass": "Atomic Mass",
+      "boil": "Boil",
+      "density": "Density",
+      "melt": "Melt",
+      "molarheat": "Molar Heat"
+    }
+  },
+  "date_format": "{{date, 'en-US'}}",
+  "general": {
+    "by": "by"
+  }
+}

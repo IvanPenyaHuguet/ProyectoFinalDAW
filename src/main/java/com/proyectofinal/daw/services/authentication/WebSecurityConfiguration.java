@@ -38,10 +38,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter{
         httpSecurity.csrf().disable().authorizeRequests()
                     .antMatchers("/").permitAll()
                     .antMatchers("/css/*").permitAll()
+                    .antMatchers("/locales/**").permitAll()
                     .antMatchers("/built/*").permitAll()
                     .antMatchers("/authenticate").permitAll()
                     .antMatchers("/validate").permitAll()
                     .antMatchers("/favicon.ico").permitAll()
+                    .antMatchers("/target/classes/static/built/**").permitAll() //Only development
                     .antMatchers(HttpMethod.POST,"/signup").permitAll() // Temporal
                     //.antMatchers(HttpMethod.POST, "/api/**").authenticated()
                     //.antMatchers("/api/**").hasRole("TECH")
