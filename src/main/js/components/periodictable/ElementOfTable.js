@@ -74,8 +74,7 @@ export default function ElementOfTable ({ setShowInfo, elementNum, setSelectedEl
         if (numEle == 0) {
             selectedElements[elementNum] ? setSelectedElements({...selectedElements,  [elementNum] : selectedElements[elementNum] - 1 }) :  setSelectedElements({...selectedElements, [elementNum]: -1});
             setNumEle( selectedElements[elementNum] == 0 ?  selectedElements[elementNum] - 1 : -1);
-        }
-        console.log(selectedElements)
+        }        
     }
     const category = element.category.split(" ")[0];
     
