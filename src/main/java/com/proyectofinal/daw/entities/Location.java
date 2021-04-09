@@ -15,12 +15,16 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.GenericField;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
+
 /**
  * Model for a location
  */
 @Entity
 @Table
 @JsonIgnoreProperties({"reagents", "solutions"})
+@Indexed
 public class Location implements Serializable {
     
     /**
@@ -31,6 +35,7 @@ public class Location implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(nullable = false, unique = true)
+    @GenericField
     private String name;
     @OneToMany(mappedBy = "location",cascade = CascadeType.ALL, orphanRemoval = true)   
     private List<Reagent> reagents;

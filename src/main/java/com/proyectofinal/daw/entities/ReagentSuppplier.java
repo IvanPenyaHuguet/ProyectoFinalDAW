@@ -10,6 +10,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+
 @Entity
 @Table(name="reagent_supplier")
 @JsonIgnoreProperties({"reagent"})

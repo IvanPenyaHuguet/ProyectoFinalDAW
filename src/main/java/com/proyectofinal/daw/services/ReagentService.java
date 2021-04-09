@@ -3,6 +3,8 @@ package com.proyectofinal.daw.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import com.proyectofinal.daw.entities.Reagent;
 import com.proyectofinal.daw.exceptions.ReagentNotFoundException;
 import com.proyectofinal.daw.repositories.ReagentRepositoryImpl;
@@ -62,4 +64,9 @@ public class ReagentService {
     public Page <Reagent> getAllPage(Pageable pageable) {
         return reagentRepo.findAll(pageable);
     }
+
+    // @Transactional
+    // public Page <Reagent> searchForField () {
+
+    // }
 }

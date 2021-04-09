@@ -2,6 +2,7 @@ node_modules
 src/main/resources/application.properties
 node
 .mvn
+filesystem
 
 HELP.md
 .mvn

@@ -18,12 +18,17 @@ import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.KeywordField;
+
 import javax.persistence.Table;
 
 
 @Entity
 @Table
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Indexed
 public abstract class StandardSol implements Serializable{
     
     /**
@@ -34,7 +39,9 @@ public abstract class StandardSol implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @Column(nullable = false)
+    @KeywordField
     private String internalReference; 
+    @FullTextField( analyzer= "spanish")
     private String name;
     @ManyToMany(mappedBy = "standards")
     @JsonIgnoreProperties("standards")

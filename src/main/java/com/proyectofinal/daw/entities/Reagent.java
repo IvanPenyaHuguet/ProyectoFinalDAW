@@ -31,6 +31,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.search.engine.backend.types.Projectable;
+import org.hibernate.search.engine.backend.types.Sortable;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.GenericField;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.KeywordField;
+
+
 
 /**
  * Model representation of a reagent
@@ -48,6 +57,7 @@ import org.hibernate.annotations.ColumnDefault;
     @JsonSubTypes.Type(value = OrganicReagent.class, name = "Organic")
 })
 @JsonIgnoreProperties({"reagents", "standards", "reagent"})
+@Indexed
 public abstract class Reagent implements Serializable {
     
     /**
@@ -58,9 +68,13 @@ public abstract class Reagent implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;    
     @Column(unique = true, nullable = false)
+    @FullTextField( analyzer= "spanish", projectable = Projectable.YES)
+    @KeywordField(name = "title_sort", normalizer = "spanish", sortable = Sortable.YES)
     private String spanishName;
+    @FullTextField ( analyzer = "english")
     private String englishName;
     @Column(nullable = false, unique=true)
+    @KeywordField
     private String internalReference;   
     @ColumnDefault("1") 
     private int quantity;  
@@ -68,18 +82,21 @@ public abstract class Reagent implements Serializable {
     @OneToMany(mappedBy = "reagent", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JsonIgnoreProperties("reagent")
     private List<Commentary> commentary;    
-    @OneToMany(mappedBy = "reagent")   
+    @OneToMany(mappedBy = "reagent") 
+    @IndexedEmbedded  
     private List<ReagentSuppplier> suppliers;
     private float molecularWeight;
     @Basic
     @Temporal(TemporalType.DATE)
-    private Calendar entryDate;    
+    private Calendar entryDate;  
+    @FullTextField 
     private String cas;
     @ManyToMany(mappedBy = "reagents")    
     private List<Element> elements;    
     private User userBuyer;
     @ManyToOne() 
     @JoinColumn(name = "location_id")
+    //@GenericField    
     private Location location; 
     @Column(name="reagentType", insertable = false, updatable = false)
     protected String reagentType;
