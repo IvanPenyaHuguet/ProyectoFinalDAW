@@ -5,35 +5,38 @@ import Divider from '@material-ui/core/Divider';
 import Avatar from '@material-ui/core/Avatar';
 import Chip from '@material-ui/core/Chip';
 
-
+import { useTranslation } from 'react-i18next';
 
 
 const ReagentTable = () => {
    
-    const TITLE = "REAGENTS";
+    const { t } = useTranslation();
+    const TITLE = t('table.title.reagents');
     const [ data , setData ] = useState([]);   
     const [ loading, setLoading ] = useState(false); 
     const [ controlledPageCount, setControlledPageCount ] = useState(0);
     const [ totalElements, setTotalElements ] = useState (0);
     const fetchIdRef = useRef(0);
+    
+    
 
     const columns = useMemo (() => [
         {
-            Header: "ID",
+            Header: t('table.column.id'),
             accessor: "id",
             show: false
         },{
-            Header: "Reference",
+            Header: t('table.column.reference'),
             accessor: "internalReference"
         },{
-            Header: "Spanish Name",
+            Header: t('table.column.spanishName'),
             accessor: "spanishName"
         },{
-            Header: "English Name",
+            Header: t('table.column.englishName'),
             accessor: "englishName",
             show: false
         },{
-            Header: "Elements",
+            Header: t('table.column.elements'),
             accesor: "elements",
             id: "elements",
             show: true,
@@ -55,40 +58,40 @@ const ReagentTable = () => {
                 )
             }
         },{
-            Header: "Formula",
+            Header: t('table.column.formula'),
             accesor: "formula",
             id: "formula",
             show: false
         },{
-            Header: "Type",
+            Header: t('table.column.type'),
             accessor: "reagentType"
         },{
-            Header: "Quantity",
+            Header: t('table.column.quantity'),
             accessor: "quantity"
         },{
-            Header: "Location",
+            Header: t('table.column.location'),
             accessor: "location.name"
         },{
-            Header: "Utilization",
+            Header: t('table.column.utilization'),
             accessor: "utilization"
         },{
-            Header: "CAS",
+            Header: t('table.column.cas'),
             accessor: "cas",
             show: false
         },{
-            Header: "Reception Date",
+            Header: t('table.column.receptionDate'),
             accessor: "entryDate",
             show: false
         },{
-            Header: "Bought By",
+            Header: t('table.column.boughtBy'),
             accessor: "user.name",
             show: false
         },{
-            Header: "Molecular Weight",
+            Header: t('table.column.molecularWeight'),
             accessor: "molecularWeight",
             show: false
         },{
-            Header: "Supplier",
+            Header: t('table.column.supplier'),
             accesor: "suppliers",
             id: "suppliers",
             show: false,
@@ -131,14 +134,14 @@ const ReagentTable = () => {
     return (
         <>       
             <TableBase 
-            columns={columns} 
-            backendService={BackendService} 
-            loading={loading} 
-            data={data} 
-            controlledPageCount={controlledPageCount} 
-            totalElements={totalElements}
-            title={TITLE}
-            fetchData={fetchData}
+                columns={columns} 
+                backendService={BackendService} 
+                loading={loading} 
+                data={data} 
+                controlledPageCount={controlledPageCount} 
+                totalElements={totalElements}
+                title={TITLE}
+                fetchData={fetchData}
             />
         </>
     )

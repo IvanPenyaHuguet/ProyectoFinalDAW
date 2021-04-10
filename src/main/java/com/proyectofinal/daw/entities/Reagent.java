@@ -58,7 +58,7 @@ import org.hibernate.search.mapper.pojo.mapping.definition.annotation.KeywordFie
 })
 @JsonIgnoreProperties({"reagents", "standards", "reagent"})
 @Indexed
-public abstract class Reagent implements Serializable {
+public abstract class Reagent implements Serializable, Compound {
     
     /**
      *
@@ -69,7 +69,7 @@ public abstract class Reagent implements Serializable {
     private long id;    
     @Column(unique = true, nullable = false)
     @FullTextField( analyzer= "spanish", projectable = Projectable.YES)
-    @KeywordField(name = "title_sort", normalizer = "spanish", sortable = Sortable.YES)
+    @KeywordField(name = "spanishName_sort", normalizer = "spanish", sortable = Sortable.YES)
     private String spanishName;
     @FullTextField ( analyzer = "english")
     private String englishName;
@@ -83,11 +83,12 @@ public abstract class Reagent implements Serializable {
     @JsonIgnoreProperties("reagent")
     private List<Commentary> commentary;    
     @OneToMany(mappedBy = "reagent") 
-    @IndexedEmbedded  
+    @IndexedEmbedded  (includeDepth = 2 )
     private List<ReagentSuppplier> suppliers;
     private float molecularWeight;
     @Basic
     @Temporal(TemporalType.DATE)
+    @GenericField
     private Calendar entryDate;  
     @FullTextField 
     private String cas;
@@ -95,8 +96,7 @@ public abstract class Reagent implements Serializable {
     private List<Element> elements;    
     private User userBuyer;
     @ManyToOne() 
-    @JoinColumn(name = "location_id")
-    //@GenericField    
+    @JoinColumn(name = "location_id")      
     private Location location; 
     @Column(name="reagentType", insertable = false, updatable = false)
     protected String reagentType;

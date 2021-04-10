@@ -4,7 +4,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
+import com.proyectofinal.daw.entities.Location;
 import com.proyectofinal.daw.entities.Reagent;
+import com.proyectofinal.daw.entities.StandardSol;
 
 import org.hibernate.search.mapper.orm.Search;
 import org.hibernate.search.mapper.orm.massindexing.MassIndexer;
@@ -26,7 +28,7 @@ public class HibernateSearchInit implements ApplicationListener<ContextRefreshed
 		
 		try {
 			SearchSession searchSession = Search.session( entityManager );
-            MassIndexer indexer = searchSession.massIndexer(Reagent.class ).threadsToLoadObjects( 1 ); 
+            MassIndexer indexer = searchSession.massIndexer(Reagent.class, StandardSol.class, Location.class). threadsToLoadObjects( 1 ); 
             indexer.startAndWait();
 		} catch (InterruptedException e) {
 			System.out.println("Error occured trying to build Hibernate Search indexes "

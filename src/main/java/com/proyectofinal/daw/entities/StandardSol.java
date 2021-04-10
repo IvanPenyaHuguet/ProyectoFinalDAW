@@ -29,7 +29,7 @@ import javax.persistence.Table;
 @Table
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Indexed
-public abstract class StandardSol implements Serializable{
+public abstract class StandardSol implements Serializable, Compound{
     
     /**
      *

@@ -4,6 +4,8 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.KeywordField;
+
 @Entity
 @DiscriminatorValue("Organic")
 public class OrganicReagent extends Reagent{    
@@ -12,6 +14,7 @@ public class OrganicReagent extends Reagent{
      *
      */
     private static final long serialVersionUID = 1L;
+    @KeywordField
     private String secondaryIntReference;
     @Lob    
     private byte[] image;

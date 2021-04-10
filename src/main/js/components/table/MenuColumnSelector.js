@@ -14,9 +14,12 @@ import Checkbox from '@material-ui/core/Checkbox';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import AllColumnMenuSelector from './AllColumnMenuSelector';
 
+import { useTranslation } from 'react-i18next';
 
 
 export default function MenuColumnSelector ({ allColumns, getToggleHideAllColumnsProps, classes, toggleHideAllColumns }) {
+
+    const { t } = useTranslation();
     const [ showColumnSelector , setShowColumnSelector ] = useState(false);
     const prevOpen = useRef(showColumnSelector);   
     const anchorRef = useRef(null);
@@ -43,8 +46,8 @@ export default function MenuColumnSelector ({ allColumns, getToggleHideAllColumn
 
     return (
         <>
-            <Tooltip title="Columnas a mostrar">
-                    <IconButton aria-label="Columnas a mostrar" onClick={onButtonShowColumn} ref={anchorRef}>
+            <Tooltip title={t('table.tooltip.mostrarCol')}>
+                    <IconButton aria-label={t('table.tooltip.mostrarCol')} onClick={onButtonShowColumn} ref={anchorRef}>
                         <FilterListIcon className={classes.icon}/>
                     </IconButton>
             </Tooltip>

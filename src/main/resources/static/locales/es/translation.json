@@ -12,5 +12,35 @@
   "date_format": "{{date, 'es-ES'}}",
   "general": {
     "by": "por"
+  },
+  "table": {
+    "column": {
+      "boughtBy": "",
+      "cas": "",
+      "elements": "",
+      "englishName": "",
+      "formula": "",
+      "id": "IDENTIFICACIÓN",
+      "location": "",
+      "molecularWeight": "",
+      "quantity": "",
+      "receptionDate": "",
+      "reference": "",
+      "spanishName": "",
+      "supplier": "",
+      "type": "",
+      "utilization": ""
+    },
+    "label": {
+      "searchInput": "Texto a buscar"
+    },
+    "title": {
+      "reagents": ""
+    },
+    "tooltip": {
+      "fieldSearch": "Campos a buscar",
+      "mostrarCol": "Columnas a mostrar",
+      "search": "Buscar"
+    }
   }
 }

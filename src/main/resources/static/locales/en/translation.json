@@ -12,5 +12,35 @@
   "date_format": "{{date, 'en-US'}}",
   "general": {
     "by": "by"
+  },
+  "table": {
+    "column": {
+      "boughtBy": "Bought By",
+      "cas": "CAS",
+      "elements": "Elements",
+      "englishName": "English Name",
+      "formula": "Formula",
+      "id": "ID",
+      "location": "Location",
+      "molecularWeight": "Molecular Weight",
+      "quantity": "Quantity",
+      "receptionDate": "Reception Date",
+      "reference": "Reference",
+      "spanishName": "Spanish Name",
+      "supplier": "Supplier",
+      "type": "Type",
+      "utilization": "Utilization"
+    },
+    "label": {
+      "searchInput": "Text to look for"
+    },
+    "title": {
+      "reagents": "REAGENTS"
+    },
+    "tooltip": {
+      "fieldSearch": "Fields to search",
+      "mostrarCol": "Columns to show",
+      "search": "Search"
+    }
   }
 }

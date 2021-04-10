@@ -3,6 +3,8 @@ package com.proyectofinal.daw.entities;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
+
 
 
 @Entity
@@ -13,6 +15,7 @@ public class InorganicReagent extends Reagent{
      *
      */
     private static final long serialVersionUID = 1L;
+    @FullTextField
     private String utilization;   
 
     /** 
@@ -25,7 +28,7 @@ public class InorganicReagent extends Reagent{
     
     /** 
      * @param utilization
-     */
+     */    
     public void setUtilization(String utilization) {
         this.utilization = utilization;
     }

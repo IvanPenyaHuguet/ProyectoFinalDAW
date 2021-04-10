@@ -39,6 +39,7 @@ public class JwtUtil {
     public String extractIssuer (String token) throws Exception {
         return extractClaim(token, Claims::getIssuer);
     }
+    @SuppressWarnings (value="unchecked")
     public List<GrantedAuthority> extractRole (String token) throws Exception { 
         final Claims claims = extractAllClaims(token); 
         final List<Map<String,String>> roles =  claims.get("roles", List.class);        

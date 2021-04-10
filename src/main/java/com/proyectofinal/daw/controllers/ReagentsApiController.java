@@ -41,7 +41,7 @@ public class ReagentsApiController implements BaseApiController{
         return reagentService.findAll();
     }
 
-    @PreAuthorize("hasRole('ADMIN') OR hasRole('TECH')")
+    @PreAuthorize("hasRole('ROLE_EDIT_ALL')")
     @GetMapping("/reagent/{id}")           
     public Reagent getById(@PathVariable Long id) {      
         return reagentService.findById(id)
@@ -49,7 +49,7 @@ public class ReagentsApiController implements BaseApiController{
     }
        
     @DeleteMapping("/reagent/{id}") 
-    @PreAuthorize("hasRole('ADMIN') OR hasRole('TECH')")           
+    @PreAuthorize("hasRole('ROLE_EDIT_ALL')")           
     public boolean deleteById(@PathVariable Long id) {      
         return reagentService.deleteById(id);
     }
@@ -85,9 +85,5 @@ public class ReagentsApiController implements BaseApiController{
 
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
         
-    }
-
-    
-    
-
+    }    
 }

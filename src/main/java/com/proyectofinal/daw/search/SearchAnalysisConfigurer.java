@@ -2,7 +2,7 @@ package com.proyectofinal.daw.search;
 
 import org.hibernate.search.backend.lucene.analysis.LuceneAnalysisConfigurationContext;
 import org.hibernate.search.backend.lucene.analysis.LuceneAnalysisConfigurer;
-
+import org.apache.lucene.analysis.charfilter.HTMLStripCharFilterFactory;
 import org.apache.lucene.analysis.core.LowerCaseFilterFactory;
 import org.apache.lucene.analysis.miscellaneous.ASCIIFoldingFilterFactory;
 import org.apache.lucene.analysis.snowball.SnowballPorterFilterFactory;
@@ -14,6 +14,7 @@ public class SearchAnalysisConfigurer implements LuceneAnalysisConfigurer{
     public void configure(LuceneAnalysisConfigurationContext context) {
         context.analyzer( "english" ).custom() 
             .tokenizer( StandardTokenizerFactory.class ) 
+            .charFilter( HTMLStripCharFilterFactory.class )
             .tokenFilter( LowerCaseFilterFactory.class ) 
             .tokenFilter( SnowballPorterFilterFactory.class ) 
             .param( "language", "English" ) 
@@ -24,6 +25,7 @@ public class SearchAnalysisConfigurer implements LuceneAnalysisConfigurer{
             .tokenFilter( ASCIIFoldingFilterFactory.class );
         context.analyzer("spanish").custom()
             .tokenizer( StandardTokenizerFactory.class ) 
+            .charFilter( HTMLStripCharFilterFactory.class )
             .tokenFilter( LowerCaseFilterFactory.class ) 
             .tokenFilter( SnowballPorterFilterFactory.class ) 
             .param( "language", "Spanish" ) 
