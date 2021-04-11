@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
@@ -7,7 +7,6 @@ import TextField from '@material-ui/core/TextField';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 import AddBoxIcon from '@material-ui/icons/AddBox';
-import Button from '@material-ui/core/Button';
 
 import Container from '../container/Container';
 import PopperSearchInput from './PopperSearchInput';
@@ -37,12 +36,10 @@ const useStyles = makeStyles((theme) => ({
 export default function SearchInput () {   
     const { t } = useTranslation();
     const classes = useStyles();
-
       
     const [ showColumnSelector , setShowColumnSelector ] = useState(null);
     const { textToSearch, setTextToSearch } = useContext(SearchTextContext);
-    const [ inputSearchText, setInputSearchText ] = useState ('');
-    
+    const [ inputSearchText, setInputSearchText ] = useState ('');    
 
     const onButtonShowColumn = (e) => {
         e.preventDefault();      
@@ -57,8 +54,7 @@ export default function SearchInput () {
     }
     const onInputSearchChange = (e) => {
         setInputSearchText(e.target.value);
-    }
-    
+    }    
 
     return (
         <Container className={styles.searchContainer}>

@@ -30,9 +30,7 @@ export default function Toolbar ({ allColumns, getToggleHideAllColumnsProps, tit
             position: "relative"
         }
     }));
-    const classes = useToolbarStyles();
-
-    
+    const classes = useToolbarStyles();    
 
     return (
         <MUIToolbar className={classes.root}>            

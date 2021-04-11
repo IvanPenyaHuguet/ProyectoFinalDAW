@@ -11,7 +11,7 @@ import TablePagination from './TablePagination';
 import Toolbar from './Toolbar';
 
 
-import { useSortBy, useTable, usePagination } from 'react-table';
+import { useSortBy, useTable, usePagination, useFlexLayout } from 'react-table';
 import { SearchTextContext } from '../../context/SearchTextContext';
 
 
@@ -35,7 +35,8 @@ export default function TableBase ({columns,  data, fetchData, loading, controll
         autoResetPage: false
     },
     useSortBy,
-    usePagination
+    usePagination,
+    useFlexLayout
     );
     const [ textToSearch, setTextToSearch ] = useState('');
     
