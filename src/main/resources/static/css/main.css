@@ -38,22 +38,27 @@ body {
 }
 .AppContainer {
     height: 100%;
+    overflow: hidden;
 }
 .AppContent {
     height: 100%;
+    overflow: hidden;
+}
+.mainApplication {
+    height: calc(100% - 90px);
+    overflow: auto;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+    border-radius: 20px;    
+}
+::-webkit-scrollbar-track {
+    background: #f0efef; 
 }
 ::-webkit-scrollbar-thumb {
-    background-color: #d6dee1;
-}
-::-webkit-scrollbar-thumb {
-    background-color: #d6dee1;
-    border-radius: 20px;
-}
-::-webkit-scrollbar-thumb {
-    background-color: #d6dee1;
-    border-radius: 20px;
-    border: 6px solid transparent;
-    background-clip: content-box;
+    background-color: #c0c9cc;
+    border-radius: 20px;       
 }
 ::-webkit-scrollbar-thumb:hover {
     background-color: #a8bbbf;

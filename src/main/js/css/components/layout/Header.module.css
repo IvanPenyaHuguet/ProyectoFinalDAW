@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 .bar {
     background-color: var(--var-primary-dark-color);
-    height: 5rem;   
+    height: 80px;   
     border-bottom: 2px solid var(--var-grey-color);     
 }
 .container {
