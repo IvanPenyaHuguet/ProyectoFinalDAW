@@ -9,6 +9,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Popover from '@material-ui/core/Popover';
 
+
 import { SearchFieldContext } from '../../context/SearchFieldContext';
 
 
@@ -16,7 +17,7 @@ export default function PopperSearchInput ({ handleCloseShowColumn, showColumnSe
 
     const {fieldsToSearch, setFieldsToSearch} = useContext(SearchFieldContext);    
     const open = Boolean(showColumnSelector); 
-    const id = open ? 'popover-search' : undefined;
+    const id = open ? 'popover-search' : undefined;    
     
     const onCheckBoxClick = index => {  
         return e => {                

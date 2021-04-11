@@ -11,9 +11,13 @@
   },
   "date_format": "{{date, 'es-ES'}}",
   "general": {
-    "by": "por"
+    "by": "por",
+    "close": "Cerrar"
   },
   "table": {
+    "button": {
+      "searchElements": ""
+    },
     "column": {
       "boughtBy": "",
       "cas": "",
@@ -26,6 +30,7 @@
       "quantity": "",
       "receptionDate": "",
       "reference": "",
+      "secondaryintreference": "",
       "spanishName": "",
       "supplier": "",
       "type": "",
@@ -38,8 +43,12 @@
       "reagents": ""
     },
     "tooltip": {
+      "add": "",
+      "export": "",
       "fieldSearch": "Campos a buscar",
       "mostrarCol": "Columnas a mostrar",
+      "print": "",
+      "save": "",
       "search": "Buscar"
     }
   }

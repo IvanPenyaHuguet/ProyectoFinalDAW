@@ -11,9 +11,13 @@
   },
   "date_format": "{{date, 'en-US'}}",
   "general": {
-    "by": "by"
+    "by": "by",
+    "close": "Close"
   },
   "table": {
+    "button": {
+      "searchElements": "Search elements"
+    },
     "column": {
       "boughtBy": "Bought By",
       "cas": "CAS",
@@ -39,8 +43,12 @@
       "reagents": "REAGENTS"
     },
     "tooltip": {
+      "add": "Add",
+      "export": "Export",
       "fieldSearch": "Fields to search",
       "mostrarCol": "Columns to show",
+      "print": "Print",
+      "save": "Save",
       "search": "Search"
     }
   }

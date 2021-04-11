@@ -7,6 +7,8 @@ import Typography from '@material-ui/core/Typography';
 
 import MenuColumnSelector from './MenuColumnSelector';
 import SearchInput from './SearchInput';
+import ButtonMenuTable from './ButtonMenuTable';
+import SelectorPeriodicTable from './SelectorPeriodicTable';
 
 
 export default function Toolbar ({ allColumns, getToggleHideAllColumnsProps, title, toggleHideAllColumns }) {
@@ -15,8 +17,7 @@ export default function Toolbar ({ allColumns, getToggleHideAllColumnsProps, tit
           paddingLeft: theme.spacing(2),
           paddingRight: theme.spacing(1),
         },        
-        title: {
-          flex: '1 1 100%',
+        title: {          
           fontSize: "2rem",
         },
         icon: {
@@ -30,15 +31,16 @@ export default function Toolbar ({ allColumns, getToggleHideAllColumnsProps, tit
         }
     }));
     const classes = useToolbarStyles();
-    
-    
+
     
 
     return (
-        <MUIToolbar className={classes.root}>
+        <MUIToolbar className={classes.root}>            
             <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
                 {title}
-            </Typography>
+            </Typography>  
+            <ButtonMenuTable />          
+            <SelectorPeriodicTable />
             <SearchInput />            
             <MenuColumnSelector 
                 allColumns={allColumns}
