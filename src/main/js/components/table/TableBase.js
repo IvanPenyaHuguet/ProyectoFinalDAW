@@ -12,10 +12,11 @@ import Toolbar from './Toolbar';
 
 
 import { useSortBy, useTable, usePagination } from 'react-table';
+import { SearchTextContext } from '../../context/SearchTextContext';
 
 
 
-export default function TableBase ({columns,  data, fetchData, loading, controlledPageCount, totalElements, title}) {
+export default function TableBase ({columns,  data, fetchData, loading, controlledPageCount, totalElements, title, searchFields}) {
 
     const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, allColumns, getToggleHideAllColumnsProps, toggleHideAllColumns, 
         page, canPreviousPage, canNextPage, pageOptions, pageCount, gotoPage, nextPage, previousPage, setPageSize, state: { pageIndex, pageSize} 
@@ -36,46 +37,55 @@ export default function TableBase ({columns,  data, fetchData, loading, controll
     useSortBy,
     usePagination
     );
+    const [ textToSearch, setTextToSearch ] = useState('');
     
     useEffect(() => {                 
-        fetchData( pageIndex, pageSize  );
-    }, [ fetchData, pageIndex, pageSize]);  
+        fetchData( pageIndex, pageSize, textToSearch );
+    }, [ fetchData, pageIndex, pageSize, textToSearch]);  
       
     return (
         <>
         { loading
             ? <Loader />             
-            : <MUITheme> 
-                <Toolbar allColumns={allColumns} getToggleHideAllColumnsProps={getToggleHideAllColumnsProps} toggleHideAllColumns={toggleHideAllColumns} title={title}/>          
-                <MUITable {...getTableProps()}>
-                    <TableHead headerGroups={headerGroups}>                   
-                    </TableHead>             
-                    <TableBody {...getTableBodyProps()}>
-                        {page.map((row, i) => {
-                        prepareRow(row)
-                        return (
-                            <TableRow {...row.getRowProps()}>
-                            {row.cells.map(cell => {
-                                return (
-                                <TableCell {...cell.getCellProps()}>
-                                    {cell.render('Cell')}
-                                </TableCell>
-                                )
-                            })}
-                            </TableRow>
-                        )
-                        })}
-                    </TableBody> 
-                    <TablePagination 
-                        totalelements={totalElements} 
-                        length={columns.length}
-                        pageindex={pageIndex} 
-                        pagesize={pageSize} 
-                        setpagesize={setPageSize} 
-                        gotopage={gotoPage}                               
+            :
+            <SearchTextContext.Provider value={{textToSearch, setTextToSearch}}>
+                <MUITheme>                 
+                    <Toolbar 
+                        allColumns={allColumns} 
+                        getToggleHideAllColumnsProps={getToggleHideAllColumnsProps} 
+                        toggleHideAllColumns={toggleHideAllColumns} 
+                        title={title}
                     />          
-                </MUITable >            
-            </ MUITheme>
+                    <MUITable {...getTableProps()}>
+                        <TableHead headerGroups={headerGroups}>                   
+                        </TableHead>             
+                        <TableBody {...getTableBodyProps()}>
+                            {page.map((row, i) => {
+                            prepareRow(row)
+                            return (
+                                <TableRow {...row.getRowProps()}>
+                                {row.cells.map(cell => {
+                                    return (
+                                    <TableCell {...cell.getCellProps()}>
+                                        {cell.render('Cell')}
+                                    </TableCell>
+                                    )
+                                })}
+                                </TableRow>
+                            )
+                            })}
+                        </TableBody> 
+                        <TablePagination 
+                            totalelements={totalElements} 
+                            length={columns.length}
+                            pageindex={pageIndex} 
+                            pagesize={pageSize} 
+                            setpagesize={setPageSize} 
+                            gotopage={gotoPage}                               
+                        />          
+                    </MUITable >            
+                </ MUITheme> 
+            </SearchTextContext.Provider>          
         }
         </>
     )

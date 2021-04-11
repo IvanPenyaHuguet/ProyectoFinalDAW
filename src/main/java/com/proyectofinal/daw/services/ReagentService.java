@@ -76,7 +76,7 @@ public class ReagentService {
     public Map<String,Object> searchForField (Map<String, Object> params) throws ResponseStatusException{
         Map <String, Object> response = new HashMap<String,Object>();
         int totalPages;
-
+        
         if ( params.get("search") != null && params.get("fields") != null) {
             String searchedText = (String) params.get("search");
             int page = params.get("page") != null ? Integer.valueOf(params.get("page").toString()) : 0;

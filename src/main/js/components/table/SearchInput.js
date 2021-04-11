@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
@@ -14,6 +14,7 @@ import PopperSearchInput from './PopperSearchInput';
 
 import styles from '../../css/components/table/SearchInput.module.css';
 import { useTranslation } from 'react-i18next';
+import { SearchTextContext } from '../../context/SearchTextContext';
 
 const useStyles = makeStyles((theme) => ({    
     container: {
@@ -39,18 +40,24 @@ export default function SearchInput () {
 
       
     const [ showColumnSelector , setShowColumnSelector ] = useState(null);
+    const { textToSearch, setTextToSearch } = useContext(SearchTextContext);
+    const [ inputSearchText, setInputSearchText ] = useState ('');
     
 
     const onButtonShowColumn = (e) => {
         e.preventDefault();      
-        setShowColumnSelector(e.currentTarget);  
-        console.log(e.currentTarget);      
+        setShowColumnSelector(e.currentTarget);              
     };
 
     const handleCloseShowColumn = (event) => {           
         setShowColumnSelector(null);
     };
-   
+    const onSearchClick = () => {
+        setTextToSearch(inputSearchText)
+    }
+    const onInputSearchChange = (e) => {
+        setInputSearchText(e.target.value);
+    }
     
 
     return (
@@ -63,10 +70,10 @@ export default function SearchInput () {
                 </Tooltip>
                 <PopperSearchInput showColumnSelector={showColumnSelector} handleCloseShowColumn={handleCloseShowColumn} />
                 <Box className={classes.input}>
-                    <TextField label={t('table.label.searchInput')} className={classes.container}/>
+                    <TextField label={t('table.label.searchInput')} className={classes.container} value={inputSearchText} onChange={onInputSearchChange}/>
                 </Box>
                 <Tooltip title={t('table.tooltip.search')}>
-                    <IconButton aria-label={t('table.tooltip.search')} className={classes.iconContainer}>
+                    <IconButton aria-label={t('table.tooltip.search')} className={classes.iconContainer} onClick={onSearchClick}>
                         <SearchIcon className={classes.icon}/>
                     </IconButton>
                 </Tooltip>

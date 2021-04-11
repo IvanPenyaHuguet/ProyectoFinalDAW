@@ -5,7 +5,7 @@ import Login from "./pages/user/Login";
 //import Index from "./pages/Index";
 const Index = React.lazy(() => import("./pages/Index.js"));
 import PrivateRoute from "./service/PrivateRoute";
-import AllReagents from './pages/reagent/AllReagents';
+const AllReagents = React.lazy(() => import ('./pages/reagent/AllReagents'));
 import IndexInorganic from './pages/reagent/inorganic/Index';
 import IndexOrganic from './pages/reagent/organic/Index';
 import IndexSolWater from './pages/solution/water/Index';

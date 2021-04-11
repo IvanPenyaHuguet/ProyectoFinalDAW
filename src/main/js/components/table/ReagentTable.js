@@ -6,7 +6,8 @@ import Avatar from '@material-ui/core/Avatar';
 import Chip from '@material-ui/core/Chip';
 
 import { useTranslation } from 'react-i18next';
-
+import { SearchFieldContext } from '../../context/SearchFieldContext';
+import SearchService from '../../service/backend/SearchService';
 
 const ReagentTable = () => {
    
@@ -17,7 +18,7 @@ const ReagentTable = () => {
     const [ controlledPageCount, setControlledPageCount ] = useState(0);
     const [ totalElements, setTotalElements ] = useState (0);
     const fetchIdRef = useRef(0);
-    
+   
     
 
     const columns = useMemo (() => [
@@ -112,27 +113,69 @@ const ReagentTable = () => {
             }
         }
     ], []);
-    
 
-    const fetchData = useCallback((pageindex, pagesize) => {
+    const searchFields = [
+    {
+        value: "spanishName",
+        name: t('table.column.spanishName'),
+        selected: true
+    },{
+        value: "englishName",
+        name: t('table.column.englishName'),
+        selected: true
+    },{
+        value: "cas",
+        name: t('table.column.cas'),
+        selected: false
+    },{
+        value: "internalReference",
+        name: t('table.column.reference'),
+        selected: true
+    },{
+        value: "utilization",
+        name: t('table.column.utilization'),
+        selected: false
+    },{
+        value: "secondaryIntReference",
+        name: t('table.column.secondaryintreference'),
+        selected: true
+    }];
+    
+    const [ fieldsToSearch, setFieldsToSearch ] = useState(searchFields);
+
+    const fetchData = useCallback((pageindex, pagesize, textToSearch) => {
         const fetchId = ++fetchIdRef.current;
                
         if (fetchId === fetchIdRef.current) {
             setLoading(true);
-            BackendService.getPage( pageindex, pagesize )
-            .then (result => {                
-                setLoading(false);       
-                setControlledPageCount(result.data.numPages);  
-                setTotalElements(result.data.totalElements);  
-                setData(result.data.data);                                
-            });
+            if (textToSearch === '') {
+                BackendService.getPage( pageindex, pagesize )
+                .then (result => {                
+                    setLoading(false);       
+                    setControlledPageCount(result.data.numPages);  
+                    setTotalElements(result.data.totalElements);  
+                    setData(result.data.data);                                
+                });
+            }
+            else {                
+                SearchService.searchReagentPage(pageindex, pagesize, textToSearch, fieldsToSearch.filter( ({selected}) => selected===true).map(({value}) =>  value ))
+                    .then ( result => {
+                        console.log(result.data);
+                        setLoading(false);
+                        setControlledPageCount(result.data.numPages + 1);
+                        setTotalElements(result.data.totalElements);  
+                        setData(result.data.data);                           
+                    })
+                    .catch( err => console.log(err));
+            }
         }     
     },[]);
    
     
 
     return (
-        <>       
+        <>     
+        <SearchFieldContext.Provider value={{fieldsToSearch, setFieldsToSearch}}>  
             <TableBase 
                 columns={columns} 
                 backendService={BackendService} 
@@ -142,7 +185,9 @@ const ReagentTable = () => {
                 totalElements={totalElements}
                 title={TITLE}
                 fetchData={fetchData}
-            />
+                searchFields={searchFields}
+            />   
+        </SearchFieldContext.Provider>
         </>
     )
 

@@ -26,6 +26,7 @@
       "quantity": "Quantity",
       "receptionDate": "Reception Date",
       "reference": "Reference",
+      "secondaryintreference": "Ref. Interna 2",
       "spanishName": "Spanish Name",
       "supplier": "Supplier",
       "type": "Type",

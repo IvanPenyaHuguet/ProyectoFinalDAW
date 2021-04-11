@@ -9,23 +9,15 @@ class SearchService {
     }
 
     async searchReagentPage ( page, size, search, fields) {
-        const URL = "/search/reagent";
-        let data = null
-        try {
-            data = await axios.get("/api" + URL , {
-                params: {
-                  page: page,
-                  size: size,
-                  search: search,
-                  fields: fields
-                }        
-            })
-        }
-        catch (e) {
-            console.log(e);
-        }
-        return data;
+        const URL = "/search/reagent";                      
+        return await axios.post("/api" + URL , {
+            page: page,
+            size: size,
+            search: search,
+            fields: fields
+        })
+              
     }
 }
 
-export default SearchService;
+export default new SearchService();
