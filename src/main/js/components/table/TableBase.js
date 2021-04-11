@@ -40,8 +40,12 @@ export default function TableBase ({columns,  data, fetchData, loading, controll
     const [ textToSearch, setTextToSearch ] = useState('');
     
     useEffect(() => {                 
-        fetchData( pageIndex, pageSize, textToSearch );
-    }, [ fetchData, pageIndex, pageSize, textToSearch]);  
+        fetchData( pageIndex, pageSize, textToSearch );        
+    }, [ fetchData, pageIndex, pageSize, textToSearch]); 
+    
+    useEffect( () => {
+        gotoPage(0);
+    }, [pageSize, textToSearch])
       
     return (
         <>

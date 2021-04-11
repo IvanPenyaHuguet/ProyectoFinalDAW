@@ -159,8 +159,7 @@ const ReagentTable = () => {
             }
             else {                
                 SearchService.searchReagentPage(pageindex, pagesize, textToSearch, fieldsToSearch.filter( ({selected}) => selected===true).map(({value}) =>  value ))
-                    .then ( result => {
-                        console.log(result.data);
+                    .then ( result => {                        
                         setLoading(false);
                         setControlledPageCount(result.data.numPages + 1);
                         setTotalElements(result.data.totalElements);  

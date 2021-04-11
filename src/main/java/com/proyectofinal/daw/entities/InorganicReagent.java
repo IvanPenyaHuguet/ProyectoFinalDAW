@@ -15,7 +15,7 @@ public class InorganicReagent extends Reagent{
      *
      */
     private static final long serialVersionUID = 1L;
-    @FullTextField
+    @FullTextField (analyzer= "spanish")
     private String utilization;   
 
     /** 
