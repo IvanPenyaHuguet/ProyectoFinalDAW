@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useContext } from 'react';
 
 
 import Popover from '@material-ui/core/Popover';
@@ -11,6 +11,7 @@ import PeriodicTable from '../periodictable/PeriodicTable';
 import SearchIcon from '@material-ui/icons/Search';
 import CancelIcon from '@material-ui/icons/Cancel';
 
+import { SearchElementsContext } from '../../context/SearchElementsContext';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTranslation } from 'react-i18next';
 
@@ -36,7 +37,8 @@ export default function SelectorPeriodicTable () {
     const { t } = useTranslation();
     const [ anchorEl, setAnchorEl ] = useState(null);
     const classes = useStyles();
-    
+    const { setElementsToSearch } = useContext(SearchElementsContext);
+    const [ selectedElements, setSelectedElements ] = useState ({});
 
     const onClick = (e) => {
         setAnchorEl(e.currentTarget);        
@@ -44,6 +46,10 @@ export default function SelectorPeriodicTable () {
     const onCloseClick = () => {
         setAnchorEl(null);
     }
+    const onSearchClick = (e) => {
+        setElementsToSearch(selectedElements)
+    }
+
     const open = Boolean(anchorEl);
     const id = open ? 'pertableele' : undefined;
 
@@ -66,9 +72,9 @@ export default function SelectorPeriodicTable () {
                 }}
                 >
                 <Paper className={classes.root} elevation={0}>
-                    <PeriodicTable />
+                    <PeriodicTable selectedElements={selectedElements} setSelectedElements={setSelectedElements}/>
                     <MUIContainer className={classes.container}>
-                        <Button size="medium" color="primary" className={classes.button}><SearchIcon color="primary"/>{t('table.tooltip.search')}</Button>
+                        <Button size="medium" color="primary" className={classes.button} onClick={onSearchClick}><SearchIcon color="primary"/>{t('table.tooltip.search')}</Button>
                         <Button size="medium" color="secondary" className={classes.button} onClick={onCloseClick}><CancelIcon color="secondary"/>{t('general.close')}</Button>
                     </MUIContainer>                    
                 </Paper>

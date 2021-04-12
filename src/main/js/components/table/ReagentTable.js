@@ -7,6 +7,7 @@ import Chip from '@material-ui/core/Chip';
 
 import { useTranslation } from 'react-i18next';
 import { SearchFieldContext } from '../../context/SearchFieldContext';
+import { SearchElementsContext } from '../../context/SearchElementsContext';
 import SearchService from '../../service/backend/SearchService';
 
 const ReagentTable = () => {
@@ -142,13 +143,14 @@ const ReagentTable = () => {
     }];
     
     const [ fieldsToSearch, setFieldsToSearch ] = useState(searchFields);
+    const [ elementsToSearch, setElementsToSearch ] = useState({});
 
-    const fetchData = useCallback((pageindex, pagesize, textToSearch) => {
+    const fetchData = useCallback((pageindex, pagesize, textToSearch, elementsToSearch) => {
         const fetchId = ++fetchIdRef.current;
                
         if (fetchId === fetchIdRef.current) {
             setLoading(true);
-            if (textToSearch === '') {
+            if (textToSearch === '' && elementsToSearch === {}) {
                 BackendService.getPage( pageindex, pagesize )
                 .then (result => {                
                     setLoading(false);       
@@ -157,13 +159,20 @@ const ReagentTable = () => {
                     setData(result.data.data);                                
                 });
             }
-            else {                
+            else if(elementsToSearch === {}) {                
                 SearchService.searchReagentPage(pageindex, pagesize, textToSearch, fieldsToSearch.filter( ({selected}) => selected===true).map(({value}) =>  value ))
                     .then ( result => {                        
                         setLoading(false);
                         setControlledPageCount(result.data.numPages + 1);
                         setTotalElements(result.data.totalElements);  
                         setData(result.data.data);                           
+                    })
+                    .catch( err => console.log(err));
+            }
+            else {
+                SearchService.searchReagentByElements(pageindex, pagesize, elementsToSearch)
+                    .then ( result => {
+                        console.log(result.data)
                     })
                     .catch( err => console.log(err));
             }
@@ -175,17 +184,19 @@ const ReagentTable = () => {
     return (
         <>     
         <SearchFieldContext.Provider value={{fieldsToSearch, setFieldsToSearch}}>  
-            <TableBase 
-                columns={columns} 
-                backendService={BackendService} 
-                loading={loading} 
-                data={data} 
-                controlledPageCount={controlledPageCount} 
-                totalElements={totalElements}
-                title={TITLE}
-                fetchData={fetchData}
-                searchFields={searchFields}
-            />   
+            <SearchElementsContext.Provider value={{elementsToSearch, setElementsToSearch}}>
+                <TableBase 
+                    columns={columns} 
+                    backendService={BackendService} 
+                    loading={loading} 
+                    data={data} 
+                    controlledPageCount={controlledPageCount} 
+                    totalElements={totalElements}
+                    title={TITLE}
+                    fetchData={fetchData}
+                    searchFields={searchFields}
+                />   
+            </SearchElementsContext.Provider>
         </SearchFieldContext.Provider>
         </>
     )

@@ -25,5 +25,13 @@ public class SearchApiController implements BaseApiController{
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }
 
+    @PostMapping("/search/elements/reagent")
+    public ResponseEntity<Map<String, Object>> searchReagentElements (@RequestBody Map<String, Object> params ){
+        
+        Map<String, Object> response = reagentService.searchReagentElements(params);
+        
+        return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+    }
+
     
 }

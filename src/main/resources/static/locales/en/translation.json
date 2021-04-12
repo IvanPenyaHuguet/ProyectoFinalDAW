@@ -10,9 +10,44 @@
     }
   },
   "date_format": "{{date, 'en-US'}}",
+  "form": {
+    "label": {
+      "password": "Password",
+      "username": "Username"
+    },
+    "login": {
+      "button": {
+        "guest": "Guest",
+        "login": "Log in"
+      },
+      "error": {
+        "password": "At least 3 characters.",
+        "username": "The field can not be empty."
+      },
+      "title": "Log in"
+    }
+  },
   "general": {
     "by": "by",
     "close": "Close"
+  },
+  "header": {
+    "button": {
+      "logout": "Log out"
+    },
+    "welcom": "Welcome",
+    "welcome": "Welcome"
+  },
+  "nav": {
+    "link": {
+      "allreagents": "All Reagents",
+      "inorganicreagents": "Inorganic Reagents",
+      "manage": "Manage",
+      "organicreagents": "Organic Reagents",
+      "orgstdsol": "Organic Std. Solution",
+      "standards": "Standards",
+      "standardsol": "Standard Solution"
+    }
   },
   "table": {
     "button": {
@@ -30,7 +65,7 @@
       "quantity": "Quantity",
       "receptionDate": "Reception Date",
       "reference": "Reference",
-      "secondaryintreference": "Ref. Interna 2",
+      "secondaryintreference": "Internal Ref. 2",
       "spanishName": "Spanish Name",
       "supplier": "Supplier",
       "type": "Type",
@@ -51,5 +86,6 @@
       "save": "Save",
       "search": "Search"
     }
-  }
+  },
+  "username": "Username"
 }

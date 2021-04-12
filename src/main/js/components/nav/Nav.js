@@ -12,9 +12,11 @@ import OrganicSolIcon from "../icons/OrganicSolIcon";
 import StandardIcon from "../icons/Standard";
 import AdminIcon from "../icons/AdminIcon";
 import {AuthContext} from "../../context/AuthContextProvider";
+import { useTranslation } from "react-i18next";
 
 
 export default function Nav ({children}) {
+    const { t } = useTranslation();
     const {user, setUser} = useContext(AuthContext);
     const [ userRole, setUserRole] = useState(user.role);
     const [ isOpen, setIsOpen] = useState(false);
@@ -39,13 +41,13 @@ export default function Nav ({children}) {
                     <BurgerButton isOpen={ isOpen } onClick={onBurgerButtonClick}/>
                 </Container>
                 <Container className={styles.buttonmenu}>
-                    <LinkOfMenu to="/reagent/all" text="All Reagents" icon={<AllReagentsIcon />} isOpen={isOpen}/>
-                    <LinkOfMenu to="/reagent/inorganic" text="Inorganic Reagents" icon={<InorganicIcon />} isOpen={isOpen}/>
-                    <LinkOfMenu to="/reagent/organic" text="Organic Reagents" icon={<OrganicIcon />} isOpen={isOpen}/>
-                    <LinkOfMenu to="/solution/water" text="Standard Solution" icon={<WaterSolIcon />} isOpen={isOpen}/>
-                    <LinkOfMenu to="/solution/organic" text="Organic Std. Solution" icon={<OrganicSolIcon />} isOpen={isOpen}/>
-                    <LinkOfMenu to="/standard/all" text="Standards" icon={<StandardIcon />} isOpen={isOpen}/>
-                    {userRole.includes("ROLE_MODIFY_USERS") && <LinkOfMenu to="/admin" text="Manage" icon={<AdminIcon />}isOpen={isOpen} />}
+                    <LinkOfMenu to="/reagent/all" text={t('nav.link.allreagents')} icon={<AllReagentsIcon />} isOpen={isOpen}/>
+                    <LinkOfMenu to="/reagent/inorganic" text={t('nav.link.inorganicreagents')} icon={<InorganicIcon />} isOpen={isOpen}/>
+                    <LinkOfMenu to="/reagent/organic" text={t('nav.link.organicreagents')} icon={<OrganicIcon />} isOpen={isOpen}/>
+                    <LinkOfMenu to="/solution/water" text={t('nav.link.standardsol')} icon={<WaterSolIcon />} isOpen={isOpen}/>
+                    <LinkOfMenu to="/solution/organic" text={t('nav.link.orgstdsol')} icon={<OrganicSolIcon />} isOpen={isOpen}/>
+                    <LinkOfMenu to="/standard/all" text={t('nav.link.standards')} icon={<StandardIcon />} isOpen={isOpen}/>
+                    {userRole.includes("ROLE_MODIFY_USERS") && <LinkOfMenu to="/admin" text={t('nav.link.manage')} icon={<AdminIcon />}isOpen={isOpen} />}
                 </Container>              
             </nav>
             <Container className={styles.body}>

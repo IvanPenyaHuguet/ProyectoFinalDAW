@@ -10,46 +10,80 @@
     }
   },
   "date_format": "{{date, 'es-ES'}}",
+  "form": {
+    "label": {
+      "password": "Contraseña",
+      "username": "Nombre de usuario"
+    },
+    "login": {
+      "button": {
+        "guest": "Visitante",
+        "login": "Entrar"
+      },
+      "error": {
+        "password": "",
+        "username": ""
+      },
+      "title": "Inicia sesión"
+    }
+  },
   "general": {
     "by": "por",
     "close": "Cerrar"
   },
+  "header": {
+    "button": {
+      "logout": "Cerrar Sesión"
+    },    
+    "welcome": "Bienvenido"
+  },
+  "nav": {
+    "link": {
+      "allreagents": "Todos los reactivos",
+      "inorganicreagents": "Reactivos Inorgánicos",
+      "organicreagents": "Reactivos Orgánicos",
+      "orgstdsol": "Solución Orgánica",
+      "standards": "Estándares",
+      "standardsol": "Solucion Estándar"
+    }
+  },
   "table": {
     "button": {
-      "searchElements": ""
+      "searchElements": "Buscar por elemento"
     },
     "column": {
-      "boughtBy": "",
-      "cas": "",
-      "elements": "",
-      "englishName": "",
-      "formula": "",
-      "id": "IDENTIFICACIÓN",
-      "location": "",
-      "molecularWeight": "",
-      "quantity": "",
-      "receptionDate": "",
-      "reference": "",
-      "secondaryintreference": "",
-      "spanishName": "",
-      "supplier": "",
-      "type": "",
-      "utilization": ""
+      "boughtBy": "Comprado por",
+      "cas": "CAS",
+      "elements": "Elementos",
+      "englishName": "Nombre Ingés",
+      "formula": "Fórmula",
+      "id": "ID",
+      "location": "Localización",
+      "molecularWeight": "Peso Molecular",
+      "quantity": "Cantidad",
+      "receptionDate": "Fecha recepción",
+      "reference": "Referencia",
+      "secondaryintreference": "Ref. Interna 2",
+      "spanishName": "Nombre",
+      "supplier": "Proveedor",
+      "type": "Tipo",
+      "utilization": "Uso"
     },
     "label": {
       "searchInput": "Texto a buscar"
     },
     "title": {
-      "reagents": ""
+      "reagents": "REACTIVOS"
     },
     "tooltip": {
-      "add": "",
-      "export": "",
+      "add": "Añadir",
+      "export": "Exportar",
       "fieldSearch": "Campos a buscar",
       "mostrarCol": "Columnas a mostrar",
-      "print": "",
-      "save": "",
+      "print": "Imprimir",
+      "save": "Guardar",
       "search": "Buscar"
     }
-  }
+  },
+  "username": "Nombre de usuario"
 }

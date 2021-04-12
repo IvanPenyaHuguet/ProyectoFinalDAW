@@ -5,13 +5,16 @@ import Element from './ElementOfTable';
 import styles from '../../css/components/periodictable/PeriodicTable.module.css';
 import { useTranslation } from 'react-i18next';
 
-export default function PeriodicTable ({size = "lg"}) {
+
+
+export default function PeriodicTable ({size = "lg", selectedElements, setSelectedElements}) {
     const [ infoElement, setInfoElement ] = useState ({
         showInfo: false,
         element: {}
     });
     const { t } = useTranslation();
-    const [ selectedElements, setSelectedElements ] = useState ({});
+    
+    
     const middleRows = [];
     for (let i=5; i <= 57; i++) {
         middleRows.push(<Element setShowInfo={setInfoElement} elementNum={i} key={i} selectedElements={selectedElements} setSelectedElements={setSelectedElements}/>);

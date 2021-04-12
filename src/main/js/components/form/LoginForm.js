@@ -7,6 +7,7 @@ import ErrorSmall from "./ErrorSmall";
 import styles from "../../css/components/form/LoginForm.module.css";
 import authService from "../../service/AuthService";
 import { AuthContext } from "../../context/AuthContextProvider";
+import { useTranslation } from 'react-i18next';
 
 /**
  * React component for the login form
@@ -14,6 +15,7 @@ import { AuthContext } from "../../context/AuthContextProvider";
  */
 export default function Login(props) {
   const history = useHistory();
+  const { t } = useTranslation();
   /**
    * Context use from react
    */
@@ -91,17 +93,17 @@ export default function Login(props) {
 
   return (
     <form className={styles.form}>
-      <h2 className={styles.formTitle}>Log in</h2>   
+      <h2 className={styles.formTitle}>{t('form.login.title')}</h2>   
       <div className={styles.inputContainer}>
-        <FormInput name="username" label="Username" onChange={onInputChange} value={formData.username} />        
-        {errors.username === true && <ErrorSmall message="The field can not be empty."/>}        
+        <FormInput name="username" label={t('form.label.username')} onChange={onInputChange} value={formData.username} />        
+        {errors.username === true && <ErrorSmall message={t('form.login.error.username')}/>}        
       </div>
       <div className={styles.inputContainer}>
-        <FormInput name="password" label="Password" onChange={onInputChange} value={formData.password} type="password" onKeyDown={handleKeyDown}/>
-        {errors.password == true && <ErrorSmall message="At least 3 characters."/>}       
+        <FormInput name="password" label={t('form.label.password')} onChange={onInputChange} value={formData.password} type="password" onKeyDown={handleKeyDown}/>
+        {errors.password == true && <ErrorSmall message={t('form.login.error.password')}/>}       
       </div>
-          <PrimaryButton onClick={onFormSubmit}>Log in</PrimaryButton>   
-          <SecondaryButton onClick={onButtonClick}>Guest</SecondaryButton>      
+          <PrimaryButton onClick={onFormSubmit}>{t('form.login.button.login')}</PrimaryButton>   
+          <SecondaryButton onClick={onButtonClick}>{t('form.login.button.guest')}</SecondaryButton>      
     </form>
   );
 }

@@ -15,8 +15,16 @@ class SearchService {
             size: size,
             search: search,
             fields: fields
-        })
-              
+        })              
+    }
+    async searchReagentByElements ( page, size, search) {
+        const URL = "/search/elements/reagent";                      
+        return await axios.post("/api" + URL , {
+            page: page,
+            size: size,
+            search: search,
+            fields: fields
+        }) 
     }
 }
 

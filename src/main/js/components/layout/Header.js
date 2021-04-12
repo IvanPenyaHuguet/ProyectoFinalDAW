@@ -1,10 +1,10 @@
-import React, { Suspense } from "react";
+import React from "react";
 import Container from "../container/Container";
 import styles from "../../css/components/layout/Header.module.css";
 import HeaderButtonGroup from "../nav/HeaderButtonGroup";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import Loader from "../container/Loader";
+
 
 /**
  * React component for the header bar

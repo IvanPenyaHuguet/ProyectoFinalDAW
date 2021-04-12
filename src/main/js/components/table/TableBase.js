@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useContext } from 'react';
 import MUITheme from './GlobalMUIConf';
 import MUITable from '@material-ui/core/Table';
 import TableRow from '@material-ui/core/TableRow';
@@ -14,6 +14,7 @@ import Container from '../container/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import { useSortBy, useTable, usePagination } from 'react-table';
 import { SearchTextContext } from '../../context/SearchTextContext';
+import { SearchElementsContext } from '../../context/SearchElementsContext';
 
 const useStyles = makeStyles((theme) => ({    
     tbody: {
@@ -48,10 +49,13 @@ export default function TableBase ({columns,  data, fetchData, loading, controll
     usePagination
     );
     const [ textToSearch, setTextToSearch ] = useState('');
+    const { elementsToSearch } = useContext(SearchElementsContext);
+    
     
     useEffect(() => {                 
-        fetchData( pageIndex, pageSize, textToSearch );        
-    }, [ fetchData, pageIndex, pageSize, textToSearch]); 
+        fetchData( pageIndex, pageSize, textToSearch );
+        console.log(elementsToSearch)        
+    }, [ fetchData, pageIndex, pageSize, textToSearch, elementsToSearch]); 
     
     useEffect( () => {
         gotoPage(0);

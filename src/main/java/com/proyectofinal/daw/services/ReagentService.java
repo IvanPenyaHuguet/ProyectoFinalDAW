@@ -96,4 +96,20 @@ public class ReagentService {
         }
         return response;
     }
+
+    @SuppressWarnings (value="unchecked")
+    public Map<String,Object> searchReagentElements (Map<String, Object> params) throws ResponseStatusException{
+        Map <String, Object> response = new HashMap<String,Object>();
+        int totalPages;
+
+        if ( params.get("search") != null) {
+            Map <Integer, Integer> searchedElements =  (Map <Integer, Integer>) params.get("search");
+
+
+        }
+        else {
+            throw new ResponseStatusException(HttpStatus.PRECONDITION_FAILED);
+        }
+        return response;
+    }
 }
