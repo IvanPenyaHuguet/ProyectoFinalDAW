@@ -16,6 +16,10 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.DocumentId;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.KeywordField;
+
 @Entity
 @Table
 @JsonIgnoreProperties({"elements", "standards", "reagents"})
@@ -26,15 +30,17 @@ public class Element implements Serializable{
      */
     private static final long serialVersionUID = 1L;
     @Id    
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)    
     private int atomicNumber;        
     @Column(nullable = false)
+    @FullTextField(analyzer = "english")
     private String englishName;
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
     private float mass;
     @Column(nullable = false)
+    @KeywordField
     private String element;    
     @ManyToMany(cascade = {
         CascadeType.PERSIST,

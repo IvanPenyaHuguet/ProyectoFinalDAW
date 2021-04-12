@@ -53,7 +53,7 @@ export default function TableBase ({columns,  data, fetchData, loading, controll
     
     
     useEffect(() => {                 
-        fetchData( pageIndex, pageSize, textToSearch );
+        fetchData( pageIndex, pageSize, textToSearch, elementsToSearch );
         console.log(elementsToSearch)        
     }, [ fetchData, pageIndex, pageSize, textToSearch, elementsToSearch]); 
     

@@ -93,6 +93,7 @@ public abstract class Reagent implements Serializable, Compound {
     @FullTextField 
     private String cas;
     @ManyToMany(mappedBy = "reagents")    
+    @IndexedEmbedded(includeEmbeddedObjectId = true)
     private List<Element> elements;    
     private User userBuyer;
     @ManyToOne() 

@@ -137,6 +137,10 @@ const ReagentTable = () => {
         name: t('table.column.utilization'),
         selected: false
     },{
+        value: "elements.englishName",
+        name: t('table.column.elements.englishName'),
+        selected: false
+    },{
         value: "secondaryIntReference",
         name: t('table.column.secondaryintreference'),
         selected: true
@@ -150,34 +154,41 @@ const ReagentTable = () => {
                
         if (fetchId === fetchIdRef.current) {
             setLoading(true);
-            if (textToSearch === '' && elementsToSearch === {}) {
+            if (textToSearch === '' && (!elementsToSearch || Object.keys(elementsToSearch).length === 0)) {
                 BackendService.getPage( pageindex, pagesize )
                 .then (result => {                
                     setLoading(false);       
                     setControlledPageCount(result.data.numPages);  
                     setTotalElements(result.data.totalElements);  
-                    setData(result.data.data);                                
+                    setData(result.data.data);     
+                    console.log("1")                           
                 });
             }
-            else if(elementsToSearch === {}) {                
+            else if(!elementsToSearch || Object.keys(elementsToSearch).length === 0) {                
                 SearchService.searchReagentPage(pageindex, pagesize, textToSearch, fieldsToSearch.filter( ({selected}) => selected===true).map(({value}) =>  value ))
                     .then ( result => {                        
                         setLoading(false);
                         setControlledPageCount(result.data.numPages + 1);
                         setTotalElements(result.data.totalElements);  
-                        setData(result.data.data);                           
+                        setData(result.data.data); 
+                        console.log("2")                             
                     })
                     .catch( err => console.log(err));
             }
             else {
                 SearchService.searchReagentByElements(pageindex, pagesize, elementsToSearch)
                     .then ( result => {
-                        console.log(result.data)
+                        console.log("here")
+                        setLoading(false);       
+                        setControlledPageCount(result.data.numPages);  
+                        setTotalElements(result.data.totalElements);  
+                        setData(result.data.data);
                     })
                     .catch( err => console.log(err));
             }
         }     
     },[]);
+    
    
     
 

@@ -56,7 +56,9 @@
     "column": {
       "boughtBy": "Bought By",
       "cas": "CAS",
-      "elements": "Elements",
+      "elements": {
+        "englishName": "Elementos"
+      },
       "englishName": "English Name",
       "formula": "Formula",
       "id": "ID",

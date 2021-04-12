@@ -1,6 +1,7 @@
 package com.proyectofinal.daw.search;
 
 import java.util.List;
+import java.util.Map;
 
 import com.proyectofinal.daw.entities.dto.PageSearchDTO;
 
@@ -23,6 +24,12 @@ public interface GenericSearch<T> {
     public SearchQuery <T> prepareQuery (Class<T> parameterClass, String searchTerm, List<String> searchFields);
 
     @Transactional
-    public List<T> existsField (Class<T> parameterClass, String searchField);    
+    public List<T> existsField (Class<T> parameterClass, String searchField);  
+    
+    @Transactional
+    public PageSearchDTO<T> searchReagentElements (Class<T> parameterClass, Map <Integer, Integer> searchTerm, int resultsShowed, int resultsToShow);
+
+    @Transactional
+    public PageSearchDTO<T> executeQueries (Class<T> parameterClass, int resultsShowed, int resultsToShow, SearchQuery<T> ...queries );
 
 }

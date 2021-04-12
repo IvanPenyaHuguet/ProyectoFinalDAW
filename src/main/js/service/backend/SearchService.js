@@ -22,8 +22,7 @@ class SearchService {
         return await axios.post("/api" + URL , {
             page: page,
             size: size,
-            search: search,
-            fields: fields
+            search: search            
         }) 
     }
 }

@@ -17,6 +17,9 @@ public class SearchAnalysisConfigurer implements LuceneAnalysisConfigurer{
             .tokenizer( StandardTokenizerFactory.class ) 
             .charFilter( HTMLStripCharFilterFactory.class )
             .tokenFilter( LowerCaseFilterFactory.class ) 
+            .tokenFilter( EdgeNGramFilterFactory.class )
+            .param( "maxGramSize", "10")
+            .param( "minGramSize", "1")
             .tokenFilter( SnowballPorterFilterFactory.class ) 
             .param( "language", "English" ) 
             .tokenFilter( ASCIIFoldingFilterFactory.class );

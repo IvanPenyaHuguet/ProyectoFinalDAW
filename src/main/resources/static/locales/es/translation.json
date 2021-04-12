@@ -34,13 +34,15 @@
   "header": {
     "button": {
       "logout": "Cerrar Sesión"
-    },    
+    },
+    "welcom": "",
     "welcome": "Bienvenido"
   },
   "nav": {
     "link": {
       "allreagents": "Todos los reactivos",
       "inorganicreagents": "Reactivos Inorgánicos",
+      "manage": "",
       "organicreagents": "Reactivos Orgánicos",
       "orgstdsol": "Solución Orgánica",
       "standards": "Estándares",

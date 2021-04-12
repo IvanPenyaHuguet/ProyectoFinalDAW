@@ -1,6 +1,7 @@
 package com.proyectofinal.daw.search;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -91,4 +92,48 @@ public class GenericSearchImpl<T> implements GenericSearch<T>{
         List<T> hits = result.hits();   
         return hits;
     }
+
+    @Override
+    public PageSearchDTO<T> searchReagentElements(Class<T> parameterClass, Map<Integer, Integer> searchTerm, int resultsShowed, int resultsToShow) {
+        SearchSession searchSession = Search.session( entityManager );
+        SearchQuery <T> query = searchSession.search(parameterClass)
+            .where ( f -> f.match()
+                .field("elements.atomicNumber")
+                .matching(1)
+            )
+            .toQuery();          
+        SearchResult<T> result = query.fetch(resultsShowed, resultsToShow);
+        long totalHitCount = result.total().hitCount(); 
+        List<T> hits = result.hits();   
+        PageSearchDTO<T> page = new PageSearchDTO<T>(hits, totalHitCount);
+        return page;
+    }
+
+    @Override
+    public PageSearchDTO<T> executeQueries( Class<T> parameterClass, int resultsShowed, int resultsToShow, SearchQuery<T>... queries ) {
+        // TODO Auto-generated method stub
+        SearchSession searchSession = Search.session( entityManager );
+        List <T> hits = searchSession.search( parameterClass )
+            .where( f -> f.bool() 
+                .should(f.match().field("spanishName").matching("a"))
+            )
+            .fetchHits( resultsShowed, resultsToShow );
+
+                // Query query = qBuilder.bool()
+                // .must(qBuilder.keyword().onField("firstname").matching("John").createQuery())
+                // .must(qBuilder.keyword().onField("lastname").matching("Doe").createQuery())
+                // .createQuery();
+
+                // Query query1 = qBuilder.keyword().onField("firstname").matching("John").createQuery();
+                // Query query2 = qBuilder.keyword().onField("lastname").matching("Doe").createQuery();
+                // BooleanQuery bq = new BooleanQuery();
+                // //Assuming you want to require a match on both first and last names.
+                // //If a match on either is enough, use BooleanClause.Occur.SHOULD
+                // bq.add(new BooleanClause(query1, BooleanClause.Occur.MUST));
+                // bq.add(new BooleanClause(query2, BooleanClause.Occur.MUST));
+        return null;
+    }
+
+    
+
 }
