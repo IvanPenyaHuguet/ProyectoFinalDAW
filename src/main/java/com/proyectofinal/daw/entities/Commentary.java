@@ -26,6 +26,7 @@ import org.hibernate.annotations.UpdateTimestamp;
  */
 @Entity
 @Table
+@JsonIgnoreProperties({"reagents", "standards", "reagent", "role", "commentary"})
 public class Commentary implements Serializable{
     
     /**
@@ -41,7 +42,7 @@ public class Commentary implements Serializable{
     private Reagent reagent;
     @ManyToOne()    
     @JoinColumn(name = "user_id", nullable = false)
-    @JsonIgnoreProperties("commentaries")
+    @JsonIgnoreProperties({"commentaries", "role"})
     private User user;   
     @Column(nullable = false) 
     private String commentary;

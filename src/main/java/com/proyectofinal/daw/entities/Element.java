@@ -14,9 +14,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.DocumentId;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.KeywordField;
 
@@ -66,7 +66,7 @@ public class Element implements Serializable{
         joinColumns = {@JoinColumn(name = "element_id")},
         inverseJoinColumns = {@JoinColumn(name = "reagent_id")}
     )
-    @JsonIgnoreProperties("reagents")
+    @JsonIgnore
     private List<Reagent> reagents;
 
     public List<Reagent> getReagents() {

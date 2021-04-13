@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+
 @RestController
 public class SearchApiController implements BaseApiController{
 
@@ -25,10 +26,10 @@ public class SearchApiController implements BaseApiController{
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }
 
-    @PostMapping("/search/elements/reagent")
+    @PostMapping("/search/elements/reagent")    
     public ResponseEntity<Map<String, Object>> searchReagentElements (@RequestBody Map<String, Object> params ){
         
-        Map<String, Object> response = reagentService.searchReagentElements(params);
+        Map<String, Object> response = reagentService.searchReagentElements3(params);
         
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }

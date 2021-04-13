@@ -27,6 +27,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 
@@ -44,19 +45,17 @@ import org.hibernate.search.mapper.pojo.mapping.definition.annotation.KeywordFie
 /**
  * Model representation of a reagent
  */
+
 @Entity
-// @MappedSuperclass
 @Table
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE) //(Una sola tabla con todos los campos adicionales de hijos)
-// @Inheritance(strategy = InheritanceType.JOINED) //(Una tabla con los campos en comun y otras tablas con los campos diferentes)
-//@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS) // Una table por cada clase, parecido a @MappedSuperClass
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE) 
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, name = "reagentType")
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = As.PROPERTY, property = "reagentType", visible=true)
 @JsonSubTypes({
     @JsonSubTypes.Type(value = InorganicReagent.class, name = "Inorganic"),
     @JsonSubTypes.Type(value = OrganicReagent.class, name = "Organic")
 })
-@JsonIgnoreProperties({"reagents", "standards", "reagent"})
+@JsonIgnoreProperties({"reagents", "standards", "reagent", "role"})
 @Indexed
 public abstract class Reagent implements Serializable, Compound {
     
@@ -80,7 +79,7 @@ public abstract class Reagent implements Serializable, Compound {
     private int quantity;  
     private String formula;
     @OneToMany(mappedBy = "reagent", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("reagent")
+    @JsonIgnore
     private List<Commentary> commentary;    
     @OneToMany(mappedBy = "reagent") 
     @IndexedEmbedded  (includeDepth = 2 )
