@@ -50,18 +50,19 @@ public class ReagentDAO {
         int size = params.get("size") != null ? Integer.valueOf(params.get("size").toString()) : 10;
         int offset = page * size;
 
-        String notHavingSql = "AND r.id NOT IN (SELECT e.reagent_id FROM elements_reagents e WHERE e.element_id IN (";
+        
         boolean notHaving = false;
+        boolean having = false;
 
         String sqlResult = "SELECT r.* from reagent r ";
         String sqlCount = "SELECT COUNT(*) OVER () from reagent r ";
         String sql = "INNER JOIN elements_reagents er "+
         "WHERE r.id=er.reagent_id "+
-        "GROUP BY r.id, er.element_id " +
-        "HAVING er.element_id IN ";
+        "GROUP BY r.id, er.element_id ";
         for (Map.Entry<String, Integer> pair : searchedElements.entrySet()) {
             try {
                 if ( pair.getValue() > 0){
+                    having = true;
                     inArray.add(pair.getKey());
                     cases += "WHEN er.element_id = "+ pair.getKey() + " THEN " + pair.getValue() + " ";
                 }
@@ -76,12 +77,16 @@ public class ReagentDAO {
         }
         String[] inArrayString = new String [inArray.size()];
         final String inA = String.join(",", inArray.toArray(inArrayString));
-        sql += "(" + inA +") AND COUNT(er.element_id) >= (CASE " + cases;
-        sql += "END) ";
+        final String sqlIn = "HAVING er.element_id IN (" + inA +") AND COUNT(er.element_id) >= (CASE " + cases + "END) ";
+        sql+= having == true ? sqlIn : "HAVING ";
+        
 
         String[] inNotArrayString = new String [inNotArray.size()];
         final String inNotA = String.join(",", inNotArray.toArray(inNotArrayString));
+        String notHavingSql = having==true ? " AND " : "";
+        notHavingSql += "r.id NOT IN (SELECT e.reagent_id FROM elements_reagents e WHERE e.element_id IN (";
         sql += notHaving == true ? notHavingSql + inNotA +")) " : "";
+
         sql += "ORDER BY r.id";
         String sqlLimit = " LIMIT " + offset + ", " + size;
         System.out.println(sql);        
