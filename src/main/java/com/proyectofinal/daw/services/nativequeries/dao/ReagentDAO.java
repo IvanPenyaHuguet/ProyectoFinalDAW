@@ -23,21 +23,35 @@ public class ReagentDAO {
     ExecuteQueries execSQL;    
     
 
+    /**
+     * Reference SQL
+     * SELECT r.* from reagent r INNER JOIN elements_reagents er WHERE r.id=er.reagent_id 
+     * GROUP BY r.id, er.element_id HAVING er.element_id IN (1) AND COUNT(er.element_id) >= 
+     * (CASE WHEN er.element_id = 1 THEN 1 END) AND r.id NOT IN 
+     * (SELECT e.reagent_id FROM elements_reagents e WHERE e.element_id IN (16,27)) 
+     * ORDER BY r.id
+     * @param params
+     * @return
+     * @throws ResponseStatusException
+     */
     @SuppressWarnings ({"unchecked"})
     @Transactional    
     public Map<String,Object> searchReagentElements (Map<String, Object> params) throws ResponseStatusException {
         
         Map <String, Object> response = new HashMap<String,Object>();        
         List<String> inArray = new ArrayList<>();
+        List<String> inNotArray = new ArrayList<>();
         String cases = "";
-        int totalPages;
-        long totalItems;
+        int totalPages;       
 
 
-        Map <String, Long> searchedElements =  (Map <String, Long>) params.get("search");
+        Map <String, Integer> searchedElements =  (Map <String, Integer>) params.get("search");
         int page = params.get("page") != null ? Integer.valueOf(params.get("page").toString()) : 0;
         int size = params.get("size") != null ? Integer.valueOf(params.get("size").toString()) : 10;
         int offset = page * size;
+
+        String notHavingSql = "AND r.id NOT IN (SELECT e.reagent_id FROM elements_reagents e WHERE e.element_id IN (";
+        boolean notHaving = false;
 
         String sqlResult = "SELECT r.* from reagent r ";
         String sqlCount = "SELECT COUNT(*) OVER () from reagent r ";
@@ -45,30 +59,39 @@ public class ReagentDAO {
         "WHERE r.id=er.reagent_id "+
         "GROUP BY r.id, er.element_id " +
         "HAVING er.element_id IN ";
-        for (Map.Entry<String, Long> pair : searchedElements.entrySet()) {
+        for (Map.Entry<String, Integer> pair : searchedElements.entrySet()) {
             try {
-                inArray.add(pair.getKey());
-                cases += "WHEN er.element_id = "+ pair.getKey() + " THEN " + pair.getValue() + " ";
+                if ( pair.getValue() > 0){
+                    inArray.add(pair.getKey());
+                    cases += "WHEN er.element_id = "+ pair.getKey() + " THEN " + pair.getValue() + " ";
+                }
+                if ( pair.getValue() < 0) {
+                    notHaving = true;
+                    inNotArray.add(pair.getKey());
+                }                
             }
-            catch (NumberFormatException e) {
-                e.printStackTrace();
-                System.out.println("Error en el formato de entrada");
+            catch (NumberFormatException e) {                
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
             }           
         }
         String[] inArrayString = new String [inArray.size()];
         final String inA = String.join(",", inArray.toArray(inArrayString));
         sql += "(" + inA +") AND COUNT(er.element_id) >= (CASE " + cases;
-        sql += "END) "+
-            "ORDER BY r.id";
+        sql += "END) ";
+
+        String[] inNotArrayString = new String [inNotArray.size()];
+        final String inNotA = String.join(",", inNotArray.toArray(inNotArrayString));
+        sql += notHaving == true ? notHavingSql + inNotA +")) " : "";
+        sql += "ORDER BY r.id";
         String sqlLimit = " LIMIT " + offset + ", " + size;
         System.out.println(sql);        
         
         Optional<List<Reagent>> result = execSQL.executeNativeQueryReagent(sqlResult + sql + sqlLimit);
-        totalItems = execSQL.executeNativeQueryGetCount(sqlCount + sql + " LIMIT 1");
-        totalPages = (int) Math.ceil( totalItems / size );
+        Optional<Long> totalItems = execSQL.executeNativeQueryGetCount(sqlCount + sql + " LIMIT 1");     
 
-        if (result.isPresent()) {
-            response.put("data", result);
+        if (result.isPresent() && totalItems.isPresent()) {
+            totalPages = (int) Math.ceil( totalItems.get() / size );
+            response.put("data", result.get());
             response.put("numPages" , totalPages);
             response.put("totalElements" , totalItems);
         }

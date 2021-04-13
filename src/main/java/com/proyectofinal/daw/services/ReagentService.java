@@ -103,10 +103,9 @@ public class ReagentService {
             throw new ResponseStatusException(HttpStatus.PRECONDITION_FAILED);
         }
         return response;
-    }
-     
+    }     
   
-    public Map<String,Object> searchReagentElements3 (Map<String, Object> params) throws ResponseStatusException{
+    public Map<String,Object> searchReagentElements (Map<String, Object> params) throws ResponseStatusException{
 
         Map <String, Object> response = new HashMap<String,Object>();
         if ( params.get("search") != null) {

@@ -68,7 +68,7 @@ public class ExecuteQueries {
     
     
     @Transactional
-    public Long executeNativeQueryGetCount( String sql) {
+    public Optional<Long> executeNativeQueryGetCount( String sql) {
         Transaction tx = null;
         Long total = 0L;
 
@@ -85,7 +85,7 @@ public class ExecuteQueries {
         finally {
             sess.closeSession();
         }
-        return total;
+        return Optional.ofNullable(total);
     }
     
 
