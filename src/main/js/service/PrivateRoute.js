@@ -4,7 +4,7 @@ import { AuthContext } from "../context/AuthContextProvider";
 import Layout from '../components/layout/Layout';
 
 export default function PrivateRoute ({component: Component, ...rest}) {
-    const { user, setUser} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
     return (        
         <Route {...rest} render={props => (

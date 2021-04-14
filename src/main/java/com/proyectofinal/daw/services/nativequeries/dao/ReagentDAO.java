@@ -89,7 +89,7 @@ public class ReagentDAO {
 
         sql += "ORDER BY r.id";
         String sqlLimit = " LIMIT " + offset + ", " + size;
-        System.out.println(sql);        
+               
         
         Optional<List<Reagent>> result = execSQL.executeNativeQueryReagent(sqlResult + sql + sqlLimit);
         Optional<Long> totalItems = execSQL.executeNativeQueryGetCount(sqlCount + sql + " LIMIT 1");     

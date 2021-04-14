@@ -3,6 +3,7 @@ src/main/resources/application.properties
 node
 .mvn
 filesystem
+log
 
 HELP.md
 .mvn

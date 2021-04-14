@@ -4,8 +4,7 @@ import BackendServiceConf from '../BackendServiceConf';
 class SearchService { 
 
     constructor () {
-        BackendServiceConf.config(axios);
-        
+        BackendServiceConf.config(axios);        
     }
 
     async searchReagentPage ( page, size, search, fields) {

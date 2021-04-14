@@ -82,7 +82,7 @@ public class UserAuthController {
     }
     /**
      * Api for check if a JWT is still valid
-     * @param token Token to verify
+     * @param user User with Token to verify
      * @return  Token is valid or not
      */    
     @PostMapping("/validate")
