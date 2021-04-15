@@ -12,6 +12,8 @@ import com.proyectofinal.daw.services.ReagentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -71,9 +73,10 @@ public class ReagentsApiController implements BaseApiController{
         Long totalItems;
         int page = params.get("page") != null ? Integer.valueOf(params.get("page").toString()) : 0;
         int size = params.get("size") != null ? Integer.valueOf(params.get("size").toString()) : 10;
+        String sortBy = params.get("sortBy") != null ? params.get("sortBy").toString() : "id";
+        Direction sortByDirection = params.get("direction") != null ? params.get("direction").toString().equals("ASC") ? Sort.Direction.ASC : Sort.Direction.DESC : Sort.Direction.ASC;
 
-
-        PageRequest pageRequest = PageRequest.of(page, size);
+        PageRequest pageRequest = PageRequest.of(page, size, Sort.by(sortByDirection, sortBy)); 
         Page<Reagent> pageReagent = reagentService.getAllPage(pageRequest);
 
         totalPages = pageReagent.getTotalPages();
