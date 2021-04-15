@@ -4,6 +4,7 @@ node
 .mvn
 filesystem
 log
+.env
 
 HELP.md
 .mvn

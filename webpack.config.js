@@ -38,5 +38,5 @@ module.exports = {
             chunks: 'async',
             minSize: 20000,
         }
-    }
+    }   
 };

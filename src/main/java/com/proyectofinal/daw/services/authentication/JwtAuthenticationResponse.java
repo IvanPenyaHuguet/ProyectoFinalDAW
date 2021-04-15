@@ -4,36 +4,57 @@ import java.util.List;
 
 
 /**
- * Response JWT object for the auntentication process
+ * Response JWT object for the authentication process
  */
 public class JwtAuthenticationResponse {
 
     private String token;
-
+    private String user;
+    private List<String> role;
+    
+    /** 
+     * @return String
+     */
     public String getToken() {
         return this.token;
     }
 
+    
+    /** 
+     * @param token
+     */
     public void setToken(String token) {
         this.token = token;
-    }
-    private String user;
-    private List<String> role;
+    }   
 
+    
+    /** 
+     * @return List<String>
+     */
     public List<String> getRole() {
         return this.role;
     }
 
+    
+    /** 
+     * @param role
+     */
     public void setRole(List<String> role) {
         this.role = role;
-    }
-
-   
+    }   
     
+    
+    /** 
+     * @return String
+     */
     public String getUser() {
         return this.user;
     }
 
+    
+    /** 
+     * @param user
+     */
     public void setUser(String user) {
         this.user = user;
     }

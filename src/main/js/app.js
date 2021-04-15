@@ -6,11 +6,7 @@ import './i18n';
 import AuthContextProvider from './context/AuthContextProvider';
 
 
-
-
-
-
-function App ({Component, pageProps}) {	
+function App ({Component, pageProps}) {
 	return (
 		<AuthContextProvider>					
 				<HashRouter>
