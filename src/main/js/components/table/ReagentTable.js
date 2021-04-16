@@ -1,6 +1,6 @@
 import React, { useMemo, useState, useCallback, useRef } from 'react';
 import BackendService from '../../service/backend/AllReagentService';
-import TableBase from './TableBase';
+import TableBase from './basecomponents/TableBase';
 import Divider from '@material-ui/core/Divider';
 import Avatar from '@material-ui/core/Avatar';
 import Chip from '@material-ui/core/Chip';
@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { SearchFieldContext } from '../../context/SearchFieldContext';
 import { SearchElementsContext } from '../../context/SearchElementsContext';
 import SearchService from '../../service/backend/SearchService';
+import errorService from '../../service/error/ErrorController';
 
 const ReagentTable = () => {
    
@@ -26,17 +27,21 @@ const ReagentTable = () => {
         {
             Header: t('table.column.id'),
             accessor: "id",
-            show: false
+            show: false,
+            disableSortBy: false
         },{
             Header: t('table.column.reference'),
-            accessor: "internalReference"
+            accessor: "internalReference",
+            disableSortBy: false
         },{
             Header: t('table.column.spanishName'),
-            accessor: "spanishName"
+            accessor: "spanishName",
+            disableSortBy: false
         },{
             Header: t('table.column.englishName'),
             accessor: "englishName",
-            show: false
+            show: false,
+            disableSortBy: false
         },{
             Header: t('table.column.elements'),
             accesor: "elements",
@@ -58,40 +63,50 @@ const ReagentTable = () => {
                         ))}                      
                     </div>
                 )
-            }
+            },
+            disableSortBy: true
         },{
             Header: t('table.column.formula'),
             accesor: "formula",
             id: "formula",
-            show: false
+            show: false,
+            disableSortBy: false
         },{
             Header: t('table.column.type'),
-            accessor: "reagentType"
+            accessor: "reagentType",
+            disableSortBy: false
         },{
             Header: t('table.column.quantity'),
-            accessor: "quantity"
+            accessor: "quantity",
+            disableSortBy: false
         },{
             Header: t('table.column.location'),
-            accessor: "location.name"
+            accessor: "location.name",
+            disableSortBy: false
         },{
             Header: t('table.column.utilization'),
-            accessor: "utilization"
+            accessor: "utilization",
+            disableSortBy: true
         },{
             Header: t('table.column.cas'),
             accessor: "cas",
-            show: false
+            show: false,
+            disableSortBy: false
         },{
             Header: t('table.column.receptionDate'),
             accessor: "entryDate",
-            show: false
+            show: false,
+            disableSortBy: false
         },{
             Header: t('table.column.boughtBy'),
             accessor: "user.name",
-            show: false
+            show: false,
+            disableSortBy: true
         },{
             Header: t('table.column.molecularWeight'),
             accessor: "molecularWeight",
-            show: false
+            show: false,
+            disableSortBy: false
         },{
             Header: t('table.column.supplier'),
             accesor: "suppliers",
@@ -111,7 +126,8 @@ const ReagentTable = () => {
                         ))}
                     </>
                 )
-            }
+            },
+            disableSortBy: true
         }
     ], []);
 
@@ -149,19 +165,21 @@ const ReagentTable = () => {
     const [ fieldsToSearch, setFieldsToSearch ] = useState(searchFields);
     const [ elementsToSearch, setElementsToSearch ] = useState({});
 
-    const fetchData = useCallback((pageindex, pagesize, textToSearch, elementsToSearch) => {
+    const fetchData = useCallback((pageindex, pagesize, textToSearch, elementsToSearch, sortBy) => {
         const fetchId = ++fetchIdRef.current;
                
         if (fetchId === fetchIdRef.current) {
             setLoading(true);
-            if (textToSearch === '' && (!elementsToSearch || Object.keys(elementsToSearch).length === 0)) {
-                BackendService.getPage( pageindex, pagesize )
+            if (textToSearch === '' && (!elementsToSearch || Object.keys(elementsToSearch).length === 0)) {                
+                BackendService.getPage( pageindex, pagesize, sortBy )
                 .then (result => {                
                     setLoading(false);       
                     setControlledPageCount(result.data.numPages);  
                     setTotalElements(result.data.totalElements);  
-                    setData(result.data.data);     
-                    console.log("1")                           
+                    setData(result.data.data);    
+                })
+                .catch (e => {
+                    errorService.checkError(e);
                 });
             }
             else if(!elementsToSearch || Object.keys(elementsToSearch).length === 0) {                
@@ -170,10 +188,9 @@ const ReagentTable = () => {
                         setLoading(false);
                         setControlledPageCount(result.data.numPages + 1);
                         setTotalElements(result.data.totalElements);  
-                        setData(result.data.data); 
-                        console.log("2")                             
+                        setData(result.data.data);                                                      
                     })
-                    .catch( err => console.log(err));
+                    .catch( err => errorService.checkError(err));
             }
             else {
                 SearchService.searchReagentByElements(pageindex, pagesize, elementsToSearch)
@@ -184,7 +201,7 @@ const ReagentTable = () => {
                         setTotalElements(result.data.totalElements);  
                         setData(result.data.data);
                     })
-                    .catch( err => console.log(err));
+                    .catch( err => errorService.checkError(err));
             }
         }     
     },[]);

@@ -4,14 +4,14 @@ import React, { useState, useMemo, useContext } from 'react';
 import Popover from '@material-ui/core/Popover';
 import Paper from '@material-ui/core/Paper';
 
-import Container from '../container/Container';
+import Container from '../../container/Container';
 import MUIContainer from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
-import PeriodicTable from '../periodictable/PeriodicTable';
+import PeriodicTable from '../../periodictable/PeriodicTable';
 import SearchIcon from '@material-ui/icons/Search';
 import CancelIcon from '@material-ui/icons/Cancel';
 
-import { SearchElementsContext } from '../../context/SearchElementsContext';
+import { SearchElementsContext } from '../../../context/SearchElementsContext';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTranslation } from 'react-i18next';
 

@@ -10,7 +10,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Popover from '@material-ui/core/Popover';
 
 
-import { SearchFieldContext } from '../../context/SearchFieldContext';
+import { SearchFieldContext } from '../../../context/SearchFieldContext';
 
 
 export default function PopperSearchInput ({ handleCloseShowColumn, showColumnSelector }) {

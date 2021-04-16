@@ -9,6 +9,8 @@ import com.proyectofinal.daw.entities.Reagent;
 import com.proyectofinal.daw.exceptions.ReagentNotFoundException;
 import com.proyectofinal.daw.services.ReagentService;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -32,7 +34,9 @@ import org.springframework.web.bind.annotation.RestController;
  * Main controller for the REST api, only for reagents models
  */
 @RestController
-public class ReagentsApiController implements BaseApiController{   
+public class ReagentsApiController implements BaseApiController{  
+    
+    private static final Logger LOGGER = LoggerFactory.getLogger(ReagentsApiController.class);
     
     @Autowired
     ReagentService reagentService;    
@@ -73,10 +77,13 @@ public class ReagentsApiController implements BaseApiController{
         Long totalItems;
         int page = params.get("page") != null ? Integer.valueOf(params.get("page").toString()) : 0;
         int size = params.get("size") != null ? Integer.valueOf(params.get("size").toString()) : 10;
+        
         String sortBy = params.get("sortBy") != null ? params.get("sortBy").toString() : "id";
         Direction sortByDirection = params.get("direction") != null ? params.get("direction").toString().equals("ASC") ? Sort.Direction.ASC : Sort.Direction.DESC : Sort.Direction.ASC;
 
+        LOGGER.info("Has received a request to page: " + page + " |size: " + size + " |sortBy: " + sortBy + " |direction: " + sortByDirection);
         PageRequest pageRequest = PageRequest.of(page, size, Sort.by(sortByDirection, sortBy)); 
+        
         Page<Reagent> pageReagent = reagentService.getAllPage(pageRequest);
 
         totalPages = pageReagent.getTotalPages();

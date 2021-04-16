@@ -1,20 +1,20 @@
 import React, { useState, useEffect, useMemo, useContext } from 'react';
-import MUITheme from './GlobalMUIConf';
+import MUITheme from '../GlobalMUIConf';
 import MUITable from '@material-ui/core/Table';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import TableBody from '@material-ui/core/TableBody';
 
-import Loader from '../container/Loader';
+import Loader from '../../container/Loader';
 import TableHead from './TableHead';
 import TablePagination from './TablePagination';
 import Toolbar from './Toolbar';
-import Container from '../container/Container';
+import Container from '../../container/Container';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { useSortBy, useTable, usePagination } from 'react-table';
-import { SearchTextContext } from '../../context/SearchTextContext';
-import { SearchElementsContext } from '../../context/SearchElementsContext';
+import { SearchTextContext } from '../../../context/SearchTextContext';
+import { SearchElementsContext } from '../../../context/SearchElementsContext';
 
 const useStyles = makeStyles((theme) => ({    
     tbody: {
@@ -30,7 +30,7 @@ export default function TableBase ({columns,  data, fetchData, loading, controll
 
     const classes = useStyles();
     const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, allColumns, getToggleHideAllColumnsProps, toggleHideAllColumns, 
-        page, canPreviousPage, canNextPage, pageOptions, pageCount, gotoPage, nextPage, previousPage, setPageSize, state: { pageIndex, pageSize} 
+        page, canPreviousPage, canNextPage, pageOptions, pageCount, gotoPage, nextPage, previousPage, setPageSize, state: { pageIndex, pageSize, sortBy} 
     } = useTable({
         columns,
         data: data,
@@ -43,7 +43,10 @@ export default function TableBase ({columns,  data, fetchData, loading, controll
         },
         manualPagination: true,
         pageCount: controlledPageCount,
-        autoResetPage: false
+        autoResetPage: false,
+        disableMultiSort: true,
+        manualSortBy: true,
+        defaultCanSort: false
     },
     useSortBy,
     usePagination
@@ -53,8 +56,8 @@ export default function TableBase ({columns,  data, fetchData, loading, controll
     
     
     useEffect(() => {                 
-        fetchData( pageIndex, pageSize, textToSearch, elementsToSearch );                
-    }, [ fetchData, pageIndex, pageSize, textToSearch, elementsToSearch]); 
+        fetchData( pageIndex, pageSize, textToSearch, elementsToSearch, sortBy );                
+    }, [ fetchData, pageIndex, pageSize, textToSearch, elementsToSearch, sortBy]); 
     
     useEffect( () => {
         gotoPage(0);

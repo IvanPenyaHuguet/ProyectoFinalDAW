@@ -1,6 +1,6 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import BackendService from '../../service/backend/AllReagentService';
-import TableBase from './TableBase';
+import TableBase from './basecomponents/TableBase';
 
 
 

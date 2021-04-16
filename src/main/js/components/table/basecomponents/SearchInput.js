@@ -8,12 +8,12 @@ import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 
-import Container from '../container/Container';
+import Container from '../../container/Container';
 import PopperSearchInput from './PopperSearchInput';
 
-import styles from '../../css/components/table/SearchInput.module.css';
+import styles from '../../../css/components/table/SearchInput.module.css';
 import { useTranslation } from 'react-i18next';
-import { SearchTextContext } from '../../context/SearchTextContext';
+import { SearchTextContext } from '../../../context/SearchTextContext';
 
 const useStyles = makeStyles((theme) => ({    
     container: {

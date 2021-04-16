@@ -1,5 +1,6 @@
 import axios from 'axios';
 import BackendServiceConf from '../BackendServiceConf';
+import errorController from '../error/ErrorController';
 
 class ReagentService {   
     
@@ -14,16 +15,18 @@ class ReagentService {
       try {
         data = await axios.get("/api" + this.URL);
       } catch (e) {      
-        console.log(e);
+        errorController.checkError(e);
       }    
       return data;
     }  
     
-    async getPage ( page, size) {
+    async getPage ( page, size, sortBy) {      
       return await axios.get("/api" + this.URL + "/page", {
         params: {
           page: page,
-          size: size
+          size: size,
+          sortBy: sortBy[0] ? sortBy[0].id : null,
+          sortByDirection: sortBy[0] ? sortBy.desc === true ? 'DESC': 'ASC' : null,
         }        
       })
     }

@@ -18,8 +18,8 @@ public class SearchAnalysisConfigurer implements LuceneAnalysisConfigurer{
             .charFilter( HTMLStripCharFilterFactory.class )
             .tokenFilter( LowerCaseFilterFactory.class ) 
             .tokenFilter( EdgeNGramFilterFactory.class )
-            .param( "maxGramSize", "10")
-            .param( "minGramSize", "1")
+            .param( "maxGramSize", "8")
+            .param( "minGramSize", "3")
             .tokenFilter( SnowballPorterFilterFactory.class ) 
             .param( "language", "English" ) 
             .tokenFilter( ASCIIFoldingFilterFactory.class );

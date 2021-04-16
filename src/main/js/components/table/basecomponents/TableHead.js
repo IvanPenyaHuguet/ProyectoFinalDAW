@@ -12,14 +12,15 @@ export default function TableHead({ headerGroups }) {
         <TableRow {...headerGroup.getHeaderGroupProps()}>
           {headerGroup.headers.map((column) => (
             <TableCell
-              {...column.getHeaderProps(column.getSortByToggleProps())}
+              {...column.getHeaderProps(column.getSortByToggleProps())}              
             >
-              <TableSortLabel
-                active={column.isSorted}
-                direction={column.isSortedDesc ? "desc" : "asc"}
-              >
-                {column.render("Header")}
-              </TableSortLabel>
+              {column.render("Header")}
+              {column.canSort=== true && 
+                <TableSortLabel
+                  active={column.isSorted}
+                  direction={column.isSortedDesc ? "desc" : "asc"}
+                />               
+              }
             </TableCell>
           ))}
         </TableRow>

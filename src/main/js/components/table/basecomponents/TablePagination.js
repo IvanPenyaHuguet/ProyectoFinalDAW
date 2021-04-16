@@ -21,7 +21,7 @@ export default function TablePagination ({ length, totalelements, pageindex , pa
         <TableFooter>
           <TableRow>
             <MUITablePagination
-              rowsPerPageOptions={[5, 10, 20, 30, { label: 'All', value: -1 }]}
+              rowsPerPageOptions={[5, 10, 20, 30, 50, 100]}
               colSpan={length}
               count={totalelements}
               rowsPerPage={pagesize}
