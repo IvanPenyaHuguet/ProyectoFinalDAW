@@ -1,21 +1,28 @@
-import React, { useMemo, useState, useCallback, useRef } from 'react';
+import React, { useMemo, useState, useCallback, useRef, useEffect } from 'react';
 import BackendService from '../../service/backend/AllReagentService';
 import TableBase from './basecomponents/TableBase';
 import Divider from '@material-ui/core/Divider';
 import Avatar from '@material-ui/core/Avatar';
 import Chip from '@material-ui/core/Chip';
 
+
 import { useTranslation } from 'react-i18next';
 import { SearchFieldContext } from '../../context/SearchFieldContext';
 import { SearchElementsContext } from '../../context/SearchElementsContext';
 import SearchService from '../../service/backend/SearchService';
 import errorService from '../../service/error/ErrorController';
+import SelectColumnFilterLocation from './filter/SelectColumnFilterLocation';
+import useHasChanged from '../../hooks/useHasChanged';
+
+
 
 const ReagentTable = () => {
    
     const { t } = useTranslation();
     const TITLE = t('table.title.reagents');
-    const [ data , setData ] = useState([]);   
+    const [ data , setData ] = useState([]); 
+    const skipPageResetRef = useRef(); 
+    const oldData = useRef();
     const [ loading, setLoading ] = useState(false); 
     const [ controlledPageCount, setControlledPageCount ] = useState(0);
     const [ totalElements, setTotalElements ] = useState (0);
@@ -28,20 +35,24 @@ const ReagentTable = () => {
             Header: t('table.column.id'),
             accessor: "id",
             show: false,
-            disableSortBy: false
+            disableSortBy: false,
+            disableFilters: true 
         },{
             Header: t('table.column.reference'),
             accessor: "internalReference",
-            disableSortBy: false
+            disableSortBy: false,
+            disableFilters: true
         },{
             Header: t('table.column.spanishName'),
             accessor: "spanishName",
-            disableSortBy: false
+            disableSortBy: false,
+            disableFilters: true
         },{
             Header: t('table.column.englishName'),
             accessor: "englishName",
             show: false,
-            disableSortBy: false
+            disableSortBy: false,
+            disableFilters: true
         },{
             Header: t('table.column.elements'),
             accesor: "elements",
@@ -64,49 +75,60 @@ const ReagentTable = () => {
                     </div>
                 )
             },
-            disableSortBy: true
+            disableSortBy: true,
+            disableFilters: true
         },{
             Header: t('table.column.formula'),
             accesor: "formula",
             id: "formula",
             show: false,
-            disableSortBy: false
+            disableSortBy: false,
+            disableFilters: true
         },{
             Header: t('table.column.type'),
             accessor: "reagentType",
-            disableSortBy: false
+            disableSortBy: false,
+            disableFilters: true
         },{
             Header: t('table.column.quantity'),
             accessor: "quantity",
-            disableSortBy: false
+            disableSortBy: false,
+            disableFilters: true
         },{
             Header: t('table.column.location'),
             accessor: "location.name",
-            disableSortBy: false
+            disableSortBy: false,
+            disableFilters: false,
+            Filter: SelectColumnFilterLocation,            
         },{
             Header: t('table.column.utilization'),
             accessor: "utilization",
-            disableSortBy: true
+            disableSortBy: true,
+            disableFilters: true
         },{
             Header: t('table.column.cas'),
             accessor: "cas",
             show: false,
-            disableSortBy: false
+            disableSortBy: false,
+            disableFilters: true
         },{
             Header: t('table.column.receptionDate'),
             accessor: "entryDate",
             show: false,
-            disableSortBy: false
+            disableSortBy: false,
+            disableFilters: true
         },{
             Header: t('table.column.boughtBy'),
             accessor: "user.name",
             show: false,
-            disableSortBy: true
+            disableSortBy: true,
+            disableFilters: true
         },{
             Header: t('table.column.molecularWeight'),
             accessor: "molecularWeight",
             show: false,
-            disableSortBy: false
+            disableSortBy: false,
+            disableFilters: true
         },{
             Header: t('table.column.supplier'),
             accesor: "suppliers",
@@ -127,7 +149,8 @@ const ReagentTable = () => {
                     </>
                 )
             },
-            disableSortBy: true
+            disableSortBy: true,
+            disableFilters: true
         }
     ], []);
 
@@ -154,7 +177,7 @@ const ReagentTable = () => {
         selected: false
     },{
         value: "elements.englishName",
-        name: t('table.column.elements.englishName'),
+        name: t('table.column.elements'),
         selected: false
     },{
         value: "secondaryIntReference",
@@ -165,48 +188,50 @@ const ReagentTable = () => {
     const [ fieldsToSearch, setFieldsToSearch ] = useState(searchFields);
     const [ elementsToSearch, setElementsToSearch ] = useState({});
 
-    const fetchData = useCallback((pageindex, pagesize, textToSearch, elementsToSearch, sortBy) => {
+    const fetchData = useCallback((pageindex, pagesize, textToSearch, elementsToSearch, sortBy, filterLocation) => {
         const fetchId = ++fetchIdRef.current;
-               
+        const filterLocationChanged = filterLocation  !== '' && filterLocation !== '0';
+        const elementsChanged = elementsToSearch && Object.keys(elementsToSearch).length > 0;
+        const textChanged = textToSearch !== '';
+        
+
         if (fetchId === fetchIdRef.current) {
+            
             setLoading(true);
-            if (textToSearch === '' && (!elementsToSearch || Object.keys(elementsToSearch).length === 0)) {                
-                BackendService.getPage( pageindex, pagesize, sortBy )
-                .then (result => {                
-                    setLoading(false);       
-                    setControlledPageCount(result.data.numPages);  
-                    setTotalElements(result.data.totalElements);  
-                    setData(result.data.data);    
-                })
-                .catch (e => {
-                    errorService.checkError(e);
-                });
+            if ( elementsChanged) {
+                (SearchService.searchReagentByElements(pageindex, pagesize, elementsToSearch)
+                    .then (res => processResult(res))
+                    .catch( err => errorService.checkError(err)));
+                console.log("elements")
             }
-            else if(!elementsToSearch || Object.keys(elementsToSearch).length === 0) {                
+            else if (filterLocationChanged){                
+                BackendService.getPageLocation(filterLocation, pageindex, pagesize, sortBy)
+                    .then (res => processResult(res))
+                    .catch( err => errorService.checkError(err));                
+            }
+            else if(textChanged) {                
                 SearchService.searchReagentPage(pageindex, pagesize, textToSearch, fieldsToSearch.filter( ({selected}) => selected===true).map(({value}) =>  value ))
-                    .then ( result => {                        
-                        setLoading(false);
-                        setControlledPageCount(result.data.numPages + 1);
-                        setTotalElements(result.data.totalElements);  
-                        setData(result.data.data);                                                      
-                    })
+                    .then (res => processResult(res))
                     .catch( err => errorService.checkError(err));
+                    console.log("text")
             }
-            else {
-                SearchService.searchReagentByElements(pageindex, pagesize, elementsToSearch)
-                    .then ( result => {
-                        console.log("here")
-                        setLoading(false);       
-                        setControlledPageCount(result.data.numPages);  
-                        setTotalElements(result.data.totalElements);  
-                        setData(result.data.data);
-                    })
-                    .catch( err => errorService.checkError(err));
+            else {                
+                BackendService.getPage( pageindex, pagesize, sortBy )
+                .then (res => processResult(res))
+                .catch (e => errorService.checkError(e));
             }
-        }     
-    },[]);
+            const processResult = result => {
+                console.log(result.data.data)
+                setLoading(false);       
+                setControlledPageCount(result.data.numPages);  
+                setTotalElements(result.data.totalElements);  
+                setData(result.data.data);
+            }
+            
+        }        
+        
+    },[]);    
     
-   
     
 
     return (
@@ -222,7 +247,7 @@ const ReagentTable = () => {
                     totalElements={totalElements}
                     title={TITLE}
                     fetchData={fetchData}
-                    searchFields={searchFields}
+                    searchFields={searchFields}                   
                 />   
             </SearchElementsContext.Provider>
         </SearchFieldContext.Provider>

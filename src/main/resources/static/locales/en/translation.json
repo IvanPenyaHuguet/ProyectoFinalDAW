@@ -1,4 +1,5 @@
 {
+  "all": "All",
   "comp": {
     "periodictable": {
       "appearance": "Appearance",
@@ -56,7 +57,7 @@
     "column": {
       "boughtBy": "Bought By",
       "cas": "CAS",
-      "elements": "Elementos",
+      "elements": "Elements",
       "englishName": "English Name",
       "formula": "Formula",
       "id": "ID",
@@ -71,6 +72,7 @@
       "type": "Type",
       "utilization": "Utilization"
     },
+    "filter": "Filter",
     "label": {
       "searchInput": "Text to look for"
     },

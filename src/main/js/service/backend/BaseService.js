@@ -2,7 +2,7 @@ import axios from 'axios';
 import BackendServiceConf from '../BackendServiceConf';
 import errorController from '../error/ErrorController';
 
-class ReagentService {   
+class BaseService {   
     
 
     constructor (url) {
@@ -30,6 +30,18 @@ class ReagentService {
         }        
       })
     }
+
+    async getPageLocation ( location, page, size, sortBy ) {
+      return await axios.get("/api" + this.URL + "/location", {
+        params: {
+          location: location,
+          page: page,
+          size: size,
+          sortBy: sortBy[0] ? sortBy[0].id : null,
+          sortByDirection: sortBy[0] ? sortBy.desc === true ? 'DESC': 'ASC' : null,
+        }        
+      })
+    }
 }  
     
-export default ReagentService;
+export default BaseService;

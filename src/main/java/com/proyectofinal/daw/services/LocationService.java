@@ -6,12 +6,17 @@ import com.proyectofinal.daw.entities.Location;
 import com.proyectofinal.daw.entities.Reagent;
 import com.proyectofinal.daw.exceptions.LocationNotFoundException;
 import com.proyectofinal.daw.repositories.LocationRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+ 
 @Service
 public class LocationService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(LocationService.class);
     
     @Autowired
     LocationRepository locationRepo;

@@ -1,4 +1,4 @@
-import ReagentService from "./ReagentService";
+import BaseService from "./BaseService";
 
 
-export default new ReagentService("/reagent");
+export default new BaseService("/reagent");
