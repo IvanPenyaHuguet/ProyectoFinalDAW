@@ -4,28 +4,30 @@ import MUITableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
-import ListIcon from '@material-ui/icons/List';
-import MenuColumnSelector from "./MenuColumnSelector";
+import Styles from '../../../css/components/table/base/TableHead.module.css';
 
 export default function TableHead({ headerGroups }) {
+
   return (
     <MUITableHead>
       {headerGroups.map((headerGroup) => (
         <TableRow {...headerGroup.getHeaderGroupProps()}>
           {headerGroup.headers.map((column) => (
             <TableCell
-              {...column.getHeaderProps()}              
+              {...column.getHeaderProps()}           
             >
-              <div {...column.getHeaderProps(column.getSortByToggleProps())}>
-                {column.render("Header")}
-                {column.canSort=== true && 
-                  <TableSortLabel
-                    active={column.isSorted}
-                    direction={column.isSortedDesc ? "desc" : "asc"}
-                  />              
-                }
+              <div className={Styles.cell}>
+                <div {...column.getHeaderProps(column.getSortByToggleProps())}>
+                  {column.render("Header")}
+                  {column.canSort=== true && 
+                    <TableSortLabel
+                      active={column.isSorted}
+                      direction={column.isSortedDesc ? "desc" : "asc"}
+                    />              
+                  }
+                </div>
+                {column.canFilter === true && column.render('Filter') }
               </div>
-              {column.canFilter === true && column.render('Filter') }
             </TableCell>
           ))}
         </TableRow>
