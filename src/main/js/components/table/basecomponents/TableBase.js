@@ -65,8 +65,7 @@ export default function TableBase ({columns,  data, fetchData, loading, controll
        
     
     useEffect(() => {
-        (onFetchDataDebounced( pageIndex, pageSize, textToSearch, elementsToSearch, sortBy, filterLocation ));
-        console.log(filterLocation)
+        (onFetchDataDebounced( pageIndex, pageSize, textToSearch, elementsToSearch, sortBy, filterLocation ));        
     }, [ onFetchDataDebounced, pageIndex, pageSize, textToSearch, elementsToSearch, sortBy, filterLocation ]); 
 
     const onFetchDataDebounced = useAsyncDebounce(fetchData, 100)

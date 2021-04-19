@@ -5,6 +5,8 @@ node
 filesystem
 log
 .env
+dockerfile
+docker-compose.yml
 
 HELP.md
 .mvn

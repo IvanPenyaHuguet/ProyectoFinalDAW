@@ -220,8 +220,7 @@ const ReagentTable = () => {
                 .then (res => processResult(res))
                 .catch (e => errorService.checkError(e));
             }
-            const processResult = result => {
-                console.log(result.data.data)
+            const processResult = result => {                
                 setLoading(false);       
                 setControlledPageCount(result.data.numPages);  
                 setTotalElements(result.data.totalElements);  

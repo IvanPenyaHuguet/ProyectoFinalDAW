@@ -13,8 +13,7 @@
 	<name>daw</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>14</java.version>
-		<hibernate.version>5.4.28.Final</hibernate.version>	
+		<java.version>14</java.version>		
 		<elasticsearch.version>7.10.0</elasticsearch.version>	
 	</properties>
 	<dependencies>
