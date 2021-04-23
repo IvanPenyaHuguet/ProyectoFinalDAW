@@ -6,8 +6,8 @@ export default function StoresLayout ({ children }) {
 
     return (
         <>
-            <LocationStoreProvider>
-                { children }
+            <LocationStoreProvider>                
+                { children }                
             </LocationStoreProvider>
         </>
     )

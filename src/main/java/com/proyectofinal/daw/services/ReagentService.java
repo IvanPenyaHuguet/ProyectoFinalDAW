@@ -156,4 +156,41 @@ public class ReagentService {
             return response;
         }
     }
+
+    public Map <String, Object> reagentsByUtilization (Map<String, Object> params) throws ResponseStatusException {
+
+        Map <String, Object> response = new HashMap<String,Object>();
+        int totalPages;
+        Long totalItems;
+
+        if ( Objects.isNull(params.get("utilization")) ) {
+            throw new ResponseStatusException(HttpStatus.PRECONDITION_FAILED);
+        }
+        else {
+            int page = params.get("page") != null ? Integer.valueOf(params.get("page").toString()) : 0;
+            int size = params.get("size") != null ? Integer.valueOf(params.get("size").toString()) : 10;
+            String utilization = params.get("utilization").toString();
+            String sortBy = Objects.nonNull(params.get("sortBy")) ? params.get("sortBy").toString() : "id";
+            Direction sortByDirection = params.get("direction") != null ? params.get("direction").toString().equals("ASC") ? Sort.Direction.ASC : Sort.Direction.DESC : Sort.Direction.ASC;
+
+            LOGGER.info("Has received a request to page: " + page + " |size: " + size + " |sortBy: " + sortBy + " |direction: " + sortByDirection + " |utilization: " + utilization);
+            PageRequest pageRequest = PageRequest.of(page, size, Sort.by(sortByDirection, sortBy));
+
+            Page<Reagent> pageReagent = reagentRepo.findByUtilization(utilization, pageRequest);
+
+            totalPages = pageReagent.getTotalPages();
+            totalItems = pageReagent.getTotalElements();
+            
+            response.put("data" , pageReagent.getContent());
+            response.put("numPages" , totalPages);
+            response.put("totalElements" , totalItems);
+
+            return response;
+        }
+    }
+
+    public List<String> findAllUtilization() {        
+
+        return reagentRepo.findAllUtilization();
+    }
 }

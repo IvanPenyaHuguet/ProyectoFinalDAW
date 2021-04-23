@@ -12,8 +12,10 @@ import { SearchElementsContext } from '../../context/SearchElementsContext';
 import SearchService from '../../service/backend/SearchService';
 import errorService from '../../service/error/ErrorController';
 import SelectColumnFilterLocation from './filter/SelectColumnFilterLocation';
+import SelectColumnFilterUtilization from './filter/SelectColumnFilterUtilization';
 import useHasChanged from '../../hooks/useHasChanged';
-
+import { FilterLocationContext } from '../../context/utils/FilterLocationContext';
+import { FilterUtilizationContext } from '../../context/utils/FilterUtilizationContext';
 
 
 const ReagentTable = () => {
@@ -27,6 +29,13 @@ const ReagentTable = () => {
     const [ controlledPageCount, setControlledPageCount ] = useState(0);
     const [ totalElements, setTotalElements ] = useState (0);
     const fetchIdRef = useRef(0);
+    const [ filterLocation, setFilterLocation ] = useState('');
+    const [ filterUtilization, setFilterUtilization ] = useState('');
+    const [ filter, setFilter ] = useState({});
+
+    useEffect(() => {
+        setFilter(filterLocation);
+    }, [filterLocation, filterUtilization])
    
     
 
@@ -104,7 +113,8 @@ const ReagentTable = () => {
             Header: t('table.column.utilization'),
             accessor: "utilization",
             disableSortBy: true,
-            disableFilters: true
+            disableFilters: false,
+            Filter: SelectColumnFilterUtilization,
         },{
             Header: t('table.column.cas'),
             accessor: "cas",
@@ -237,17 +247,22 @@ const ReagentTable = () => {
         <>     
         <SearchFieldContext.Provider value={{fieldsToSearch, setFieldsToSearch}}>  
             <SearchElementsContext.Provider value={{elementsToSearch, setElementsToSearch}}>
-                <TableBase 
-                    columns={columns} 
-                    backendService={BackendService} 
-                    loading={loading} 
-                    data={data} 
-                    controlledPageCount={controlledPageCount} 
-                    totalElements={totalElements}
-                    title={TITLE}
-                    fetchData={fetchData}
-                    searchFields={searchFields}                   
-                />   
+                <FilterLocationContext.Provider value={{ filterLocation, setFilterLocation }} >
+                    <FilterUtilizationContext.Provider value={{ filterUtilization, setFilterUtilization }}>
+                        <TableBase 
+                            columns={columns} 
+                            backendService={BackendService} 
+                            loading={loading} 
+                            data={data} 
+                            controlledPageCount={controlledPageCount} 
+                            totalElements={totalElements}
+                            title={TITLE}
+                            fetchData={fetchData}
+                            searchFields={searchFields} 
+                            filter={filter}                  
+                        /> 
+                    </FilterUtilizationContext.Provider>  
+                </FilterLocationContext.Provider>
             </SearchElementsContext.Provider>
         </SearchFieldContext.Provider>
         </>

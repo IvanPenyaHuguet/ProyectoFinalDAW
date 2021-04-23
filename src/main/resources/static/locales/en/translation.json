@@ -55,6 +55,7 @@
       "searchElements": "Search elements"
     },
     "column": {
+      "Utilization": "Utilization",
       "boughtBy": "Bought By",
       "cas": "CAS",
       "elements": "Elements",

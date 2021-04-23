@@ -4,13 +4,13 @@ import SelectColumnFilter from './SelectColumnFilter';
 
 import { useTranslation } from 'react-i18next';
 import { LocationStore } from '../../../context/store/LocationStore';
-import { FilterContext } from '../../../context/utils/FilterContext';
+import { FilterLocationContext } from '../../../context/utils/FilterLocationContext';
 
 export default function SelectColumnFilterLocation () {
 
     const { t } = useTranslation();
     const locations  = useContext(LocationStore);
-    const { filterLocation, setFilterLocation } = useContext(FilterContext);
+    const { filterLocation, setFilterLocation } = useContext(FilterLocationContext);
 
     const memoLocations = useMemo( () => {
         return locations

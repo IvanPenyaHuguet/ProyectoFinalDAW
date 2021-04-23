@@ -106,4 +106,13 @@ public class ReagentsApiController implements BaseApiController{
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }
 
+    @GetMapping("/reagent/utilization")
+    public ResponseEntity<Map<String, Object>> findAllByUtilization (@RequestParam Map<String, Object> params) {
+        Map <String, Object> response = new HashMap<>();
+
+        response = reagentService.reagentsByUtilization(params);
+        
+        return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+    }
+
 }

@@ -16,7 +16,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useSortBy, useTable, usePagination, useFilters, useAsyncDebounce } from 'react-table';
 import { SearchTextContext } from '../../../context/SearchTextContext';
 import { SearchElementsContext } from '../../../context/SearchElementsContext';
-import { FilterContext } from '../../../context/utils/FilterContext';
+
 
 const useStyles = makeStyles((theme) => ({    
     tbody: {
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function TableBase ({columns,  data, fetchData, loading, controlledPageCount, totalElements, title }) {
+export default function TableBase ({columns,  data, fetchData, loading, controlledPageCount, totalElements, title, filter }) {
 
     const classes = useStyles();
     
@@ -59,14 +59,13 @@ export default function TableBase ({columns,  data, fetchData, loading, controll
     );
     const { pageIndex, pageSize, sortBy, filters} = state;
     const [ textToSearch, setTextToSearch ] = useState('');
-    const [ filterLocation, setFilterLocation ] = useState('');
     const { elementsToSearch } = useContext(SearchElementsContext); 
      
        
     
     useEffect(() => {
-        (onFetchDataDebounced( pageIndex, pageSize, textToSearch, elementsToSearch, sortBy, filterLocation ));        
-    }, [ onFetchDataDebounced, pageIndex, pageSize, textToSearch, elementsToSearch, sortBy, filterLocation ]); 
+        (onFetchDataDebounced( pageIndex, pageSize, textToSearch, elementsToSearch, sortBy, filter ));        
+    }, [ onFetchDataDebounced, pageIndex, pageSize, textToSearch, elementsToSearch, sortBy, filter ]); 
 
     const onFetchDataDebounced = useAsyncDebounce(fetchData, 100)
     
@@ -79,7 +78,7 @@ export default function TableBase ({columns,  data, fetchData, loading, controll
     return (
         <>        
             <SearchTextContext.Provider value={{ textToSearch, setTextToSearch }}>
-                <FilterContext.Provider value={{ filterLocation, setFilterLocation }} >
+                
                     <MUITheme>
                         <Container >            
                             <Toolbar 
@@ -124,7 +123,7 @@ export default function TableBase ({columns,  data, fetchData, loading, controll
                             </MUITable >                        
                         </Container>            
                     </ MUITheme> 
-                </FilterContext.Provider>
+                
             </SearchTextContext.Provider>         
         </>
     )
