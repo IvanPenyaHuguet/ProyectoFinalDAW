@@ -55,6 +55,7 @@
       "searchElements": "Buscar por elemento"
     },
     "column": {
+      "Utilization": "",
       "boughtBy": "Comprado por",
       "cas": "CAS",
       "elements": "Elementos",
@@ -89,5 +90,6 @@
       "search": "Buscar"
     }
   },
-  "username": "Nombre de usuario"
+  "username": "Nombre de usuario",
+  "zone": "es-ES"
 }

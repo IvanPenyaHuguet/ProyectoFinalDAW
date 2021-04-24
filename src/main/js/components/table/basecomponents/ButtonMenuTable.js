@@ -1,15 +1,14 @@
 import React, {  useContext } from 'react';
 
-import AddIcon from '@material-ui/icons/Add';
+
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
-import SaveIcon from '@material-ui/icons/Save';
-import PrintIcon from '@material-ui/icons/Print';
 import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { useTranslation } from 'react-i18next';
-import { AuthContext } from '../../../context/AuthContextProvider';
+import { SpeedDialContext } from '../../../context/utils/SpeedDialContext';
+
 import styles from '../../../css/components/table/ButtonMenuTable.module.css';
 import Container from '../../container/Container';
 
@@ -24,23 +23,21 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ButtonMenuTable () {
 
-    const { t } = useTranslation();
-    const { user, setUSer } = useContext(AuthContext);
+    const { t } = useTranslation();    
+    const  speedDial = useContext(SpeedDialContext);
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
-    const actions = [        ,
-        { icon: <SaveIcon />, name: t('table.tooltip.save') },
-        { icon: <PrintIcon />, name: t('table.tooltip.print') },
-    ];    
-    if (user.role.includes("ROLE_ADD_ALL")) {       
-        actions.unshift({ icon: <AddIcon /> , name: t('table.tooltip.add') });
-    }
+    
     const handleClose = () => {
         setOpen(false);
     };    
     const handleOpen = () => {
         setOpen(true);
     };
+    
+    if (! speedDial) {
+        return;
+    }
 
     return (
         <Container className={styles.container}>          
@@ -54,12 +51,12 @@ export default function ButtonMenuTable () {
                 direction="down"
                 className={classes.speedDial}
                 >
-                {actions.map((action) => (
+                {speedDial.map((action) => (
                     <SpeedDialAction
                     key={action.name}
                     icon={action.icon}
                     tooltipTitle={action.name}
-                    onClick={handleClose}
+                    onClick={action.click}
                     tooltipOpen
                     />
                 ))}

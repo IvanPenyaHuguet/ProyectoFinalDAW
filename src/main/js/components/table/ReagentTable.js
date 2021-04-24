@@ -1,10 +1,13 @@
-import React, { useMemo, useState, useCallback, useRef, useEffect } from 'react';
+import React, { useMemo, useState, useCallback, useRef, useEffect, useContext } from 'react';
 import BackendService from '../../service/backend/AllReagentService';
 import TableBase from './basecomponents/TableBase';
 import Divider from '@material-ui/core/Divider';
 import Avatar from '@material-ui/core/Avatar';
 import Chip from '@material-ui/core/Chip';
 
+import AddIcon from '@material-ui/icons/Add';
+import SaveIcon from '@material-ui/icons/Save';
+import PrintIcon from '@material-ui/icons/Print';
 
 import { useTranslation } from 'react-i18next';
 import { SearchFieldContext } from '../../context/SearchFieldContext';
@@ -15,12 +18,15 @@ import SelectColumnFilterLocation from './filter/SelectColumnFilterLocation';
 import SelectColumnFilterUtilization from './filter/SelectColumnFilterUtilization';
 import { FilterLocationContext } from '../../context/utils/FilterLocationContext';
 import { FilterUtilizationContext } from '../../context/utils/FilterUtilizationContext';
-
+import { SpeedDialContext } from '../../context/utils/SpeedDialContext';
+import { AuthContext } from '../../context/AuthContextProvider';
+import reagendPdf from '../../lib/pdf/ReagentPdf';
 
 const ReagentTable = () => {
    
     const { t } = useTranslation();
     const TITLE = t('table.title.reagents');
+    const { user, setUSer } = useContext(AuthContext);
     const [ data , setData ] = useState([]);     
     const [ loading, setLoading ] = useState(false); 
     const [ controlledPageCount, setControlledPageCount ] = useState(0);
@@ -199,6 +205,17 @@ const ReagentTable = () => {
         name: t('table.column.secondaryintreference'),
         selected: true
     }];
+
+    const speedDial = useMemo ( () => {
+        const actions = [        ,
+            { icon: <SaveIcon />, name: t('table.tooltip.save'), click: reagendPdf.generatePdf},
+            { icon: <PrintIcon />, name: t('table.tooltip.print'), click: reagendPdf.generatePdf },
+        ];    
+        if (user.role.includes("ROLE_ADD_ALL")) {       
+            actions.unshift({ icon: <AddIcon /> , name: t('table.tooltip.add'), click: reagendPdf.generatePdf });
+        }
+        return actions;
+    },[])
     
     const [ fieldsToSearch, setFieldsToSearch ] = useState(searchFields);
     const [ elementsToSearch, setElementsToSearch ] = useState({});
@@ -259,26 +276,28 @@ const ReagentTable = () => {
 
     return (
         <>     
-        <SearchFieldContext.Provider value={{fieldsToSearch, setFieldsToSearch}}>  
-            <SearchElementsContext.Provider value={{elementsToSearch, setElementsToSearch}}>
-                <FilterLocationContext.Provider value={{ filterLocation, setFilterLocation }} >
-                    <FilterUtilizationContext.Provider value={{ filterUtilization, setFilterUtilization }}>
-                        <TableBase 
-                            columns={columns} 
-                            backendService={BackendService} 
-                            loading={loading} 
-                            data={data} 
-                            controlledPageCount={controlledPageCount} 
-                            totalElements={totalElements}
-                            title={TITLE}
-                            fetchData={fetchData}
-                            searchFields={searchFields} 
-                            filter={filter}                  
-                        /> 
-                    </FilterUtilizationContext.Provider>  
-                </FilterLocationContext.Provider>
-            </SearchElementsContext.Provider>
-        </SearchFieldContext.Provider>
+        <SpeedDialContext.Provider value={speedDial}>
+            <SearchFieldContext.Provider value={{fieldsToSearch, setFieldsToSearch}}>  
+                <SearchElementsContext.Provider value={{elementsToSearch, setElementsToSearch}}>
+                    <FilterLocationContext.Provider value={{ filterLocation, setFilterLocation }} >
+                        <FilterUtilizationContext.Provider value={{ filterUtilization, setFilterUtilization }}>
+                            <TableBase 
+                                columns={columns} 
+                                backendService={BackendService} 
+                                loading={loading} 
+                                data={data} 
+                                controlledPageCount={controlledPageCount} 
+                                totalElements={totalElements}
+                                title={TITLE}
+                                fetchData={fetchData}
+                                searchFields={searchFields} 
+                                filter={filter}                  
+                            /> 
+                        </FilterUtilizationContext.Provider>  
+                    </FilterLocationContext.Provider>
+                </SearchElementsContext.Provider>
+            </SearchFieldContext.Provider>
+        </SpeedDialContext.Provider>
         </>
     )
 

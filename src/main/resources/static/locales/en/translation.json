@@ -90,5 +90,6 @@
       "search": "Search"
     }
   },
-  "username": "Username"
+  "username": "Username",
+  "zone": "en-US"
 }
