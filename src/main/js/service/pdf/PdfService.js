@@ -15,6 +15,7 @@ export default class PdfService {
         const doc = new jsPDF (this.orientation, this.unit, this.size);
         const marginLeft = data.marginLeft || 40;
         doc.setFontSize( data.fontSize || 15);
+        const totalPagesExp = '{total_pages_count_string}' 
 
         const body = data.data.data.map(ele => {
             const toReturn = [];
@@ -23,6 +24,12 @@ export default class PdfService {
             });
             return toReturn;
         });
+        
+        const footer = (HookData) => {            
+            const footerString = "Página " + HookData.pageNumber + " de "+  totalPagesExp;
+            doc.setFontSize(10);            
+            doc.text(footerString, marginLeft + 300, doc.internal.pageSize.height - 30);
+        }
 
         const content = {
             startY: data.startY || 50,
@@ -30,11 +37,15 @@ export default class PdfService {
             body: body,
             styles: {
                 theme: 'grid'
-            }             
+            },
+            didDrawPage: footer            
         }
         console.log(data);
         doc.text(data.title, marginLeft, 40);
         doc.autoTable(content);
+        if (typeof doc.putTotalPages === 'function') { 
+            doc.putTotalPages(totalPagesExp) 
+        } 
         doc.save(data.title + " on " + dateUtil.getDayMonthYear());
     }
 
