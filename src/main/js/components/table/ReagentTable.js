@@ -13,7 +13,6 @@ import SearchService from '../../service/backend/SearchService';
 import errorService from '../../service/error/ErrorController';
 import SelectColumnFilterLocation from './filter/SelectColumnFilterLocation';
 import SelectColumnFilterUtilization from './filter/SelectColumnFilterUtilization';
-import useHasChanged from '../../hooks/useHasChanged';
 import { FilterLocationContext } from '../../context/utils/FilterLocationContext';
 import { FilterUtilizationContext } from '../../context/utils/FilterUtilizationContext';
 
@@ -22,19 +21,25 @@ const ReagentTable = () => {
    
     const { t } = useTranslation();
     const TITLE = t('table.title.reagents');
-    const [ data , setData ] = useState([]); 
-    const skipPageResetRef = useRef(); 
-    const oldData = useRef();
+    const [ data , setData ] = useState([]);     
     const [ loading, setLoading ] = useState(false); 
     const [ controlledPageCount, setControlledPageCount ] = useState(0);
     const [ totalElements, setTotalElements ] = useState (0);
     const fetchIdRef = useRef(0);
     const [ filterLocation, setFilterLocation ] = useState('');
     const [ filterUtilization, setFilterUtilization ] = useState('');
-    const [ filter, setFilter ] = useState({});
+    const [ filter, setFilter ] = useState(null);
 
     useEffect(() => {
-        setFilter(filterLocation);
+        if (filterLocation != undefined && filterLocation != ''){
+            setFilter({ location: filterLocation });            
+        }
+        else if (filterUtilization != undefined && filterUtilization != '') {
+            setFilter({utilization: filterUtilization});            
+        }
+        else {            
+            setFilter(null);
+        }        
     }, [filterLocation, filterUtilization])
    
     
@@ -198,9 +203,10 @@ const ReagentTable = () => {
     const [ fieldsToSearch, setFieldsToSearch ] = useState(searchFields);
     const [ elementsToSearch, setElementsToSearch ] = useState({});
 
-    const fetchData = useCallback((pageindex, pagesize, textToSearch, elementsToSearch, sortBy, filterLocation) => {
+    const fetchData = useCallback((pageindex, pagesize, textToSearch, elementsToSearch, sortBy, filter) => {
         const fetchId = ++fetchIdRef.current;
-        const filterLocationChanged = filterLocation  !== '' && filterLocation !== '0';
+        const filterLocationChanged = filter ? filter.location  !== '' && filter.location !== '0' && filter.location != null : false;
+        const filterUtilizationChanged = filter ? filter.utilization  !== '' && filter.utilization !== '0' && filter.utilization != null && filter.utilization !== 'All' : false;
         const elementsChanged = elementsToSearch && Object.keys(elementsToSearch).length > 0;
         const textChanged = textToSearch !== '';
         
@@ -215,20 +221,28 @@ const ReagentTable = () => {
                 console.log("elements")
             }
             else if (filterLocationChanged){                
-                BackendService.getPageLocation(filterLocation, pageindex, pagesize, sortBy)
+                BackendService.getPageLocation(filter.location, pageindex, pagesize, sortBy)
                     .then (res => processResult(res))
-                    .catch( err => errorService.checkError(err));                
+                    .catch( err => errorService.checkError(err));   
+                console.log("filterLoc")
+            }
+            else if (filterUtilizationChanged){                
+                BackendService.getPageUtilization(filter.utilization, pageindex, pagesize, sortBy)
+                    .then (res => processResult(res))
+                    .catch( err => errorService.checkError(err));   
+                console.log("filterU")
             }
             else if(textChanged) {                
                 SearchService.searchReagentPage(pageindex, pagesize, textToSearch, fieldsToSearch.filter( ({selected}) => selected===true).map(({value}) =>  value ))
                     .then (res => processResult(res))
                     .catch( err => errorService.checkError(err));
-                    console.log("text")
+                console.log("text")
             }
             else {                
                 BackendService.getPage( pageindex, pagesize, sortBy )
                 .then (res => processResult(res))
                 .catch (e => errorService.checkError(e));
+                console.log("general")
             }
             const processResult = result => {                
                 setLoading(false);       

@@ -42,6 +42,18 @@ class BaseService {
         }        
       })
     }
+
+    async getPageUtilization ( utilization, page, size, sortBy ) {
+      return await axios.get("/api" + this.URL + "/utilization", {
+        params: {
+          utilization: utilization,
+          page: page,
+          size: size,
+          sortBy: sortBy[0] ? sortBy[0].id : null,
+          sortByDirection: sortBy[0] ? sortBy.desc === true ? 'DESC': 'ASC' : null,
+        }        
+      })
+    }
 }  
     
 export default BaseService;
