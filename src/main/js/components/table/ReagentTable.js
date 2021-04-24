@@ -12,7 +12,7 @@ import { SearchElementsContext } from '../../context/SearchElementsContext';
 import SearchService from '../../service/backend/SearchService';
 import errorService from '../../service/error/ErrorController';
 import SelectColumnFilterLocation from './filter/SelectColumnFilterLocation';
-import SelectColumnFilterUtilization from './filter/SelectColumnFilterUtilization';
+import SelectColumnFilterUtilization from './filter/SelectColumnFilterUtilization2';
 import useHasChanged from '../../hooks/useHasChanged';
 import { FilterLocationContext } from '../../context/utils/FilterLocationContext';
 import { FilterUtilizationContext } from '../../context/utils/FilterUtilizationContext';

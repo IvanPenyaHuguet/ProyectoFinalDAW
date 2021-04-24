@@ -2,23 +2,18 @@ import React, {  useState, useEffect} from'react';
 
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import parse from 'autosuggest-highlight/parse';
 import match from 'autosuggest-highlight/match';
 
 import ContainerPopoverFilter from './ContainerPopoverFilter';
-import { useTranslation } from 'react-i18next';
+
 
 
 export default function SelectColumnFilter ({ filter, setFilter, labelname , store, width = 300 }) {    
     
-    const { t } = useTranslation();
-    const [ autocomplete, setAutocomplete ] = useState();
-    const [ inputValue, setInputValue ] = useState('');
 
-    const onSelectChange = (e) => {      
-        setFilter(e.target.value || undefined);
-    }
+    const [ autocomplete, setAutocomplete ] = useState(filter ? filter : '');
+    const [ inputValue, setInputValue ] = useState('');
 
     const onAutoCompleteChange = ((e, newValue) => {
         setAutocomplete(newValue || undefined);
@@ -31,7 +26,7 @@ export default function SelectColumnFilter ({ filter, setFilter, labelname , sto
         return (
           <div>
             {parts.map((part, index) => (
-              <span key={index} style={{ fontWeight: part.highlight ? 700 : 400 }}>
+              <span key={index} style={{ fontWeight: part.highlight ? 700 : 400}}>
                 {part.text}
               </span>
             ))}
@@ -42,7 +37,7 @@ export default function SelectColumnFilter ({ filter, setFilter, labelname , sto
     useEffect (() => {
         setFilter(autocomplete);
     },[autocomplete]);
-    console.log(store);
+    
 
     return (
         <ContainerPopoverFilter>            
@@ -53,6 +48,8 @@ export default function SelectColumnFilter ({ filter, setFilter, labelname , sto
                 autoHighlight
                 clearOnEscape
                 autoComplete
+                openOnFocus
+                blurOnSelect
                 value={autocomplete}
                 onChange={onAutoCompleteChange}
                 inputValue={inputValue}
