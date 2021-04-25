@@ -65,7 +65,7 @@ export const RTCColumns = [
         disableFilters: true
     },{
         Header: i18next.t('table.column.elements'),
-        accesor: "elements",
+        accessor: "elements",
         id: "elements",
         show: true,
         Cell: row => {
@@ -89,7 +89,7 @@ export const RTCColumns = [
         disableFilters: true
     },{
         Header: i18next.t('table.column.formula'),
-        accesor: "formula",
+        accessor: "formula",
         id: "formula",
         show: false,
         disableSortBy: false,
@@ -142,7 +142,7 @@ export const RTCColumns = [
         disableFilters: true
     },{
         Header: i18next.t('table.column.supplier'),
-        accesor: "suppliers",
+        accessor: "suppliers",
         id: "suppliers",
         show: false,
         Cell: row => {

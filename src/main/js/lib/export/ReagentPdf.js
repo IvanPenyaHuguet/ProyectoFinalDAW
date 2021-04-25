@@ -1,5 +1,6 @@
 import ReagentService from '../../service/backend/AllReagentService';
-import PdfService from '../../service/pdf/PdfService';
+import PdfService from '../../service/export/PdfService';
+import CSVService from '../../service/export/CSVService';
 
 class ReagentPdf {
 
@@ -17,6 +18,13 @@ class ReagentPdf {
         print === true ?  pdfService.generatePdfPrint(toPdf) :  pdfService.generatePdfDownloadable(toPdf);
 
        
+    }
+
+    async generateCSV (params) {
+        const data = await ReagentService.getAll();
+        const columns = params.columns;   
+        const csvService = new CSVService();
+        csvService.generateCSV(data, columns);
     }
    
 }

@@ -88,6 +88,8 @@
     },
     "tooltip": {
       "add": "Add",
+      "csv": "CSV",
+      "excel": "Excel",
       "export": "Export",
       "fieldSearch": "Fields to search",
       "mostrarCol": "Columns to show",

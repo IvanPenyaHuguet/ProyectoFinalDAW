@@ -5,6 +5,8 @@ import TableBase from './basecomponents/TableBase';
 import AddIcon from '@material-ui/icons/Add';
 import SaveIcon from '@material-ui/icons/Save';
 import PrintIcon from '@material-ui/icons/Print';
+import ExcelIcon from '../icons/ExcelIcon';
+import CSVIcon from '../icons/CSVIcon';
 
 import { useTranslation } from 'react-i18next';
 import { SearchFieldContext } from '../../context/SearchFieldContext';
@@ -15,9 +17,11 @@ import { FilterLocationContext } from '../../context/utils/FilterLocationContext
 import { FilterUtilizationContext } from '../../context/utils/FilterUtilizationContext';
 import { SpeedDialContext } from '../../context/utils/SpeedDialContext';
 import { AuthContext } from '../../context/AuthContextProvider';
-import reagendPdf from '../../lib/pdf/ReagentPdf';
+import reagentPDF from '../../lib/export/ReagentPdf';
 import { useHistory } from "react-router-dom";
 import { RTCSearchFields, RTCColumns } from '../../lib/tabledata/ReagentTableConf';
+
+
 
 const ReagentTable = () => {
    
@@ -52,8 +56,10 @@ const ReagentTable = () => {
     
     const speedDial = useMemo ( () => {
         const actions = [        ,
-            { icon: <SaveIcon />, name: t('table.tooltip.save'), click: () => reagendPdf.generatePdf(undefined, false)},
-            { icon: <PrintIcon />, name: t('table.tooltip.print'), click: () => reagendPdf.generatePdf(undefined, true) },
+            { icon: <SaveIcon />, name: t('table.tooltip.save'), click: () => reagentPDF.generatePdf(undefined, false)},
+            { icon: <PrintIcon />, name: t('table.tooltip.print'), click: () => reagentPDF.generatePdf(undefined, true) },
+            { icon: <ExcelIcon />, name: t('table.tooltip.excel'), click: () => reagentPDF.generatePdf(undefined, true) },
+            { icon: <CSVIcon />, name: t('table.tooltip.csv'), click: () => reagentPDF.generateCSV({columns: columns})},
         ];    
         if (user.role.includes("ROLE_ADD_ALL")) {       
             actions.unshift({ icon: <AddIcon /> , name: t('table.tooltip.add'), click: () => history.push("/reagent/add") });
