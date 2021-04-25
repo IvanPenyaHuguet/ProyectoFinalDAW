@@ -1,6 +1,8 @@
 import axios from 'axios';
 import BackendServiceConf from '../BackendServiceConf';
 import errorController from '../error/ErrorController';
+import dateUtil from '../../lib/utils/DateUtil';
+
 
 class BaseService {   
     
@@ -52,6 +54,21 @@ class BaseService {
           sortBy: sortBy[0] ? sortBy[0].id : null,
           sortByDirection: sortBy[0] ? sortBy.desc === true ? 'DESC': 'ASC' : null,
         }        
+      })
+    }
+
+    getExcelExport (title='') {
+      axios({
+        url: "/api" + this.URL + "/export",
+        method: 'get',
+        responseType:'blob'
+      }).then( res => {        
+        const url = window.URL.createObjectURL(new Blob([res.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', title + " " + dateUtil.getDayMonthYear() + '.xlsx');       
+        link.click();
+        link.remove();          
       })
     }
 }  

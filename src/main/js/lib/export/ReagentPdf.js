@@ -26,6 +26,10 @@ class ReagentPdf {
         const csvService = new CSVService();
         csvService.generateCSV(data, columns);
     }
+
+    async generateExcel (title){
+        await ReagentService.getExcelExport(title);
+    }
    
 }
 export default new ReagentPdf();

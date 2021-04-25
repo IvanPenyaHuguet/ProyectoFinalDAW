@@ -1,5 +1,4 @@
 import dateUtil from '../../lib/utils/DateUtil';
-import i18next from 'i18next';
 
 
 export default class CSVService { 
@@ -35,7 +34,8 @@ export default class CSVService {
         hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(datacsv);
         hiddenElement.target = '_blank';
         hiddenElement.download = title + '.csv';
-        hiddenElement.click();     
+        hiddenElement.click();   
+        hiddenElement.remove();   
     }
 
    
