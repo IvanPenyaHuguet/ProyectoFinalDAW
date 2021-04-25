@@ -50,6 +50,12 @@
       "standardsol": "Standard Solution"
     }
   },
+  "pdf": {
+    "footer": {
+      "of": "of",
+      "page": "Page"
+    }
+  },
   "table": {
     "button": {
       "searchElements": "Search elements"

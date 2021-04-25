@@ -1,9 +1,6 @@
 import React, { useMemo, useState, useCallback, useRef, useEffect, useContext } from 'react';
 import BackendService from '../../service/backend/AllReagentService';
 import TableBase from './basecomponents/TableBase';
-import Divider from '@material-ui/core/Divider';
-import Avatar from '@material-ui/core/Avatar';
-import Chip from '@material-ui/core/Chip';
 
 import AddIcon from '@material-ui/icons/Add';
 import SaveIcon from '@material-ui/icons/Save';
@@ -14,13 +11,13 @@ import { SearchFieldContext } from '../../context/SearchFieldContext';
 import { SearchElementsContext } from '../../context/SearchElementsContext';
 import SearchService from '../../service/backend/SearchService';
 import errorService from '../../service/error/ErrorController';
-import SelectColumnFilterLocation from './filter/SelectColumnFilterLocation';
-import SelectColumnFilterUtilization from './filter/SelectColumnFilterUtilization';
 import { FilterLocationContext } from '../../context/utils/FilterLocationContext';
 import { FilterUtilizationContext } from '../../context/utils/FilterUtilizationContext';
 import { SpeedDialContext } from '../../context/utils/SpeedDialContext';
 import { AuthContext } from '../../context/AuthContextProvider';
 import reagendPdf from '../../lib/pdf/ReagentPdf';
+import { useHistory } from "react-router-dom";
+import { RTCSearchFields, RTCColumns } from '../../lib/tabledata/ReagentTableConf';
 
 const ReagentTable = () => {
    
@@ -35,6 +32,11 @@ const ReagentTable = () => {
     const [ filterLocation, setFilterLocation ] = useState('');
     const [ filterUtilization, setFilterUtilization ] = useState('');
     const [ filter, setFilter ] = useState(null);
+    const history = useHistory();
+    const columns = useMemo (() => RTCColumns, []);
+    const searchFields = RTCSearchFields;
+    const [ fieldsToSearch, setFieldsToSearch ] = useState(searchFields);
+    const [ elementsToSearch, setElementsToSearch ] = useState({});
 
     useEffect(() => {
         if (filterLocation != undefined && filterLocation != ''){
@@ -46,179 +48,19 @@ const ReagentTable = () => {
         else {            
             setFilter(null);
         }        
-    }, [filterLocation, filterUtilization])
-   
+    }, [filterLocation, filterUtilization]) 
     
-
-    const columns = useMemo (() => [
-        {
-            Header: t('table.column.id'),
-            accessor: "id",
-            show: false,
-            disableSortBy: false,
-            disableFilters: true 
-        },{
-            Header: t('table.column.reference'),
-            accessor: "internalReference",
-            disableSortBy: false,
-            disableFilters: true
-        },{
-            Header: t('table.column.spanishName'),
-            accessor: "spanishName",
-            disableSortBy: false,
-            disableFilters: true
-        },{
-            Header: t('table.column.englishName'),
-            accessor: "englishName",
-            show: false,
-            disableSortBy: false,
-            disableFilters: true
-        },{
-            Header: t('table.column.elements'),
-            accesor: "elements",
-            id: "elements",
-            show: true,
-            Cell: row => {
-                const elements = row.row.original.elements;  
-                let counts = {};
-                elements.forEach(function(element) { 
-                    counts[element.atomicNumber] = {
-                        total: counts[element.atomicNumber] ?  counts[element.atomicNumber].total + 1 : 1,
-                        element: element
-                    }; 
-                });                
-                return (
-                    <div>
-                        {Object.keys(counts).map((item, i) => ( 
-                            <Chip  avatar={<Avatar>{counts[item].element.element}</Avatar>} label={counts[item].total} variant="outlined" key={i}/>
-                        ))}                      
-                    </div>
-                )
-            },
-            disableSortBy: true,
-            disableFilters: true
-        },{
-            Header: t('table.column.formula'),
-            accesor: "formula",
-            id: "formula",
-            show: false,
-            disableSortBy: false,
-            disableFilters: true
-        },{
-            Header: t('table.column.type'),
-            accessor: "reagentType",
-            disableSortBy: false,
-            disableFilters: true
-        },{
-            Header: t('table.column.quantity'),
-            accessor: "quantity",
-            disableSortBy: false,
-            disableFilters: true
-        },{
-            Header: t('table.column.location'),
-            accessor: "location.name",
-            disableSortBy: false,
-            disableFilters: false,
-            Filter: SelectColumnFilterLocation,            
-        },{
-            Header: t('table.column.utilization'),
-            accessor: "utilization",
-            disableSortBy: true,
-            disableFilters: false,
-            Filter: SelectColumnFilterUtilization,
-        },{
-            Header: t('table.column.cas'),
-            accessor: "cas",
-            show: false,
-            disableSortBy: false,
-            disableFilters: true
-        },{
-            Header: t('table.column.receptionDate'),
-            accessor: "entryDate",
-            show: false,
-            disableSortBy: false,
-            disableFilters: true
-        },{
-            Header: t('table.column.boughtBy'),
-            accessor: "user.name",
-            show: false,
-            disableSortBy: true,
-            disableFilters: true
-        },{
-            Header: t('table.column.molecularWeight'),
-            accessor: "molecularWeight",
-            show: false,
-            disableSortBy: false,
-            disableFilters: true
-        },{
-            Header: t('table.column.supplier'),
-            accesor: "suppliers",
-            id: "suppliers",
-            show: false,
-            Cell: row => {
-                const suppliers = row.row.original.suppliers;             
-                return (
-                    <>
-                        {Object.keys(suppliers).map((item, i) => (
-                            <div key={suppliers[item].supplier.id}>
-                                <span className="">
-                                {suppliers[item].supplier.name} 
-                                </span> 
-                                <Divider orientation="vertical" flexItem /> 
-                            </div>                          
-                        ))}
-                    </>
-                )
-            },
-            disableSortBy: true,
-            disableFilters: true
-        }
-    ], []);
-
-    const searchFields = [
-    {
-        value: "spanishName",
-        name: t('table.column.spanishName'),
-        selected: true
-    },{
-        value: "englishName",
-        name: t('table.column.englishName'),
-        selected: true
-    },{
-        value: "cas",
-        name: t('table.column.cas'),
-        selected: false
-    },{
-        value: "internalReference",
-        name: t('table.column.reference'),
-        selected: true
-    },{
-        value: "utilization",
-        name: t('table.column.utilization'),
-        selected: false
-    },{
-        value: "elements.englishName",
-        name: t('table.column.elements'),
-        selected: false
-    },{
-        value: "secondaryIntReference",
-        name: t('table.column.secondaryintreference'),
-        selected: true
-    }];
-
     const speedDial = useMemo ( () => {
         const actions = [        ,
-            { icon: <SaveIcon />, name: t('table.tooltip.save'), click: reagendPdf.generatePdf},
-            { icon: <PrintIcon />, name: t('table.tooltip.print'), click: reagendPdf.generatePdf },
+            { icon: <SaveIcon />, name: t('table.tooltip.save'), click: () => reagendPdf.generatePdf(undefined, false)},
+            { icon: <PrintIcon />, name: t('table.tooltip.print'), click: () => reagendPdf.generatePdf(undefined, true) },
         ];    
         if (user.role.includes("ROLE_ADD_ALL")) {       
-            actions.unshift({ icon: <AddIcon /> , name: t('table.tooltip.add'), click: reagendPdf.generatePdf });
+            actions.unshift({ icon: <AddIcon /> , name: t('table.tooltip.add'), click: () => history.push("/reagent/add") });
         }
         return actions;
-    },[])
+    },[])    
     
-    const [ fieldsToSearch, setFieldsToSearch ] = useState(searchFields);
-    const [ elementsToSearch, setElementsToSearch ] = useState({});
 
     const fetchData = useCallback((pageindex, pagesize, textToSearch, elementsToSearch, sortBy, filter) => {
         const fetchId = ++fetchIdRef.current;

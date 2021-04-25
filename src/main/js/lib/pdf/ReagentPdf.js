@@ -3,7 +3,7 @@ import PdfService from '../../service/pdf/PdfService';
 
 class ReagentPdf {
 
-    async generatePdf(params) {
+    async generatePdf(params, print = false) {
        
         const data = await ReagentService.getAll();
         const pdfService = new PdfService();
@@ -11,10 +11,13 @@ class ReagentPdf {
             data: data,
             headers: [["ID", "English Name", "Nombre Español" ]],
             columns: ["id", "spanishName", "internalReference"],
-            title: "prueba "
+            title: "REAGENTS"
         };        
 
-        await pdfService.generatePdfDownloadable(toPdf);
+        print === true ?  pdfService.generatePdfPrint(toPdf) :  pdfService.generatePdfDownloadable(toPdf);
+
+       
     }
+   
 }
 export default new ReagentPdf();
