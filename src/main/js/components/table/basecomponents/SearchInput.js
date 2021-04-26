@@ -55,6 +55,11 @@ export default function SearchInput () {
     const onInputSearchChange = (e) => {
         setInputSearchText(e.target.value);
     }    
+    const onInputEnter = (e) => {
+        if (e.key === 'Enter') {
+            setTextToSearch(inputSearchText)
+        }
+    }
 
     return (
         <Container className={styles.searchContainer}>
@@ -66,7 +71,7 @@ export default function SearchInput () {
                 </Tooltip>
                 <PopperSearchInput showColumnSelector={showColumnSelector} handleCloseShowColumn={handleCloseShowColumn} />
                 <Box className={classes.input}>
-                    <TextField label={t('table.label.searchInput')} className={classes.container} value={inputSearchText} onChange={onInputSearchChange}/>
+                    <TextField label={t('table.label.searchInput')} className={classes.container} value={inputSearchText} onChange={onInputSearchChange} onKeyDown={onInputEnter}/>
                 </Box>
                 <Tooltip title={t('table.tooltip.search')}>
                     <IconButton aria-label={t('table.tooltip.search')} className={classes.iconContainer} onClick={onSearchClick}>
