@@ -16,18 +16,34 @@ public class PageSearchDTO<T> {
     public PageSearchDTO() {
     }
 
+    
+    /** 
+     * @return List<T>
+     */
     public List<T> getSearchList() {
         return this.searchList;
     }
 
+    
+    /** 
+     * @param searchList
+     */
     public void setSearchList(List<T> searchList) {
         this.searchList = searchList;
     }
 
+    
+    /** 
+     * @return long
+     */
     public long getTotalCount() {
         return this.totalCount;
     }
 
+    
+    /** 
+     * @param totalCount
+     */
     public void setTotalCount(long totalCount) {
         this.totalCount = totalCount;
     }

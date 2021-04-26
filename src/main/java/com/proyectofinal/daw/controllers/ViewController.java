@@ -11,7 +11,7 @@ public class ViewController {
     
     
     /** 
-     * @return String Returns the index view
+     * @return String Returns the index view of react
      */
     @GetMapping("/")
     public String index() {

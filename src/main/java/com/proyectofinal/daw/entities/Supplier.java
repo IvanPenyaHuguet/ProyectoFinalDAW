@@ -49,19 +49,35 @@ public class Supplier implements Serializable{
     @JoinColumn(name = "seller_id")    
     private Seller seller;
 
+    
+    /** 
+     * @return Seller
+     */
     public Seller getSeller() {
         return this.seller;
     }
 
+    
+    /** 
+     * @param seller
+     */
     public void setSeller(Seller seller) {
         this.seller = seller;
     }  
    
 
+    
+    /** 
+     * @return List<StandardSol>
+     */
     public List<StandardSol> getStandards() {
         return this.standards;
     }
 
+    
+    /** 
+     * @param standards
+     */
     public void setStandards(List<StandardSol> standards) {
         this.standards = standards;
     }   
@@ -100,10 +116,18 @@ public class Supplier implements Serializable{
     }   
     
     
+    
+    /** 
+     * @return List<ReagentSuppplier>
+     */
     public List<ReagentSuppplier> getReagents() {
         return this.reagents;
     }
 
+    
+    /** 
+     * @param reagents
+     */
     public void setReagents(List<ReagentSuppplier> reagents) {
         this.reagents = reagents;
     }

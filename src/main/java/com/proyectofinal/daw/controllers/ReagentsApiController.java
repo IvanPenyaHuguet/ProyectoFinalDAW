@@ -31,7 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 /**
- * Main controller for the REST api, only for reagents models
+ * Api controller for reagents related requests
  */
 @RestController
 public class ReagentsApiController implements BaseApiController{  
@@ -42,11 +42,22 @@ public class ReagentsApiController implements BaseApiController{
     ReagentService reagentService;    
     
   
+    
+    /** 
+     * Map to return all reagents
+     * @return List<Reagent> Of all reagents in database
+     */
     @GetMapping("/reagent")              
     public List<Reagent> getAll() {      
         return reagentService.findAll();
     }
 
+    
+    /** 
+     * Map to return a reagent by id
+     * @param id The id of the reagent
+     * @return Reagent Reagent found by id
+     */
     @PreAuthorize("hasRole('ROLE_EDIT_ALL')")
     @GetMapping("/reagent/{id}")           
     public Reagent getById(@PathVariable Long id) {      
@@ -54,23 +65,48 @@ public class ReagentsApiController implements BaseApiController{
             .orElseThrow(() -> new ReagentNotFoundException(id));
     }
        
+    
+    /** 
+     * Map to delete a reagent
+     * @param id The id of the reagent
+     * @return boolean The result of the delete
+     */
     @DeleteMapping("/reagent/{id}") 
     @PreAuthorize("hasRole('ROLE_EDIT_ALL')")           
     public boolean deleteById(@PathVariable Long id) {      
         return reagentService.deleteById(id);
     }
 
+    
+    /** 
+     * Map to add a reagent
+     * @param newReagent Reagent to add to database
+     * @return boolean The result ofd the save reagent
+     */
     @PostMapping("/reagent")
     public boolean add (@RequestBody Reagent newReagent) {
         return reagentService.save(newReagent);
     }    
 
+    
+    /** 
+     * Map to update a reagent
+     * @param newReagent The new reagent params 
+     * @param id Id of the reagent to update
+     * @return Reagent The updated reagent ressultant
+     */
     @PutMapping("/reagent/{id}")
     public Reagent replaceReagent(@RequestBody Reagent newReagent, @PathVariable Long id) {
         
         return reagentService.modifyReagent(newReagent, id);
     }
 
+    
+    /** 
+     * Map to return a pagination of reagents
+     * @param Map<String,Object>params A json body of params to paginate (size, page, direction, sortBy)     
+     * @return ResponseEntity<Map<String, Object>> The page as result of the request, with reagents on page, number of pages an total elements for the request without pagination.
+     */
     @GetMapping("/reagent/page")
     public ResponseEntity<Map<String, Object>> findAllPage(@RequestParam Map<String, Object> params) {
         int totalPages;
@@ -97,6 +133,12 @@ public class ReagentsApiController implements BaseApiController{
         
     }    
 
+    
+    /** 
+     * Map to return a pagination of reagents searched by location
+     * @param Map<String,Object>params A json body of params to paginate (size, page, direction, sortBy)     
+     * @return ResponseEntity<Map<String, Object>> The page as result of the request, with reagents on page, number of pages an total elements for the request without pagination.
+     */
     @GetMapping("/reagent/location")
     public ResponseEntity<Map<String, Object>> findAllByLocationId (@RequestParam Map<String, Object> params) {
         Map <String, Object> response = new HashMap<>();
@@ -106,6 +148,12 @@ public class ReagentsApiController implements BaseApiController{
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }
 
+    
+    /** 
+     * Map to return a pagination of reagents searched by utilization
+     * @param Map<String,Object>params A json body of params to paginate (size, page, direction, sortBy)     
+     * @return ResponseEntity<Map<String, Object>> The page as result of the request, with reagents on page, number of pages an total elements for the request without pagination.
+     */
     @GetMapping("/reagent/utilization")
     public ResponseEntity<Map<String, Object>> findAllByUtilization (@RequestParam Map<String, Object> params) {
         Map <String, Object> response = new HashMap<>();

@@ -54,18 +54,34 @@ public class Commentary implements Serializable{
     @UpdateTimestamp
     private Date updatedDate;
 
+    
+    /** 
+     * @return Date
+     */
     public Date getUpdatedDate() {
         return this.updatedDate;
     }
 
+    
+    /** 
+     * @param updatedDate
+     */
     public void setUpdatedDate(Date updatedDate) {
         this.updatedDate = updatedDate;
     }
 
+    
+    /** 
+     * @return Date
+     */
     public Date getCreationDate() {
         return this.creationDate;
     }
 
+    
+    /** 
+     * @param creationDate
+     */
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
     }

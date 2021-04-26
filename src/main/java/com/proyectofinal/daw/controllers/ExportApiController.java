@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+/**
+ * Controller for receiving request to export files
+ */
 @RestController
 public class ExportApiController implements BaseApiController {
     
@@ -24,6 +27,11 @@ public class ExportApiController implements BaseApiController {
     ReagentService reagentService;
     
 
+    
+    /** 
+     * Controller to export a xlsx file of reagents
+     * @param response Send the response to the client with the xlsx exported
+     */
     @GetMapping("/reagent/export")              
     public void getExcelReagent(HttpServletResponse response)  {
 

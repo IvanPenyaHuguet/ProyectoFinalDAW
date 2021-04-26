@@ -54,10 +54,18 @@ public abstract class StandardSol implements Serializable, Compound{
     @Temporal(TemporalType.DATE)
     private Date entryDate;
 
+    
+    /** 
+     * @return Date
+     */
     public Date getEntryDate() {
         return this.entryDate;
     }
 
+    
+    /** 
+     * @param entryDate
+     */
     public void setEntryDate(Date entryDate) {
         this.entryDate = entryDate;
     } 

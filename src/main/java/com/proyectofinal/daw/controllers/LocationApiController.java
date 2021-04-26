@@ -10,6 +10,9 @@ import com.proyectofinal.daw.entities.Location;
 import com.proyectofinal.daw.services.LocationService;
 
 
+/**
+ * Api controller for locations
+ */
 @RestController
 public class LocationApiController implements BaseApiController {
         
@@ -17,6 +20,11 @@ public class LocationApiController implements BaseApiController {
     @Autowired
     LocationService locationService;
 
+    
+    /** 
+     * Method of the controller to return all locations
+     * @return List<Location> All locations of the database
+     */
     @GetMapping("/location")              
     public List<Location> getAll() {      
         return locationService.findAll();

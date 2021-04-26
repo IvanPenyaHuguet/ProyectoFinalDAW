@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 /**
- * Controller for the basic website authentication 
+ * Api Controller for the basic website authentication 
  */
 @RestController
 @RequestMapping("/")

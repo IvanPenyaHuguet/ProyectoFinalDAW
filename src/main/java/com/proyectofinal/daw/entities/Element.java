@@ -69,10 +69,18 @@ public class Element implements Serializable{
     @JsonIgnore
     private List<Reagent> reagents;
 
+    
+    /** 
+     * @return List<Reagent>
+     */
     public List<Reagent> getReagents() {
         return this.reagents;
     }
 
+    
+    /** 
+     * @param reagents
+     */
     public void setReagents(List<Reagent> reagents) {
         this.reagents = reagents;
     }

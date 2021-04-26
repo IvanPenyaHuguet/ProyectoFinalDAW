@@ -34,34 +34,66 @@ public class ReagentSuppplier implements Serializable{
 
     private String supplierCode;
 
+    
+    /** 
+     * @return ReagentSupplierPK
+     */
     public ReagentSupplierPK getId() {
         return this.id;
     }
 
+    
+    /** 
+     * @param id
+     */
     public void setId(ReagentSupplierPK id) {
         this.id = id;
     }
 
+    
+    /** 
+     * @return Supplier
+     */
     public Supplier getSupplier() {
         return this.supplier;
     }
 
+    
+    /** 
+     * @param supplier
+     */
     public void setSupplier(Supplier supplier) {
         this.supplier = supplier;
     }
 
+    
+    /** 
+     * @return Reagent
+     */
     public Reagent getReagent() {
         return this.reagent;
     }
 
+    
+    /** 
+     * @param reagent
+     */
     public void setReagent(Reagent reagent) {
         this.reagent = reagent;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getSupplierCode() {
         return this.supplierCode;
     }
 
+    
+    /** 
+     * @param supplierCode
+     */
     public void setSupplierCode(String supplierCode) {
         this.supplierCode = supplierCode;
     }

@@ -22,10 +22,18 @@ public class AqueousStandardSolution extends StandardSol{
     private Calendar expiryDate;
     private float molecularWeight;
 
+    
+    /** 
+     * @return float
+     */
     public float getMolecularWeight() {
         return this.molecularWeight;
     }
 
+    
+    /** 
+     * @param molecularWeight
+     */
     public void setMolecularWeight(float molecularWeight) {
         this.molecularWeight = molecularWeight;
     }

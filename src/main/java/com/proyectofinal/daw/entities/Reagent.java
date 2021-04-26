@@ -101,47 +101,91 @@ public abstract class Reagent implements Serializable, Compound {
     @Column(name="reagentType", insertable = false, updatable = false)
     protected String reagentType;
 
+    
+    /** 
+     * @return String
+     */
     public String getReagentType() {
         return this.reagentType;
     }    
 
+    
+    /** 
+     * @return Location
+     */
     public Location getLocation() {
         return this.location;
     }
 
+    
+    /** 
+     * @param location
+     */
     public void setLocation(Location location) {
         this.location = location;
     }
 
+    
+    /** 
+     * @return User
+     */
     public User getUserBuyer() {
         return this.userBuyer;
     }
 
+    
+    /** 
+     * @param userBuyer
+     */
     public void setUserBuyer(User userBuyer) {
         this.userBuyer = userBuyer;
     }  
 
+    
+    /** 
+     * @return List<Element>
+     */
     public List<Element> getElements() {
         return this.elements;
     }
 
+    
+    /** 
+     * @param elements
+     */
     public void setElements(List<Element> elements) {
         this.elements = elements;
     }
 
 
+    
+    /** 
+     * @return String
+     */
     public String getCas() {
         return this.cas;
     }
 
+    
+    /** 
+     * @param cas
+     */
     public void setCas(String cas) {
         this.cas = cas;
     }
 
+    
+    /** 
+     * @return List<Commentary>
+     */
     public List<Commentary> getCommentary() {
         return this.commentary;
     }
 
+    
+    /** 
+     * @param commentary
+     */
     public void setCommentary(List<Commentary> commentary) {
         this.commentary = commentary;
     }
@@ -273,10 +317,18 @@ public abstract class Reagent implements Serializable, Compound {
         this.entryDate = entryDate;
     }
     
+    
+    /** 
+     * @return List<ReagentSuppplier>
+     */
     public List<ReagentSuppplier> getSuppliers() {
         return this.suppliers;
     }
 
+    
+    /** 
+     * @param suppliers
+     */
     public void setSuppliers(List<ReagentSuppplier> suppliers) {
         this.suppliers = suppliers;
     }

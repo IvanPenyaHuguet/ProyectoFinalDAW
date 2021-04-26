@@ -10,6 +10,9 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 
 
+/**
+ * Implemented method to generate the excel of reagents
+ */
 public class ReagentExcelExporter extends ExcelExporterBaseImpl {
 
     public ReagentExcelExporter(List<Reagent> lista) {

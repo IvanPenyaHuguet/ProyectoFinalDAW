@@ -7,10 +7,12 @@ import com.proyectofinal.daw.entities.Reagent;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 /**
  * Generic Repository Implementation to search for reagent subclasses
  */
+@Repository
 public interface ReagentRepositoryImpl extends ReagentBaseRepository <Reagent> {
 
     /**

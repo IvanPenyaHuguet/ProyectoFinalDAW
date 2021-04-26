@@ -73,18 +73,34 @@ public class User implements Serializable {
     public void setId(long id) {
         this.id = id;
     }
+    
+    /** 
+     * @return List<Role>
+     */
     public List<Role> getRole() {
         return this.role;
     }
 
+    
+    /** 
+     * @param role
+     */
     public void setRole(List<Role> role) {
         this.role = role;
     }
 
+    
+    /** 
+     * @return Date
+     */
     public Date getCreationDate() {
         return this.creationDate;
     }
 
+    
+    /** 
+     * @param creationDate
+     */
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
     }

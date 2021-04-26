@@ -38,42 +38,82 @@ public class Seller implements Serializable{
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long viewOrder;
 
+    
+    /** 
+     * @return long
+     */
     public long getViewOrder() {
         return this.viewOrder;
     }
 
+    
+    /** 
+     * @param viewOrder
+     */
     public void setViewOrder(long viewOrder) {
         this.viewOrder = viewOrder;
     }
 
+    
+    /** 
+     * @return long
+     */
     public long getId() {
         return this.id;
     }
 
+    
+    /** 
+     * @param id
+     */
     public void setId(long id) {
         this.id = id;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getName() {
         return this.name;
     }
 
+    
+    /** 
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getWebUrl() {
         return this.webUrl;
     }
 
+    
+    /** 
+     * @param webUrl
+     */
     public void setWebUrl(String webUrl) {
         this.webUrl = webUrl;
     }
 
+    
+    /** 
+     * @return List<Supplier>
+     */
     public List<Supplier> getSuppliers() {
         return this.suppliers;
     }
 
+    
+    /** 
+     * @param suppliers
+     */
     public void setSuppliers(List<Supplier> suppliers) {
         this.suppliers = suppliers;
     }

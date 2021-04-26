@@ -32,30 +32,58 @@ public class Role implements Serializable{
     @JsonIgnoreProperties("role")    
     private List<User> user;
 
+    
+    /** 
+     * @return List<User>
+     */
     public List<User> getUser() {
         return this.user;
     }
 
+    
+    /** 
+     * @param user
+     */
     public void setUser(List<User> user) {
         this.user = user;
     }
 
+    
+    /** 
+     * @return long
+     */
     public long getId() {
         return this.id;
     }
 
+    
+    /** 
+     * @param id
+     */
     public void setId(long id) {
         this.id = id;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getDescription() {
         return this.description;
     }
 
+    
+    /** 
+     * @param description
+     */
     public void setDescription(String description) {
         this.description = description;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getAuthority() {
         return description;
     }

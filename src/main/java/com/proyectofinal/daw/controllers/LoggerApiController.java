@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 /**
- * Controller for receiving the logs from clients
+ * Api Controller for receiving the logs from clients
  */
 @RestController
 public class LoggerApiController implements BaseApiController {
