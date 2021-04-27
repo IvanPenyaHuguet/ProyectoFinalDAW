@@ -7,6 +7,8 @@ log
 .env
 dockerfile
 docker-compose.yml
+apidoc
+javadoc
 
 HELP.md
 .mvn

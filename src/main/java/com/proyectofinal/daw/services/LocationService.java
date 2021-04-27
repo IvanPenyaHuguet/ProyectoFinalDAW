@@ -67,7 +67,8 @@ public class LocationService {
         return locationRepo.findById(id)
         .map(loc-> {
             loc.getReagents().add(toAdd);
-            loc.setReagents(loc.getReagents()); // Necessary?                    
+            loc.setReagents(loc.getReagents());
+            LOGGER.info("Saved new reagent to the location: " + id);                    
             return locationRepo.save(loc);
         })
         .orElseThrow(() -> new LocationNotFoundException(id));        

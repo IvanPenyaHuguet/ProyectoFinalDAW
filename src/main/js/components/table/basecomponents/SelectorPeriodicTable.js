@@ -47,7 +47,8 @@ export default function SelectorPeriodicTable () {
         setAnchorEl(null);
     }
     const onSearchClick = (e) => {
-        setElementsToSearch(selectedElements)
+        setElementsToSearch(selectedElements);
+        setAnchorEl(null);
     }
 
     const open = Boolean(anchorEl);
