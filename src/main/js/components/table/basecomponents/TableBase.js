@@ -12,25 +12,19 @@ import TablePagination from './TablePagination';
 import Toolbar from './Toolbar';
 import Container from '../../container/Container';
 
-import { makeStyles } from '@material-ui/core/styles';
+
 import { useSortBy, useTable, usePagination, useFilters, useAsyncDebounce } from 'react-table';
 import { SearchTextContext } from '../../../context/SearchTextContext';
 import { SearchElementsContext } from '../../../context/SearchElementsContext';
+import ModifyRowTable from '../../popups/highlights/ModifyRowTable';
+import { AuthContext } from '../../../context/AuthContextProvider';
 
-
-const useStyles = makeStyles((theme) => ({    
-    tbody: {
-      width: "100%",
-      overflowY: "scroll",
-      maxHeight: "calc(100% - 154px)",   
-      height: "500px", 
-    }
-}));
 
 
 export default function TableBase ({columns,  data, fetchData, loading, controlledPageCount, totalElements, title, filter }) {
 
-    const classes = useStyles();
+    
+    const { user } = useContext(AuthContext);
     
     const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, allColumns, getToggleHideAllColumnsProps, toggleHideAllColumns, 
         page, canPreviousPage, canNextPage, pageOptions, pageCount, gotoPage, nextPage, previousPage, setPageSize, setAllFilters, state 
@@ -57,6 +51,7 @@ export default function TableBase ({columns,  data, fetchData, loading, controll
     useSortBy,
     usePagination,
     );
+    const [ showModify , setShowModify ] = useState(false);
     const { pageIndex, pageSize, sortBy, filters} = state;
     const [ textToSearch, setTextToSearch ] = useState('');
     const { elementsToSearch } = useContext(SearchElementsContext); 
@@ -67,11 +62,17 @@ export default function TableBase ({columns,  data, fetchData, loading, controll
         (onFetchDataDebounced( pageIndex, pageSize, textToSearch, elementsToSearch, sortBy, filter ));        
     }, [ onFetchDataDebounced, pageIndex, pageSize, textToSearch, elementsToSearch, sortBy, filter ]); 
 
-    const onFetchDataDebounced = useAsyncDebounce(fetchData, 100)
+    const onFetchDataDebounced = useAsyncDebounce(fetchData, 100);
     
     useEffect( () => {
         gotoPage(0);
-    }, [pageSize, textToSearch ])
+    }, [pageSize, textToSearch ]);
+
+    const onRowClick = (row) => {        
+        if (user.role.includes("ROLE_EDIT_ALL")) {       
+            setShowModify(row.original); 
+        }              
+    }
 
     
       
@@ -98,7 +99,7 @@ export default function TableBase ({columns,  data, fetchData, loading, controll
                                         {page.map((row) => {
                                         prepareRow(row)
                                         return (
-                                            <TableRow {...row.getRowProps()}>
+                                            <TableRow {...row.getRowProps()} onClick={() => onRowClick(row)} hover={true}>
                                             {row.cells.map(cell => {
                                                 return (
                                                 <TableCell {...cell.getCellProps()}>
@@ -121,7 +122,8 @@ export default function TableBase ({columns,  data, fetchData, loading, controll
                                 </>
                                 }          
                             </MUITable >                        
-                        </Container>            
+                        </Container>
+                        { showModify != false && <ModifyRowTable row={ showModify } setOpen={ setShowModify }/> }            
                     </ MUITheme> 
                 
             </SearchTextContext.Provider>         
