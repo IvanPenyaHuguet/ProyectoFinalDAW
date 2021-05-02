@@ -9,6 +9,8 @@ dockerfile
 docker-compose.yml
 apidoc
 javadoc
+portainer-data
+jenkins_data
 
 HELP.md
 .mvn

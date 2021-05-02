@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useContext, useRef } from 'react';
-import MUITheme from '../GlobalMUIConf';
+import MUITheme from '../../../lib/conf/GlobalMUIConf';
 import MUITable from '@material-ui/core/Table';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
@@ -78,54 +78,50 @@ export default function TableBase ({columns,  data, fetchData, loading, controll
       
     return (
         <>        
-            <SearchTextContext.Provider value={{ textToSearch, setTextToSearch }}>
-                
-                    <MUITheme>
-                        <Container >            
-                            <Toolbar 
-                                allColumns={allColumns} 
-                                getToggleHideAllColumnsProps={getToggleHideAllColumnsProps} 
-                                toggleHideAllColumns={toggleHideAllColumns} 
-                                title={title}
-                            />                                 
-                            <MUITable {...getTableProps()} stickyHeader >
-                                <TableHead headerGroups={headerGroups}>                   
-                                </TableHead>  
-                                { loading
-                                ? <tbody><tr><td colSpan={allColumns.length}><Loader /></td></tr></tbody>            
-                                :  
-                                <> 
-                                    <TableBody {...getTableBodyProps()}>
-                                        {page.map((row) => {
-                                        prepareRow(row)
+            <SearchTextContext.Provider value={{ textToSearch, setTextToSearch }}>               
+                <Container >            
+                    <Toolbar 
+                        allColumns={allColumns} 
+                        getToggleHideAllColumnsProps={getToggleHideAllColumnsProps} 
+                        toggleHideAllColumns={toggleHideAllColumns} 
+                        title={title}
+                    />                                 
+                    <MUITable {...getTableProps()} stickyHeader >
+                        <TableHead headerGroups={headerGroups}>                   
+                        </TableHead>  
+                        { loading
+                        ? <tbody><tr><td colSpan={allColumns.length}><Loader /></td></tr></tbody>            
+                        :  
+                        <> 
+                            <TableBody {...getTableBodyProps()}>
+                                {page.map((row) => {
+                                prepareRow(row)
+                                return (
+                                    <TableRow {...row.getRowProps()} onClick={() => onRowClick(row)} hover={true}>
+                                    {row.cells.map(cell => {
                                         return (
-                                            <TableRow {...row.getRowProps()} onClick={() => onRowClick(row)} hover={true}>
-                                            {row.cells.map(cell => {
-                                                return (
-                                                <TableCell {...cell.getCellProps()}>
-                                                    {cell.render('Cell')}
-                                                </TableCell>
-                                                )
-                                            })}
-                                            </TableRow>
+                                        <TableCell {...cell.getCellProps()}>
+                                            {cell.render('Cell')}
+                                        </TableCell>
                                         )
-                                        })}
-                                    </TableBody> 
-                                    <TablePagination 
-                                        totalelements={totalElements} 
-                                        length={columns.length}
-                                        pageindex={pageIndex} 
-                                        pagesize={pageSize} 
-                                        setpagesize={setPageSize} 
-                                        gotopage={gotoPage}                               
-                                    /> 
-                                </>
-                                }          
-                            </MUITable >                        
-                        </Container>
-                        { showModify != false && <ModifyRowTable row={ showModify } setOpen={ setShowModify }/> }            
-                    </ MUITheme> 
-                
+                                    })}
+                                    </TableRow>
+                                )
+                                })}
+                            </TableBody> 
+                            <TablePagination 
+                                totalelements={totalElements} 
+                                length={columns.length}
+                                pageindex={pageIndex} 
+                                pagesize={pageSize} 
+                                setpagesize={setPageSize} 
+                                gotopage={gotoPage}                               
+                            /> 
+                        </>
+                        }          
+                    </MUITable >                        
+                </Container>
+                { showModify != false && <ModifyRowTable row={ showModify } setOpen={ setShowModify }/> }          
             </SearchTextContext.Provider>         
         </>
     )

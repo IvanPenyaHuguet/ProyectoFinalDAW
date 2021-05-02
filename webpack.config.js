@@ -5,8 +5,8 @@ module.exports = {
     entry: './src/main/js/app.js',       
     cache: true,    
     output: {
-        //path: __dirname + "/src/main/resources/static/built/", //Prod        
-        path: __dirname + "/target/classes/static/built", //Dev
+        path: __dirname + "/src/main/resources/static/built/", //Prod        
+        // path: __dirname + "/target/classes/static/built", //Dev
         filename: "[name].bundle.js",     
         publicPath: '/built/'
     },
