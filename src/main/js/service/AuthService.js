@@ -17,10 +17,10 @@ class AuthenticationService {
     signin ( username, password ) {
         return axios.post("/authenticate", {username, password})       
             .then( res  => {
-                if(res.data.token) {                        
+                if(res.data && res.data.token) {                        
                     localStorage.setItem("user", JSON.stringify(res.data));                     
                 }                
-                return res.data;                
+                return res;                
             })
             .catch( e =>{                 
                 return e.response;

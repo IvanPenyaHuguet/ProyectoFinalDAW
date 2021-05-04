@@ -25,13 +25,13 @@
 .text {    
     white-space: pre-wrap;
     font-size: 1.2rem;
-    animation: leFadeInLeft 2s ease-out;
+    animation: leFadeInLeft 1s ease-out;
     margin: 0;
     padding: 0;
     width: 126px;
 }
 .notext {
-    animation: leFadeOutLeft 2s ease-out forwards;
+    animation: leFadeOutLeft 1s ease-out forwards;
 }
 .icon {
 

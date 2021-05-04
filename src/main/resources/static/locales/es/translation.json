@@ -17,6 +17,9 @@
       "username": "Nombre de usuario"
     },
     "login": {
+      "alert": {
+        "error": ""
+      },
       "button": {
         "guest": "Visitante",
         "login": "Entrar"

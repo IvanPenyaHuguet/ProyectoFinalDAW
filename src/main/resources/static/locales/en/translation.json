@@ -17,6 +17,9 @@
       "username": "Username"
     },
     "login": {
+      "alert": {
+        "error": "Authentication unsuccesful, check username and password and try again."
+      },
       "button": {
         "guest": "Guest",
         "login": "Log in"

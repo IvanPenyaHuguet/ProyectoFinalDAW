@@ -5,7 +5,7 @@
     border: 2px solid var(--var-quaternary-color);
     box-sizing: border-box;
     width: 80px;
-    transition: width 2s ease-out;
+    transition: width 1s ease-out;
     position: absolute;
     top: 0;
     left: 0;
@@ -17,7 +17,7 @@
     width: calc(100% - 80px);
     height: 100%;
     margin-left: 80px;
-    transition: margin 2s ease-out, width 2s ease-out; 
+    transition: margin 1s ease-out, width 1s ease-out; 
 }
 .fullcontaineropen {
     grid-template: auto / 250px auto;
