@@ -66,7 +66,9 @@ export default class Reagent {
                 .integer(i18next.t('form.add.errors.integer'))                
             ,entryDate: Yup.date().default(function () {
                 return new Date();
-            })
+            }).required(i18next.t('form.add.errors.required'))
+            ,location: Yup.number(i18next.t('form.add.errors.required')).required(i18next.t('form.add.errors.required'))
+            ,suppliers: Yup.number(i18next.t('form.add.errors.required')).required(i18next.t('form.add.errors.required'))
         })
     }
 

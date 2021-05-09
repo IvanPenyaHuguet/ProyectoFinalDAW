@@ -441,6 +441,7 @@
     "label": {
       "location": "",
       "password": "Contraseña",
+      "referencemask": "",
       "supplier": "",
       "username": "Nombre de usuario",
       "utilization": ""

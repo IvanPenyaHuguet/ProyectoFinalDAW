@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
-import { Formik , Field } from 'formik';
+import { Formik } from 'formik';
 
+import { useHistory } from "react-router-dom";
 import Form from '../form/Form';
 import FormInputText from '../form/MUIFormInputText';
 import InorganicReagent from '../../lib/entities/InorganicReagent';
@@ -12,6 +13,7 @@ import UtilizationInput from '../form/UtilizationInput';
 import SuppliersInput from '../form/SuppliersInput';
 import ElementsInput from '../form/utils/ElementsInput';
 import Alert from '../popups/Alert';
+import Container from '../container/MUIContainer';
 import RefMaskInput from '../form/RefMaskInput';
 
 import Button from '@material-ui/core/Button';
@@ -27,7 +29,12 @@ export default function InorganicReagentAddFormat () {
     const [ alert, setAlert ] = useState(false);
     const [ refMask, setRefMask ] = useState('');
     inorganicReagent.getInitialValue(user.user);    
-    const { t } = useTranslation();      
+    const { t } = useTranslation();  
+    const history = useHistory();    
+
+    const onReturnClick = () => {
+        history.goBack();
+    };
     
 
     return (
@@ -69,15 +76,24 @@ export default function InorganicReagentAddFormat () {
                             label={t('form.add.entryDate')}                             
                             name="entryDate"   
                         />   
-                        <ElementsInput values={values}/>                      
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            disabled={isSubmitting}
-                            onClick={submitForm}
-                        >
-                            {t('general.add')}
-                        </Button>
+                        <ElementsInput values={values}/>
+                        <Container>                     
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                disabled={isSubmitting}
+                                onClick={submitForm}
+                            >
+                                {t('general.add')}
+                            </Button>
+                            <Button
+                                variant="contained"
+                                color="secondary"                            
+                                onClick={onReturnClick}
+                            >
+                                {t('general.return')}
+                            </Button>
+                        </Container> 
                     </Form>
                 )}                
             </Formik>
