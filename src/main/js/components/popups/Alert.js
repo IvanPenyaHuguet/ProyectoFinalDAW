@@ -2,7 +2,6 @@ import React from "react";
 
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
-import AlertTitle from '@material-ui/lab/AlertTitle';
 
 
 const Alert = ({ children, open, setOpen, type = "error", vertical = 'bottom', horizontal = 'center' }) => {  

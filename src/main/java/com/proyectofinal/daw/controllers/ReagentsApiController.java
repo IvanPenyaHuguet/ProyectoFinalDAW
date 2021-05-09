@@ -101,6 +101,17 @@ public class ReagentsApiController implements BaseApiController{
         return reagentService.modifyReagent(newReagent, id);
     }
 
+    /** 
+     * Map to update a reagent
+     * @param newReagent The new reagent params      
+     * @return Reagent The updated reagent ressultant
+     */
+    @PutMapping("/reagent")
+    public Reagent replaceOrAddReagent(@RequestBody Reagent reagent) {
+        
+        return reagentService.modifyOrAddReagent(reagent);
+    }
+
     
     /** 
      * Map to return a pagination of reagents

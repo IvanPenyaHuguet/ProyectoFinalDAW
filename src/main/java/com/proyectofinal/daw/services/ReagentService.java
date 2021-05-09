@@ -193,4 +193,15 @@ public class ReagentService {
 
         return reagentRepo.findAllUtilization();
     }
+
+    public Reagent modifyOrAddReagent (Reagent reagentToChange) {
+        
+        return reagentRepo.findById(reagentToChange.getId())
+        .map(reagent-> {
+            reagent.setSpanishName(reagentToChange.getSpanishName());
+            reagent.setEnglishName(reagentToChange.getEnglishName());            
+            return reagentRepo.save(reagent);
+        })
+        .orElseThrow(() -> new ReagentNotFoundException(reagentToChange.getId()));        
+    }
 }

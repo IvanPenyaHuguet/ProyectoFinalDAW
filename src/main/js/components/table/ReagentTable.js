@@ -20,6 +20,7 @@ import { AuthContext } from '../../context/AuthContextProvider';
 import reagentPDF from '../../lib/export/ReagentPdf';
 import { useHistory } from "react-router-dom";
 import { RTCSearchFields, RTCColumns } from '../../lib/tabledata/ReagentTableConf';
+import { TableContext } from '../../context/utils/TableContext.js';
 
 
 
@@ -123,29 +124,31 @@ const ReagentTable = () => {
     
 
     return (
-        <>     
-        <SpeedDialContext.Provider value={speedDial}>
-            <SearchFieldContext.Provider value={{fieldsToSearch, setFieldsToSearch}}>  
-                <SearchElementsContext.Provider value={{elementsToSearch, setElementsToSearch}}>
-                    <FilterLocationContext.Provider value={{ filterLocation, setFilterLocation }} >
-                        <FilterUtilizationContext.Provider value={{ filterUtilization, setFilterUtilization }}>
-                            <TableBase 
-                                columns={columns} 
-                                backendService={BackendService} 
-                                loading={loading} 
-                                data={data} 
-                                controlledPageCount={controlledPageCount} 
-                                totalElements={totalElements}
-                                title={TITLE}
-                                fetchData={fetchData}
-                                searchFields={searchFields} 
-                                filter={filter}                  
-                            /> 
-                        </FilterUtilizationContext.Provider>  
-                    </FilterLocationContext.Provider>
-                </SearchElementsContext.Provider>
-            </SearchFieldContext.Provider>
-        </SpeedDialContext.Provider>
+        <>   
+        <TableContext.Provider value={"InorganicReagent"}>
+            <SpeedDialContext.Provider value={speedDial}>
+                <SearchFieldContext.Provider value={{fieldsToSearch, setFieldsToSearch}}>  
+                    <SearchElementsContext.Provider value={{elementsToSearch, setElementsToSearch}}>
+                        <FilterLocationContext.Provider value={{ filterLocation, setFilterLocation }} >
+                            <FilterUtilizationContext.Provider value={{ filterUtilization, setFilterUtilization }}>
+                                <TableBase 
+                                    columns={columns} 
+                                    backendService={BackendService} 
+                                    loading={loading} 
+                                    data={data} 
+                                    controlledPageCount={controlledPageCount} 
+                                    totalElements={totalElements}
+                                    title={TITLE}
+                                    fetchData={fetchData}
+                                    searchFields={searchFields} 
+                                    filter={filter}                  
+                                /> 
+                            </FilterUtilizationContext.Provider>  
+                        </FilterLocationContext.Provider>
+                    </SearchElementsContext.Provider>
+                </SearchFieldContext.Provider>
+            </SpeedDialContext.Provider>
+        </TableContext.Provider>  
         </>
     )
 

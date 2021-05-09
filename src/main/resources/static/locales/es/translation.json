@@ -12,9 +12,33 @@
   },
   "date_format": "{{date, 'es-ES'}}",
   "form": {
+    "add": {
+      "cas": "",
+      "englishName": "",
+      "entryDate": "",
+      "errors": {
+        "integer": "",
+        "number": "",
+        "positive": "",
+        "required": "",
+        "toolong": "",
+        "tooshort": "",
+        "unsuccesful": ""
+      },
+      "formula": "",
+      "internalreference": "",
+      "molecularWeight": "",
+      "quantity": "",
+      "spanishname": "",
+      "typetoadd": "",
+      "utilization": ""
+    },
     "label": {
+      "location": "",
       "password": "Contraseña",
-      "username": "Nombre de usuario"
+      "supplier": "",
+      "username": "Nombre de usuario",
+      "utilization": ""
     },
     "login": {
       "alert": {
@@ -32,8 +56,11 @@
     }
   },
   "general": {
+    "add": "",
     "by": "por",
-    "close": "Cerrar"
+    "close": "Cerrar",
+    "edit": "",
+    "save": ""
   },
   "header": {
     "button": {
@@ -41,6 +68,14 @@
     },
     "welcom": "",
     "welcome": "Bienvenido"
+  },
+  "lars": {
+    "types": {
+      "aqustdsol": "",
+      "inorganicreagent": "Reactivo Inorgánico",
+      "organicreagent": "",
+      "orgstdsol": ""
+    }
   },
   "nav": {
     "link": {
@@ -57,6 +92,11 @@
     "footer": {
       "of": "de",
       "page": "Página"
+    }
+  },
+  "reagent": {
+    "add": {
+      "title": ""
     }
   },
   "table": {

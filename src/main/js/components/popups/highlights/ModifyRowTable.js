@@ -7,8 +7,12 @@ import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import EditIcon from '@material-ui/icons/Edit';
+import Fab from '@material-ui/core/Fab';
+import Tooltip from '@material-ui/core/Tooltip';
+import ButtonPrincipal from '../../button/ButtonPrincipal';
 
-
+import { useTranslation } from 'react-i18next';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -28,6 +32,22 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         textAlign: 'center',
+    },
+    containertitle: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    fab: {
+        margin: '0 20px',
+        width: '36px',    
+        maxWidth: '36px',
+        height: '36px',
+        maxHeight: '36px'
+    },
+    icon: {
+        height: '25px',        
     }
 }));
 
@@ -35,13 +55,19 @@ const useStyles = makeStyles((theme) => ({
 export default function ModifyRowTable({row , setOpen}) {
 
     console.log(row);
+    const { t } = useTranslation();
     const classes = useStyles();
     const [ loading, setLoading ] = useState(true);
+    const [ titleEditable, setTitleEditable] = useState(false);
     const open = row !== false;
     
 
     const handleClose = () => {
         setOpen(false);
+    }
+
+    const onTitleEditClick = e => {
+        setTitleEditable(true);
     }
 
     return (
@@ -50,12 +76,24 @@ export default function ModifyRowTable({row , setOpen}) {
             <ClickAwayListener onClickAway={handleClose}>
                 <Paper elevation={8} className={classes.paper}>
                     <Container className={classes.container}>
-                        <Typography className={classes.title} variant="h3" component="h3">
-                            { row.name ? row.name.toUpperCase() : row.spanishName.toUpperCase() }
-                        </Typography>
+                        <Container className={classes.containertitle}>
+                            <Typography className={classes.title} variant="h3" component="h3">
+                                { row.name ? row.name.toUpperCase() : row.spanishName.toUpperCase() }
+                            </Typography>
+                            <Tooltip title={t('general.edit')} aria-label={t('general.edit')}>
+                                <Fab size="small" color="secondary" aria-label={t('general.edit')} className={classes.fab} onClick={onTitleEditClick}>
+                                    <EditIcon className={classes.icon}/>
+                                </Fab>
+                            </Tooltip>
+                        </Container>
                         <Divider />
                         <Container>
 
+
+                            <Container>
+                                <ButtonPrincipal color='primary'>{t('general.save')}</ButtonPrincipal>  
+                                <ButtonPrincipal color='secondary'>{t('general.close')}</ButtonPrincipal>    
+                            </Container>    
                         </Container>
                     </Container>
                 </Paper>  

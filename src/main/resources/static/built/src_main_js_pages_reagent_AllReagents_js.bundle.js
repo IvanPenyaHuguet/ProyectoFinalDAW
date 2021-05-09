@@ -94,12 +94,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _service_backend_AllReagentService__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../service/backend/AllReagentService */ "./src/main/js/service/backend/AllReagentService.js");
 /* harmony import */ var _basecomponents_TableBase__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./basecomponents/TableBase */ "./src/main/js/components/table/basecomponents/TableBase.js");
-/* harmony import */ var _material_ui_icons_Add__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @material-ui/icons/Add */ "./node_modules/@material-ui/icons/Add.js");
-/* harmony import */ var _material_ui_icons_Save__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @material-ui/icons/Save */ "./node_modules/@material-ui/icons/Save.js");
-/* harmony import */ var _material_ui_icons_Print__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @material-ui/icons/Print */ "./node_modules/@material-ui/icons/Print.js");
+/* harmony import */ var _material_ui_icons_Add__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @material-ui/icons/Add */ "./node_modules/@material-ui/icons/Add.js");
+/* harmony import */ var _material_ui_icons_Save__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @material-ui/icons/Save */ "./node_modules/@material-ui/icons/Save.js");
+/* harmony import */ var _material_ui_icons_Print__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @material-ui/icons/Print */ "./node_modules/@material-ui/icons/Print.js");
 /* harmony import */ var _icons_ExcelIcon__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../icons/ExcelIcon */ "./src/main/js/components/icons/ExcelIcon.js");
 /* harmony import */ var _icons_CSVIcon__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../icons/CSVIcon */ "./src/main/js/components/icons/CSVIcon.js");
-/* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/useTranslation.js");
+/* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/useTranslation.js");
 /* harmony import */ var _context_SearchFieldContext__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../context/SearchFieldContext */ "./src/main/js/context/SearchFieldContext.js");
 /* harmony import */ var _context_SearchElementsContext__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../context/SearchElementsContext */ "./src/main/js/context/SearchElementsContext.js");
 /* harmony import */ var _service_backend_SearchService__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../service/backend/SearchService */ "./src/main/js/service/backend/SearchService.js");
@@ -109,8 +109,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _context_utils_SpeedDialContext__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../context/utils/SpeedDialContext */ "./src/main/js/context/utils/SpeedDialContext.js");
 /* harmony import */ var _context_AuthContextProvider__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../context/AuthContextProvider */ "./src/main/js/context/AuthContextProvider.js");
 /* harmony import */ var _lib_export_ReagentPdf__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../../lib/export/ReagentPdf */ "./src/main/js/lib/export/ReagentPdf.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _lib_tabledata_ReagentTableConf__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../../lib/tabledata/ReagentTableConf */ "./src/main/js/lib/tabledata/ReagentTableConf.js");
+/* harmony import */ var _context_utils_TableContext_js__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../../context/utils/TableContext.js */ "./src/main/js/context/utils/TableContext.js");
+
 
 
 
@@ -138,7 +140,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ReagentTable = function ReagentTable() {
-  var _useTranslation = (0,react_i18next__WEBPACK_IMPORTED_MODULE_20__.useTranslation)(),
+  var _useTranslation = (0,react_i18next__WEBPACK_IMPORTED_MODULE_21__.useTranslation)(),
       t = _useTranslation.t;
 
   var TITLE = t('table.title.reagents');
@@ -184,7 +186,7 @@ var ReagentTable = function ReagentTable() {
       filter = _useState14[0],
       setFilter = _useState14[1];
 
-  var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_21__.useHistory)();
+  var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_22__.useHistory)();
   var columns = (0,react__WEBPACK_IMPORTED_MODULE_5__.useMemo)(function () {
     return _lib_tabledata_ReagentTableConf__WEBPACK_IMPORTED_MODULE_19__.RTCColumns;
   }, []);
@@ -217,13 +219,13 @@ var ReagentTable = function ReagentTable() {
     var _context;
 
     var actions = [, {
-      icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement(_material_ui_icons_Save__WEBPACK_IMPORTED_MODULE_22__.default, null),
+      icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement(_material_ui_icons_Save__WEBPACK_IMPORTED_MODULE_23__.default, null),
       name: t('table.tooltip.save'),
       click: function click() {
         return _lib_export_ReagentPdf__WEBPACK_IMPORTED_MODULE_18__.default.generatePdf(undefined, false);
       }
     }, {
-      icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement(_material_ui_icons_Print__WEBPACK_IMPORTED_MODULE_23__.default, null),
+      icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement(_material_ui_icons_Print__WEBPACK_IMPORTED_MODULE_24__.default, null),
       name: t('table.tooltip.print'),
       click: function click() {
         return _lib_export_ReagentPdf__WEBPACK_IMPORTED_MODULE_18__.default.generatePdf(undefined, true);
@@ -246,7 +248,7 @@ var ReagentTable = function ReagentTable() {
 
     if (_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_1___default()(_context = user.role).call(_context, "ROLE_ADD_ALL")) {
       actions.unshift({
-        icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement(_material_ui_icons_Add__WEBPACK_IMPORTED_MODULE_24__.default, null),
+        icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement(_material_ui_icons_Add__WEBPACK_IMPORTED_MODULE_25__.default, null),
         name: t('table.tooltip.add'),
         click: function click() {
           return history.push("/reagent/add");
@@ -319,7 +321,9 @@ var ReagentTable = function ReagentTable() {
       };
     }
   }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement(react__WEBPACK_IMPORTED_MODULE_5__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement(_context_utils_SpeedDialContext__WEBPACK_IMPORTED_MODULE_16__.SpeedDialContext.Provider, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement(react__WEBPACK_IMPORTED_MODULE_5__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement(_context_utils_TableContext_js__WEBPACK_IMPORTED_MODULE_20__.TableContext.Provider, {
+    value: "InorganicReagent"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement(_context_utils_SpeedDialContext__WEBPACK_IMPORTED_MODULE_16__.SpeedDialContext.Provider, {
     value: speedDial
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement(_context_SearchFieldContext__WEBPACK_IMPORTED_MODULE_10__.SearchFieldContext.Provider, {
     value: {
@@ -352,7 +356,7 @@ var ReagentTable = function ReagentTable() {
     fetchData: fetchData,
     searchFields: searchFields,
     filter: filter
-  })))))));
+  }))))))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ReagentTable);
@@ -1345,23 +1349,6 @@ var SearchService = /*#__PURE__*/function () {
 }();
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new SearchService());
-
-/***/ }),
-
-/***/ "./src/main/js/service/backend/UtilizationService.js":
-/*!***********************************************************!*\
-  !*** ./src/main/js/service/backend/UtilizationService.js ***!
-  \***********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _BaseService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BaseService */ "./src/main/js/service/backend/BaseService.js");
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new _BaseService__WEBPACK_IMPORTED_MODULE_0__.default("/utilization"));
 
 /***/ }),
 

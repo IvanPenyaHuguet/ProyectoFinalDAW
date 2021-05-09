@@ -10,6 +10,7 @@ import IndexInorganic from './pages/reagent/inorganic/Index';
 import IndexOrganic from './pages/reagent/organic/Index';
 import IndexSolWater from './pages/solution/water/Index';
 import IndexSolOrg from './pages/solution/organic/Index';
+import ReagentAdd from './pages/reagent/Add';
 import NotFound from './pages/404';
 
 import Loader from './components/container/Loader';
@@ -32,7 +33,8 @@ export default function Router() {
         <PrivateRoute exact path="/reagent/inorganic" component={IndexInorganic}/>   
         <PrivateRoute exact path="/reagent/organic" component={IndexOrganic}/> 
         <PrivateRoute exact path="/solution/water" component={IndexSolWater}/>
-        <PrivateRoute exact path="/solution/organic" component={IndexSolOrg}/>       
+        <PrivateRoute exact path="/solution/organic" component={IndexSolOrg}/>   
+        <PrivateRoute exact path="/reagent/add" component={ReagentAdd}/>    
         <Route component={NotFound} /> 
       </Switch>
     </Suspense>

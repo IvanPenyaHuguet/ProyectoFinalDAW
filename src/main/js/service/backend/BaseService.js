@@ -71,6 +71,14 @@ class BaseService {
         link.remove();          
       })
     }
+
+    async save ( values ) {
+      return await axios({
+        method: 'PUT',
+        url: "/api" + this.URL,
+        data: {...values}
+      })
+    }
 }  
     
 export default BaseService;
