@@ -19,7 +19,7 @@ class ErrorController {
     }
     error400(e, setAlert) {
         Logger('warn', 'Something bad happened on server url:' + e.response.config.url +", method:"+e.response.config.method);
-        setAlert ? setAlert({type: 'error', message: i18next.t('error.controller.400')}) : null;
+        setAlert ? setAlert({type: 'error', message: i18next.t('error.controller.fourzerozero')}) : null;
     }
 
     error401 (e) {
