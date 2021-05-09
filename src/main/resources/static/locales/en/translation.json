@@ -465,7 +465,9 @@
     "by": "by",
     "close": "Close",
     "edit": "Edit",
-    "save": "Save"
+    "english": "English - US",
+    "save": "Save",
+    "spanish": "Spanish"
   },
   "header": {
     "button": {
