@@ -8,6 +8,7 @@ import InorganicReagentAddFormat from './InorganicReagentAddFormat';
 import { useTranslation } from 'react-i18next';
 import { TableContext  } from '../../context/utils/TableContext';
 import { makeStyles } from '@material-ui/core/styles';
+import RefMaskStoreProvider from '../../context/store/RefMaskStore';
 
 
 const useStyles = makeStyles((theme) => ({    
@@ -38,15 +39,17 @@ export default function AddReagentComponent () {
     
 
     return (
-        <Container className={classes.container}>
-            <Container className={classes.conttitle}>
-                <Title>{t('reagent.add.title')}</Title>
-                <TypeAddSelect typeSelectValue={addContext} setTypeSelectValue={setAddContext} className={classes.addselect}/>
-            </Container>
+        <RefMaskStoreProvider>
             <Container className={classes.container}>
-                {addContext === 'InorganicReagent' && <InorganicReagentAddFormat />}
-                                
+                <Container className={classes.conttitle}>
+                    <Title>{t('reagent.add.title')}</Title>
+                    <TypeAddSelect typeSelectValue={addContext} setTypeSelectValue={setAddContext} className={classes.addselect}/>
+                </Container>
+                <Container className={classes.container}>
+                    {addContext === 'InorganicReagent' && <InorganicReagentAddFormat />}
+                                    
+                </Container>
             </Container>
-        </Container>
+        </RefMaskStoreProvider>
     )
 }

@@ -441,6 +441,7 @@
     "label": {
       "location": "Location",
       "password": "Password",
+      "referencemask": "Reference type",
       "supplier": "Supplier",
       "username": "Username",
       "utilization": "Utilization"

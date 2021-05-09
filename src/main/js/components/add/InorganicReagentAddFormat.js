@@ -12,8 +12,10 @@ import UtilizationInput from '../form/UtilizationInput';
 import SuppliersInput from '../form/SuppliersInput';
 import ElementsInput from '../form/utils/ElementsInput';
 import Alert from '../popups/Alert';
+import RefMaskInput from '../form/RefMaskInput';
 
 import Button from '@material-ui/core/Button';
+import IntRefInput from '../form/IntRefInput';
 
 
 
@@ -23,9 +25,10 @@ export default function InorganicReagentAddFormat () {
     
     const { user } = useContext(AuthContext);
     const [ alert, setAlert ] = useState(false);
+    const [ refMask, setRefMask ] = useState('');
     inorganicReagent.getInitialValue(user.user);    
-    const { t } = useTranslation();    
-
+    const { t } = useTranslation();      
+    
 
     return (
         <>
@@ -37,6 +40,8 @@ export default function InorganicReagentAddFormat () {
             >
                 { ({ submitForm, isSubmitting, values }) => (
                     <Form>
+                        <RefMaskInput value={refMask} setValue={setRefMask} />
+                        <IntRefInput mask={refMask} />
                         <FormInputText 
                             label={t('form.add.internalreference')}                               
                             name="internalReference"                                                       
