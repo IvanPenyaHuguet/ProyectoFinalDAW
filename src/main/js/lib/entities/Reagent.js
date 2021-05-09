@@ -33,13 +33,13 @@ export default class Reagent {
         this.quantity = 1;
         this.formula = '';
         this.commentary = [];
-        this.suppliers = '';
+        this.suppliers = 1;
         this.molecularWeight = 0;
         this.entryDate = DateUtils.getDMYHM();
         this.cas = '';
         this.elements = [];
         this.userBuyer = user;
-        this.location = '';      
+        this.location = 1;      
         this.ReagentType = reagentType;   
         this.id = undefined;     
     }

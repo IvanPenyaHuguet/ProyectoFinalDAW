@@ -11,7 +11,7 @@ export default class InorganicReagent extends Reagent {
 
     getInitialValue(user){
         super.getInitialValue(user, "Inorganic");
-        this.utilization = undefined;
+        this.utilization = null;
     }
 
     validate(values){        
