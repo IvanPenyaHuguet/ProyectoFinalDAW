@@ -9,7 +9,7 @@ export default function MaskComponent ({ inputRef , mask, ...others }) {
     const maskArray2 = maskArray ? maskArray.map( ele => {
         return ele[0] === 'c' ? ele[1] : new RegExp (ele);
     }) : [];
-    
+        
     return (
         <MaskedInput    
             { ... others }        

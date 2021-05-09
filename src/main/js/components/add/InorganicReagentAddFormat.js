@@ -39,13 +39,9 @@ export default function InorganicReagentAddFormat () {
                 onSubmit= {(values, { setSubmitting }) => inorganicReagent.addReagent(values, setSubmitting)}
             >
                 { ({ submitForm, isSubmitting, values }) => (
-                    <Form>
+                    <Form>                        
                         <RefMaskInput value={refMask} setValue={setRefMask} />
-                        <IntRefInput mask={refMask} />
-                        <FormInputText 
-                            label={t('form.add.internalreference')}                               
-                            name="internalReference"                                                       
-                        />
+                        <IntRefInput mask={refMask} />                        
                         <FormInputText 
                             label={t('form.add.spanishname')}                                
                             name="spanishName"   
