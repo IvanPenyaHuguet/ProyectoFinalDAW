@@ -2,7 +2,7 @@ package com.proyectofinal.daw.entities;
 
 
 import java.io.Serializable;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Basic;
@@ -63,6 +63,9 @@ public abstract class Reagent implements Serializable, Compound {
      *
      */
     private static final long serialVersionUID = 1L;
+    public static final String INORGANIC_REAGENT = "Inorganic";
+    public static final String ORGANIC_REAGENT = "Organic";
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;    
@@ -81,25 +84,28 @@ public abstract class Reagent implements Serializable, Compound {
     @OneToMany(mappedBy = "reagent", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Commentary> commentary;    
-    @OneToMany(mappedBy = "reagent") 
-    @IndexedEmbedded  (includeDepth = 2 )
-    private List<ReagentSuppplier> suppliers;
+    @ManyToMany(mappedBy = "reagents") 
+    @JsonIgnoreProperties({"reagents"})
+    private List<Supplier> suppliers;
     private float molecularWeight;
     @Basic
     @Temporal(TemporalType.DATE)
     @GenericField
-    private Calendar entryDate;  
+    private Date entryDate;  
     @FullTextField 
     private String cas;
     @ManyToMany(mappedBy = "reagents")    
     @IndexedEmbedded(includeEmbeddedObjectId = true)
-    private List<Element> elements;    
+    private List<Element> elements;  
+    @ManyToOne()
+    @JoinColumn(name="userBuyer_id")  
     private User userBuyer;
     @ManyToOne() 
     @JoinColumn(name = "location_id")      
     private Location location; 
     @Column(name="reagentType", insertable = false, updatable = false)
     protected String reagentType;
+    private String supplierCode;
 
     
     /** 
@@ -303,9 +309,9 @@ public abstract class Reagent implements Serializable, Compound {
 
     
     /** 
-     * @return Calendar
+     * @return Date
      */
-    public Calendar getEntryDate() {
+    public Date getEntryDate() {
         return this.entryDate;
     }
 
@@ -313,24 +319,28 @@ public abstract class Reagent implements Serializable, Compound {
     /** 
      * @param entryDate
      */
-    public void setEntryDate(Calendar entryDate) {
+    public void setEntryDate(Date entryDate) {
         this.entryDate = entryDate;
-    }
+    }   
     
-    
-    /** 
-     * @return List<ReagentSuppplier>
-     */
-    public List<ReagentSuppplier> getSuppliers() {
+
+    public List<Supplier> getSuppliers() {
         return this.suppliers;
     }
 
-    
-    /** 
-     * @param suppliers
-     */
-    public void setSuppliers(List<ReagentSuppplier> suppliers) {
+    public void setSuppliers(List<Supplier> suppliers) {
         this.suppliers = suppliers;
     }
+    public void setReagentType(String reagentType) {
+        this.reagentType = reagentType;
+    }
+
+    public String getSupplierCode() {
+        return this.supplierCode;
+    }
+
+    public void setSupplierCode(String supplierCode) {
+        this.supplierCode = supplierCode;
+    }    
    
 }

@@ -15,6 +15,7 @@ import ElementsInput from '../form/utils/ElementsInput';
 import Alert from '../popups/Alert';
 import Container from '../container/MUIContainer';
 import RefMaskInput from '../form/RefMaskInput';
+import { ElementStore } from '../../context/store/ElementStore';
 
 import Button from '@material-ui/core/Button';
 import IntRefInput from '../form/IntRefInput';
@@ -26,16 +27,16 @@ export default function InorganicReagentAddFormat () {
     const inorganicReagent = new InorganicReagent();
     
     const { user } = useContext(AuthContext);
+    const elements  = useContext(ElementStore);
     const [ alert, setAlert ] = useState(false);
     const [ refMask, setRefMask ] = useState('');
-    inorganicReagent.getInitialValue(user.user);    
+    inorganicReagent.getInitialValue();    
     const { t } = useTranslation();  
     const history = useHistory();    
 
     const onReturnClick = () => {
         history.goBack();
-    };
-    
+    };    
 
     return (
         <>
@@ -43,7 +44,9 @@ export default function InorganicReagentAddFormat () {
             <Formik
                 initialValues={inorganicReagent.getValues()}
                 validationSchema={inorganicReagent.getValidationSchema()}                
-                onSubmit= {(values, { setSubmitting }) => inorganicReagent.addReagent(values, setSubmitting)}
+                onSubmit= {(values, { setSubmitting }) => {                    
+                    inorganicReagent.addReagent(values, setSubmitting, setAlert, elements)
+                }}
             >
                 { ({ submitForm, isSubmitting, values }) => (
                     <Form>                        
@@ -63,7 +66,7 @@ export default function InorganicReagentAddFormat () {
                         />
                         <LocationInput />
                         <UtilizationInput />    
-                        <SuppliersInput />                     
+                        <SuppliersInput values={values}/>                     
                         <FormInputText 
                             label={t('form.add.quantity')}
                             name="quantity"    

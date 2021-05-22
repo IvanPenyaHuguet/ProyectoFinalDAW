@@ -1,17 +1,22 @@
 package com.proyectofinal.daw.services;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+import com.proyectofinal.daw.entities.InorganicReagent;
+import com.proyectofinal.daw.entities.OrganicReagent;
 import com.proyectofinal.daw.entities.Reagent;
 import com.proyectofinal.daw.entities.dto.PageSearchDTO;
 import com.proyectofinal.daw.exceptions.ReagentNotFoundException;
 import com.proyectofinal.daw.repositories.ReagentRepositoryImpl;
+import com.proyectofinal.daw.repositories.UserRepository;
 import com.proyectofinal.daw.search.GenericSearchImpl;
 import com.proyectofinal.daw.services.nativequeries.dao.ReagentDAO;
+import com.proyectofinal.daw.utils.security.SecurityUtils;
 
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -42,6 +47,9 @@ public class ReagentService {
 
     @Autowired
     ReagentDAO reagentDAO;
+
+    @Autowired
+    UserRepository userRepo;
 
     public List<Reagent> findAll() {
         return (List<Reagent>) reagentRepo.findAll();
@@ -194,14 +202,49 @@ public class ReagentService {
         return reagentRepo.findAllUtilization();
     }
 
+    /**
+     * Generic method to add or modify a reagent
+     * @param reagentToChange Reagent to add or modify
+     * @return Reagent modified or added
+     */
     public Reagent modifyOrAddReagent (Reagent reagentToChange) {
-        
-        return reagentRepo.findById(reagentToChange.getId())
-        .map(reagent-> {
+        try {
+            Reagent reagent = reagentRepo.findById(reagentToChange.getId())
+            .orElse(reagentToChange.getReagentType().equals(Reagent.INORGANIC_REAGENT) ? new InorganicReagent() : new OrganicReagent());
+            
             reagent.setSpanishName(reagentToChange.getSpanishName());
-            reagent.setEnglishName(reagentToChange.getEnglishName());            
-            return reagentRepo.save(reagent);
-        })
-        .orElseThrow(() -> new ReagentNotFoundException(reagentToChange.getId()));        
+            reagent.setEnglishName(reagentToChange.getEnglishName());   
+            reagent.setInternalReference(reagentToChange.getInternalReference());
+            reagent.setQuantity(reagentToChange.getQuantity());
+            reagent.setFormula(reagentToChange.getFormula());
+            if (! Objects.isNull(reagentToChange.getCommentary())) 
+                reagent.setCommentary(reagentToChange.getCommentary());
+            reagent.setSuppliers(reagentToChange.getSuppliers());
+            reagent.setMolecularWeight(reagentToChange.getMolecularWeight());
+            if (Objects.isNull(reagent.getEntryDate())) 
+                reagent.setEntryDate(new Date());
+            reagent.setCas(reagentToChange.getCas());
+            reagent.setElements(reagentToChange.getElements());        
+            if (Objects.isNull(reagent.getUserBuyer())) 
+                reagent.setUserBuyer(userRepo.findByUsername(SecurityUtils.getCurrentUser().getUsername()).get());
+            reagent.setLocation(reagentToChange.getLocation());
+            if (reagent instanceof InorganicReagent) {
+                ((InorganicReagent) reagent).setUtilization(((InorganicReagent) reagentToChange).getUtilization());
+            }
+            if (reagent instanceof OrganicReagent) {
+                ((OrganicReagent) reagent).setSecondaryIntReference(((OrganicReagent) reagentToChange).getSecondaryIntReference());
+                if (! Objects.isNull(((OrganicReagent) reagentToChange).getImage()))
+                    ((OrganicReagent) reagent).setImage(((OrganicReagent) reagentToChange).getImage());
+            }
+            
+
+            LOGGER.info("Has received a request to save a reagent");
+
+            return reagentRepo.save(reagent);   
+        } 
+        catch (Exception e) {
+            LOGGER.warn("Has received a request to save a regent and something bad happened. ");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Data to save is invalid.");
+        }  
     }
 }

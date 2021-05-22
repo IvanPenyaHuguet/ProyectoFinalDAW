@@ -1,4 +1,4 @@
-import React, {createContext, useState, useEffect } from 'react';
+import React, {createContext, useState, useLayoutEffect } from 'react';
 import authService from '../service/AuthService';
 
 export const AuthContext = createContext(authService.getUser());
@@ -7,7 +7,7 @@ export const AuthContext = createContext(authService.getUser());
 const AuthContextProvider = ({children}) => {  
     const [ user, setUser] = useState(authService.getUser());       
     
-    useEffect( () => {
+    useLayoutEffect( () => {
         const localUser = authService.getUser();
         let user; 
             if ( localUser ) {        

@@ -9,8 +9,8 @@ export default class InorganicReagent extends Reagent {
         this.utilization;
     }
 
-    getInitialValue(user){
-        super.getInitialValue(user, "Inorganic");
+    getInitialValue(){
+        super.getInitialValue("Inorganic");
         this.utilization = null;
     }
 
@@ -22,8 +22,9 @@ export default class InorganicReagent extends Reagent {
             utilization: this.utilization
         }
     }
-    addReagent(values, setSubmitting) {        
-        super.addReagent(values, setSubmitting);        
+    addReagent(values, setSubmitting, setAlert, perTable) {   
+        values.reagentType = "Inorganic";       
+        super.addReagent(values, setSubmitting, setAlert, perTable);        
     }
     getValidationSchema(){
         return super.getValidationSchema();

@@ -1,8 +1,10 @@
-import DateUtils from "../utils/DateUtil";
+
 import i18next from 'i18next';
 import * as Yup from 'yup';
 import reagentService from '../../service/backend/AllReagentService';
 import errorService from '../../service/error/ErrorController';
+import ElementUtils from "../utils/ElementUtils";
+import dayjs from 'dayjs';
 
 
 export default class Reagent {
@@ -26,22 +28,22 @@ export default class Reagent {
         this.reagentType;
     }
 
-    getInitialValue(user, reagentType){                    
+    getInitialValue( reagentType){                    
         this.spanishName = '';
         this.englishName = '';
         this.internalReference = '';
         this.quantity = 1;
         this.formula = '';
         this.commentary = [];
-        this.suppliers = 1;
+        this.suppliers = [''];
         this.molecularWeight = 0;
-        this.entryDate = DateUtils.getDMYHM();
+        this.entryDate = dayjs();
         this.cas = '';
         this.elements = [];
-        this.userBuyer = user;
-        this.location = 1;      
+        this.userBuyer = null;
+        this.location = '';      
         this.ReagentType = reagentType;   
-        this.id = undefined;     
+        this.id = null;     
     }
 
     validate (values) {
@@ -65,14 +67,14 @@ export default class Reagent {
                 .positive(i18next.t('form.add.errors.positive'))
                 .integer(i18next.t('form.add.errors.integer'))                
             ,entryDate: Yup.date().default(function () {
-                return new Date();
+                return dayjs();
             }).required(i18next.t('form.add.errors.required'))
-            ,location: Yup.number(i18next.t('form.add.errors.required')).required(i18next.t('form.add.errors.required'))
-            ,suppliers: Yup.number(i18next.t('form.add.errors.required')).required(i18next.t('form.add.errors.required'))
+            ,location: Yup.object().required(i18next.t('form.add.errors.required'))            
         })
     }
 
-    addReagent(values, setSubmitting, setAlert) {
+    addReagent(values, setSubmitting, setAlert, perTable) {
+        values.elements = ElementUtils.perTableToServer(values.elements, perTable);        
         reagentService.save(values).then((res) => {
             if (res.status != 200) {
                 setAlert ? setAlert({type: 'error', message: i18next.t('form.add.errors.unsuccesful')}) : null;

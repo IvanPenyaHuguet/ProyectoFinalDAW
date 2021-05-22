@@ -11,7 +11,7 @@ import { Select } from 'formik-material-ui';
 export default function SelectInput ({label, name, values}) {
 
     const menuItems = values.map( (item, ind) => {        
-        return <MenuItem key={ item.viewOrder ? item.viewOrder : ind } value={ item.id }>{item.name}</MenuItem>
+        return <MenuItem key={ item.viewOrder ? item.viewOrder : ind } value={ item }>{item.name}</MenuItem>
     })
 
     return (

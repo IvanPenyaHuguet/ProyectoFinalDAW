@@ -13,7 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -32,9 +31,18 @@ public class Supplier implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(nullable = false, unique = true)
-    private String name;
-    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "supplier")
-    private List<ReagentSuppplier> reagents;
+    private String name;    
+    @JsonIgnoreProperties({"suppliers"})
+    @ManyToMany(cascade = {
+        CascadeType.PERSIST,
+        CascadeType.MERGE
+    })
+    @JoinTable(
+        name = "reagent_supplier",
+        joinColumns = {@JoinColumn(name = "supplier_id")},
+        inverseJoinColumns = {@JoinColumn(name = "reagent_id")}
+    )  
+    private List<Reagent> reagents;
     @ManyToMany(cascade = {
         CascadeType.PERSIST,
         CascadeType.MERGE
@@ -46,7 +54,8 @@ public class Supplier implements Serializable{
     )    
     private List<StandardSol> standards;  
     @ManyToOne()
-    @JoinColumn(name = "seller_id")    
+    @JoinColumn(name = "seller_id")  
+    @JsonIgnoreProperties({"suppliers"})  
     private Seller seller;
 
     
@@ -115,20 +124,15 @@ public class Supplier implements Serializable{
         this.name = name;
     }   
     
-    
-    
-    /** 
-     * @return List<ReagentSuppplier>
-     */
-    public List<ReagentSuppplier> getReagents() {
+
+    public List<Reagent> getReagents() {
         return this.reagents;
     }
 
-    
-    /** 
-     * @param reagents
-     */
-    public void setReagents(List<ReagentSuppplier> reagents) {
+    public void setReagents(List<Reagent> reagents) {
         this.reagents = reagents;
     }
+
+    
+
 }

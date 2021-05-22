@@ -1,5 +1,8 @@
 package com.proyectofinal.daw.utils.security;
 
+import com.proyectofinal.daw.repositories.UserRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,6 +12,8 @@ import org.springframework.security.core.userdetails.UserDetails;
  */
 public class SecurityUtils {
     
+    @Autowired
+    UserRepository userRepo;
     
     /** 
      * Get the user logged
@@ -22,4 +27,6 @@ public class SecurityUtils {
         }
         return ( UserDetails ) ( authentication == null ? null : authentication.getPrincipal());
     }
+
+    
 }
