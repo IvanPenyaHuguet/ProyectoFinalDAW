@@ -15,8 +15,7 @@ export default function ElementsInput ({values, ...props}) {
     useEffect( () => {
         values.elements = selectedElements;         
         values.formula != undefined ? values.formula = getStringElements() : null;
-        values.molecularWeight != undefined ? values.molecularWeight = getMolecularWeight() : null;      
-        console.log(values);
+        values.molecularWeight != undefined ? values.molecularWeight = getMolecularWeight() : null;     
     }, [ selectedElements ])
 
     const getStringElements = () => { 
