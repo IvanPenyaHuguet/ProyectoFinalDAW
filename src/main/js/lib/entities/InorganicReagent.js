@@ -13,10 +13,7 @@ export default class InorganicReagent extends Reagent {
         super.getInitialValue("Inorganic");
         this.utilization = null;
     }
-
-    validate(values){        
-        return super.validate(values);
-    }
+    
     getValues () {
         return { ...super.getValues(),
             utilization: this.utilization

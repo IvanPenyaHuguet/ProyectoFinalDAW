@@ -45,16 +45,7 @@ export default class Reagent {
         this.ReagentType = reagentType;   
         this.id = null;     
     }
-
-    validate (values) {
-        console.log(values);
-        const errors = {};
-        if (!values.spanishName) {
-            errors.spanishName = i18next.t('form.add.errors.required');
-        }
-
-        return errors;
-    }
+    
     getValidationSchema(){
         return Yup.object().shape({
             spanishName: Yup.string()
