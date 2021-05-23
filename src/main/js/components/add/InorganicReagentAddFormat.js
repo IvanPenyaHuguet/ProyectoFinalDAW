@@ -6,7 +6,6 @@ import Form from '../form/Form';
 import FormInputText from '../form/MUIFormInputText';
 import InorganicReagent from '../../lib/entities/InorganicReagent';
 import DateInput from '../form/DateInput';
-import { AuthContext } from '../../context/AuthContextProvider';
 import { useTranslation } from 'react-i18next';
 import LocationInput from '../form/LocationInput';
 import UtilizationInput from '../form/UtilizationInput';
@@ -24,9 +23,8 @@ import IntRefInput from '../form/IntRefInput';
 
 export default function InorganicReagentAddFormat () {
 
-    const inorganicReagent = new InorganicReagent();
+    const inorganicReagent = new InorganicReagent();    
     
-    const { user } = useContext(AuthContext);
     const elements  = useContext(ElementStore);
     const [ alert, setAlert ] = useState(false);
     const [ refMask, setRefMask ] = useState('');

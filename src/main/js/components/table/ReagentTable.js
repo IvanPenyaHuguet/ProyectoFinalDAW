@@ -21,6 +21,7 @@ import reagentPDF from '../../lib/export/ReagentPdf';
 import { useHistory } from "react-router-dom";
 import { RTCSearchFields, RTCColumns } from '../../lib/tabledata/ReagentTableConf';
 import { TableContext } from '../../context/utils/TableContext.js';
+import { LocalizationContext } from '../../context/LocalizationContext';
 
 
 
@@ -28,7 +29,8 @@ const ReagentTable = () => {
    
     const { t } = useTranslation();
     const TITLE = t('table.title.reagents');
-    const { user, setUSer } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
+    const { language } = useContext(LocalizationContext);    
     const [ data , setData ] = useState([]);     
     const [ loading, setLoading ] = useState(false); 
     const [ controlledPageCount, setControlledPageCount ] = useState(0);
@@ -38,8 +40,8 @@ const ReagentTable = () => {
     const [ filterUtilization, setFilterUtilization ] = useState('');
     const [ filter, setFilter ] = useState(null);
     const history = useHistory();
-    const columns = useMemo (() => RTCColumns, []);
-    const searchFields = RTCSearchFields;
+    const columns = useMemo (() => RTCColumns(t), [language]);
+    const searchFields = RTCSearchFields(t);
     const [ fieldsToSearch, setFieldsToSearch ] = useState(searchFields);
     const [ elementsToSearch, setElementsToSearch ] = useState({});
 

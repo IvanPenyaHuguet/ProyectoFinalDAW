@@ -1,4 +1,5 @@
-import i18next from 'i18next';
+//import i18next from '../../i18n';
+//import i18next from 'i18next';
 import React from 'react';
 
 import Divider from '@material-ui/core/Divider';
@@ -9,62 +10,63 @@ import SelectColumnFilterLocation from '../../components/table/filter/SelectColu
 import SelectColumnFilterUtilization from '../../components/table/filter/SelectColumnFilterUtilization';
 
 
-export const RTCSearchFields = [
+export const RTCSearchFields = t => { return [
     {
         value: "spanishName",
-        name: i18next.t('table.column.spanishName'),
+        name: t('table.column.spanishName'),
         selected: true
     },{
         value: "englishName",
-        name: i18next.t('table.column.englishName'),
+        name: t('table.column.englishName'),
         selected: true
     },{
         value: "cas",
-        name: i18next.t('table.column.cas'),
+        name: t('table.column.cas'),
         selected: false
     },{
         value: "internalReference",
-        name: i18next.t('table.column.reference'),
+        name: t('table.column.reference'),
         selected: true
     },{
         value: "utilization",
-        name: i18next.t('table.column.utilization'),
+        name: t('table.column.utilization'),
         selected: false
     },{
         value: "elements.englishName",
-        name: i18next.t('table.column.elements'),
+        name: t('table.column.elements'),
         selected: false
     },{
         value: "secondaryIntReference",
-        name: i18next.t('table.column.secondaryintreference'),
+        name: t('table.column.secondaryintreference'),
         selected: true
     }];
+};
 
-export const RTCColumns = [
+export const RTCColumns = t => {return [
     {
-        Header: i18next.t('table.column.id'),
+        Header: t('table.column.id'),
         accessor: "id",
         show: false,
         disableSortBy: false,
         disableFilters: true 
     },{
-        Header: i18next.t('table.column.reference'),
+        Header: t('table.column.reference'),
         accessor: "internalReference",
         disableSortBy: false,
         disableFilters: true
     },{
-        Header: i18next.t('table.column.spanishName'),
+        Header: t('table.column.spanishName'),
         accessor: "spanishName",
         disableSortBy: false,
         disableFilters: true
     },{
-        Header: i18next.t('table.column.englishName'),
+        Header: t('table.column.englishName'),
         accessor: "englishName",
         show: false,
         disableSortBy: false,
         disableFilters: true
     },{
-        Header: i18next.t('table.column.elements'),
+        Header: t('table.column.elements'),
         accessor: "elements",
         id: "elements",
         show: true,
@@ -88,60 +90,60 @@ export const RTCColumns = [
         disableSortBy: true,
         disableFilters: true
     },{
-        Header: i18next.t('table.column.formula'),
+        Header: t('table.column.formula'),
         accessor: "formula",
         id: "formula",
         show: false,
         disableSortBy: false,
         disableFilters: true
     },{
-        Header: i18next.t('table.column.type'),
+        Header: t('table.column.type'),
         accessor: "reagentType",
         disableSortBy: false,
         disableFilters: true
     },{
-        Header: i18next.t('table.column.quantity'),
+        Header: t('table.column.quantity'),
         accessor: "quantity",
         disableSortBy: false,
         disableFilters: true
     },{
-        Header: i18next.t('table.column.location'),
+        Header: t('table.column.location'),
         accessor: "location.name",
         disableSortBy: false,
         disableFilters: false,
         Filter: SelectColumnFilterLocation,            
     },{
-        Header: i18next.t('table.column.utilization'),
+        Header: t('table.column.utilization'),
         accessor: "utilization",
         disableSortBy: true,
         disableFilters: false,
         Filter: SelectColumnFilterUtilization,
     },{
-        Header: i18next.t('table.column.cas'),
+        Header: t('table.column.cas'),
         accessor: "cas",
         show: false,
         disableSortBy: false,
         disableFilters: true
     },{
-        Header: i18next.t('table.column.receptionDate'),
+        Header: t('table.column.receptionDate'),
         accessor: "entryDate",
         show: false,
         disableSortBy: false,
         disableFilters: true
     },{
-        Header: i18next.t('table.column.boughtBy'),
+        Header: t('table.column.boughtBy'),
         accessor: "user.name",
         show: false,
         disableSortBy: true,
         disableFilters: true
     },{
-        Header: i18next.t('table.column.molecularWeight'),
+        Header: t('table.column.molecularWeight'),
         accessor: "molecularWeight",
         show: false,
         disableSortBy: false,
         disableFilters: true
     },{
-        Header: i18next.t('table.column.supplier'),
+        Header: t('table.column.supplier'),
         accessor: "suppliers",
         id: "suppliers",
         show: false,
@@ -163,4 +165,4 @@ export const RTCColumns = [
         disableSortBy: true,
         disableFilters: true
     }
-]
+]};

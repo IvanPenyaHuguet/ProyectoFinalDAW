@@ -94,12 +94,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _service_backend_AllReagentService__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../service/backend/AllReagentService */ "./src/main/js/service/backend/AllReagentService.js");
 /* harmony import */ var _basecomponents_TableBase__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./basecomponents/TableBase */ "./src/main/js/components/table/basecomponents/TableBase.js");
-/* harmony import */ var _material_ui_icons_Add__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @material-ui/icons/Add */ "./node_modules/@material-ui/icons/Add.js");
-/* harmony import */ var _material_ui_icons_Save__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @material-ui/icons/Save */ "./node_modules/@material-ui/icons/Save.js");
-/* harmony import */ var _material_ui_icons_Print__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @material-ui/icons/Print */ "./node_modules/@material-ui/icons/Print.js");
+/* harmony import */ var _material_ui_icons_Add__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @material-ui/icons/Add */ "./node_modules/@material-ui/icons/Add.js");
+/* harmony import */ var _material_ui_icons_Save__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @material-ui/icons/Save */ "./node_modules/@material-ui/icons/Save.js");
+/* harmony import */ var _material_ui_icons_Print__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @material-ui/icons/Print */ "./node_modules/@material-ui/icons/Print.js");
 /* harmony import */ var _icons_ExcelIcon__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../icons/ExcelIcon */ "./src/main/js/components/icons/ExcelIcon.js");
 /* harmony import */ var _icons_CSVIcon__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../icons/CSVIcon */ "./src/main/js/components/icons/CSVIcon.js");
-/* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/useTranslation.js");
+/* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/useTranslation.js");
 /* harmony import */ var _context_SearchFieldContext__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../context/SearchFieldContext */ "./src/main/js/context/SearchFieldContext.js");
 /* harmony import */ var _context_SearchElementsContext__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../context/SearchElementsContext */ "./src/main/js/context/SearchElementsContext.js");
 /* harmony import */ var _service_backend_SearchService__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../service/backend/SearchService */ "./src/main/js/service/backend/SearchService.js");
@@ -109,9 +109,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _context_utils_SpeedDialContext__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../context/utils/SpeedDialContext */ "./src/main/js/context/utils/SpeedDialContext.js");
 /* harmony import */ var _context_AuthContextProvider__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../context/AuthContextProvider */ "./src/main/js/context/AuthContextProvider.js");
 /* harmony import */ var _lib_export_ReagentPdf__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../../lib/export/ReagentPdf */ "./src/main/js/lib/export/ReagentPdf.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _lib_tabledata_ReagentTableConf__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../../lib/tabledata/ReagentTableConf */ "./src/main/js/lib/tabledata/ReagentTableConf.js");
 /* harmony import */ var _context_utils_TableContext_js__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../../context/utils/TableContext.js */ "./src/main/js/context/utils/TableContext.js");
+/* harmony import */ var _context_LocalizationContext__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../../context/LocalizationContext */ "./src/main/js/context/LocalizationContext.js");
+
 
 
 
@@ -140,14 +142,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ReagentTable = function ReagentTable() {
-  var _useTranslation = (0,react_i18next__WEBPACK_IMPORTED_MODULE_21__.useTranslation)(),
+  var _useTranslation = (0,react_i18next__WEBPACK_IMPORTED_MODULE_22__.useTranslation)(),
       t = _useTranslation.t;
 
   var TITLE = t('table.title.reagents');
 
   var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_5__.useContext)(_context_AuthContextProvider__WEBPACK_IMPORTED_MODULE_17__.AuthContext),
-      user = _useContext.user,
-      setUSer = _useContext.setUSer;
+      user = _useContext.user;
+
+  var _useContext2 = (0,react__WEBPACK_IMPORTED_MODULE_5__.useContext)(_context_LocalizationContext__WEBPACK_IMPORTED_MODULE_21__.LocalizationContext),
+      language = _useContext2.language;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)([]),
       _useState2 = (0,_babel_runtime_corejs3_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__.default)(_useState, 2),
@@ -186,11 +190,11 @@ var ReagentTable = function ReagentTable() {
       filter = _useState14[0],
       setFilter = _useState14[1];
 
-  var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_22__.useHistory)();
+  var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_23__.useHistory)();
   var columns = (0,react__WEBPACK_IMPORTED_MODULE_5__.useMemo)(function () {
-    return _lib_tabledata_ReagentTableConf__WEBPACK_IMPORTED_MODULE_19__.RTCColumns;
-  }, []);
-  var searchFields = _lib_tabledata_ReagentTableConf__WEBPACK_IMPORTED_MODULE_19__.RTCSearchFields;
+    return (0,_lib_tabledata_ReagentTableConf__WEBPACK_IMPORTED_MODULE_19__.RTCColumns)(t);
+  }, [language]);
+  var searchFields = (0,_lib_tabledata_ReagentTableConf__WEBPACK_IMPORTED_MODULE_19__.RTCSearchFields)(t);
 
   var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)(searchFields),
       _useState16 = (0,_babel_runtime_corejs3_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__.default)(_useState15, 2),
@@ -219,13 +223,13 @@ var ReagentTable = function ReagentTable() {
     var _context;
 
     var actions = [, {
-      icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement(_material_ui_icons_Save__WEBPACK_IMPORTED_MODULE_23__.default, null),
+      icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement(_material_ui_icons_Save__WEBPACK_IMPORTED_MODULE_24__.default, null),
       name: t('table.tooltip.save'),
       click: function click() {
         return _lib_export_ReagentPdf__WEBPACK_IMPORTED_MODULE_18__.default.generatePdf(undefined, false);
       }
     }, {
-      icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement(_material_ui_icons_Print__WEBPACK_IMPORTED_MODULE_24__.default, null),
+      icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement(_material_ui_icons_Print__WEBPACK_IMPORTED_MODULE_25__.default, null),
       name: t('table.tooltip.print'),
       click: function click() {
         return _lib_export_ReagentPdf__WEBPACK_IMPORTED_MODULE_18__.default.generatePdf(undefined, true);
@@ -248,7 +252,7 @@ var ReagentTable = function ReagentTable() {
 
     if (_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_1___default()(_context = user.role).call(_context, "ROLE_ADD_ALL")) {
       actions.unshift({
-        icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement(_material_ui_icons_Add__WEBPACK_IMPORTED_MODULE_25__.default, null),
+        icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement(_material_ui_icons_Add__WEBPACK_IMPORTED_MODULE_26__.default, null),
         name: t('table.tooltip.add'),
         click: function click() {
           return history.push("/reagent/add");
@@ -1044,179 +1048,183 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/keys */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/keys.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var i18next__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! i18next */ "./node_modules/i18next/dist/esm/i18next.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _material_ui_core_Divider__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/core/Divider */ "./node_modules/@material-ui/core/esm/Divider/Divider.js");
-/* harmony import */ var _material_ui_core_Avatar__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core/Avatar */ "./node_modules/@material-ui/core/esm/Avatar/Avatar.js");
-/* harmony import */ var _material_ui_core_Chip__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/Chip */ "./node_modules/@material-ui/core/esm/Chip/Chip.js");
-/* harmony import */ var _components_table_filter_SelectColumnFilterLocation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/table/filter/SelectColumnFilterLocation */ "./src/main/js/components/table/filter/SelectColumnFilterLocation.js");
-/* harmony import */ var _components_table_filter_SelectColumnFilterUtilization__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/table/filter/SelectColumnFilterUtilization */ "./src/main/js/components/table/filter/SelectColumnFilterUtilization.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _material_ui_core_Divider__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core/Divider */ "./node_modules/@material-ui/core/esm/Divider/Divider.js");
+/* harmony import */ var _material_ui_core_Avatar__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/Avatar */ "./node_modules/@material-ui/core/esm/Avatar/Avatar.js");
+/* harmony import */ var _material_ui_core_Chip__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/Chip */ "./node_modules/@material-ui/core/esm/Chip/Chip.js");
+/* harmony import */ var _components_table_filter_SelectColumnFilterLocation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/table/filter/SelectColumnFilterLocation */ "./src/main/js/components/table/filter/SelectColumnFilterLocation.js");
+/* harmony import */ var _components_table_filter_SelectColumnFilterUtilization__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/table/filter/SelectColumnFilterUtilization */ "./src/main/js/components/table/filter/SelectColumnFilterUtilization.js");
+
+
+
+//import i18next from '../../i18n';
+//import i18next from 'i18next';
 
 
 
 
 
 
+var RTCSearchFields = function RTCSearchFields(t) {
+  return [{
+    value: "spanishName",
+    name: t('table.column.spanishName'),
+    selected: true
+  }, {
+    value: "englishName",
+    name: t('table.column.englishName'),
+    selected: true
+  }, {
+    value: "cas",
+    name: t('table.column.cas'),
+    selected: false
+  }, {
+    value: "internalReference",
+    name: t('table.column.reference'),
+    selected: true
+  }, {
+    value: "utilization",
+    name: t('table.column.utilization'),
+    selected: false
+  }, {
+    value: "elements.englishName",
+    name: t('table.column.elements'),
+    selected: false
+  }, {
+    value: "secondaryIntReference",
+    name: t('table.column.secondaryintreference'),
+    selected: true
+  }];
+};
+var RTCColumns = function RTCColumns(t) {
+  return [{
+    Header: t('table.column.id'),
+    accessor: "id",
+    show: false,
+    disableSortBy: false,
+    disableFilters: true
+  }, {
+    Header: t('table.column.reference'),
+    accessor: "internalReference",
+    disableSortBy: false,
+    disableFilters: true
+  }, {
+    Header: t('table.column.spanishName'),
+    accessor: "spanishName",
+    disableSortBy: false,
+    disableFilters: true
+  }, {
+    Header: t('table.column.englishName'),
+    accessor: "englishName",
+    show: false,
+    disableSortBy: false,
+    disableFilters: true
+  }, {
+    Header: t('table.column.elements'),
+    accessor: "elements",
+    id: "elements",
+    show: true,
+    Cell: function Cell(row) {
+      var _context;
 
+      var elements = row.row.original.elements;
+      var counts = {};
 
-
-
-var RTCSearchFields = [{
-  value: "spanishName",
-  name: i18next__WEBPACK_IMPORTED_MODULE_3__.default.t('table.column.spanishName'),
-  selected: true
-}, {
-  value: "englishName",
-  name: i18next__WEBPACK_IMPORTED_MODULE_3__.default.t('table.column.englishName'),
-  selected: true
-}, {
-  value: "cas",
-  name: i18next__WEBPACK_IMPORTED_MODULE_3__.default.t('table.column.cas'),
-  selected: false
-}, {
-  value: "internalReference",
-  name: i18next__WEBPACK_IMPORTED_MODULE_3__.default.t('table.column.reference'),
-  selected: true
-}, {
-  value: "utilization",
-  name: i18next__WEBPACK_IMPORTED_MODULE_3__.default.t('table.column.utilization'),
-  selected: false
-}, {
-  value: "elements.englishName",
-  name: i18next__WEBPACK_IMPORTED_MODULE_3__.default.t('table.column.elements'),
-  selected: false
-}, {
-  value: "secondaryIntReference",
-  name: i18next__WEBPACK_IMPORTED_MODULE_3__.default.t('table.column.secondaryintreference'),
-  selected: true
-}];
-var RTCColumns = [{
-  Header: i18next__WEBPACK_IMPORTED_MODULE_3__.default.t('table.column.id'),
-  accessor: "id",
-  show: false,
-  disableSortBy: false,
-  disableFilters: true
-}, {
-  Header: i18next__WEBPACK_IMPORTED_MODULE_3__.default.t('table.column.reference'),
-  accessor: "internalReference",
-  disableSortBy: false,
-  disableFilters: true
-}, {
-  Header: i18next__WEBPACK_IMPORTED_MODULE_3__.default.t('table.column.spanishName'),
-  accessor: "spanishName",
-  disableSortBy: false,
-  disableFilters: true
-}, {
-  Header: i18next__WEBPACK_IMPORTED_MODULE_3__.default.t('table.column.englishName'),
-  accessor: "englishName",
-  show: false,
-  disableSortBy: false,
-  disableFilters: true
-}, {
-  Header: i18next__WEBPACK_IMPORTED_MODULE_3__.default.t('table.column.elements'),
-  accessor: "elements",
-  id: "elements",
-  show: true,
-  Cell: function Cell(row) {
-    var _context;
-
-    var elements = row.row.original.elements;
-    var counts = {};
-
-    _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_0___default()(elements).call(elements, function (element) {
-      counts[element.atomicNumber] = {
-        total: counts[element.atomicNumber] ? counts[element.atomicNumber].total + 1 : 1,
-        element: element
-      };
-    });
-
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4__.createElement("div", null, _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_1___default()(_context = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_2___default()(counts)).call(_context, function (item, i) {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4__.createElement(_material_ui_core_Chip__WEBPACK_IMPORTED_MODULE_7__.default, {
-        avatar: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4__.createElement(_material_ui_core_Avatar__WEBPACK_IMPORTED_MODULE_8__.default, null, counts[item].element.element),
-        label: counts[item].total,
-        variant: "outlined",
-        key: i
+      _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_0___default()(elements).call(elements, function (element) {
+        counts[element.atomicNumber] = {
+          total: counts[element.atomicNumber] ? counts[element.atomicNumber].total + 1 : 1,
+          element: element
+        };
       });
-    }));
-  },
-  disableSortBy: true,
-  disableFilters: true
-}, {
-  Header: i18next__WEBPACK_IMPORTED_MODULE_3__.default.t('table.column.formula'),
-  accessor: "formula",
-  id: "formula",
-  show: false,
-  disableSortBy: false,
-  disableFilters: true
-}, {
-  Header: i18next__WEBPACK_IMPORTED_MODULE_3__.default.t('table.column.type'),
-  accessor: "reagentType",
-  disableSortBy: false,
-  disableFilters: true
-}, {
-  Header: i18next__WEBPACK_IMPORTED_MODULE_3__.default.t('table.column.quantity'),
-  accessor: "quantity",
-  disableSortBy: false,
-  disableFilters: true
-}, {
-  Header: i18next__WEBPACK_IMPORTED_MODULE_3__.default.t('table.column.location'),
-  accessor: "location.name",
-  disableSortBy: false,
-  disableFilters: false,
-  Filter: _components_table_filter_SelectColumnFilterLocation__WEBPACK_IMPORTED_MODULE_5__.default
-}, {
-  Header: i18next__WEBPACK_IMPORTED_MODULE_3__.default.t('table.column.utilization'),
-  accessor: "utilization",
-  disableSortBy: true,
-  disableFilters: false,
-  Filter: _components_table_filter_SelectColumnFilterUtilization__WEBPACK_IMPORTED_MODULE_6__.default
-}, {
-  Header: i18next__WEBPACK_IMPORTED_MODULE_3__.default.t('table.column.cas'),
-  accessor: "cas",
-  show: false,
-  disableSortBy: false,
-  disableFilters: true
-}, {
-  Header: i18next__WEBPACK_IMPORTED_MODULE_3__.default.t('table.column.receptionDate'),
-  accessor: "entryDate",
-  show: false,
-  disableSortBy: false,
-  disableFilters: true
-}, {
-  Header: i18next__WEBPACK_IMPORTED_MODULE_3__.default.t('table.column.boughtBy'),
-  accessor: "user.name",
-  show: false,
-  disableSortBy: true,
-  disableFilters: true
-}, {
-  Header: i18next__WEBPACK_IMPORTED_MODULE_3__.default.t('table.column.molecularWeight'),
-  accessor: "molecularWeight",
-  show: false,
-  disableSortBy: false,
-  disableFilters: true
-}, {
-  Header: i18next__WEBPACK_IMPORTED_MODULE_3__.default.t('table.column.supplier'),
-  accessor: "suppliers",
-  id: "suppliers",
-  show: false,
-  Cell: function Cell(row) {
-    var _context2;
 
-    var suppliers = row.row.original.suppliers;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4__.createElement(react__WEBPACK_IMPORTED_MODULE_4__.Fragment, null, _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_1___default()(_context2 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_2___default()(suppliers)).call(_context2, function (item, i) {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4__.createElement("div", {
-        key: suppliers[item].supplier.id
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4__.createElement("span", {
-        className: ""
-      }, suppliers[item].supplier.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4__.createElement(_material_ui_core_Divider__WEBPACK_IMPORTED_MODULE_9__.default, {
-        orientation: "vertical",
-        flexItem: true
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement("div", null, _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_1___default()(_context = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_2___default()(counts)).call(_context, function (item, i) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(_material_ui_core_Chip__WEBPACK_IMPORTED_MODULE_6__.default, {
+          avatar: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(_material_ui_core_Avatar__WEBPACK_IMPORTED_MODULE_7__.default, null, counts[item].element.element),
+          label: counts[item].total,
+          variant: "outlined",
+          key: i
+        });
       }));
-    }));
-  },
-  disableSortBy: true,
-  disableFilters: true
-}];
+    },
+    disableSortBy: true,
+    disableFilters: true
+  }, {
+    Header: t('table.column.formula'),
+    accessor: "formula",
+    id: "formula",
+    show: false,
+    disableSortBy: false,
+    disableFilters: true
+  }, {
+    Header: t('table.column.type'),
+    accessor: "reagentType",
+    disableSortBy: false,
+    disableFilters: true
+  }, {
+    Header: t('table.column.quantity'),
+    accessor: "quantity",
+    disableSortBy: false,
+    disableFilters: true
+  }, {
+    Header: t('table.column.location'),
+    accessor: "location.name",
+    disableSortBy: false,
+    disableFilters: false,
+    Filter: _components_table_filter_SelectColumnFilterLocation__WEBPACK_IMPORTED_MODULE_4__.default
+  }, {
+    Header: t('table.column.utilization'),
+    accessor: "utilization",
+    disableSortBy: true,
+    disableFilters: false,
+    Filter: _components_table_filter_SelectColumnFilterUtilization__WEBPACK_IMPORTED_MODULE_5__.default
+  }, {
+    Header: t('table.column.cas'),
+    accessor: "cas",
+    show: false,
+    disableSortBy: false,
+    disableFilters: true
+  }, {
+    Header: t('table.column.receptionDate'),
+    accessor: "entryDate",
+    show: false,
+    disableSortBy: false,
+    disableFilters: true
+  }, {
+    Header: t('table.column.boughtBy'),
+    accessor: "user.name",
+    show: false,
+    disableSortBy: true,
+    disableFilters: true
+  }, {
+    Header: t('table.column.molecularWeight'),
+    accessor: "molecularWeight",
+    show: false,
+    disableSortBy: false,
+    disableFilters: true
+  }, {
+    Header: t('table.column.supplier'),
+    accessor: "suppliers",
+    id: "suppliers",
+    show: false,
+    Cell: function Cell(row) {
+      var _context2;
+
+      var suppliers = row.row.original.suppliers;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(react__WEBPACK_IMPORTED_MODULE_3__.Fragment, null, _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_1___default()(_context2 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_2___default()(suppliers)).call(_context2, function (item, i) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement("div", {
+          key: suppliers[item].supplier.id
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement("span", {
+          className: ""
+        }, suppliers[item].supplier.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(_material_ui_core_Divider__WEBPACK_IMPORTED_MODULE_8__.default, {
+          orientation: "vertical",
+          flexItem: true
+        }));
+      }));
+    },
+    disableSortBy: true,
+    disableFilters: true
+  }];
+};
 
 /***/ }),
 

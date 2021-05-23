@@ -1,5 +1,4 @@
-import React from 'react';
-import i18n from "i18next";
+import React, { useContext } from 'react';
 
 import Container from '../../container/BoxContainer';
 import IconButton from '@material-ui/core/IconButton';
@@ -10,6 +9,8 @@ import Divider from '@material-ui/core/Divider';
 
 import ESFlag from '../../icons/ESFlag';
 import USFlag from '../../icons/USFlag';
+
+import { LocalizationContext } from '../../../context/LocalizationContext';
 
 const useStyles = makeStyles((theme) => ({
     group: {
@@ -25,15 +26,16 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ChangeLanguage() {
     
+    const { setLanguage } = useContext(LocalizationContext);
     const { t } = useTranslation();
     const classes = useStyles();
-
+    
     const onESClick = () => {
-        i18n.changeLanguage('es-ES');
+        setLanguage('es');
     }
 
     const onUSClick = () => {
-        i18n.changeLanguage('en-US');
+        setLanguage('en');
     }
 
     return (
