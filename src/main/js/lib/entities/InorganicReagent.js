@@ -23,7 +23,7 @@ export default class InorganicReagent extends Reagent {
         values.reagentType = "Inorganic";       
         super.addReagent(values, setSubmitting, setAlert, perTable);        
     }
-    getValidationSchema(){
-        return super.getValidationSchema();
+    getValidationSchema(t){
+        return super.getValidationSchema(t);
     }
 }

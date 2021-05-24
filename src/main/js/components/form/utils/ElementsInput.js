@@ -2,7 +2,7 @@ import React, { useState , useEffect, useContext } from 'react';
 
 import BoxContainer from '../../container/BoxContainer';
 import PeriodicTable from '../../periodictable/PeriodicTable';
-import { Field } from 'formik';
+import { useFormikContext, Field } from 'formik';
 import { ElementStore } from '../../../context/store/ElementStore';
 
 
@@ -10,12 +10,13 @@ export default function ElementsInput ({values, ...props}) {
 
     const [ selectedElements, setSelectedElements ] = useState ({});
     const perTable = useContext(ElementStore);
-
+    const { setFieldValue } = useFormikContext();
+    
     
     useEffect( () => {
         values.elements = selectedElements;         
-        values.formula != undefined ? values.formula = getStringElements() : null;
-        values.molecularWeight != undefined ? values.molecularWeight = getMolecularWeight() : null;     
+        values.formula != undefined ? values.formula = getStringElements() : null;        
+        values.molecularWeight != undefined ? setFieldValue('molecularWeight',getMolecularWeight()) : null;
     }, [ selectedElements ])
 
     const getStringElements = () => { 

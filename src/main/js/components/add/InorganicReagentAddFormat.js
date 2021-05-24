@@ -15,6 +15,8 @@ import Alert from '../popups/Alert';
 import Container from '../container/MUIContainer';
 import RefMaskInput from '../form/RefMaskInput';
 import { ElementStore } from '../../context/store/ElementStore';
+import SaveIcon from '@material-ui/icons/Save';
+import BackspaceIcon from '@material-ui/icons/Backspace';
 
 import Button from '@material-ui/core/Button';
 import IntRefInput from '../form/IntRefInput';
@@ -41,7 +43,7 @@ export default function InorganicReagentAddFormat () {
             { alert && <Alert open={alert ? true : false} setOpen={setAlert} type={alert.type}>{alert.message}</Alert> }
             <Formik
                 initialValues={inorganicReagent.getValues()}
-                validationSchema={inorganicReagent.getValidationSchema()}                
+                validationSchema={inorganicReagent.getValidationSchema(t)}                
                 onSubmit= {(values, { setSubmitting }) => {                    
                     inorganicReagent.addReagent(values, setSubmitting, setAlert, elements)
                 }}
@@ -71,29 +73,31 @@ export default function InorganicReagentAddFormat () {
                         />
                         <FormInputText 
                             label={t('form.add.molecularWeight')}                               
-                            name="molecularWeight"   
+                            name="molecularWeight"                             
                         />
                         <DateInput 
                             label={t('form.add.entryDate')}                             
                             name="entryDate"   
                         />   
                         <ElementsInput values={values}/>
-                        <Container>                     
+                        <Container> 
+                            <Button
+                                variant="contained"
+                                color="secondary"                            
+                                onClick={onReturnClick}
+                                startIcon={<BackspaceIcon />}
+                            >
+                                {t('general.return')}
+                            </Button>                    
                             <Button
                                 variant="contained"
                                 color="primary"
                                 disabled={isSubmitting}
                                 onClick={submitForm}
+                                endIcon={<SaveIcon />}
                             >
                                 {t('general.add')}
-                            </Button>
-                            <Button
-                                variant="contained"
-                                color="secondary"                            
-                                onClick={onReturnClick}
-                            >
-                                {t('general.return')}
-                            </Button>
+                            </Button>                            
                         </Container> 
                     </Form>
                 )}                

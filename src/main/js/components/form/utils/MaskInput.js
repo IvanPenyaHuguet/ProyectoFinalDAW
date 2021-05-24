@@ -18,10 +18,10 @@ export default function MaskInput ({label, name, mask, field, meta, form, ...pro
                 inputComponent={MaskComponent}
                 inputProps={{ mask: mask }}                
                 mask={mask}   
-                aria-describedby={`'error'-${name}`} 
+                aria-describedby={`error-${name}`} 
                 {...field}            
             />
-            <FormHelperText id={`'error'-${name}`}>{errors[field.name]}</FormHelperText>
+            {errors[field.name] && touched[field.name] && <FormHelperText id={`error-${name}`}>{errors[field.name]}</FormHelperText>}
         </FormControl>
     )
 }

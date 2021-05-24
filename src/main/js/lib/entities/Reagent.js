@@ -46,21 +46,22 @@ export default class Reagent {
         this.id = null;     
     }
     
-    getValidationSchema(){
+    getValidationSchema(t){
         return Yup.object().shape({
             spanishName: Yup.string()
-                .min(2,i18next.t('form.add.errors.tooshort'))
-                .max(50,i18next.t('form.add.errors.toolong'))
-                .required(i18next.t('form.add.errors.required'))
-            ,internalReference: Yup.string().required(i18next.t('form.add.errors.required'))
-            ,quantity: Yup.number(i18next.t('form.add.errors.number'))
-                .required(i18next.t('form.add.errors.required'))
-                .positive(i18next.t('form.add.errors.positive'))
-                .integer(i18next.t('form.add.errors.integer'))                
+                .min(2,t('form.add.errors.tooshort'))
+                .max(50,t('form.add.errors.toolong'))
+                .required(t('form.add.errors.required'))
+            ,internalReference: Yup.string().required(t('form.add.errors.required'))
+            ,quantity: Yup.number(t('form.add.errors.number'))
+                .required(t('form.add.errors.required'))
+                .positive(t('form.add.errors.positive'))
+                .integer(t('form.add.errors.integer'))                
             ,entryDate: Yup.date().default(function () {
                 return dayjs();
-            }).required(i18next.t('form.add.errors.required'))
-            ,location: Yup.object().required(i18next.t('form.add.errors.required'))            
+            }).required(t('form.add.errors.required'))
+            ,location: Yup.object().required(t('form.add.errors.required'))   
+            ,suppliers: Yup.array().of(Yup.object().required(t('form.add.errors.required'))).required(t('form.add.errors.required'))         
         })
     }
 
