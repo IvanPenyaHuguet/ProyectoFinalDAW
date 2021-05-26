@@ -16,7 +16,8 @@ const useStyles = makeStyles((theme) => ({
         height: '700px',
         minHeight: '600px',
         overflow: 'auto',
-        padding: '10px 20px'        
+        padding: '10px 20px',
+        zIndex: 3000        
     }
 }));
 
@@ -29,12 +30,12 @@ export default function GenericBackdrop({open, setOpen, children}) {
     }    
 
     return (
-        <Backdrop open={open} className={classes.backdrop} >           
-            <ClickAwayListener onClickAway={handleClose}>
+        <Backdrop open={open} className={classes.backdrop} onClose={handleClose}>           
+            {/* <ClickAwayListener onClickAway={handleClose}> */}
                 <Paper elevation={8} className={classes.paper}>
                     { children }
                 </Paper>  
-            </ClickAwayListener>             
+            {/* </ClickAwayListener>              */}
         </Backdrop>
     )
 }

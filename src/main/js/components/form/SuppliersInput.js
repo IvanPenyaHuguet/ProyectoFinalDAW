@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 'bolder'
     },
     select: {
-        zIndex: 3000,
+        zIndex: '4000 !important',
     }
 
 }));
@@ -50,7 +50,7 @@ export default function SuppliersInput ({ values, ...props}) {
     const classes = useStyles();
     
     const menuItems = store.map( (item, ind) => {        
-        return <MenuItem key={ item.viewOrder ? item.viewOrder : ind } value={ JSON.stringify(item) }>{item.name}</MenuItem>
+        return <MenuItem  key={ item.viewOrder ? item.viewOrder : ind } value={ JSON.stringify(item) }>{item.name}</MenuItem>
     });
 
     return (
@@ -67,10 +67,9 @@ export default function SuppliersInput ({ values, ...props}) {
                                         component={Select}               
                                         name={`suppliers.${ind}`}                            
                                         inputProps={{
-                                            id: "input-suppliers-"+ind                                    
+                                            id: "input-suppliers-"+ind                                   
                                         }}      
-                                        aria-describedby={`error-suppliers-${ind}`}
-                                        className={classes.select}                                                           
+                                        aria-describedby={`error-suppliers-${ind}`}                                                                                                                                                                               
                                     >  
                                         { menuItems }
                                     </Field>
