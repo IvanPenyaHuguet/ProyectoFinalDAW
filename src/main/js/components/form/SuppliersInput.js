@@ -34,6 +34,9 @@ const useStyles = makeStyles((theme) => ({
     but: {
         fontSize: '25px',
         fontWeight: 'bolder'
+    },
+    select: {
+        zIndex: 3000,
     }
 
 }));
@@ -47,7 +50,7 @@ export default function SuppliersInput ({ values, ...props}) {
     const classes = useStyles();
     
     const menuItems = store.map( (item, ind) => {        
-        return <MenuItem key={ item.viewOrder ? item.viewOrder : ind } value={ item }>{item.name}</MenuItem>
+        return <MenuItem key={ item.viewOrder ? item.viewOrder : ind } value={ JSON.stringify(item) }>{item.name}</MenuItem>
     });
 
     return (
@@ -66,7 +69,8 @@ export default function SuppliersInput ({ values, ...props}) {
                                         inputProps={{
                                             id: "input-suppliers-"+ind                                    
                                         }}      
-                                        aria-describedby={`error-suppliers-${ind}`}                                                           
+                                        aria-describedby={`error-suppliers-${ind}`}
+                                        className={classes.select}                                                           
                                     >  
                                         { menuItems }
                                     </Field>
@@ -76,6 +80,7 @@ export default function SuppliersInput ({ values, ...props}) {
                                     <Button                                    
                                         onClick={() => remove(ind)}
                                         className={classes.but}
+                                        disabled={values.suppliers.length == 1}
                                     >
                                     -
                                     </Button>

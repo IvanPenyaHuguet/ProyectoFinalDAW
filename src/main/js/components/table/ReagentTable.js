@@ -40,7 +40,7 @@ const ReagentTable = () => {
     const [ filterUtilization, setFilterUtilization ] = useState('');
     const [ filter, setFilter ] = useState(null);
     const history = useHistory();
-    const columns = useMemo (() => RTCColumns(t), [language]);
+    const columns = useMemo (() => RTCColumns(t));
     const searchFields = RTCSearchFields(t);
     const [ fieldsToSearch, setFieldsToSearch ] = useState(searchFields);
     const [ elementsToSearch, setElementsToSearch ] = useState({});
@@ -137,6 +137,7 @@ const ReagentTable = () => {
                                     columns={columns} 
                                     backendService={BackendService} 
                                     loading={loading} 
+                                    setLoading={setLoading}
                                     data={data} 
                                     controlledPageCount={controlledPageCount} 
                                     totalElements={totalElements}

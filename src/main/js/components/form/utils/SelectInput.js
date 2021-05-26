@@ -9,12 +9,12 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import { Select } from 'formik-material-ui';
 
 
-export default function SelectInput ({label, name, values}) {
+export default function SelectInput ({label, name, store}) {
 
     const { touched, errors } = useFormikContext(); 
 
-    const menuItems = values.map( (item, ind) => {        
-        return <MenuItem key={ item.viewOrder ? item.viewOrder : ind } value={ item }>{item.name}</MenuItem>
+    const menuItems = store.map( (item, ind) => {        
+        return <MenuItem key={ item.viewOrder ? item.viewOrder : ind } value={ JSON.stringify(item) }>{item.name}</MenuItem>
     })
 
     return (

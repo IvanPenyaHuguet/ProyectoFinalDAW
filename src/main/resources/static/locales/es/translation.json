@@ -65,6 +65,7 @@
     "add": "Añadir",
     "by": "por",
     "close": "Cerrar",
+    "delete": "Borrar",
     "edit": "Editar",
     "english": "Inglés - US",
     "return": "Volver",
@@ -74,7 +75,7 @@
   "header": {
     "button": {
       "logout": "Cerrar Sesión"
-    },    
+    },
     "welcome": "Bienvenido"
   },
   "lars": {

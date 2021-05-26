@@ -65,8 +65,9 @@ export default class Reagent {
         })
     }
 
-    addReagent(values, setSubmitting, setAlert, perTable) {
-        values.elements = ElementUtils.perTableToServer(values.elements, perTable);        
+    addReagent(values, setSubmitting, setAlert, perTable = undefined) {
+        if (perTable)
+            values.elements = ElementUtils.perTableToServer(values.elements, perTable);        
         reagentService.save(values).then((res) => {
             if (res.status != 200) {
                 setAlert ? setAlert({type: 'error', message: i18next.t('form.add.errors.unsuccesful')}) : null;

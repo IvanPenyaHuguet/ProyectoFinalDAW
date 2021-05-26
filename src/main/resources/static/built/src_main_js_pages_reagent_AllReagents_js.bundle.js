@@ -193,7 +193,7 @@ var ReagentTable = function ReagentTable() {
   var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_23__.useHistory)();
   var columns = (0,react__WEBPACK_IMPORTED_MODULE_5__.useMemo)(function () {
     return (0,_lib_tabledata_ReagentTableConf__WEBPACK_IMPORTED_MODULE_19__.RTCColumns)(t);
-  }, [language]);
+  });
   var searchFields = (0,_lib_tabledata_ReagentTableConf__WEBPACK_IMPORTED_MODULE_19__.RTCSearchFields)(t);
 
   var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)(searchFields),
@@ -353,6 +353,7 @@ var ReagentTable = function ReagentTable() {
     columns: columns,
     backendService: _service_backend_AllReagentService__WEBPACK_IMPORTED_MODULE_6__.default,
     loading: loading,
+    setLoading: setLoading,
     data: data,
     controlledPageCount: controlledPageCount,
     totalElements: totalElements,

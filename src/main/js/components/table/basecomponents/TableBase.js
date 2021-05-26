@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useMemo, useContext, useRef } from 'react';
-import MUITheme from '../../../lib/conf/GlobalMUIConf';
+import React, { useState, useEffect, useContext } from 'react';
 import MUITable from '@material-ui/core/Table';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
@@ -11,17 +10,18 @@ import TableHead from './TableHead';
 import TablePagination from './TablePagination';
 import Toolbar from './Toolbar';
 import Container from '../../container/Container';
+import Alert from '../../popups/Alert';
 
 
 import { useSortBy, useTable, usePagination, useFilters, useAsyncDebounce } from 'react-table';
 import { SearchTextContext } from '../../../context/SearchTextContext';
 import { SearchElementsContext } from '../../../context/SearchElementsContext';
-import ModifyRowTable from '../../popups/highlights/ModifyRowTable';
+import ModifyRowTable from '../../modify/ModifyRowTable';
 import { AuthContext } from '../../../context/AuthContextProvider';
 
 
 
-export default function TableBase ({columns,  data, fetchData, loading, controlledPageCount, totalElements, title, filter }) {
+export default function TableBase ({columns,  data, fetchData, loading, setLoading, controlledPageCount, totalElements, title, filter }) {
 
     
     const { user } = useContext(AuthContext);
@@ -55,6 +55,7 @@ export default function TableBase ({columns,  data, fetchData, loading, controll
     const { pageIndex, pageSize, sortBy, filters} = state;
     const [ textToSearch, setTextToSearch ] = useState('');
     const { elementsToSearch } = useContext(SearchElementsContext); 
+    const [ alert, setAlert ] = useState(false);
      
        
     
@@ -72,13 +73,12 @@ export default function TableBase ({columns,  data, fetchData, loading, controll
         if (user.role.includes("ROLE_EDIT_ALL")) {       
             setShowModify(row.original); 
         }              
-    }
-
-    
+    }    
       
     return (
         <>        
-            <SearchTextContext.Provider value={{ textToSearch, setTextToSearch }}>               
+            <SearchTextContext.Provider value={{ textToSearch, setTextToSearch }}>
+            { alert && <Alert open={alert ? true : false} setOpen={setAlert} type={alert.type}>{alert.message}</Alert> }               
                 <Container >            
                     <Toolbar 
                         allColumns={allColumns} 
@@ -121,7 +121,7 @@ export default function TableBase ({columns,  data, fetchData, loading, controll
                         }          
                     </MUITable >                        
                 </Container>
-                { showModify != false && <ModifyRowTable row={ showModify } setOpen={ setShowModify }/> }          
+                { showModify != false && <ModifyRowTable row={ showModify } setOpen={ setShowModify } setAlert={setAlert}/> }          
             </SearchTextContext.Provider>         
         </>
     )

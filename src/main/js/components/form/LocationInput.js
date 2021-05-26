@@ -7,9 +7,9 @@ import { useTranslation } from 'react-i18next';
 export default function LocationInput (props) {
 
     const { t } = useTranslation(); 
-    const store = useContext(LocationStore);
+    const store = useContext(LocationStore);    
 
     return (
-        <SelectInput name="location" label={t('form.label.location')} values={store} {...props} />
+        <SelectInput name="location" label={t('form.label.location')} store={store} {...props} />
     )
 }
