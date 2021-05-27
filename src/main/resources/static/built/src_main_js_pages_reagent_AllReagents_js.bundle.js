@@ -226,13 +226,17 @@ var ReagentTable = function ReagentTable() {
       icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement(_material_ui_icons_Save__WEBPACK_IMPORTED_MODULE_24__.default, null),
       name: t('table.tooltip.save'),
       click: function click() {
-        return _lib_export_ReagentPdf__WEBPACK_IMPORTED_MODULE_18__.default.generatePdf(undefined, false);
+        return _lib_export_ReagentPdf__WEBPACK_IMPORTED_MODULE_18__.default.generatePdf({
+          columns: columns
+        }, false);
       }
     }, {
       icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement(_material_ui_icons_Print__WEBPACK_IMPORTED_MODULE_25__.default, null),
       name: t('table.tooltip.print'),
       click: function click() {
-        return _lib_export_ReagentPdf__WEBPACK_IMPORTED_MODULE_18__.default.generatePdf(undefined, true);
+        return _lib_export_ReagentPdf__WEBPACK_IMPORTED_MODULE_18__.default.generatePdf({
+          columns: columns
+        }, true);
       }
     }, {
       icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement(_icons_ExcelIcon__WEBPACK_IMPORTED_MODULE_8__.default, null),
@@ -907,9 +911,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs3_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/createClass */ "./node_modules/@babel/runtime-corejs3/helpers/esm/createClass.js");
 /* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs3/regenerator */ "./node_modules/@babel/runtime-corejs3/regenerator/index.js");
 /* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _service_backend_AllReagentService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../service/backend/AllReagentService */ "./src/main/js/service/backend/AllReagentService.js");
-/* harmony import */ var _service_export_PdfService__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../service/export/PdfService */ "./src/main/js/service/export/PdfService.js");
-/* harmony import */ var _service_export_CSVService__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../service/export/CSVService */ "./src/main/js/service/export/CSVService.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/map */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/map.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _service_backend_AllReagentService__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../service/backend/AllReagentService */ "./src/main/js/service/backend/AllReagentService.js");
+/* harmony import */ var _service_export_PdfService__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../service/export/PdfService */ "./src/main/js/service/export/PdfService.js");
+/* harmony import */ var _service_export_CSVService__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../service/export/CSVService */ "./src/main/js/service/export/CSVService.js");
+/* harmony import */ var _components_periodictable_DataPeriodicTable__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../components/periodictable/DataPeriodicTable */ "./src/main/js/components/periodictable/DataPeriodicTable.js");
+/* harmony import */ var _components_periodictable_DataPeriodicTable__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_components_periodictable_DataPeriodicTable__WEBPACK_IMPORTED_MODULE_8__);
+
+
 
 
 
@@ -927,33 +937,44 @@ var ReagentPdf = /*#__PURE__*/function () {
     key: "generatePdf",
     value: function () {
       var _generatePdf = (0,_babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)( /*#__PURE__*/_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee(params) {
+        var _context, _context2;
+
         var print,
             data,
             pdfService,
             toPdf,
             _args = arguments;
-        return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee$(_context) {
+        return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee$(_context3) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
                 print = _args.length > 1 && _args[1] !== undefined ? _args[1] : false;
-                _context.next = 3;
-                return _service_backend_AllReagentService__WEBPACK_IMPORTED_MODULE_4__.default.getAll();
+                _context3.next = 3;
+                return _service_backend_AllReagentService__WEBPACK_IMPORTED_MODULE_5__.default.getAll();
 
               case 3:
-                data = _context.sent;
-                pdfService = new _service_export_PdfService__WEBPACK_IMPORTED_MODULE_5__.default();
+                data = _context3.sent;
+                pdfService = new _service_export_PdfService__WEBPACK_IMPORTED_MODULE_6__.default({
+                  orientation: 'landscape'
+                });
                 toPdf = {
                   data: data,
-                  headers: [["ID", "English Name", "Nombre Español"]],
-                  columns: ["id", "spanishName", "internalReference"],
+                  headers: [_babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_4___default()(_context = params.columns).call(_context, function (_ref) {
+                    var Header = _ref.Header,
+                        accessor = _ref.accessor;
+                    if (accessor != 'elements' && accessor != 'suppliers' && accessor != 'molecularWeight' && accessor != 'user.name' && accessor != 'englishName' && accessor != 'cas') return Header;
+                  })],
+                  columns: _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_4___default()(_context2 = params.columns).call(_context2, function (_ref2) {
+                    var accessor = _ref2.accessor;
+                    if (accessor != 'elements' && accessor != 'suppliers' && accessor != 'molecularWeight' && accessor != 'user.name' && accessor != 'englishName' && accessor != 'cas') return accessor;
+                  }),
                   title: "REAGENTS"
                 };
                 print === true ? pdfService.generatePdfPrint(toPdf) : pdfService.generatePdfDownloadable(toPdf);
 
               case 7:
               case "end":
-                return _context.stop();
+                return _context3.stop();
             }
           }
         }, _callee);
@@ -970,22 +991,22 @@ var ReagentPdf = /*#__PURE__*/function () {
     value: function () {
       var _generateCSV = (0,_babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)( /*#__PURE__*/_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee2(params) {
         var data, columns, csvService;
-        return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee2$(_context2) {
+        return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee2$(_context4) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context4.prev = _context4.next) {
               case 0:
-                _context2.next = 2;
-                return _service_backend_AllReagentService__WEBPACK_IMPORTED_MODULE_4__.default.getAll();
+                _context4.next = 2;
+                return _service_backend_AllReagentService__WEBPACK_IMPORTED_MODULE_5__.default.getAll();
 
               case 2:
-                data = _context2.sent;
+                data = _context4.sent;
                 columns = params.columns;
-                csvService = new _service_export_CSVService__WEBPACK_IMPORTED_MODULE_6__.default();
+                csvService = new _service_export_CSVService__WEBPACK_IMPORTED_MODULE_7__.default();
                 csvService.generateCSV(data, columns);
 
               case 6:
               case "end":
-                return _context2.stop();
+                return _context4.stop();
             }
           }
         }, _callee2);
@@ -1001,16 +1022,16 @@ var ReagentPdf = /*#__PURE__*/function () {
     key: "generateExcel",
     value: function () {
       var _generateExcel = (0,_babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)( /*#__PURE__*/_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee3(title) {
-        return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee3$(_context3) {
+        return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee3$(_context5) {
           while (1) {
-            switch (_context3.prev = _context3.next) {
+            switch (_context5.prev = _context5.next) {
               case 0:
-                _context3.next = 2;
-                return _service_backend_AllReagentService__WEBPACK_IMPORTED_MODULE_4__.default.getExcelExport(title);
+                _context5.next = 2;
+                return _service_backend_AllReagentService__WEBPACK_IMPORTED_MODULE_5__.default.getExcelExport(title);
 
               case 2:
               case "end":
-                return _context3.stop();
+                return _context5.stop();
             }
           }
         }, _callee3);
@@ -1473,10 +1494,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var PdfService = /*#__PURE__*/function () {
-  function PdfService() {
-    var size = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "A4";
-    var orientation = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "portrait";
-    var unit = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "pt";
+  function PdfService(_ref) {
+    var _ref$size = _ref.size,
+        size = _ref$size === void 0 ? "A4" : _ref$size,
+        _ref$orientation = _ref.orientation,
+        orientation = _ref$orientation === void 0 ? "portrait" : _ref$orientation,
+        _ref$unit = _ref.unit,
+        unit = _ref$unit === void 0 ? "pt" : _ref$unit;
 
     (0,_babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__.default)(this, PdfService);
 

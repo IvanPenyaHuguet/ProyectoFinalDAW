@@ -1,17 +1,34 @@
 import ReagentService from '../../service/backend/AllReagentService';
 import PdfService from '../../service/export/PdfService';
 import CSVService from '../../service/export/CSVService';
+import { elements } from '../../components/periodictable/DataPeriodicTable';
 
 class ReagentPdf {
 
     async generatePdf(params, print = false) {
-       
+        
         const data = await ReagentService.getAll();
-        const pdfService = new PdfService();
+        const pdfService = new PdfService({orientation: 'landscape'});
         const toPdf = { 
             data: data,
-            headers: [["ID", "English Name", "Nombre Español" ]],
-            columns: ["id", "spanishName", "internalReference"],
+            headers: [params.columns.map(({Header, accessor}) =>{
+                if (accessor != 'elements' 
+                && accessor != 'suppliers' 
+                && accessor != 'molecularWeight'
+                && accessor != 'user.name'
+                && accessor != 'englishName'
+                && accessor != 'cas')
+                    return Header;
+            }  )],
+            columns: params.columns.map(({accessor}) => {
+                if (accessor != 'elements' 
+                && accessor != 'suppliers' 
+                && accessor != 'molecularWeight'
+                && accessor != 'user.name'
+                && accessor != 'englishName'
+                && accessor != 'cas')                    
+                    return accessor;
+            }),
             title: "REAGENTS"
         };        
 

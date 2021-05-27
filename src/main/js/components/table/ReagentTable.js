@@ -59,8 +59,8 @@ const ReagentTable = () => {
     
     const speedDial = useMemo ( () => {
         const actions = [        ,
-            { icon: <SaveIcon />, name: t('table.tooltip.save'), click: () => reagentPDF.generatePdf(undefined, false)},
-            { icon: <PrintIcon />, name: t('table.tooltip.print'), click: () => reagentPDF.generatePdf(undefined, true) },
+            { icon: <SaveIcon />, name: t('table.tooltip.save'), click: () => reagentPDF.generatePdf({columns}, false)},
+            { icon: <PrintIcon />, name: t('table.tooltip.print'), click: () => reagentPDF.generatePdf({columns}, true) },
             { icon: <ExcelIcon />, name: t('table.tooltip.excel'), click: () => reagentPDF.generateExcel("Reagents") },
             { icon: <CSVIcon />, name: t('table.tooltip.csv'), click: () => reagentPDF.generateCSV({columns: columns})},
         ];    

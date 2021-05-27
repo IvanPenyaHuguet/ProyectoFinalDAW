@@ -7,7 +7,7 @@ import i18next from 'i18next';
 export default class PdfService { 
 
 
-    constructor (size = "A4", orientation = "portrait", unit="pt") {
+    constructor ({size = "A4", orientation = "portrait", unit="pt"}) {
         this.size = size;
         this.orientation = orientation;
         this.unit = unit;
