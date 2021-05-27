@@ -172,6 +172,6 @@ public class ReagentsApiController implements BaseApiController{
         response = reagentService.reagentsByUtilization(params);
         
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
-    }
+    }    
 
 }

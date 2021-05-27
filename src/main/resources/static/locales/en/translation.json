@@ -38,6 +38,11 @@
       "typetoadd": "Type to add",
       "utilization": "Utilization"
     },
+    "commentary": {
+      "failure": "Comment could not be saved",
+      "success": "Commentary saved",
+      "title": "Write a new commentary"
+    },
     "label": {
       "location": "Location",
       "password": "Password",
@@ -59,17 +64,25 @@
         "username": "The field can not be empty."
       },
       "title": "Log in"
+    },
+    "modify": {
+      "delete": {
+        "succesful": "The reagent has been deleted",
+        "unsuccesful": "Something bad happened when deleting, contact support...."
+      }
     }
   },
   "general": {
     "add": "Add",
     "by": "by",
+    "clean": "Clean",
     "close": "Close",
     "delete": "Delete",
     "edit": "Edit",
     "english": "English - US",
     "return": "Return",
     "save": "Save",
+    "send": "Send",
     "spanish": "Spanish - ES"
   },
   "header": {

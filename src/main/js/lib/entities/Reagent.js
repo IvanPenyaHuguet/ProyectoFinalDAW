@@ -67,7 +67,11 @@ export default class Reagent {
 
     addReagent(values, setSubmitting, setAlert, perTable = undefined) {
         if (perTable)
-            values.elements = ElementUtils.perTableToServer(values.elements, perTable);        
+            values.elements = ElementUtils.perTableToServer(values.elements, perTable);      
+        values.suppliers.forEach( (val, ind) =>  {
+            values.suppliers[ind] = JSON.parse(val);
+        });
+        values.location = JSON.parse(values.location);
         reagentService.save(values).then((res) => {
             if (res.status != 200) {
                 setAlert ? setAlert({type: 'error', message: i18next.t('form.add.errors.unsuccesful')}) : null;
@@ -98,6 +102,22 @@ export default class Reagent {
             location: this.location,
             reagentType: this.reagentType
         }
+    }
+
+    deleteReagent( reagent , setAlert) {
+        reagentService.delete({ ...reagent })
+        .then(res => {
+            if (res.status != 200) {
+                setAlert ? setAlert({type: 'error', message: i18next.t('form.modify.delete.unsuccesful')}) : null;
+            } 
+            else {
+                setAlert ? setAlert({type: 'success', message: i18next.t('form.modify.delete.succesful')}) : null;
+            }           
+        })
+        .catch(e => {
+            errorService.checkError(e, setAlert); 
+            setSubmitting(false);
+        }); 
     }
 
 

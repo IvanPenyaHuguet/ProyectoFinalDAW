@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Formik } from 'formik';
 
-import CircularProgress from '@material-ui/core/CircularProgress';
 import Container from '@material-ui/core/Container';
 import SaveIcon from '@material-ui/icons/Save';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -14,6 +13,7 @@ import ButtonPrincipal from '../button/ButtonPrincipal';
 import LocationInput from '../form/LocationInput';
 import UtilizationInput from '../form/UtilizationInput';
 import SuppliersInput from '../form/SuppliersInput';
+import ReagentCommentaries from '../commentaries/ReagentCommentaries';
 
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -60,8 +60,7 @@ export default function ReagentModify ({ row, setOpen, setAlert }) {
     
     const inorganicReagent = new InorganicReagent(); 
     const { t } = useTranslation();
-    const classes = useStyles();
-    const [ loading, setLoading ] = useState(true); 
+    const classes = useStyles();    
        
     for ( const item in row) {
         if (row[item] === null)
@@ -79,7 +78,8 @@ export default function ReagentModify ({ row, setOpen, setAlert }) {
     }
 
     const onDeleteClick = () => {
-
+        inorganicReagent.deleteReagent(row , setAlert);
+        handleClose();
     }    
 
     return (
@@ -125,6 +125,7 @@ export default function ReagentModify ({ row, setOpen, setAlert }) {
                             label={t('form.add.molecularWeight')}                               
                             name="molecularWeight"                             
                         />
+                        <ReagentCommentaries row={ row } setAlert={setAlert}/>
                     </DialogContent>
                     <DialogActions className={classes.actions}>
                         <ButtonPrincipal color='default' onClick={handleClose} startIcon={<CloseIcon />}>{t('general.close')}</ButtonPrincipal>                              

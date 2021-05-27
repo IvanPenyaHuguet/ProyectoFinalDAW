@@ -79,6 +79,15 @@ class BaseService {
         data: {...values}
       })
     }
+
+    async delete ( values ) {
+      return await axios({
+        method: 'DELETE',
+        url: "/api" + this.URL + '/' + values.id,       
+      })
+    }
+
+
 }  
     
 export default BaseService;

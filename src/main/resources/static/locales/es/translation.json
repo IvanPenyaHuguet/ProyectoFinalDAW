@@ -38,6 +38,11 @@
       "typetoadd": "Tipo a añadir",
       "utilization": "Uso"
     },
+    "commentary": {
+      "failure": "",
+      "success": "",
+      "title": ""
+    },
     "label": {
       "location": "Localización",
       "password": "Contraseña",
@@ -59,17 +64,24 @@
         "username": "El campo no puede estar vacío."
       },
       "title": "Inicia sesión"
+    },
+    "modify": {
+      "delete": {
+        "unsuccesful": ""
+      }
     }
   },
   "general": {
     "add": "Añadir",
     "by": "por",
+    "clean": "",
     "close": "Cerrar",
     "delete": "Borrar",
     "edit": "Editar",
     "english": "Inglés - US",
     "return": "Volver",
     "save": "Guardar",
+    "send": "",
     "spanish": "Español - ES"
   },
   "header": {
