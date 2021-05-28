@@ -233,8 +233,6 @@ public class ReagentService {
             }
             if (reagent instanceof OrganicReagent) {
                 ((OrganicReagent) reagent).setSecondaryIntReference(((OrganicReagent) reagentToChange).getSecondaryIntReference());
-                if (! Objects.isNull(((OrganicReagent) reagentToChange).getImage()))
-                    ((OrganicReagent) reagent).setImage(((OrganicReagent) reagentToChange).getImage());
             }
             
 

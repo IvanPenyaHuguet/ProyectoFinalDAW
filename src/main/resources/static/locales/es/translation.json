@@ -34,6 +34,7 @@
       "internalreference": "Referencia Interna",
       "molecularWeight": "Peso Molecular",
       "quantity": "Cantidad",
+      "secintref": "",
       "spanishname": "Nombre en Español",
       "typetoadd": "Tipo a añadir",
       "utilization": "Uso"
@@ -67,6 +68,7 @@
     },
     "modify": {
       "delete": {
+        "succesful": "",
         "unsuccesful": ""
       }
     }

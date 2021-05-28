@@ -31,9 +31,11 @@
         "unsuccesful": "Something bad happened when saving, contact support, a trace has been sended..."
       },
       "formula": "Formula",
+      "image": "Image",
       "internalreference": "Internal Reference",
       "molecularWeight": "Molecular Weight",
       "quantity": "Quantity",
+      "secintref": "Secondary Reference",
       "spanishname": "Spanish Name",
       "typetoadd": "Type to add",
       "utilization": "Utilization"

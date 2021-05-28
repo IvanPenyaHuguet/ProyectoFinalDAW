@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { Formik } from 'formik';
 
 import Container from '@material-ui/core/Container';
@@ -6,18 +6,16 @@ import SaveIcon from '@material-ui/icons/Save';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CloseIcon from '@material-ui/icons/Close';
 
+import InorganicReagentModify from './InorganicReagentModify';
+import OrganicReagentModify from './OrganicReagentModify';
 import InorganicReagent from '../../lib/entities/InorganicReagent';
-import FormInputText from '../form/MUIFormInputText';
+import OrganicReagent from '../../lib/entities/OrganicReagent';
 import Form from '../form/Form';
 import ButtonPrincipal from '../button/ButtonPrincipal';
-import LocationInput from '../form/LocationInput';
-import UtilizationInput from '../form/UtilizationInput';
-import SuppliersInput from '../form/SuppliersInput';
-import ReagentCommentaries from '../commentaries/ReagentCommentaries';
+
+import { TableContext  } from '../../context/utils/TableContext';
 
 import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
 
 import { useTranslation } from 'react-i18next';
 import { makeStyles } from '@material-ui/core/styles';
@@ -27,25 +25,12 @@ const useStyles = makeStyles((theme) => ({
     container: {
        height: '100%',
        width: '100%'
-    },
-    title: {
-        textAlign: 'center',
-        fontSize: '25px'
-    },
-    containertitle: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },  
+    },   
     form: {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
         alignItems: 'center'
-    },
-    content: {
-        width: '100%'
     },
     actions: {
         display: 'flex',
@@ -58,7 +43,14 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ReagentModify ({ row, setOpen, setAlert }) {
     
-    const inorganicReagent = new InorganicReagent(); 
+    
+    const tableStrContext = row.reagentType == 'Organic' ? 'OrganicReagent' : useContext(TableContext); 
+    
+    const OPTIONS_CONTEXT = {
+        InorganicReagent: () => new InorganicReagent(),           
+        OrganicReagent:  () => new OrganicReagent()            
+    }    
+    const service = OPTIONS_CONTEXT[tableStrContext]();   
     const { t } = useTranslation();
     const classes = useStyles();    
        
@@ -78,7 +70,7 @@ export default function ReagentModify ({ row, setOpen, setAlert }) {
     }
 
     const onDeleteClick = () => {
-        inorganicReagent.deleteReagent(row , setAlert);
+        service.deleteReagent(row , setAlert);
         handleClose();
     }    
 
@@ -86,47 +78,15 @@ export default function ReagentModify ({ row, setOpen, setAlert }) {
         <Container className={classes.container}>
             <Formik
                 initialValues={initialValues}
-                validationSchema={inorganicReagent.getValidationSchema(t)}                
+                validationSchema={service.getValidationSchema(t)}                
                 onSubmit= {(values, { setSubmitting }) => {                    
-                    inorganicReagent.addReagent(values, setSubmitting, setAlert )
+                    service.addReagent(values, setSubmitting, setAlert )
                 }}
             >
             { ({ submitForm, isSubmitting, values }) => (
                 <Form className={classes.form}>
-                    <DialogTitle className={classes.containertitle} id="dialog-title">
-                        <FormInputText 
-                            label=''
-                            name={row.name ? 'name' : 'spanishName'}  
-                            className={classes.title} 
-                            inputProps={{ 'aria-label': 'naked' }}
-                        />                        
-                    </DialogTitle>                   
-                    <DialogContent dividers className={classes.content}>                            
-                        <FormInputText 
-                            name="internalReference"
-                            label={t('form.add.internalreference')}    
-                        />                       
-                        <FormInputText 
-                            label={t('form.add.englishName')} 
-                            name="englishName"   
-                        />
-                        <FormInputText 
-                            label={t('form.add.cas')}
-                            name="cas"   
-                        />
-                        <LocationInput />
-                        <UtilizationInput />    
-                        <SuppliersInput values={values}/>                     
-                        <FormInputText 
-                            label={t('form.add.quantity')}
-                            name="quantity"    
-                        />
-                        <FormInputText 
-                            label={t('form.add.molecularWeight')}                               
-                            name="molecularWeight"                             
-                        />
-                        <ReagentCommentaries row={ row } setAlert={setAlert}/>
-                    </DialogContent>
+                    { tableStrContext === 'InorganicReagent' &&  <InorganicReagentModify row={row} setAlert={setAlert} values={values} />}
+                    { tableStrContext === 'OrganicReagent' &&  <OrganicReagentModify row={row} setAlert={setAlert} values={values} />}
                     <DialogActions className={classes.actions}>
                         <ButtonPrincipal color='default' onClick={handleClose} startIcon={<CloseIcon />}>{t('general.close')}</ButtonPrincipal>                              
                         <ButtonPrincipal color='secondary' onClick={onDeleteClick} endIcon={<DeleteIcon />}>{t('general.delete')}</ButtonPrincipal>

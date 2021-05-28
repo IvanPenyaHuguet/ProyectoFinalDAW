@@ -4,6 +4,7 @@ import Title from '../general/titles/Title';
 
 import TypeAddSelect from './TypeAddSelect';
 import InorganicReagentAddFormat from './InorganicReagentAddFormat';
+import OrganicReagentAddFormat from './OrganicReagentAddFormat';
 
 import { useTranslation } from 'react-i18next';
 import { TableContext  } from '../../context/utils/TableContext';
@@ -47,7 +48,7 @@ export default function AddReagentComponent () {
                 </Container>
                 <Container className={classes.container}>
                     {addContext === 'InorganicReagent' && <InorganicReagentAddFormat />}
-                                    
+                    {addContext === 'OrganicReagent' && <OrganicReagentAddFormat />}                
                 </Container>
             </Container>
         </RefMaskStoreProvider>
