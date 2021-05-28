@@ -21,7 +21,6 @@ import reagentPDF from '../../lib/export/ReagentPdf';
 import { useHistory } from "react-router-dom";
 import { RTCSearchFields, RTCColumns } from '../../lib/tabledata/ReagentTableConf';
 import { TableContext } from '../../context/utils/TableContext.js';
-import { LocalizationContext } from '../../context/LocalizationContext';
 
 
 
@@ -29,8 +28,7 @@ const ReagentTable = () => {
    
     const { t } = useTranslation();
     const TITLE = t('table.title.reagents');
-    const { user } = useContext(AuthContext);
-    const { language } = useContext(LocalizationContext);    
+    const { user } = useContext(AuthContext);      
     const [ data , setData ] = useState([]);     
     const [ loading, setLoading ] = useState(false); 
     const [ controlledPageCount, setControlledPageCount ] = useState(0);
@@ -45,12 +43,23 @@ const ReagentTable = () => {
     const [ fieldsToSearch, setFieldsToSearch ] = useState(searchFields);
     const [ elementsToSearch, setElementsToSearch ] = useState({});
 
+    const previousStates = useRef({
+        elements: [],
+        text: '',
+        pageIndex: 0,
+        pageSize: 10,
+        location: '',
+        utilization: '',
+        sortBy: {},
+        previous: 0,
+    })
+
     useEffect(() => {
-        if (filterLocation != undefined && filterLocation != ''){
-            setFilter({ location: filterLocation });            
+        if (filterLocation != undefined && filterLocation != '' && filterLocation  !== previousStates.current.location){
+            setFilter({ ...filter, location: filterLocation });            
         }
-        else if (filterUtilization != undefined && filterUtilization != '') {
-            setFilter({utilization: filterUtilization});            
+        else if (filterUtilization != undefined && filterUtilization != '' && filterUtilization  !== previousStates.current.utilization) {
+            setFilter({ ...filter, utilization: filterUtilization });            
         }
         else {            
             setFilter(null);
@@ -73,50 +82,61 @@ const ReagentTable = () => {
 
     const fetchData = useCallback((pageindex, pagesize, textToSearch, elementsToSearch, sortBy, filter) => {
         const fetchId = ++fetchIdRef.current;
-        const filterLocationChanged = filter ? filter.location  !== '' && filter.location !== '0' && filter.location != null : false;
-        const filterUtilizationChanged = filter ? filter.utilization  !== '' && filter.utilization !== '0' && filter.utilization != null && filter.utilization !== 'All' : false;
-        const elementsChanged = elementsToSearch && Object.keys(elementsToSearch).length > 0;
-        const textChanged = textToSearch !== '';
-        
+        const filterLocationChanged = filter ? filter.location  !== previousStates.current.location && filter.location !== '0' && filter.location != null : false;
+        const filterUtilizationChanged = filter ? filter.utilization !== previousStates.current.utilization && filter.utilization !== '0' && filter.utilization != null && filter.utilization !== 'All' : false;
+        const elementsChanged = elementsToSearch && Object.keys(elementsToSearch).length > 0 && elementsToSearch != previousStates.current.elements;
+        const textChanged = textToSearch !== previousStates.current.text;
+        const sortByChanged = sortBy !== previousStates.current.sortBy;
+        const pageChanged = pageindex !== previousStates.current.pageIndex || pagesize !== previousStates.current.pageSize;
 
+                
         if (fetchId === fetchIdRef.current) {
             
             setLoading(true);
-            if ( elementsChanged) {
+
+            if ( elementsChanged || ( pageChanged && previousStates.current.previous == 'E')) {
+                previousStates.current.elements = elementsToSearch;
+                previousStates.current.previous = 'E'; 
                 (SearchService.searchReagentByElements(pageindex, pagesize, elementsToSearch)
                     .then (res => processResult(res))
-                    .catch( err => errorService.checkError(err)));
-                console.log("elements")
+                    .catch( err => errorService.checkError(err)));                
             }
-            else if (filterLocationChanged){                
+            else if (filterLocationChanged || ( (sortByChanged || pageChanged) && previousStates.current.previous == 'L')){
+                previousStates.current.location = filter.location;
+                previousStates.current.previous = 'L';               
                 BackendService.getPageLocation(filter.location, pageindex, pagesize, sortBy)
                     .then (res => processResult(res))
-                    .catch( err => errorService.checkError(err));   
-                console.log("filterLoc")
+                    .catch( err => errorService.checkError(err));  
             }
-            else if (filterUtilizationChanged){                
+            else if (filterUtilizationChanged || ( (sortByChanged || pageChanged) && previousStates.current.previous == 'U')){ 
+                previousStates.current.utilization = filter.utilization;
+                previousStates.current.previous = 'U';                
                 BackendService.getPageUtilization(filter.utilization, pageindex, pagesize, sortBy)
                     .then (res => processResult(res))
-                    .catch( err => errorService.checkError(err));   
-                console.log("filterU")
+                    .catch( err => errorService.checkError(err));  
             }
-            else if(textChanged) {                
+            else if(textChanged || ( pageChanged && previousStates.current.previous == 'T')) {  
+                previousStates.current.text = textToSearch;
+                previousStates.current.previous = 'T';              
                 SearchService.searchReagentPage(pageindex, pagesize, textToSearch, fieldsToSearch.filter( ({selected}) => selected===true).map(({value}) =>  value ))
                     .then (res => processResult(res))
-                    .catch( err => errorService.checkError(err));
-                console.log("text")
+                    .catch( err => errorService.checkError(err));                
             }
-            else {                
+            else {   
+                previousStates.current.previous = 'G';              
                 BackendService.getPage( pageindex, pagesize, sortBy )
                 .then (res => processResult(res))
-                .catch (e => errorService.checkError(e));
-                console.log("general")
+                .catch (e => errorService.checkError(e));                
             }
+            
             const processResult = result => {                
                 setLoading(false);       
                 setControlledPageCount(result.data.numPages);  
                 setTotalElements(result.data.totalElements);  
                 setData(result.data.data);
+                previousStates.current.sortBy = sortBy;
+                previousStates.current.pageIndex = pageindex;
+                previousStates.current.pageSize = pagesize;                
             }
             
         }        
@@ -127,31 +147,31 @@ const ReagentTable = () => {
 
     return (
         <>   
-        <TableContext.Provider value={"InorganicReagent"}>
-            <SpeedDialContext.Provider value={speedDial}>
-                <SearchFieldContext.Provider value={{fieldsToSearch, setFieldsToSearch}}>  
-                    <SearchElementsContext.Provider value={{elementsToSearch, setElementsToSearch}}>
-                        <FilterLocationContext.Provider value={{ filterLocation, setFilterLocation }} >
-                            <FilterUtilizationContext.Provider value={{ filterUtilization, setFilterUtilization }}>
-                                <TableBase 
-                                    columns={columns} 
-                                    backendService={BackendService} 
-                                    loading={loading} 
-                                    setLoading={setLoading}
-                                    data={data} 
-                                    controlledPageCount={controlledPageCount} 
-                                    totalElements={totalElements}
-                                    title={TITLE}
-                                    fetchData={fetchData}
-                                    searchFields={searchFields} 
-                                    filter={filter}                  
-                                /> 
-                            </FilterUtilizationContext.Provider>  
-                        </FilterLocationContext.Provider>
-                    </SearchElementsContext.Provider>
-                </SearchFieldContext.Provider>
-            </SpeedDialContext.Provider>
-        </TableContext.Provider>  
+            <TableContext.Provider value={"InorganicReagent"}>
+                <SpeedDialContext.Provider value={speedDial}>
+                    <SearchFieldContext.Provider value={{fieldsToSearch, setFieldsToSearch}}>  
+                        <SearchElementsContext.Provider value={{elementsToSearch, setElementsToSearch}}>
+                            <FilterLocationContext.Provider value={{ filterLocation, setFilterLocation }} >
+                                <FilterUtilizationContext.Provider value={{ filterUtilization, setFilterUtilization }}>
+                                    <TableBase 
+                                        columns={columns} 
+                                        backendService={BackendService} 
+                                        loading={loading} 
+                                        setLoading={setLoading}
+                                        data={data} 
+                                        controlledPageCount={controlledPageCount} 
+                                        totalElements={totalElements}
+                                        title={TITLE}
+                                        fetchData={fetchData}
+                                        searchFields={searchFields} 
+                                        filter={filter}                  
+                                    /> 
+                                </FilterUtilizationContext.Provider>  
+                            </FilterLocationContext.Provider>
+                        </SearchElementsContext.Provider>
+                    </SearchFieldContext.Provider>
+                </SpeedDialContext.Provider>
+            </TableContext.Provider>  
         </>
     )
 

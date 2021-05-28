@@ -109,7 +109,7 @@ export const RTCColumns = t => {return [
     },{
         Header: t('table.column.location'),
         accessor: "location.name",
-        disableSortBy: false,
+        disableSortBy: true,
         disableFilters: false,
         Filter: SelectColumnFilterLocation,            
     },{
