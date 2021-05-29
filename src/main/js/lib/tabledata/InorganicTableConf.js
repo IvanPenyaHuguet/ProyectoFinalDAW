@@ -10,7 +10,7 @@ import SelectColumnFilterUtilization from '../../components/table/filter/SelectC
 
 export const RTCSearchFields = t => { return [
     {
-        value: "spanishName",
+        value: "name",
         name: t('table.column.spanishName'),
         selected: true
     },{
@@ -50,7 +50,7 @@ export const RTCColumns = t => {return [
         disableFilters: true
     },{
         Header: t('table.column.spanishName'),
-        accessor: "spanishName",
+        accessor: "name",
         disableSortBy: false,
         disableFilters: true
     },{

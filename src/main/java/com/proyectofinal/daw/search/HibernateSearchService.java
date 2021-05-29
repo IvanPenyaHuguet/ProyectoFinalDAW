@@ -26,7 +26,7 @@ public class HibernateSearchService {
         SearchSession searchSession = Search.session( entityManager ); 
         SearchResult<Reagent> result = searchSession.search( Reagent.class ) 
             .where( f -> f.match() 
-                .fields( "spanishName", "englishName", "cas" )
+                .fields( "name", "englishName", "cas" )
                 .matching( searchTerm ) )
                 .fetch( 20 ); 
         //long totalHitCount = result.total().hitCount(); 

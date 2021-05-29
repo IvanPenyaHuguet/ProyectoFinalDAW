@@ -69,10 +69,10 @@ public abstract class Reagent implements Serializable, Compound {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;    
-    @Column(unique = true, nullable = false)
+    @Column ( unique = true, nullable = false)
     @FullTextField( analyzer= "spanish", projectable = Projectable.YES)
     @KeywordField(name = "spanishName_sort", normalizer = "spanish", sortable = Sortable.YES)
-    private String spanishName;
+    private String name;
     @FullTextField ( analyzer = "english")
     private String englishName;
     @Column(nullable = false, unique=true)
@@ -215,16 +215,16 @@ public abstract class Reagent implements Serializable, Compound {
     /** 
      * @return String
      */
-    public String getSpanishName() {
-        return this.spanishName;
+    public String getName() {
+        return this.name;
     }
 
     
     /** 
      * @param spanishName
      */
-    public void setSpanishName(String spanishName) {
-        this.spanishName = spanishName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     

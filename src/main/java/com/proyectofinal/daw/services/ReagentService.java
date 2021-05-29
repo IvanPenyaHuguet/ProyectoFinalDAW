@@ -85,7 +85,7 @@ public class ReagentService {
         
         return reagentRepo.findById(id)
         .map(reagent-> {
-            reagent.setSpanishName(reagentToChange.getSpanishName());
+            reagent.setName(reagentToChange.getName());
             reagent.setEnglishName(reagentToChange.getEnglishName());            
             return reagentRepo.save(reagent);
         })
@@ -212,7 +212,7 @@ public class ReagentService {
             Reagent reagent = reagentRepo.findById(reagentToChange.getId())
             .orElse(reagentToChange.getReagentType().equals(Reagent.INORGANIC_REAGENT) ? new InorganicReagent() : new OrganicReagent());
             
-            reagent.setSpanishName(reagentToChange.getSpanishName());
+            reagent.setName(reagentToChange.getName());
             reagent.setEnglishName(reagentToChange.getEnglishName());   
             reagent.setInternalReference(reagentToChange.getInternalReference());
             reagent.setQuantity(reagentToChange.getQuantity());

@@ -53,7 +53,7 @@ export default function OrganicReagentAddFormat () {
                         <IntRefInput mask={refMask} />                        
                         <FormInputText 
                             label={t('form.add.spanishname')}                                
-                            name="spanishName"   
+                            name="name"   
                         />
                         <FormInputText 
                             label={t('form.add.englishName')} 

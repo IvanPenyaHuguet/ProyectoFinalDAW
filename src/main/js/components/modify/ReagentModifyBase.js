@@ -39,7 +39,7 @@ export default function ReagentModifyBase ({children, row, values, setAlert}) {
             <DialogTitle className={classes.containertitle} id="dialog-title">
                 <FormInputText 
                     label=''
-                    name={row.name ? 'name' : 'spanishName'}  
+                    name={row.name}  
                     className={classes.title} 
                     inputProps={{ 'aria-label': 'naked' }}
                 />                        

@@ -375,7 +375,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var RTCSearchFields = function RTCSearchFields(t) {
   return [{
-    value: "spanishName",
+    value: "name",
     name: t('table.column.spanishName'),
     selected: true
   }, {
@@ -418,7 +418,7 @@ var RTCColumns = function RTCColumns(t) {
     disableFilters: true
   }, {
     Header: t('table.column.spanishName'),
-    accessor: "spanishName",
+    accessor: "name",
     disableSortBy: false,
     disableFilters: true
   }, {

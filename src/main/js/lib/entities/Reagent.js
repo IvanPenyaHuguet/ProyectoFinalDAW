@@ -12,7 +12,7 @@ export default class Reagent {
     
     constructor () {
         this.id;
-        this.spanishName;
+        this.name;
         this.englishName;
         this.internalReference;
         this.quantity;
@@ -29,7 +29,7 @@ export default class Reagent {
     }
 
     getInitialValue( reagentType){                    
-        this.spanishName = '';
+        this.name = '';
         this.englishName = '';
         this.internalReference = '';
         this.quantity = 1;
@@ -48,7 +48,7 @@ export default class Reagent {
     
     getValidationSchema(t){
         return Yup.object().shape({
-            spanishName: Yup.string()
+            name: Yup.string()
                 .min(2,t('form.add.errors.tooshort'))
                 .max(50,t('form.add.errors.toolong'))
                 .required(t('form.add.errors.required'))
@@ -87,7 +87,7 @@ export default class Reagent {
     getValues(){
         return {
             id: this.id,
-            spanishName: this.spanishName,
+            name: this.name,
             englishName: this.englishName,
             internalReference: this.internalReference,
             quantity: this.quantity,

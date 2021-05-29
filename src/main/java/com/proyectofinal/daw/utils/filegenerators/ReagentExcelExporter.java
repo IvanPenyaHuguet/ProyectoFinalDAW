@@ -65,7 +65,7 @@ public class ReagentExcelExporter extends ExcelExporterBaseImpl {
                 createCell(row, columnCount++,reagent.getId(), style);
                 createCell(row, columnCount++,reagent.getInternalReference(), style);
                 createCell(row, columnCount++,reagent.getEnglishName(), style);
-                createCell(row, columnCount++,reagent.getSpanishName(), style);
+                createCell(row, columnCount++,reagent.getName(), style);
                 createCell(row, columnCount++,reagent.getFormula(), style);
                 createCell(row, columnCount++,reagent.getQuantity(), style);
                 createCell(row, columnCount++,reagent.getCas(), style);
