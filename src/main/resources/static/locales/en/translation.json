@@ -133,6 +133,7 @@
       "cas": "CAS",
       "elements": "Elements",
       "englishName": "English Name",
+      "expiryDate": "Expiration Date",
       "formula": "Formula",
       "id": "ID",
       "location": "Location",

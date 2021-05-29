@@ -38,7 +38,7 @@ const ReagentTable = () => {
     const [ filterUtilization, setFilterUtilization ] = useState('');
     const [ filter, setFilter ] = useState(null);
     const history = useHistory();
-    const columns = useMemo (() => RTCColumns(t));
+    const columns = useMemo (() => RTCColumns(t),[]);
     const searchFields = RTCSearchFields(t);
     const [ fieldsToSearch, setFieldsToSearch ] = useState(searchFields);
     const [ elementsToSearch, setElementsToSearch ] = useState({});

@@ -25,10 +25,6 @@ export const RTCSearchFields = t => { return [
         name: t('table.column.reference'),
         selected: true
     },{
-        value: "utilization",
-        name: t('table.column.utilization'),
-        selected: false
-    },{
         value: "elements.englishName",
         name: t('table.column.elements'),
         selected: false

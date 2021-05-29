@@ -27,7 +27,7 @@ import java.util.Objects;
 @Service
 public class InorganicReagentService extends ReagentService{
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ReagentService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(InorganicReagentService.class);
     
     @Autowired
     InorganicReagentRepository reagentRepo;

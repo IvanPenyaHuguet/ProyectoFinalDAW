@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.KeywordField;
 
 import javax.persistence.Table;
@@ -45,6 +46,7 @@ public abstract class StandardSol implements Serializable, Compound{
     private String name;
     @ManyToMany(mappedBy = "standards")
     @JsonIgnoreProperties("standards")
+    @IndexedEmbedded(includeEmbeddedObjectId = true)
     private List<Element> elements;
     @ManyToMany(mappedBy = "standards")
     @JsonIgnoreProperties("standards")

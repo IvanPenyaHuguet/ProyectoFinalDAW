@@ -28,7 +28,7 @@ import java.util.Objects;
 @Service
 public class OrganicReagentService extends ReagentService{
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ReagentService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(OrganicReagentService.class);
     
     @Autowired
     OrganicReagentRepository reagentRepo;

@@ -152,7 +152,8 @@
     },
     "title": {
       "reagents": {
-        "organic": ""
+        "organic": "",
+        "reagents": ""
       }
     },
     "tooltip": {

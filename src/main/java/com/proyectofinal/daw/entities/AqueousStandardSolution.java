@@ -1,6 +1,6 @@
 package com.proyectofinal.daw.entities;
 
-import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.Basic;
 import javax.persistence.Entity;
@@ -19,7 +19,7 @@ public class AqueousStandardSolution extends StandardSol{
     private static final long serialVersionUID = 1L;
     @Basic
     @Temporal(TemporalType.DATE)
-    private Calendar expiryDate;
+    private Date expiryDate;
     private float molecularWeight;
 
     
@@ -40,9 +40,9 @@ public class AqueousStandardSolution extends StandardSol{
 
     
     /** 
-     * @return Calendar
+     * @return Date
      */
-    public Calendar getExpiryDate() {
+    public Date getExpiryDate() {
         return this.expiryDate;
     }
 
@@ -50,7 +50,7 @@ public class AqueousStandardSolution extends StandardSol{
     /** 
      * @param expiryDate
      */
-    public void setExpiryDate(Calendar expiryDate) {
+    public void setExpiryDate(Date expiryDate) {
         this.expiryDate = expiryDate;
     }
 }

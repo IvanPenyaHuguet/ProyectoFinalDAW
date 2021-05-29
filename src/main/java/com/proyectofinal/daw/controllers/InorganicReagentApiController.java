@@ -32,7 +32,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class InorganicReagentApiController implements BaseApiController{  
     
-    private static final Logger LOGGER = LoggerFactory.getLogger(ReagentsApiController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(InorganicReagentApiController.class);
     
     @Autowired
     InorganicReagentService reagentService;    

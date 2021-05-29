@@ -33,7 +33,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class OrganicReagentApiController implements BaseApiController{  
     
-        private static final Logger LOGGER = LoggerFactory.getLogger(ReagentsApiController.class);
+        private static final Logger LOGGER = LoggerFactory.getLogger(OrganicReagentApiController.class);
         
         @Autowired
         OrganicReagentService reagentService;    
