@@ -48,7 +48,7 @@ public abstract class StandardSol implements Serializable, Compound{
     private List<Element> elements;
     @ManyToMany(mappedBy = "standards")
     @JsonIgnoreProperties("standards")
-    private List<Element> suppliers;
+    private List<Supplier> suppliers;
     private int concentration;
     @Basic
     @Temporal(TemporalType.DATE)
@@ -89,7 +89,7 @@ public abstract class StandardSol implements Serializable, Compound{
     /** 
      * @return List<Element>
      */
-    public List<Element> getSuppliers() {
+    public List<Supplier> getSuppliers() {
         return this.suppliers;
     }
 
@@ -97,7 +97,7 @@ public abstract class StandardSol implements Serializable, Compound{
     /** 
      * @param suppliers
      */
-    public void setSuppliers(List<Element> suppliers) {
+    public void setSuppliers(List<Supplier> suppliers) {
         this.suppliers = suppliers;
     }
 
