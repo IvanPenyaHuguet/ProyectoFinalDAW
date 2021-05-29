@@ -31,6 +31,7 @@
         "unsuccesful": "Algo malo ha ocurrido al guardar, contacte con soporte, ha sido enviada una traza..."
       },
       "formula": "Fórmula",
+      "image": "",
       "internalreference": "Referencia Interna",
       "molecularWeight": "Peso Molecular",
       "quantity": "Cantidad",
@@ -150,7 +151,9 @@
       "searchInput": "Texto a buscar"
     },
     "title": {
-      "reagents": "REACTIVOS"
+      "reagents": {
+        "organic": ""
+      }
     },
     "tooltip": {
       "add": "Añadir",

@@ -131,7 +131,7 @@ public class ReagentsApiController implements BaseApiController{
         LOGGER.info("Has received a request to page: " + page + " |size: " + size + " |sortBy: " + sortBy + " |direction: " + sortByDirection);
         PageRequest pageRequest = PageRequest.of(page, size, Sort.by(sortByDirection, sortBy)); 
         
-        Page<Reagent> pageReagent = reagentService.getAllPage(pageRequest);
+        Page<? extends Reagent> pageReagent = reagentService.getAllPage(pageRequest);
 
         totalPages = pageReagent.getTotalPages();
         totalItems = pageReagent.getTotalElements();

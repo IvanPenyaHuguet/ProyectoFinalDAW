@@ -1,5 +1,3 @@
-//import i18next from '../../i18n';
-//import i18next from 'i18next';
 import React from 'react';
 
 import Divider from '@material-ui/core/Divider';

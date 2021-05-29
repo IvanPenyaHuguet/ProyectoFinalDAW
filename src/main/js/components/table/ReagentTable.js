@@ -11,7 +11,7 @@ import CSVIcon from '../icons/CSVIcon';
 import { useTranslation } from 'react-i18next';
 import { SearchFieldContext } from '../../context/SearchFieldContext';
 import { SearchElementsContext } from '../../context/SearchElementsContext';
-import SearchService from '../../service/backend/SearchService';
+import SearchService from '../../service/backend/Search/SearchService';
 import errorService from '../../service/error/ErrorController';
 import { FilterLocationContext } from '../../context/utils/FilterLocationContext';
 import { FilterUtilizationContext } from '../../context/utils/FilterUtilizationContext';
@@ -27,7 +27,7 @@ import { TableContext } from '../../context/utils/TableContext.js';
 const ReagentTable = () => {
    
     const { t } = useTranslation();
-    const TITLE = t('table.title.reagents');
+    const TITLE = t('table.title.reagents.reagents');
     const { user } = useContext(AuthContext);      
     const [ data , setData ] = useState([]);     
     const [ loading, setLoading ] = useState(false); 

@@ -151,7 +151,10 @@
       "searchInput": "Text to look for"
     },
     "title": {
-      "reagents": "REAGENTS"
+      "reagents": {
+        "organic": "Organic Reagents",
+        "reagents": "Reagents"
+      }
     },
     "tooltip": {
       "add": "Add",

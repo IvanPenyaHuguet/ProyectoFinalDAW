@@ -2,6 +2,8 @@ package com.proyectofinal.daw.controllers;
 
 import java.util.Map;
 
+import com.proyectofinal.daw.services.InorganicReagentService;
+import com.proyectofinal.daw.services.OrganicReagentService;
 import com.proyectofinal.daw.services.ReagentService;
 
 
@@ -22,6 +24,12 @@ public class SearchApiController implements BaseApiController{
 
     @Autowired
     ReagentService reagentService;  
+
+    @Autowired
+    OrganicReagentService orgReagentService; 
+
+    @Autowired
+    InorganicReagentService inorgReagentService; 
 
     
     /** 
@@ -47,6 +55,61 @@ public class SearchApiController implements BaseApiController{
     public ResponseEntity<Map<String, Object>> searchReagentElements (@RequestBody Map<String, Object> params ){
         
         Map<String, Object> response = reagentService.searchReagentElements(params);
+        
+        return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+    }
+
+    /** 
+     * Map to search reagents by text with hibernate search
+     * @param Map<String,Object>params A json body of params to paginate (size, page, direction, sortBy, text)     
+     * @return ResponseEntity<Map<String, Object>> The page as result of the request, with reagents on page, number of pages an total elements for the request without pagination.
+     */
+    @PostMapping("/search/organic/reagent")
+    public ResponseEntity<Map<String, Object>> searchOrgReagentText (@RequestBody Map<String, Object> params) {
+
+        Map<String, Object> response = orgReagentService.searchForField(params);
+        
+        return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+    }
+
+    
+    /** 
+     * Map to return a pagination of reagents searched by elements with nativequeries
+     * @param Map<String,Object>params A json body of params to paginate (size, page, direction, sortBy, elements)     
+     * @return ResponseEntity<Map<String, Object>> The page as result of the request, with reagents on page, number of pages an total elements for the request without pagination.
+     */
+    @PostMapping("/search/elements/organic/reagent")    
+    public ResponseEntity<Map<String, Object>> searchOrgReagentElements (@RequestBody Map<String, Object> params ){
+        
+        Map<String, Object> response = orgReagentService.searchReagentElements(params);
+        
+        return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+    }
+
+
+    /** 
+     * Map to search reagents by text with hibernate search
+     * @param Map<String,Object>params A json body of params to paginate (size, page, direction, sortBy, text)     
+     * @return ResponseEntity<Map<String, Object>> The page as result of the request, with reagents on page, number of pages an total elements for the request without pagination.
+     */
+    @PostMapping("/search/inorganic/reagent")
+    public ResponseEntity<Map<String, Object>> searchInorgReagentText (@RequestBody Map<String, Object> params) {
+
+        Map<String, Object> response = inorgReagentService.searchForField(params);
+        
+        return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+    }
+
+    
+    /** 
+     * Map to return a pagination of reagents searched by elements with nativequeries
+     * @param Map<String,Object>params A json body of params to paginate (size, page, direction, sortBy, elements)     
+     * @return ResponseEntity<Map<String, Object>> The page as result of the request, with reagents on page, number of pages an total elements for the request without pagination.
+     */
+    @PostMapping("/search/elements/inorganic/reagent")    
+    public ResponseEntity<Map<String, Object>> searchInorgReagentElements (@RequestBody Map<String, Object> params ){
+        
+        Map<String, Object> response = orgReagentService.searchReagentElements(params);
         
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }

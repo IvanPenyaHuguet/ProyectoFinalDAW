@@ -92,7 +92,7 @@ public class ReagentService {
         .orElseThrow(() -> new ReagentNotFoundException(id));        
     }
 
-    public Page <Reagent> getAllPage(Pageable pageable) {
+    public Page <? extends Reagent> getAllPage(Pageable pageable) {
         return reagentRepo.findAll(pageable);
     }
 
