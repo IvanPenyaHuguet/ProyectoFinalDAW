@@ -1,6 +1,5 @@
 package com.proyectofinal.daw.services;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,22 +7,17 @@ import java.util.Objects;
 import java.util.Optional;
 
 import com.proyectofinal.daw.entities.AqueousStandardSolution;
-import com.proyectofinal.daw.entities.InorganicReagent;
-import com.proyectofinal.daw.entities.OrganicReagent;
 import com.proyectofinal.daw.entities.OrganicStandardSolution;
-import com.proyectofinal.daw.entities.Reagent;
 import com.proyectofinal.daw.entities.StandardSol;
 import com.proyectofinal.daw.entities.dto.PageSearchDTO;
-import com.proyectofinal.daw.exceptions.ReagentNotFoundException;
 import com.proyectofinal.daw.repositories.AqueousStdSolRepository;
 import com.proyectofinal.daw.repositories.OrganicStdSolRepository;
-import com.proyectofinal.daw.repositories.ReagentRepositoryImpl;
 import com.proyectofinal.daw.repositories.StandardSolBaseRepository;
 import com.proyectofinal.daw.repositories.StandardSolImplRepository;
 import com.proyectofinal.daw.repositories.UserRepository;
 import com.proyectofinal.daw.search.GenericSearchImpl;
-import com.proyectofinal.daw.services.nativequeries.dao.ReagentDAO;
-import com.proyectofinal.daw.utils.security.SecurityUtils;
+import com.proyectofinal.daw.services.nativequeries.dao.StandardSolDAO;
+
 
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -31,7 +25,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
@@ -59,13 +52,11 @@ public class StdSolService {
     SessionFactory factory;
 
     @Autowired
-    ReagentDAO reagentDAO;
+    StandardSolDAO stdSolDAO;
 
     @Autowired
     UserRepository userRepo;
-
-    @Autowired
-    ReagentRepositoryImpl reagentRepo;  
+    
     
     private <T extends StandardSol> StandardSolBaseRepository getRepo (Class<T> clazz){
         if (clazz.isInstance(AqueousStandardSolution.class))
@@ -209,11 +200,11 @@ public class StdSolService {
         }
     } 
   
-    public Map<String,Object> searchReagentElements (Map<String, Object> params) throws ResponseStatusException{
+    public <T extends StandardSol> Map<String,Object> searchReagentElements (Map<String, Object> params, Class <T> clazz) throws ResponseStatusException{
 
         Map <String, Object> response = new HashMap<String,Object>();
         if ( params.get("search") != null) {
-            response = reagentDAO.searchReagentElements(params);            
+            response = stdSolDAO.searchElements(params, clazz);            
         }
         else {
             throw new ResponseStatusException(HttpStatus.PRECONDITION_FAILED);

@@ -1,10 +1,12 @@
 package com.proyectofinal.daw.services.nativequeries;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.Tuple;
 
+import com.proyectofinal.daw.entities.Compound;
 import com.proyectofinal.daw.entities.Reagent;
 
 import org.hibernate.Hibernate;
@@ -53,6 +55,30 @@ public class ExecuteQueries {
             .addEntity("r", Reagent.class) 
             .getResultList();
             for (Reagent r : rows) {
+                Hibernate.initialize(r.getSuppliers());
+                Hibernate.initialize(r.getElements());
+            }            
+        }   
+        catch (Exception e) {            
+            throw e;
+        }
+        finally {
+            sess.closeSession();
+        }
+        return Optional.ofNullable(rows);
+    }
+
+    @SuppressWarnings ({"unchecked"})
+    @Transactional
+    public <T extends Serializable & Compound> Optional<List<T>> executeNativeQueryGenericCompound ( String sql, Class <T> clazz) {       
+        List<T> rows = null;
+
+        try {
+            sess.openSession();            
+            rows = sess.createNativeQuery(sql)            
+            .addEntity("r", clazz) 
+            .getResultList();
+            for (Compound r : rows) {
                 Hibernate.initialize(r.getSuppliers());
                 Hibernate.initialize(r.getElements());
             }            
