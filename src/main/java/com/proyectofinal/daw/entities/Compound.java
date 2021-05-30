@@ -17,5 +17,7 @@ public interface Compound {
     public void setElements(List<Element> elements);
     public Date getEntryDate();
     public void setEntryDate(Date entryDate);
+    public void setLocation(Location location);
+    public Location getLocation();
     
 }

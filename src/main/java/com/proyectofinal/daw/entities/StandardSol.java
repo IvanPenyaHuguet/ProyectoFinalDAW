@@ -12,7 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -55,6 +57,9 @@ public abstract class StandardSol implements Serializable, Compound{
     @Basic
     @Temporal(TemporalType.DATE)
     private Date entryDate;
+    @ManyToOne() 
+    @JoinColumn(name = "location_id")      
+    private Location location; 
 
     
     /** 
@@ -166,5 +171,15 @@ public abstract class StandardSol implements Serializable, Compound{
     public void setConcentration(int concentration) {
         this.concentration = concentration;
     }
+
+
+    public Location getLocation() {
+        return this.location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
     
 }

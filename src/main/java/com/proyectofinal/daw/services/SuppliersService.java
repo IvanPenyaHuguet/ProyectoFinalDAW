@@ -6,17 +6,11 @@ import com.proyectofinal.daw.entities.Supplier;
 
 import com.proyectofinal.daw.repositories.SupplierRepository;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SuppliersService {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(SuppliersService.class);
+public class SuppliersService {    
     
     @Autowired
     SupplierRepository supplierRepo;
