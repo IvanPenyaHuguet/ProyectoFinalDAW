@@ -67,9 +67,37 @@ public class StdSolService {
     }
 
     @SuppressWarnings(value="unchecked")
-    public <T extends StandardSol> List<StandardSol> findAll(Class<T> clazz) {
-        return (List<StandardSol>) getRepo(clazz).findAll();
+    public <T extends StandardSol> Map <String, Object> getAllPage(Map<String, Object> params, Class<T> clazz) {
+        
+        Map <String, Object> response = new HashMap<String,Object>();
+        int totalPages;
+        long totalItems;
+        
+        if ( params.get("search") != null && params.get("fields") != null) {
+            int page = params.get("page") != null ? Integer.valueOf(params.get("page").toString()) : 0;
+            int size = params.get("size") != null ? Integer.valueOf(params.get("size").toString()) : 10;
+            
+            String sortBy = params.get("sortBy") != null ? params.get("sortBy").toString() : "id";
+            Direction sortByDirection = params.get("direction") != null ? params.get("direction").toString().equals("ASC") ? Sort.Direction.ASC : Sort.Direction.DESC : Sort.Direction.ASC;
+    
+            LOGGER.info("Has received a request to page: " + page + " |size: " + size + " |sortBy: " + sortBy + " |direction: " + sortByDirection);
+            PageRequest pageRequest = PageRequest.of(page, size, Sort.by(sortByDirection, sortBy)); 
+            
+
+            Page<StandardSol> pageReagent = getRepo(clazz).findAll(pageRequest);
+            
+            totalPages = pageReagent.getTotalPages();
+            totalItems = pageReagent.getTotalElements();            
+            response.put("data" , pageReagent.getContent());
+            response.put("numPages" , totalPages);
+            response.put("totalElements" , totalItems);
+        
+        } else {
+            throw new ResponseStatusException(HttpStatus.PRECONDITION_FAILED);
+        }
+        return response;
     }
+    
 
     public <T extends StandardSol> Optional<StandardSol> findById(Long id, Class<T> clazz) {       
         return getRepo(clazz).findById(id);        
