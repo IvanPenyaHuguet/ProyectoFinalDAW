@@ -46,7 +46,10 @@ public class StdSolService {
     StandardSolImplRepository solRepo;
     
     @Autowired
-    GenericSearchImpl<StandardSol> genericSearch;
+    GenericSearchImpl<AqueousStandardSolution> genericSearchAq;
+
+    @Autowired
+    GenericSearchImpl<OrganicStandardSolution> genericSearchOrg;
     
     @Autowired
     SessionFactory factory;
@@ -59,9 +62,9 @@ public class StdSolService {
     
     
     private <T extends StandardSol> StandardSolBaseRepository getRepo (Class<T> clazz){
-        if (clazz.isInstance(AqueousStandardSolution.class))
+        if (clazz.equals(AqueousStandardSolution.class))
             return aqueousRepo;
-        if (clazz.isInstance(OrganicStandardSolution.class))
+        if (clazz.equals(OrganicStandardSolution.class))
             return organicRepo;
         return aqueousRepo;
     }
@@ -71,30 +74,26 @@ public class StdSolService {
         
         Map <String, Object> response = new HashMap<String,Object>();
         int totalPages;
-        long totalItems;
+        long totalItems;        
+       
+        int page = params.get("page") != null ? Integer.valueOf(params.get("page").toString()) : 0;
+        int size = params.get("size") != null ? Integer.valueOf(params.get("size").toString()) : 10;
         
-        if ( params.get("search") != null && params.get("fields") != null) {
-            int page = params.get("page") != null ? Integer.valueOf(params.get("page").toString()) : 0;
-            int size = params.get("size") != null ? Integer.valueOf(params.get("size").toString()) : 10;
-            
-            String sortBy = params.get("sortBy") != null ? params.get("sortBy").toString() : "id";
-            Direction sortByDirection = params.get("direction") != null ? params.get("direction").toString().equals("ASC") ? Sort.Direction.ASC : Sort.Direction.DESC : Sort.Direction.ASC;
-    
-            LOGGER.info("Has received a request to page: " + page + " |size: " + size + " |sortBy: " + sortBy + " |direction: " + sortByDirection);
-            PageRequest pageRequest = PageRequest.of(page, size, Sort.by(sortByDirection, sortBy)); 
-            
+        String sortBy = params.get("sortBy") != null ? params.get("sortBy").toString() : "id";
+        Direction sortByDirection = params.get("direction") != null ? params.get("direction").toString().equals("ASC") ? Sort.Direction.ASC : Sort.Direction.DESC : Sort.Direction.ASC;
 
-            Page<StandardSol> pageReagent = getRepo(clazz).findAll(pageRequest);
-            
-            totalPages = pageReagent.getTotalPages();
-            totalItems = pageReagent.getTotalElements();            
-            response.put("data" , pageReagent.getContent());
-            response.put("numPages" , totalPages);
-            response.put("totalElements" , totalItems);
+        LOGGER.info("Has received a request to page: " + page + " |size: " + size + " |sortBy: " + sortBy + " |direction: " + sortByDirection);
+        PageRequest pageRequest = PageRequest.of(page, size, Sort.by(sortByDirection, sortBy)); 
         
-        } else {
-            throw new ResponseStatusException(HttpStatus.PRECONDITION_FAILED);
-        }
+
+        Page<StandardSol> pageReagent = getRepo(clazz).findAll(pageRequest);
+        
+        totalPages = pageReagent.getTotalPages();
+        totalItems = pageReagent.getTotalElements();            
+        response.put("data" , pageReagent.getContent());
+        response.put("numPages" , totalPages);
+        response.put("totalElements" , totalItems);        
+        
         return response;
     }
     
@@ -171,9 +170,9 @@ public class StdSolService {
     }
        
     @SuppressWarnings (value="unchecked")
-    public Map<String,Object> searchForField (Map<String, Object> params, Class <StandardSol> clazz) throws ResponseStatusException{
+    public Map<String,Object> searchForField (Map<String, Object> params, Class <? extends StandardSol> clazz) throws ResponseStatusException{
         Map <String, Object> response = new HashMap<String,Object>();
-        int totalPages;
+        int totalPages;     
         
         if ( params.get("search") != null && params.get("fields") != null) {
             String searchedText = (String) params.get("search");
@@ -182,13 +181,20 @@ public class StdSolService {
             List<String> fieldsToSearch = (List<String>) params.get("fields");            
             int offset = page * size;
 
-            PageSearchDTO<StandardSol> searchedPage = genericSearch.paginatedGenericSearch(clazz, searchedText, fieldsToSearch, offset, size);
+            if (clazz.equals(AqueousStandardSolution.class)) {
+                PageSearchDTO<AqueousStandardSolution> searchedPage = genericSearchAq.paginatedGenericSearch(AqueousStandardSolution.class, searchedText, fieldsToSearch, offset, size);
+                totalPages = (int) Math.ceil( searchedPage.getTotalCount() / size );
+                response.put("data" , searchedPage.getSearchList());
+                response.put("numPages" , totalPages);
+                response.put("totalElements" ,  searchedPage.getTotalCount());
             
-            totalPages = (int) Math.ceil( searchedPage.getTotalCount() / size );
-            response.put("data" , searchedPage.getSearchList());
-            response.put("numPages" , totalPages);
-            response.put("totalElements" ,  searchedPage.getTotalCount());
-        
+            } else {
+                PageSearchDTO<OrganicStandardSolution> searchedPage = genericSearchOrg.paginatedGenericSearch(OrganicStandardSolution.class, searchedText, fieldsToSearch, offset, size);
+                totalPages = (int) Math.ceil( searchedPage.getTotalCount() / size );
+                response.put("data" , searchedPage.getSearchList());
+                response.put("numPages" , totalPages);
+                response.put("totalElements" ,  searchedPage.getTotalCount());            
+            }           
         } else {
             throw new ResponseStatusException(HttpStatus.PRECONDITION_FAILED);
         }

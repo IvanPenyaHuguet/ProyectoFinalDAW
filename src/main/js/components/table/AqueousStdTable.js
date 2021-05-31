@@ -18,7 +18,7 @@ import { SpeedDialContext } from '../../context/utils/SpeedDialContext';
 import { AuthContext } from '../../context/AuthContextProvider';
 import reagentPDF from '../../lib/export/ReagentPdf';
 import { useHistory } from "react-router-dom";
-import { RTCSearchFields, RTCColumns } from '../../lib/tabledata/ReagentTableConf';
+import { RTCSearchFields, RTCColumns } from '../../lib/tabledata/AqueousStdConf';
 import { TableContext } from '../../context/utils/TableContext.js';
 
 
@@ -26,7 +26,7 @@ import { TableContext } from '../../context/utils/TableContext.js';
 const ReagentTable = () => {
    
     const { t } = useTranslation();
-    const TITLE = t('table.title.reagents.reagents');
+    const TITLE = t('table.title.reagents.aqueousstd');
     const { user } = useContext(AuthContext);      
     const [ data , setData ] = useState([]);     
     const [ loading, setLoading ] = useState(false); 

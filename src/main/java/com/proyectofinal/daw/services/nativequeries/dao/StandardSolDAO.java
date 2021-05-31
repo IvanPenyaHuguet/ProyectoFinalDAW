@@ -57,15 +57,15 @@ public class StandardSolDAO {
         String sqlResult = "SELECT DISTINCT r.* from ";
         String sqlCount = "SELECT COUNT(*) OVER () from ";
 
-        if (clazz == AqueousStandardSolution.class) {
-            tbl = " aqueous_standard_solution ";            
+        if (clazz.equals(AqueousStandardSolution.class)) {
+            tbl = "aqueous_standard_solution";            
         }
-        if (clazz == OrganicStandardSolution.class) {
-            tbl = " organic_standard_solution ";            
+        if (clazz.equals(OrganicStandardSolution.class)) {
+            tbl = "organic_standard_solution";            
         }       
         
-        String sql = tbl +  "r INNER JOIN elements_reagents er "+
-        "WHERE r.id=er." + tbl + "_id "+
+        String sql = tbl +  " r INNER JOIN element_standard_sol er "+
+        "WHERE r.id=er.standard_id "+
         "GROUP BY r.id, er.element_id ";
         for (Map.Entry<String, Integer> pair : searchedElements.entrySet()) {
             try {
@@ -99,7 +99,7 @@ public class StandardSolDAO {
                
         String distinctSolved = "(SELECT DISTINCT r.id FROM ";
         Optional<List<T>> result = execSQL.executeNativeQueryGenericCompound(sqlResult + sql + sqlLimit, clazz);
-        Optional<Long> totalItems = execSQL.executeNativeQueryGetCount(sqlCount + distinctSolved + sql + " LIMIT 1)");     
+        Optional<Long> totalItems = execSQL.executeNativeQueryGetCount(sqlCount + distinctSolved + sql + ") AS subquery LIMIT 1");     
 
         if (result.isPresent() && totalItems.isPresent()) {
             totalPages = (int) Math.ceil( totalItems.get() / size );

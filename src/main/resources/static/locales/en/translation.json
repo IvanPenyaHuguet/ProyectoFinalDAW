@@ -153,6 +153,8 @@
     },
     "title": {
       "reagents": {
+        "aqueousstd": "Aqueous Solution",
+        "inorganic": "Inorganic Reagents",
         "organic": "Organic Reagents",
         "reagents": "Reagents"
       }

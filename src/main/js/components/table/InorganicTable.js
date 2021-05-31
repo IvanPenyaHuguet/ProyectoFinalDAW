@@ -27,7 +27,7 @@ import { TableContext } from '../../context/utils/TableContext.js';
 const ReagentTable = () => {
    
     const { t } = useTranslation();
-    const TITLE = t('table.title.reagents.reagents');
+    const TITLE = t('table.title.reagents.inorganic');
     const { user } = useContext(AuthContext);      
     const [ data , setData ] = useState([]);     
     const [ loading, setLoading ] = useState(false); 

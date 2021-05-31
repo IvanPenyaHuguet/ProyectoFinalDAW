@@ -133,6 +133,7 @@
       "cas": "CAS",
       "elements": "Elementos",
       "englishName": "Nombre Ingés",
+      "expiryDate": "",
       "formula": "Fórmula",
       "id": "ID",
       "location": "Localización",
@@ -152,6 +153,7 @@
     },
     "title": {
       "reagents": {
+        "aqueousstd": "",
         "organic": "",
         "reagents": ""
       }

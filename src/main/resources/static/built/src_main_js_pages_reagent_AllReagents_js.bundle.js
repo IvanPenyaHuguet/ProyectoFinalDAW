@@ -340,6 +340,202 @@ var ReagentTable = function ReagentTable() {
 
 /***/ }),
 
+/***/ "./src/main/js/lib/tabledata/ReagentTableConf.js":
+/*!*******************************************************!*\
+  !*** ./src/main/js/lib/tabledata/ReagentTableConf.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "RTCSearchFields": () => (/* binding */ RTCSearchFields),
+/* harmony export */   "RTCColumns": () => (/* binding */ RTCColumns)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/for-each */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/for-each.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/map */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/map.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/keys */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/keys.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _material_ui_core_Divider__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core/Divider */ "./node_modules/@material-ui/core/esm/Divider/Divider.js");
+/* harmony import */ var _material_ui_core_Avatar__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/Avatar */ "./node_modules/@material-ui/core/esm/Avatar/Avatar.js");
+/* harmony import */ var _material_ui_core_Chip__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/Chip */ "./node_modules/@material-ui/core/esm/Chip/Chip.js");
+/* harmony import */ var _components_table_filter_SelectColumnFilterLocation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/table/filter/SelectColumnFilterLocation */ "./src/main/js/components/table/filter/SelectColumnFilterLocation.js");
+/* harmony import */ var _components_table_filter_SelectColumnFilterUtilization__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/table/filter/SelectColumnFilterUtilization */ "./src/main/js/components/table/filter/SelectColumnFilterUtilization.js");
+
+
+
+
+
+
+
+
+
+var RTCSearchFields = function RTCSearchFields(t) {
+  return [{
+    value: "name",
+    name: t('table.column.spanishName'),
+    selected: true
+  }, {
+    value: "englishName",
+    name: t('table.column.englishName'),
+    selected: true
+  }, {
+    value: "cas",
+    name: t('table.column.cas'),
+    selected: false
+  }, {
+    value: "internalReference",
+    name: t('table.column.reference'),
+    selected: true
+  }, {
+    value: "utilization",
+    name: t('table.column.utilization'),
+    selected: false
+  }, {
+    value: "elements.englishName",
+    name: t('table.column.elements'),
+    selected: false
+  }, {
+    value: "secondaryIntReference",
+    name: t('table.column.secondaryintreference'),
+    selected: true
+  }];
+};
+var RTCColumns = function RTCColumns(t) {
+  return [{
+    Header: t('table.column.id'),
+    accessor: "id",
+    show: false,
+    disableSortBy: false,
+    disableFilters: true
+  }, {
+    Header: t('table.column.reference'),
+    accessor: "internalReference",
+    disableSortBy: false,
+    disableFilters: true
+  }, {
+    Header: t('table.column.spanishName'),
+    accessor: "name",
+    disableSortBy: false,
+    disableFilters: true
+  }, {
+    Header: t('table.column.englishName'),
+    accessor: "englishName",
+    show: false,
+    disableSortBy: false,
+    disableFilters: true
+  }, {
+    Header: t('table.column.elements'),
+    accessor: "elements",
+    id: "elements",
+    show: true,
+    Cell: function Cell(row) {
+      var _context;
+
+      var elements = row.row.original.elements;
+      var counts = {};
+
+      _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_0___default()(elements).call(elements, function (element) {
+        counts[element.atomicNumber] = {
+          total: counts[element.atomicNumber] ? counts[element.atomicNumber].total + 1 : 1,
+          element: element
+        };
+      });
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement("div", null, _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_1___default()(_context = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_2___default()(counts)).call(_context, function (item, i) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(_material_ui_core_Chip__WEBPACK_IMPORTED_MODULE_6__.default, {
+          avatar: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(_material_ui_core_Avatar__WEBPACK_IMPORTED_MODULE_7__.default, null, counts[item].element.element),
+          label: counts[item].total,
+          variant: "outlined",
+          key: i
+        });
+      }));
+    },
+    disableSortBy: true,
+    disableFilters: true
+  }, {
+    Header: t('table.column.formula'),
+    accessor: "formula",
+    id: "formula",
+    show: false,
+    disableSortBy: false,
+    disableFilters: true
+  }, {
+    Header: t('table.column.type'),
+    accessor: "reagentType",
+    disableSortBy: false,
+    disableFilters: true
+  }, {
+    Header: t('table.column.quantity'),
+    accessor: "quantity",
+    disableSortBy: false,
+    disableFilters: true
+  }, {
+    Header: t('table.column.location'),
+    accessor: "location.name",
+    disableSortBy: true,
+    disableFilters: false,
+    Filter: _components_table_filter_SelectColumnFilterLocation__WEBPACK_IMPORTED_MODULE_4__.default
+  }, {
+    Header: t('table.column.utilization'),
+    accessor: "utilization",
+    disableSortBy: true,
+    disableFilters: false,
+    Filter: _components_table_filter_SelectColumnFilterUtilization__WEBPACK_IMPORTED_MODULE_5__.default
+  }, {
+    Header: t('table.column.cas'),
+    accessor: "cas",
+    show: false,
+    disableSortBy: false,
+    disableFilters: true
+  }, {
+    Header: t('table.column.receptionDate'),
+    accessor: "entryDate",
+    show: false,
+    disableSortBy: false,
+    disableFilters: true
+  }, {
+    Header: t('table.column.boughtBy'),
+    accessor: "user.name",
+    show: false,
+    disableSortBy: true,
+    disableFilters: true
+  }, {
+    Header: t('table.column.molecularWeight'),
+    accessor: "molecularWeight",
+    show: false,
+    disableSortBy: false,
+    disableFilters: true
+  }, {
+    Header: t('table.column.supplier'),
+    accessor: "suppliers",
+    id: "suppliers",
+    show: false,
+    Cell: function Cell(row) {
+      var _context2;
+
+      var suppliers = row.row.original.suppliers;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(react__WEBPACK_IMPORTED_MODULE_3__.Fragment, null, _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_1___default()(_context2 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_2___default()(suppliers)).call(_context2, function (item, i) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement("div", {
+          key: suppliers[item].supplier.id
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement("span", {
+          className: ""
+        }, suppliers[item].supplier.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(_material_ui_core_Divider__WEBPACK_IMPORTED_MODULE_8__.default, {
+          orientation: "vertical",
+          flexItem: true
+        }));
+      }));
+    },
+    disableSortBy: true,
+    disableFilters: true
+  }];
+};
+
+/***/ }),
+
 /***/ "./src/main/js/pages/reagent/AllReagents.js":
 /*!**************************************************!*\
   !*** ./src/main/js/pages/reagent/AllReagents.js ***!
