@@ -120,7 +120,7 @@ const ReagentTable = () => {
     
     return (
         <>   
-            <TableContext.Provider value={"AqueousStd"}>
+            <TableContext.Provider value={"AqueousSol"}>
                 <SpeedDialContext.Provider value={speedDial}>
                     <SearchFieldContext.Provider value={{fieldsToSearch, setFieldsToSearch}}>  
                         <SearchElementsContext.Provider value={{elementsToSearch, setElementsToSearch}}>

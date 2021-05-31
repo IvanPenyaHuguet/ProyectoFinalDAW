@@ -7,7 +7,7 @@ import org.springframework.data.jdbc.repository.query.Query;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface StandardSolBaseRepository <T extends StandardSol> extends JpaRepository <StandardSol, Long>{    
+public interface StandardSolBaseRepository <T extends StandardSol> extends JpaRepository <T, Long>{    
     
     public T findByName(String name);
     public T findByInternalReference(String internalReference);

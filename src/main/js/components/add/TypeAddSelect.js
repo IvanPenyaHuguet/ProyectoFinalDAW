@@ -23,10 +23,10 @@ export default function TypeAddSelect ({ typeSelectValue, setTypeSelectValue, cl
             value: 'OrganicReagent',
             name: t('lars.types.organicreagent')
         },{
-            value: 'AquStdSol',
+            value: 'AqueousSol',
             name: t('lars.types.aqustdsol')
         },{
-            value: 'OrgStdSol',
+            value: 'OrganicSol',
             name: t('lars.types.orgstdsol')
         }
     ];

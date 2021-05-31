@@ -8,8 +8,12 @@ import CloseIcon from '@material-ui/icons/Close';
 
 import InorganicReagentModify from './InorganicReagentModify';
 import OrganicReagentModify from './OrganicReagentModify';
+import AqueousSolModify from './AqueousSolModify';
+import OrganicSolModify from './OrganicSolModify';
 import InorganicReagent from '../../lib/entities/InorganicReagent';
 import OrganicReagent from '../../lib/entities/OrganicReagent';
+import AqueousSol from '../../lib/entities/AqueousSol';
+import OrganicSol from '../../lib/entities/OrganicSol';
 import Form from '../form/Form';
 import ButtonPrincipal from '../button/ButtonPrincipal';
 
@@ -48,7 +52,9 @@ export default function ReagentModify ({ row, setOpen, setAlert }) {
     
     const OPTIONS_CONTEXT = {
         InorganicReagent: () => new InorganicReagent(),           
-        OrganicReagent:  () => new OrganicReagent()            
+        OrganicReagent:  () => new OrganicReagent(), 
+        AqueousSol:  () => new AqueousSol(),
+        OrganicSol:  () => new OrganicSol(),           
     }    
     const service = OPTIONS_CONTEXT[tableStrContext]();   
     const { t } = useTranslation();
@@ -87,6 +93,8 @@ export default function ReagentModify ({ row, setOpen, setAlert }) {
                 <Form className={classes.form}>
                     { tableStrContext === 'InorganicReagent' &&  <InorganicReagentModify row={row} setAlert={setAlert} values={values} />}
                     { tableStrContext === 'OrganicReagent' &&  <OrganicReagentModify row={row} setAlert={setAlert} values={values} />}
+                    { tableStrContext === 'AqueousSol' &&  <AqueousSolModify row={row} setAlert={setAlert} values={values} />}
+                    { tableStrContext === 'OrganicSol' &&  <OrganicSolModify row={row} setAlert={setAlert} values={values} />}
                     <DialogActions className={classes.actions}>
                         <ButtonPrincipal color='default' onClick={handleClose} startIcon={<CloseIcon />}>{t('general.close')}</ButtonPrincipal>                              
                         <ButtonPrincipal color='secondary' onClick={onDeleteClick} endIcon={<DeleteIcon />}>{t('general.delete')}</ButtonPrincipal>

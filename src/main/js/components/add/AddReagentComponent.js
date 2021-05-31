@@ -1,10 +1,12 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Container from '../container/MUIContainer';
 import Title from '../general/titles/Title';
 
 import TypeAddSelect from './TypeAddSelect';
 import InorganicReagentAddFormat from './InorganicReagentAddFormat';
 import OrganicReagentAddFormat from './OrganicReagentAddFormat';
+import AqueousSolAddFormat from './AqueousSolAddFormat';
+import OrganicSolAddFormat from './OrganicSolAddFormat';
 
 import { useTranslation } from 'react-i18next';
 import { TableContext  } from '../../context/utils/TableContext';
@@ -35,8 +37,10 @@ export default function AddReagentComponent () {
 
     const { t } = useTranslation();
     const classes = useStyles();
-    const tableStrContext = useContext(TableContext);
-    const [ addContext, setAddContext ] = useState(tableStrContext);
+    const cont = useContext(TableContext); 
+    console.log(cont);    
+    const [ addContext, setAddContext ] = useState(cont);
+
     
 
     return (
@@ -48,7 +52,9 @@ export default function AddReagentComponent () {
                 </Container>
                 <Container className={classes.container}>
                     {addContext === 'InorganicReagent' && <InorganicReagentAddFormat />}
-                    {addContext === 'OrganicReagent' && <OrganicReagentAddFormat />}                
+                    {addContext === 'OrganicReagent' && <OrganicReagentAddFormat />}  
+                    {addContext === 'AqueousSol' && <AqueousSolAddFormat />}  
+                    {addContext === 'OrganicSol' && <OrganicSolAddFormat />}            
                 </Container>
             </Container>
         </RefMaskStoreProvider>

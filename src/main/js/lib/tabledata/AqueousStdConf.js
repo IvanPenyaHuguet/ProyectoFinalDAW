@@ -36,7 +36,7 @@ export const RTCColumns = t => {return [
         disableSortBy: false,
         disableFilters: true
     },{
-        Header: t('table.column.spanishName'),
+        Header: t('table.column.name'),
         accessor: "name",
         disableSortBy: false,
         disableFilters: true
@@ -86,7 +86,7 @@ export const RTCColumns = t => {return [
         Header: t('table.column.molecularWeight'),
         accessor: "molecularWeight",
         show: false,
-        disableSortBy: false,
+        disableSortBy: true,
         disableFilters: true
     },{
         Header: t('table.column.supplier'),

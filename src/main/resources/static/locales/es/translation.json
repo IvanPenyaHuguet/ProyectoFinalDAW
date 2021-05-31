@@ -19,6 +19,7 @@
   "form": {
     "add": {
       "cas": "CAS",
+      "concentration": "",
       "englishName": "Nombre en Inglés",
       "entryDate": "Fecha de recepción",
       "errors": {
@@ -30,6 +31,7 @@
         "tooshort": "Demasiado corto",
         "unsuccesful": "Algo malo ha ocurrido al guardar, contacte con soporte, ha sido enviada una traza..."
       },
+      "expiryDate": "",
       "formula": "Fórmula",
       "image": "",
       "internalreference": "Referencia Interna",
@@ -137,7 +139,9 @@
       "formula": "Fórmula",
       "id": "ID",
       "location": "Localización",
+      "medium": "",
       "molecularWeight": "Peso Molecular",
+      "name": "",
       "quantity": "Cantidad",
       "receptionDate": "Fecha recepción",
       "reference": "Referencia",
@@ -154,7 +158,9 @@
     "title": {
       "reagents": {
         "aqueousstd": "",
+        "inorganic": "",
         "organic": "",
+        "organicsol": "",
         "reagents": ""
       }
     },
