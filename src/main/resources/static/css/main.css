@@ -8,15 +8,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Bitter:wght@700&family=Newsreader:wght@500&display=swap');
 
 :root {
-    --var-primary-color: #882136;
-    --var-primary-dark-color: #5f1730;
-    --var-secondary-color: #328821;
-    --var-secondary-dark-color: #235f17;
+    --var-primary-color:#993333;
+    --var-primary-dark-color: #732626;
+    --var-secondary-color: #339999;
+    --var-secondary-dark-color: #267373;
     --var-terciary-color: #FFF;
-    --var-quaternary-color: #fdafca;
+    --var-quaternary-color: #339966;
     --var-primary-font: 'Bitter', serif;
     --var-secondary-font: 'Newsreader', serif;
-    --var-error-color: #ff0000;
+    --var-error-color: #f44336;
     --var-grey-color: #B7B7B7;
 }
 html {

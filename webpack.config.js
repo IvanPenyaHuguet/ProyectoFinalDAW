@@ -28,6 +28,10 @@ module.exports = {
             {
                 test: /\.css$/i,
                 use: ['style-loader', 'css-loader', 'postcss-loader'],
+            },
+            { 
+                test: /\.(ttf|eot|svg|gif|woff|woff2)(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
+                type: 'asset/resource'
             }
         ]
     },    

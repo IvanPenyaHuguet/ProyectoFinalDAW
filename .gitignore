@@ -11,6 +11,8 @@ apidoc
 javadoc
 portainer-data
 jenkins_data
+cypress
+cypres.json
 
 HELP.md
 .mvn

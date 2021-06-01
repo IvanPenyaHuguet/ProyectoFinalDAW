@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     speedDial: {
       position: 'absolute',
       top: 0,
-      left: 0         
+      left: 0              
     },
 }));
 
@@ -49,7 +49,7 @@ export default function ButtonMenuTable () {
                 onOpen={handleOpen}
                 open={open}
                 direction="down"
-                className={classes.speedDial}
+                className={classes.speedDial}                
                 >
                 {speedDial.map((action) => (
                     <SpeedDialAction
