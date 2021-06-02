@@ -83,6 +83,26 @@ const theme = createMuiTheme({
                 minWidth: '100px',
                 width: '200px'
             }
+        },
+        MuiCardHeader: {
+            root: {
+                padding: '10px'
+            }
+        },
+        MuiDialogTitle: {
+            root: {
+                padding: '10px'
+            }
+        },
+        MuiCardContent: {
+            root: {
+                padding: '0 10px'
+            }
+        },
+        MuiCard: {
+            root: {
+                margin: '2px'
+            }
         }
 
     }

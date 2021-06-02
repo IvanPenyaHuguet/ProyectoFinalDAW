@@ -24,7 +24,15 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center'
     },
     content: {
-        width: '100%'
+        width: '100%',
+        display: 'flex',
+        flexWrap: 'wrap',
+    },
+    small: {
+        width: '40px'
+    },
+    medium: {
+        width: '70px'
     }
 }));
 
@@ -47,7 +55,8 @@ export default function ReagentModifyBase ({children, row, values, setAlert}) {
             <DialogContent dividers className={classes.content}>                            
                 <FormInputText 
                     name="internalReference"
-                    label={t('form.add.internalreference')}    
+                    label={t('form.add.internalreference')} 
+                    className={classes.small}   
                 />                       
                 <FormInputText 
                     label={t('form.add.englishName')} 
@@ -55,17 +64,20 @@ export default function ReagentModifyBase ({children, row, values, setAlert}) {
                 />
                 <FormInputText 
                     label={t('form.add.cas')}
-                    name="cas"   
+                    name="cas"
+                    className={classes.medium}    
                 />
                 <LocationInput />                           
                 <SuppliersInput values={values}/>                     
                 <FormInputText 
                     label={t('form.add.quantity')}
-                    name="quantity"    
+                    name="quantity" 
+                    className={classes.small}   
                 />
                 <FormInputText 
                     label={t('form.add.molecularWeight')}                               
-                    name="molecularWeight"                             
+                    name="molecularWeight"
+                    className={classes.medium}                             
                 />
                     { children }
                 <ReagentCommentaries row={ row } setAlert={setAlert}/>

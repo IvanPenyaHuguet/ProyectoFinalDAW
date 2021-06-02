@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     paper:{        
         minWidth: '800px',
         height: '700px',
-        minHeight: '600px',        
+        minHeight: '700px',        
         padding: '10px 20px',             
     }
 }));

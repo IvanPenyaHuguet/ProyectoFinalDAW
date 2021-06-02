@@ -8,11 +8,23 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import CommentaryService from '../../service/backend/CommentaryService';
 
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({    
+    container: {
+      width: '100%',
+      maxWidth: '100%',
+      overflow: 'auto',
+      height: '100%'
+    }    
+}));
+
 
 export default function ReagentCommentaries ({row ,setAlert}) {
 
     const [ commentaries, setCommentaries ] = useState([]);
     const [ loading, setLoading ] = useState(false);
+    const classes = useStyles();
 
     useEffect(() => {
         setLoading(true);              
@@ -29,7 +41,7 @@ export default function ReagentCommentaries ({row ,setAlert}) {
     }, []);   
 
     return (
-        <Container>
+        <Container className={classes.container}>
             {loading ?
                 <CircularProgress />
                 :

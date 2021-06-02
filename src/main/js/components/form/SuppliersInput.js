@@ -19,8 +19,9 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 const useStyles = makeStyles((theme) => ({    
     input: {      
       display: 'flex',      
-      justifyContent: 'center',
-      flexDirection: 'row'      
+      justifyContent: 'start',
+      flexDirection: 'row',
+      width: '250px'    
     },
     form: {
         width: '100%'

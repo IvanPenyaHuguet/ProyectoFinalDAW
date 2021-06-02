@@ -23,12 +23,14 @@ import DialogActions from '@material-ui/core/DialogActions';
 
 import { useTranslation } from 'react-i18next';
 import { makeStyles } from '@material-ui/core/styles';
+import autoprefixer from 'autoprefixer';
 
 
 const useStyles = makeStyles((theme) => ({    
     container: {
        height: '100%',
-       width: '100%'
+       width: '100%', 
+       overflow: 'hidden'      
     },   
     form: {
         display: 'flex',
@@ -40,7 +42,19 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-around',
-        alignItems: 'center'
+        alignItems: 'center',
+        position: 'absolute',
+        left: 0,
+        top: '640px',
+        height: '60px',
+        width: '100%',
+        backgroundColor: 'white'
+    },
+    content: {
+        overflow: 'auto',
+        margin: 0,
+        padding: 0,
+        height: '620px'
     }
 }));
 
@@ -91,10 +105,12 @@ export default function ReagentModify ({ row, setOpen, setAlert }) {
             >
             { ({ submitForm, isSubmitting, values }) => (
                 <Form className={classes.form}>
-                    { tableStrContext === 'InorganicReagent' &&  <InorganicReagentModify row={row} setAlert={setAlert} values={values} />}
-                    { tableStrContext === 'OrganicReagent' &&  <OrganicReagentModify row={row} setAlert={setAlert} values={values} />}
-                    { tableStrContext === 'AqueousSol' &&  <AqueousSolModify row={row} setAlert={setAlert} values={values} />}
-                    { tableStrContext === 'OrganicSol' &&  <OrganicSolModify row={row} setAlert={setAlert} values={values} />}
+                    <Container className={classes.content}>
+                        { tableStrContext === 'InorganicReagent' &&  <InorganicReagentModify row={row} setAlert={setAlert} values={values} />}
+                        { tableStrContext === 'OrganicReagent' &&  <OrganicReagentModify row={row} setAlert={setAlert} values={values} />}
+                        { tableStrContext === 'AqueousSol' &&  <AqueousSolModify row={row} setAlert={setAlert} values={values} />}
+                        { tableStrContext === 'OrganicSol' &&  <OrganicSolModify row={row} setAlert={setAlert} values={values} />}
+                    </Container>
                     <DialogActions className={classes.actions}>
                         <ButtonPrincipal color='default' onClick={handleClose} startIcon={<CloseIcon />}>{t('general.close')}</ButtonPrincipal>                              
                         <ButtonPrincipal color='secondary' onClick={onDeleteClick} endIcon={<DeleteIcon />}>{t('general.delete')}</ButtonPrincipal>

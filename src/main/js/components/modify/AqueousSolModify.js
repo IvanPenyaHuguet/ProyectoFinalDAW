@@ -23,8 +23,13 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center'
     },
     content: {
-        width: '100%'
-    }
+        width: '100%',
+        display: 'flex',
+        flexWrap: 'wrap',
+    },
+    small: {
+        width: '40px'
+    } 
 }));
 
 export default function AqueousSolModify ({ row, values, setAlert}) {
@@ -46,12 +51,14 @@ return (
                 <FormInputText 
                     name="internalReference"
                     label={t('form.add.internalreference')}    
+                    className={classes.small} 
                 />                      
                 <LocationInput />                           
                 <SuppliersInput values={values}/>                     
                 <FormInputText 
                     label={t('form.add.concentration')}
                     name="concentration"    
+                    className={classes.small} 
                 />
                 <FormInputText 
                     label={t('form.add.molecularWeight')}                               

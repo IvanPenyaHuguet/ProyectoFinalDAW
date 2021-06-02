@@ -63,6 +63,7 @@ export default function CommentaryInput ({id , setAlert}){
                     value={commentary}
                     onChange={handleChange}
                     variant="outlined"
+                    fullWidth
                 />
             </CardContent>
             <CardActions>

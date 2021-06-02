@@ -11,7 +11,10 @@ import { red } from '@material-ui/core/colors';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({    
+const useStyles = makeStyles((theme) => ({
+    card: {
+
+    },      
     avatar: {
       backgroundColor: red[600],
     },
@@ -23,7 +26,7 @@ export default function Commentary ({ comment }){
     const { user, commentary, creationDate } = comment;
 
     return (
-        <Card variant='outlined'>
+        <Card variant='outlined' className={classes.card}>
             <CardHeader 
                 avatar={
                     <Avatar aria-label="recipe" className={classes.avatar}>
