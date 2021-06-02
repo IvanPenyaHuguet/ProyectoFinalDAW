@@ -7,7 +7,7 @@ import styles from '../../css/components/periodictable/Elements.module.css';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-export default function ElementOfTable ({ setShowInfo, elementNum, setSelectedElements, selectedElements }) {
+const ElementOfTable = ({ setShowInfo, elementNum, setSelectedElements, selectedElements }) =>{
 
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -92,7 +92,5 @@ export default function ElementOfTable ({ setShowInfo, elementNum, setSelectedEl
         </div>
     )
 
-
-
-
 }
+export default React.memo(ElementOfTable);

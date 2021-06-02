@@ -1,12 +1,3 @@
-/**
-    Azul: #007cba
-    Rojo: #882136
-    Rojo oscuro: #A11931
-    Azul: #24BFFF
-    Amarillo: #E6DE4E
-**/
-@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@700&family=Newsreader:wght@500&display=swap');
-
 :root {
     --var-primary-color:#993333;
     --var-primary-dark-color: #732626;
@@ -18,11 +9,6 @@
     --var-secondary-font: 'Newsreader', serif;
     --var-error-color: #f44336;
     --var-grey-color: #B7B7B7;
-}
-html {
-    height: 100%;  
-    padding: 0;
-    margin: 0;  
 }
 body {
     padding: 0;

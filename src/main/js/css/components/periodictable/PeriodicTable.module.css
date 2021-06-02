@@ -1,6 +1,7 @@
 .wrapper {  
   margin: 0 auto;
   max-width: 900px;
+  line-height: 1;
 }
 .lg {
     width: 900px;

@@ -6,12 +6,21 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({    
+    mask: {
+        width: '50px'         
+    }    
+}));
+
 export default function MaskInput ({label, name, mask, field, meta, form, ...props}) {       
     
     const { touched, errors } = form;
+    const classes = useStyles();     
     
     return (
-        <FormControl error= {touched[field.name] && errors[field.name] ? true : false}>
+        <FormControl error= {touched[field.name] && errors[field.name] ? true : false} className={classes.mask}>
             <InputLabel htmlFor={`'label'-${name}`} shrink>{label}</InputLabel>
             <Input   
                 id="formatted-text-mask-input"

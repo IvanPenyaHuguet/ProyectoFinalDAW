@@ -15,6 +15,7 @@ import Alert from '../popups/Alert';
 import Container from '../container/MUIContainer';
 import RefMaskInput from '../form/RefMaskInput';
 import { ElementStore } from '../../context/store/ElementStore';
+import { useStyles } from './StylesAdd';
 import SaveIcon from '@material-ui/icons/Save';
 import BackspaceIcon from '@material-ui/icons/Backspace';
 
@@ -32,7 +33,8 @@ export default function InorganicReagentAddFormat () {
     const [ refMask, setRefMask ] = useState('');
     inorganicReagent.getInitialValue();    
     const { t } = useTranslation();  
-    const history = useHistory();    
+    const history = useHistory();
+    const classes = useStyles();  
 
     const onReturnClick = () => {
         history.goBack();
@@ -49,38 +51,41 @@ export default function InorganicReagentAddFormat () {
                 }}
             >
                 { ({ submitForm, isSubmitting, values }) => (
-                    <Form>                        
-                        <RefMaskInput value={refMask} setValue={setRefMask} />
-                        <IntRefInput mask={refMask} />                        
-                        <FormInputText 
-                            label={t('form.add.spanishname')}                                
-                            name="name"
-                        />
-                        <FormInputText 
-                            label={t('form.add.englishName')} 
-                            name="englishName"   
-                        />
-                        <FormInputText 
-                            label={t('form.add.cas')}
-                            name="cas"   
-                        />
-                        <LocationInput />
-                        <UtilizationInput />    
-                        <SuppliersInput values={values}/>                     
-                        <FormInputText 
-                            label={t('form.add.quantity')}
-                            name="quantity"    
-                        />
-                        <FormInputText 
-                            label={t('form.add.molecularWeight')}                               
-                            name="molecularWeight"                             
-                        />
-                        <DateInput 
-                            label={t('form.add.entryDate')}                             
-                            name="entryDate"   
-                        />   
+                    <Form className={classes.formadd}>
+                        <Container className={classes.fieldContainer}>                        
+                            <RefMaskInput value={refMask} setValue={setRefMask} />
+                            <IntRefInput mask={refMask} />                        
+                            <FormInputText 
+                                label={t('form.add.spanishname')}                                
+                                name="name"
+                            />
+                            <FormInputText 
+                                label={t('form.add.englishName')} 
+                                name="englishName"   
+                            />
+                            <FormInputText 
+                                label={t('form.add.cas')}
+                                name="cas"   
+                            />
+                            <LocationInput />
+                            <UtilizationInput />    
+                            <SuppliersInput values={values}/>                     
+                            <FormInputText 
+                                label={t('form.add.quantity')}
+                                name="quantity"  
+                                className={classes.small}  
+                            />
+                            <FormInputText 
+                                label={t('form.add.molecularWeight')}                               
+                                name="molecularWeight"                             
+                            />
+                            <DateInput 
+                                label={t('form.add.entryDate')}                             
+                                name="entryDate"   
+                            /> 
+                        </Container>  
                         <ElementsInput values={values}/>
-                        <Container> 
+                        <Container className={classes.buttonContainer}> 
                             <Button
                                 variant="contained"
                                 color="secondary"                            

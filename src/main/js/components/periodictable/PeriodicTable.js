@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 
 
 
-export default function PeriodicTable ({size = "lg", selectedElements, setSelectedElements}) {
+const PeriodicTable = ({size = "lg", selectedElements, setSelectedElements}) => {
     const [ infoElement, setInfoElement ] = useState ({
         showInfo: false,
         element: {}
@@ -69,3 +69,4 @@ export default function PeriodicTable ({size = "lg", selectedElements, setSelect
         </Container>
     )
 }
+export default React.memo(PeriodicTable);

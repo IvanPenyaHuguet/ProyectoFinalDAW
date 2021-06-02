@@ -18,7 +18,7 @@ export default function TableHead({ headerGroups }) {
             >
               <div className={Styles.cell}>
                 <div {...column.getHeaderProps(column.getSortByToggleProps())}>
-                  {column.render("Header")}
+                  <strong>{column.render("Header")}</strong>
                   {column.canSort=== true && 
                     <TableSortLabel
                       active={column.isSorted}

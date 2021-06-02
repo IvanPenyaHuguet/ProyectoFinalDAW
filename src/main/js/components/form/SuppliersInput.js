@@ -17,19 +17,17 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 
 
 const useStyles = makeStyles((theme) => ({    
-    input: {
-      width: '300px',
-      display: 'flex',
-      alignItems: 'flex-end',
+    input: {      
+      display: 'flex',      
       justifyContent: 'center',
-      flexDirection: 'row'
+      flexDirection: 'row'      
     },
     form: {
         width: '100%'
     },
     bgroup: {
-        height: '30px',
-        width: '30px'        
+        height: '30px', 
+        margin: '20px 0'             
     },
     but: {
         fontSize: '25px',
@@ -58,7 +56,7 @@ export default function SuppliersInput ({ values, ...props}) {
             <FieldArray                                             
                 name="suppliers"
                 render = { ({remove, insert}) => ( 
-                    <Container>                    
+                    <>                    
                         {  values.suppliers.map( (val, ind) => (
                             <Container key={ind}  className={classes.input}>                            
                                 <FormControl className={classes.form} error= {touched.suppliers && touched.suppliers[ind] && errors.suppliers && errors.suppliers[ind] ? true : false}>
@@ -93,7 +91,7 @@ export default function SuppliersInput ({ values, ...props}) {
                             </Container>
                         ))} 
                                               
-                    </Container>
+                    </>
                  )}                
             >                
             </FieldArray>

@@ -52,12 +52,7 @@ const ReagentTable = () => {
     
     
     const speedDial = useMemo ( () => {
-        const actions = [        ,
-            { icon: <SaveIcon />, name: t('table.tooltip.save'), click: () => reagentPDF.generatePdf({columns}, false)},
-            { icon: <PrintIcon />, name: t('table.tooltip.print'), click: () => reagentPDF.generatePdf({columns}, true) },
-            { icon: <ExcelIcon />, name: t('table.tooltip.excel'), click: () => reagentPDF.generateExcel("Aqueous Standard Solution") },
-            { icon: <CSVIcon />, name: t('table.tooltip.csv'), click: () => reagentPDF.generateCSV({columns: columns})},
-        ];    
+        const actions = [];    
         if (user.role.includes("ROLE_ADD_ALL")) {       
             actions.unshift({ icon: <AddIcon /> , name: t('table.tooltip.add'), click: () => history.push("/reagent/add") });
         }

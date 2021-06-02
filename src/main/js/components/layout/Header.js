@@ -5,6 +5,8 @@ import HeaderButtonGroup from "../nav/HeaderButtonGroup";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
+import Typography from '@material-ui/core/Typography';
+
 
 /**
  * React component for the header bar
@@ -19,10 +21,10 @@ export default function Header({ children }) {
       <Container className={styles.container}>
         <div className={styles.div}>
           <Link to="/chemdata" className={styles.title}>
-            <h1 className={styles.title}>LARS</h1>
+            <Typography variant="h2" component="h1" className={styles.title}>LARS</Typography>
           </Link>
           <Container className={styles.subtitle}>
-            <h2 className={styles.by}>{t('general.by')} Iván Peña Huguet</h2>
+            <Typography variant="h6" component="h2">{t('general.by')} Iván Peña Huguet</Typography>
           </Container>
         </div>
         <HeaderButtonGroup />

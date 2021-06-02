@@ -17,14 +17,15 @@ import RefMaskStoreProvider from '../../context/store/RefMaskStore';
 const useStyles = makeStyles((theme) => ({    
     container: {
       width: '100%',
-      maxWidth: '100%'    
+      maxWidth: '100%'   
     },
     conttitle: {
         width: '100%',
         maxWidth: '100%',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'flex-start'        
+        justifyContent: 'flex-start',
+        margin: '10px 5px 30px'      
     },
     addselect: {
         width: '300px',
@@ -37,8 +38,7 @@ export default function AddReagentComponent () {
 
     const { t } = useTranslation();
     const classes = useStyles();
-    const cont = useContext(TableContext); 
-    console.log(cont);    
+    const cont = useContext(TableContext);        
     const [ addContext, setAddContext ] = useState(cont);
 
     

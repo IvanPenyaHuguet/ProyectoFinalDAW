@@ -80,7 +80,7 @@ export const RTCColumns = t => {return [
             return (
                 <div>
                     {Object.keys(counts).map((item, i) => ( 
-                        <Chip  avatar={<Avatar>{counts[item].element.element}</Avatar>} label={counts[item].total} variant="outlined" key={i}/>
+                        <Chip avatar={<Avatar>{counts[item].element.element}</Avatar>} label={counts[item].total} variant="outlined" key={i}/>
                     ))}                      
                 </div>
             )

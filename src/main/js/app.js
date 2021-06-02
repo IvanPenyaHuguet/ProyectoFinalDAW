@@ -10,6 +10,7 @@ import MUITheme from './lib/conf/GlobalMUIConf';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DayJSUtils from '@date-io/dayjs';
 import Loader from './components/container/Loader';
+
 import "@fontsource/quando";
 import "@fontsource/alatsi";
 import "@fontsource/cabin/variable.css";
@@ -21,7 +22,7 @@ function App ({Component, pageProps}) {
 			<ResponsiveContextProvider>
 				<AuthContextProvider>
 					<LocalizationContextProvider>
-						<MUITheme>
+						<MUITheme>							
 							<MuiPickersUtilsProvider utils={DayJSUtils} locale={"es"}>
 								<HashRouter>
 									<div className="AppContainer">					
