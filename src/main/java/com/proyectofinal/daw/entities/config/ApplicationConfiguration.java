@@ -1,40 +1,61 @@
 package com.proyectofinal.daw.entities.config;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Table;
+import javax.persistence.Id;
 
 @Entity
 @Table
-public class ApplicationConfiguration {
+public class ApplicationConfiguration implements Serializable{
 
-    private boolean canGuest;
-    private boolean isPageAllCompounds;
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    private String code;
+    private String description;
+    private boolean state;
 
 
-    public boolean isCanGuest() {
-        return this.canGuest;
+    public String getCode() {
+        return this.code;
     }
 
-    public boolean getCanGuest() {
-        return this.canGuest;
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    public void setCanGuest(boolean canGuest) {
-        this.canGuest = canGuest;
+    public String getDescription() {
+        return this.description;
     }
 
-    public boolean isIsPageAllCompounds() {
-        return this.isPageAllCompounds;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public boolean getIsPageAllCompounds() {
-        return this.isPageAllCompounds;
+    public boolean isState() {
+        return this.state;
     }
 
-    public void setIsPageAllCompounds(boolean isPageAllCompounds) {
-        this.isPageAllCompounds = isPageAllCompounds;
+    public boolean getState() {
+        return this.state;
     }
 
+    public void setState(boolean state) {
+        this.state = state;
+    }
+    public long getId() {
+        return this.id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }   
+
+}
 
     
-}
