@@ -11,8 +11,8 @@ import { breakpoints } from './Breakpoints';
 const locale = i18next.t('zone') == 'en-US' ? enUS : esES;
 
 const color = {
-    primary: '#993333',
-    secondary: '#339999'
+    primary: '#ba3742',
+    secondary: '#37baaf'
 };
 
 const theme = createMuiTheme({

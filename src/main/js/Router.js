@@ -11,6 +11,7 @@ import IndexOrganic from './pages/reagent/organic/Index';
 import IndexSolWater from './pages/solution/water/Index';
 import IndexSolOrg from './pages/solution/organic/Index';
 import ReagentAdd from './pages/reagent/Add';
+const AdminPage = React.lazy(() => import ('./pages/admin/Index'));
 import NotFound from './pages/404';
 
 import Loader from './components/container/Loader';
@@ -34,8 +35,8 @@ export default function Router() {
         <PrivateRoute exact path="/reagent/organic" component={IndexOrganic}/> 
         <PrivateRoute exact path="/solution/water" component={IndexSolWater}/>
         <PrivateRoute exact path="/solution/organic" component={IndexSolOrg}/>   
-        <PrivateRoute exact path="/reagent/add" component={ReagentAdd}/>    
-        <Route component={NotFound} /> 
+        <PrivateRoute exact path="/reagent/add" component={ReagentAdd}/>
+        <PrivateRoute exact path="/admin" component={AdminPage} />
       </Switch>
     </Suspense>
   );

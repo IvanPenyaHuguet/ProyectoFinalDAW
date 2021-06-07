@@ -16,3 +16,4 @@ public interface StandardSolBaseRepository <T extends StandardSol> extends JpaRe
     
         
 }
+

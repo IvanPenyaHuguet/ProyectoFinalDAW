@@ -1,14 +1,14 @@
 .menu {    
     background-color: var(--var-primary-dark-color);
     height: 100%;
-    width: 100%;
-    border: 2px solid var(--var-quaternary-color);
+    width: 100%;    
     box-sizing: border-box;
     width: 80px;
     transition: width 1s ease-out;
     position: absolute;
     top: 0;
     left: 0;
+    border-right: 2px solid var(--var-grey-color);   
 }
 .menuopen {
     width: 210px;
@@ -29,7 +29,7 @@
     height: 100%;
 }
 .contburgerbutton {
-    border-bottom: 2px solid var(--var-quaternary-color);
+    border-bottom: 2px solid var(--var-grey-color);
     box-sizing: border-box;
     height: 5rem;
     display: flex;    

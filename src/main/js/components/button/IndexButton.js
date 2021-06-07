@@ -1,23 +1,44 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Container from "../container/Container";
-import styles from "../../css/components/button/IndexButton.module.css";
+import React from "react";
+import { Link } from "react-router-dom";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import CardHeader from "@material-ui/core/CardHeader";
+import Grid from "@material-ui/core/Grid";
 
+import { makeStyles } from '@material-ui/core/styles';
+
+
+const useStyles = makeStyles((theme) => ({    
+    noline: {
+        textDecoration: 'none'
+    },
+    item: {
+        backgroundColor: 'var(--var-grey-color)'
+    } 
+}));
 
 /**
  * Main reusable buttons for the index page
- * @param {children, title, url, description} props 
- * @returns 
+ * @param {children, title, url, description} props
+ * @returns
  */
+export default function IndexButton({
+  title = "",
+  url,
+  description = "",
+  avatar = "",
+  ...props
+}) {
 
-export default function IndexButton ( { children, title = "", url, description ="" }) {
-    return (
-        <Link to={url}>
-            <Container className={styles.section} >
-                <h2 className={styles.title}>{title}</h2>
-                <p className={styles.description}>{description}</p>
-                { children }
-            </Container>  
-        </Link>              
-    )
+    const classes = useStyles();
+  return (
+    <Grid item lg={4} xl={3} md={6} xs={12}>
+      <Link to={url} className={classes.noline} >
+        <Card {...props} className={classes.item}>
+          <CardHeader avatar={avatar} title={title}></CardHeader>
+          <CardContent >{description}</CardContent>
+        </Card>
+      </Link>
+    </Grid>
+  );
 }

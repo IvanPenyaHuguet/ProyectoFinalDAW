@@ -1,10 +1,10 @@
 :root {
-    --var-primary-color:#993333;
-    --var-primary-dark-color: #732626;
-    --var-secondary-color: #339999;
+    --var-primary-color:#ba3742;
+    --var-primary-dark-color: rgba(186, 55, 66,1);
+    --var-secondary-color: #37baaf;
     --var-secondary-dark-color: #267373;
     --var-terciary-color: #FFF;
-    --var-quaternary-color: #339966;
+    --var-quaternary-color: #37baaf;
     --var-primary-font: 'Bitter', serif;
     --var-secondary-font: 'Newsreader', serif;
     --var-error-color: #f44336;

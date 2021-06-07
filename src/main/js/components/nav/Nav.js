@@ -46,7 +46,7 @@ export default function Nav ({children}) {
                     <LinkOfMenu to="/reagent/organic" text={t('nav.link.organicreagents')} icon={<OrganicIcon />} isOpen={isOpen}/>
                     <LinkOfMenu to="/solution/water" text={t('nav.link.standardsol')} icon={<WaterSolIcon />} isOpen={isOpen}/>
                     <LinkOfMenu to="/solution/organic" text={t('nav.link.orgstdsol')} icon={<OrganicSolIcon />} isOpen={isOpen}/>
-                    <LinkOfMenu to="/standard/all" text={t('nav.link.standards')} icon={<StandardIcon />} isOpen={isOpen}/>
+                    {/* <LinkOfMenu to="/standard/all" text={t('nav.link.standards')} icon={<StandardIcon />} isOpen={isOpen}/> */}
                     {userRole.includes("ROLE_MODIFY_USERS") && <LinkOfMenu to="/admin" text={t('nav.link.manage')} icon={<AdminIcon />}isOpen={isOpen} />}
                 </Container>              
             </nav>

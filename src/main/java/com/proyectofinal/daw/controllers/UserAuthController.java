@@ -3,8 +3,6 @@ package com.proyectofinal.daw.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.proyectofinal.daw.entities.User;
-import com.proyectofinal.daw.repositories.UserRepository;
 import com.proyectofinal.daw.services.authentication.AuthenticationUser;
 import com.proyectofinal.daw.services.authentication.JwtAuthenticationResponse;
 import com.proyectofinal.daw.services.authentication.JwtUtil;
@@ -18,7 +16,6 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,13 +28,7 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 @RequestMapping("/")
 public class UserAuthController {
-
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-    
+        
     @Autowired
     private AuthenticationManager authenticationManager;
 
@@ -47,15 +38,6 @@ public class UserAuthController {
     @Autowired
     private JwtUtil jwtUtil;
 
-    /**
-     * Api for register new users
-     * @param user User to register in the database
-     */
-    @PostMapping("/signup")
-    public void signUp(@RequestBody User user) {
-        user.setPass(bCryptPasswordEncoder.encode(user.getPass()));
-        userRepository.save(user);
-    }
 
     /**
      * Api for login the users returning a JWT

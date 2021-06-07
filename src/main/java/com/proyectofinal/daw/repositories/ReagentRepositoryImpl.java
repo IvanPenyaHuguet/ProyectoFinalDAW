@@ -42,3 +42,4 @@ public interface ReagentRepositoryImpl extends ReagentBaseRepository <Reagent> {
     @Query("SELECT DISTINCT r.utilization FROM Reagent r")
     List<String> findAllUtilization();
 }
+

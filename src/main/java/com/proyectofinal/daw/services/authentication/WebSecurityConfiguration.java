@@ -42,11 +42,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter{
                     .antMatchers("/built/*").permitAll()
                     .antMatchers("/authenticate").permitAll()
                     .antMatchers("/validate").permitAll()
-                    .antMatchers("/favicon.ico").permitAll() 
-                    .antMatchers(HttpMethod.POST,"/signup").permitAll() // Temporal
-                    //.antMatchers(HttpMethod.POST, "/api/**").authenticated()
-                    //.antMatchers("/api/**").hasRole("TECH")
-                    //.antMatchers("/api/auth/**").hasRole("ADMIN")
+                    .antMatchers("/favicon.ico").permitAll()
                     .anyRequest().authenticated()
                     .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and().exceptionHandling().accessDeniedPage("/403");                    

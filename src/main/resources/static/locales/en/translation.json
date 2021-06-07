@@ -29,7 +29,8 @@
         "required": "Required",
         "toolong": "Too long",
         "tooshort": "Too short",
-        "unsuccesful": "Something bad happened when saving, contact support, a trace has been sended..."
+        "unsuccesful": "Something bad happened when saving, contact support, a trace has been sended...",
+        "usernameexists": "User exist with this username"
       },
       "expiryDate": "Expiration Date",
       "formula": "Formula",
@@ -73,7 +74,18 @@
     "modify": {
       "delete": {
         "succesful": "The reagent has been deleted",
-        "unsuccesful": "Something bad happened when deleting, contact support...."
+        "unsuccesful": "Something bad happened when deleting, contact support....",
+        "user": {
+          "succesful": "User delete succesful"
+        }
+      }
+    },
+    "user": {
+      "add": {
+        "name": "Name",
+        "password": "Password",
+        "surname": "Surname",
+        "username": "Username"
       }
     }
   },

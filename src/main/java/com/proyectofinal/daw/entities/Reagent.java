@@ -69,7 +69,7 @@ public abstract class Reagent implements Serializable, Compound {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;    
-    @Column ( unique = true, nullable = false)
+    @Column ( nullable = false)
     @FullTextField( analyzer= "spanish", projectable = Projectable.YES)
     @KeywordField(name = "spanishName_sort", normalizer = "spanish", sortable = Sortable.YES)
     private String name;
@@ -81,7 +81,10 @@ public abstract class Reagent implements Serializable, Compound {
     @ColumnDefault("1") 
     private int quantity;  
     private String formula;
-    @OneToMany(mappedBy = "reagent", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "reagent",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Commentary> commentary;    
     @ManyToMany(mappedBy = "reagents") 
