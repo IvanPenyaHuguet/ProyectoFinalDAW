@@ -12,7 +12,11 @@ const getScreenResolution = () => {
 		window.innerWidth < breakpoints.md
 	)
 		return 'md';
-	else if (window.innerWidth >= breakpoints.md) return 'lg';
+	else if (window.innerWidth >= breakpoints.md
+		&& window.innerWidth < breakpoints.lg)
+		return 'lg';
+	else if (window.innerWidth >= breakpoints.lg )
+		return 'xl';
 };
 
 export default getScreenResolution;

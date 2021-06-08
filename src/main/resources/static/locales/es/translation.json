@@ -71,6 +71,11 @@
       },
       "title": "Inicia sesión"
     },
+    "message": {
+      "add": {
+        "success": "Usuario guardado"
+      }
+    },
     "modify": {
       "delete": {
         "succesful": "El reactivo ha sido borrado",
@@ -107,6 +112,22 @@
       "logout": "Cerrar Sesión"
     },
     "welcome": "Bienvenido"
+  },
+  "index": {
+    "description": {
+      "reagentall": "Muestra todos los reactivos",
+      "reagentinorganic": "Muestra los reactivos inorgánicos",
+      "reagentorganic": "Muestra los reactivos orgánicos",
+      "solacuosas": "Muestra las soluciones estándar acuosas",
+      "solorganic": "Muestra las soluciones estándar orgánicas"
+    },
+    "title": {
+      "reagentall": "Todos los reactivos",
+      "reagentinorganic": "Reactivos Inorgánicos",
+      "reagentorganic": "Reactivos Orgánicos",
+      "solacuosas": "Soluciones Acuosas",
+      "solorganic": "Soluciones Orgánicas"
+    }
   },
   "lars": {
     "types": {

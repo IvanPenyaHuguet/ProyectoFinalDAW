@@ -113,6 +113,22 @@
     },
     "welcome": "Welcome"
   },
+  "index": {
+    "description": {
+      "reagentall": "Show all reagents",
+      "reagentinorganic": "Show inorganic reagents",
+      "reagentorganic": "Show organic reagents",
+      "solacuosas": "Show aqueous standard solutions",
+      "solorganic": "Show organic standard solutions"
+    },
+    "title": {
+      "reagentall": "All reagents",
+      "reagentinorganic": "Inorganic reagents",
+      "reagentorganic": "Organic reagents",
+      "solacuosas": "Aqueous solutions",
+      "solorganic": "Organic solutions"
+    }
+  },
   "lars": {
     "types": {
       "aqustdsol": "Aqueous Standard Solution",
