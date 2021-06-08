@@ -25,20 +25,20 @@ export default function ReagentCommentaries ({row ,setAlert}) {
     const [ commentaries, setCommentaries ] = useState([]);
     const [ loading, setLoading ] = useState(false);
     const classes = useStyles();
+    const [ updateComments, setUpdateComments ] = useState(0);
 
     useEffect(() => {
         setLoading(true);              
         CommentaryService.getByReagentId(row.id)
         .then( res => {  
             setCommentaries(res.data);
-            setLoading(false);
+            setLoading(false);            
         }) 
         .catch((res) => {
             setCommentaries([]);
             setLoading(false);
-        })
-                  
-    }, []);   
+        })                  
+    }, [updateComments]);     
 
     return (
         <Container className={classes.container}>
@@ -47,7 +47,7 @@ export default function ReagentCommentaries ({row ,setAlert}) {
                 :
                 <CommentariesGroup commentaries={commentaries}/> 
             }
-            <CommentaryInput id={row.id} setAlert={setAlert}/>            
+            <CommentaryInput id={row.id} setAlert={setAlert} updateComments={updateComments} setUpdateComments={setUpdateComments}/>            
         </Container>
     )
 }

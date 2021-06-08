@@ -21,14 +21,14 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-export default function CommentaryInput ({id , setAlert}){
+export default function CommentaryInput ({id , setAlert , updateComments, setUpdateComments}){
 
     const { t } = useTranslation();
     const classes = useStyles();    
-    const [ commentary, setCommentary ] = useState('');
+    const [ commentary, setCommentary ] = useState('');    
 
     const handleChange = (e) => {
-        setCommentary(e.target.value);
+        setCommentary(e.target.value);        
     }
 
     const onCleanClick = (e) => {
@@ -37,7 +37,7 @@ export default function CommentaryInput ({id , setAlert}){
 
     const onSendClick = (e) => {
         CommentaryService.saveCommentary(id, commentary)
-        .then ( res => 
+        .then ( res => {
             res.status == 200 ? 
             setAlert({
                 type: 'success' , 
@@ -47,8 +47,10 @@ export default function CommentaryInput ({id , setAlert}){
             setAlert({
                 type: 'error' , 
                 message: t('form.commentary.failure')
-            })
-        )
+            });
+            setUpdateComments(updateComments+1);
+            setCommentary('');
+        })
     }
 
     return (
