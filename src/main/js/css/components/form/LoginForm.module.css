@@ -1,21 +1,19 @@
 .form {
   border: 2px solid var(--var-primary-color);
   margin: auto;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
   width: 600px;
-  min-width: 600px;
-  height: 400px;
-  min-height: 400px;
+  min-width: 400px;
+  height: 300px;
+  min-height: 300px;
   display: flex;
+  border-radius: 10px;
   flex-direction: column;
   justify-content: space-between;
   padding: 30px 30px;
   font-family: var(--var-secondary-font);
   background-color: var(--var-terciary-color);
-  box-shadow: 1px 1px 2px var(--var-primary-color);
+  box-shadow: 2px 2px 4px black;
   outline: none;
 }
 .form:focus {
@@ -42,6 +40,11 @@
 .formInput {
   height: 2rem;
   padding: 0 1rem;
+}
+@media (max-width: 800px) {
+  .form {    
+    width: 100%;    
+  }
 }
 
 

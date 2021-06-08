@@ -1,15 +1,36 @@
 import React from "react";
-import styles from "../../css/components/title/MainTitle.module.css";
-import Container from "../container/Container";
+import Container from "../container/MUIContainer";
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+
+
+const useStyles = makeStyles((theme) => ({    
+    title: {
+        color: 'var(--var-primary-color)',       
+        textAlign: 'center',
+        letterSpacing: '10px'    
+    },
+    subtitle: {
+        color: 'var(--var-primary-color)',       
+        textAlign: 'center',
+        letterSpacing: '3px'    
+    }
+}));
 
 /**
  * Main title for the main login page
  * @returns React component for the main title
  */
 export default function MainTitle () {
+    const classes = useStyles();
     return (
         <Container>
-            <h1 className={styles.title}>Laboratory Application for Reagents and Standards (LARS)</h1>
+            <Typography variant="h1" component="h1" className={classes.title}>
+                LARS
+            </Typography>
+            <Typography variant="h2" component="h2" className={classes.subtitle} gutterBottom>
+                Laboratory Application for Reagents and Standards
+            </Typography>            
         </Container>
     )
 }

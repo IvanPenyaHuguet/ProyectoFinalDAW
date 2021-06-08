@@ -58,6 +58,9 @@ export default class User {
             if (res.status == 412) {
                 setAlert ? setAlert({type: 'error', message: i18next.t('form.add.errors.usernameexists')}) : null;
             }
+            if (res.status == 200) {
+                setAlert ? setAlert({type: 'success', message: i18next.t('form.message.add.success')}) : null;
+            }
             setSubmitting(false);               
         }) 
         .catch(e => {

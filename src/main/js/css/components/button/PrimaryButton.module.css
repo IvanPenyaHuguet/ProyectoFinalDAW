@@ -14,7 +14,7 @@
   display: inline-block;
   box-sizing: border-box;
   background-color: var(--var-terciary-color);
-  z-index: -2;
+  z-index: 1;
   font-size: 1rem;
   font-weight: bold;
   box-shadow: 2px 2px 2px var(--var-primary-color);
@@ -29,7 +29,7 @@
   opacity: 0;
   content: "";
   background-color: var(--var-primary-color);
-  z-index: -2;
+  z-index: -1;
 }
 .mainButton:hover {
   color: var(--var-terciary-color);

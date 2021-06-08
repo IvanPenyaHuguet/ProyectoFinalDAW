@@ -125,7 +125,7 @@ export default function Login(props) {
           {errors.password == true && <ErrorSmall message={t('form.login.error.password')}/>}       
         </div>
             <PrimaryButton onClick={onFormSubmit}>{t('form.login.button.login')}</PrimaryButton>   
-            <SecondaryButton onClick={onButtonClick}>{t('form.login.button.guest')}</SecondaryButton>      
+            {/* <SecondaryButton onClick={onButtonClick}>{t('form.login.button.guest')}</SecondaryButton>       */}
       </form>
     </>
   );

@@ -29,7 +29,8 @@
         "required": "Obligatorio",
         "toolong": "Demasiado largo",
         "tooshort": "Demasiado corto",
-        "unsuccesful": "Algo malo ha ocurrido al guardar, contacte con soporte, ha sido enviada una traza..."
+        "unsuccesful": "Algo malo ha ocurrido al guardar, contacte con soporte, ha sido enviada una traza...",
+        "usernameexists": ""
       },
       "expiryDate": "",
       "formula": "Fórmula",

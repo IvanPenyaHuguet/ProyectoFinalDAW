@@ -551,6 +551,13 @@ var User = /*#__PURE__*/function () {
           }) : null;
         }
 
+        if (res.status == 200) {
+          setAlert ? setAlert({
+            type: 'success',
+            message: i18next__WEBPACK_IMPORTED_MODULE_11__.default.t('form.message.add.success')
+          }) : null;
+        }
+
         setSubmitting(false);
       })["catch"](function (e) {
         _service_error_ErrorController__WEBPACK_IMPORTED_MODULE_14__.default.checkError(e, setAlert);

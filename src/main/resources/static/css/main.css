@@ -29,10 +29,12 @@ body {
 .AppContent {
     height: 100%;
     overflow: hidden;
+    background-color: white;
 }
 .mainApplication {
     height: calc(100% - 90px);
     overflow: auto;
+    background-color: white;
 }
 
 ::-webkit-scrollbar {

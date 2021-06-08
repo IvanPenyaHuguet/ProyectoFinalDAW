@@ -30,7 +30,7 @@ module.exports = {
                 use: ['style-loader', 'css-loader', 'postcss-loader'],
             },
             { 
-                test: /\.(ttf|eot|svg|gif|woff|woff2)(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
+                test: /\.(ttf|eot|svg|gif|woff|woff2|jpg|png|jpeg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
                 type: 'asset/resource'
             }
         ]

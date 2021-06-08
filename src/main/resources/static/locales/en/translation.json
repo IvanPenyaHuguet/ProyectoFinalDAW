@@ -71,6 +71,11 @@
       },
       "title": "Log in"
     },
+    "message": {
+      "add": {
+        "success": "User succesful saved"
+      }
+    },
     "modify": {
       "delete": {
         "succesful": "The reagent has been deleted",
