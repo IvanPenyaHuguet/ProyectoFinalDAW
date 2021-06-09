@@ -90,7 +90,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_button_IndexButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/button/IndexButton */ "./src/main/js/components/button/IndexButton.js");
 /* harmony import */ var _components_periodictable_PeriodicTable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/periodictable/PeriodicTable */ "./src/main/js/components/periodictable/PeriodicTable.js");
 /* harmony import */ var _material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/Grid.js");
-/* harmony import */ var _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/Paper */ "./node_modules/@material-ui/core/esm/Paper/Paper.js");
 /* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
 /* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/useTranslation.js");
 
@@ -105,6 +104,10 @@ var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__.default
     container: {
       margin: '10px 0',
       padding: '20px'
+    },
+    solvegrid: {
+      width: '100%',
+      margin: 0
     }
   };
 });
@@ -117,7 +120,8 @@ function Index() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_5__.default, {
     container: true,
     direction: "row",
-    spacing: 4
+    spacing: 4,
+    className: classes.solvegrid
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_button_IndexButton__WEBPACK_IMPORTED_MODULE_1__.default, {
     url: "/reagent/all",
     title: t('index.title.reagentall'),
@@ -138,10 +142,7 @@ function Index() {
     url: "/solution/organic",
     title: t('index.title.solorganic'),
     description: t('index.description.solorganic')
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_6__.default, {
-    m: 2,
-    className: classes.container
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_periodictable_PeriodicTable__WEBPACK_IMPORTED_MODULE_2__.default, null)));
+  })));
 }
 
 /***/ })
