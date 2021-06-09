@@ -19,11 +19,8 @@ export default function MainWindow() {
       <TabBar value={tab} handleChange={handleTabChange}/>
       <TabPanel value={tab} index={0}>
           <AdminUser />        
-      </TabPanel>
+      </TabPanel>     
       <TabPanel value={tab} index={1}>
-        <AddUser />
-      </TabPanel>
-      <TabPanel value={tab} index={2}>
         <Funciones />
       </TabPanel>
     </>

@@ -22,9 +22,8 @@ export default function TabBar({value, handleChange}) {
         variant="scrollable"
         scrollButtons="auto"     
       >
-        <Tab label="Usuarios" {...a11yProps(0)} disabled/>
-        <Tab label="Añadir Usuario" {...a11yProps(1)}  />          
-        <Tab label="Funciones" {...a11yProps(2)} />        
+        <Tab label="Usuarios" {...a11yProps(0)} />                
+        <Tab label="Funciones" {...a11yProps(1)} />        
       </Tabs>
     </AppBar>    
   )

@@ -1,174 +1,5 @@
 (self["webpackChunkdaw"] = self["webpackChunkdaw"] || []).push([["src_main_js_pages_admin_Index_js"],{
 
-/***/ "./node_modules/@material-ui/core/esm/AppBar/AppBar.js":
-/*!*************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/AppBar/AppBar.js ***!
-  \*************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "styles": () => (/* binding */ styles),
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutProperties */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
-/* harmony import */ var _styles_withStyles__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../styles/withStyles */ "./node_modules/@material-ui/core/esm/styles/withStyles.js");
-/* harmony import */ var _utils_capitalize__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/capitalize */ "./node_modules/@material-ui/core/esm/utils/capitalize.js");
-/* harmony import */ var _Paper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Paper */ "./node_modules/@material-ui/core/esm/Paper/Paper.js");
-
-
-
-
-
-
-
-
-var styles = function styles(theme) {
-  var backgroundColorDefault = theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[900];
-  return {
-    /* Styles applied to the root element. */
-    root: {
-      display: 'flex',
-      flexDirection: 'column',
-      width: '100%',
-      boxSizing: 'border-box',
-      // Prevent padding issue with the Modal and fixed positioned AppBar.
-      zIndex: theme.zIndex.appBar,
-      flexShrink: 0
-    },
-
-    /* Styles applied to the root element if `position="fixed"`. */
-    positionFixed: {
-      position: 'fixed',
-      top: 0,
-      left: 'auto',
-      right: 0,
-      '@media print': {
-        // Prevent the app bar to be visible on each printed page.
-        position: 'absolute'
-      }
-    },
-
-    /* Styles applied to the root element if `position="absolute"`. */
-    positionAbsolute: {
-      position: 'absolute',
-      top: 0,
-      left: 'auto',
-      right: 0
-    },
-
-    /* Styles applied to the root element if `position="sticky"`. */
-    positionSticky: {
-      // ⚠️ sticky is not supported by IE 11.
-      position: 'sticky',
-      top: 0,
-      left: 'auto',
-      right: 0
-    },
-
-    /* Styles applied to the root element if `position="static"`. */
-    positionStatic: {
-      position: 'static'
-    },
-
-    /* Styles applied to the root element if `position="relative"`. */
-    positionRelative: {
-      position: 'relative'
-    },
-
-    /* Styles applied to the root element if `color="default"`. */
-    colorDefault: {
-      backgroundColor: backgroundColorDefault,
-      color: theme.palette.getContrastText(backgroundColorDefault)
-    },
-
-    /* Styles applied to the root element if `color="primary"`. */
-    colorPrimary: {
-      backgroundColor: theme.palette.primary.main,
-      color: theme.palette.primary.contrastText
-    },
-
-    /* Styles applied to the root element if `color="secondary"`. */
-    colorSecondary: {
-      backgroundColor: theme.palette.secondary.main,
-      color: theme.palette.secondary.contrastText
-    },
-
-    /* Styles applied to the root element if `color="inherit"`. */
-    colorInherit: {
-      color: 'inherit'
-    },
-
-    /* Styles applied to the root element if `color="transparent"`. */
-    colorTransparent: {
-      backgroundColor: 'transparent',
-      color: 'inherit'
-    }
-  };
-};
-var AppBar = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.forwardRef(function AppBar(props, ref) {
-  var classes = props.classes,
-      className = props.className,
-      _props$color = props.color,
-      color = _props$color === void 0 ? 'primary' : _props$color,
-      _props$position = props.position,
-      position = _props$position === void 0 ? 'fixed' : _props$position,
-      other = (0,_babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__.default)(props, ["classes", "className", "color", "position"]);
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(_Paper__WEBPACK_IMPORTED_MODULE_5__.default, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({
-    square: true,
-    component: "header",
-    elevation: 4,
-    className: (0,clsx__WEBPACK_IMPORTED_MODULE_4__.default)(classes.root, classes["position".concat((0,_utils_capitalize__WEBPACK_IMPORTED_MODULE_6__.default)(position))], classes["color".concat((0,_utils_capitalize__WEBPACK_IMPORTED_MODULE_6__.default)(color))], className, position === 'fixed' && 'mui-fixed'),
-    ref: ref
-  }, other));
-});
- true ? AppBar.propTypes = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
-
-  /**
-   * The content of the component.
-   */
-  children: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().node),
-
-  /**
-   * Override or extend the styles applied to the component.
-   * See [CSS API](#css) below for more details.
-   */
-  classes: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().object),
-
-  /**
-   * @ignore
-   */
-  className: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string),
-
-  /**
-   * The color of the component. It supports those theme colors that make sense for this component.
-   */
-  color: prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOf(['default', 'inherit', 'primary', 'secondary', 'transparent']),
-
-  /**
-   * The positioning type. The behavior of the different options is described
-   * [in the MDN web docs](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning).
-   * Note: `sticky` is not universally supported and will fall back to `static` when unavailable.
-   */
-  position: prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOf(['absolute', 'fixed', 'relative', 'static', 'sticky'])
-} : 0;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_styles_withStyles__WEBPACK_IMPORTED_MODULE_7__.default)(styles, {
-  name: 'MuiAppBar'
-})(AppBar));
-
-/***/ }),
-
 /***/ "./src/main/js/components/admin/AddUser.js":
 /*!*************************************************!*\
   !*** ./src/main/js/components/admin/AddUser.js ***!
@@ -178,6 +9,7 @@ var AppBar = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.forwardRef(function
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useStyles": () => (/* binding */ useStyles),
 /* harmony export */   "default": () => (/* binding */ AddUser)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/slicedToArray */ "./node_modules/@babel/runtime-corejs3/helpers/esm/slicedToArray.js");
@@ -186,12 +18,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _form_Form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../form/Form */ "./src/main/js/components/form/Form.js");
 /* harmony import */ var _form_MUIFormInputText__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../form/MUIFormInputText */ "./src/main/js/components/form/MUIFormInputText.js");
 /* harmony import */ var _lib_entities_User__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../lib/entities/User */ "./src/main/js/lib/entities/User.js");
-/* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/useTranslation.js");
+/* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/useTranslation.js");
 /* harmony import */ var _popups_Alert__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../popups/Alert */ "./src/main/js/components/popups/Alert.js");
-/* harmony import */ var _container_MUIContainer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../container/MUIContainer */ "./src/main/js/components/container/MUIContainer.js");
+/* harmony import */ var _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/core/Paper */ "./node_modules/@material-ui/core/esm/Paper/Paper.js");
 /* harmony import */ var _material_ui_icons_Save__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @material-ui/icons/Save */ "./node_modules/@material-ui/icons/Save.js");
-/* harmony import */ var _add_StylesAdd__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../add/StylesAdd */ "./src/main/js/components/add/StylesAdd.js");
 /* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/Button.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
 
 
 
@@ -204,6 +36,21 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_7__.default)(function (theme) {
+  return {
+    formadd: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'flex-start',
+      alignItems: 'center',
+      padding: '10px 15px 20px'
+    },
+    buttonContainer: {
+      margin: '0 20px',
+      alignSelf: 'center'
+    }
+  };
+});
 function AddUser() {
   var user = new _lib_entities_User__WEBPACK_IMPORTED_MODULE_5__.default();
 
@@ -214,10 +61,10 @@ function AddUser() {
 
   user.getInitialValue();
 
-  var _useTranslation = (0,react_i18next__WEBPACK_IMPORTED_MODULE_9__.useTranslation)(),
+  var _useTranslation = (0,react_i18next__WEBPACK_IMPORTED_MODULE_8__.useTranslation)(),
       t = _useTranslation.t;
 
-  var classes = (0,_add_StylesAdd__WEBPACK_IMPORTED_MODULE_8__.useStyles)();
+  var classes = useStyles();
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, alert && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_popups_Alert__WEBPACK_IMPORTED_MODULE_6__.default, {
     open: alert ? true : false,
     setOpen: setAlert,
@@ -232,10 +79,9 @@ function AddUser() {
   }, function (_ref2) {
     var submitForm = _ref2.submitForm,
         isSubmitting = _ref2.isSubmitting;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_form_Form__WEBPACK_IMPORTED_MODULE_3__.default, {
-      className: classes.formadd
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_container_MUIContainer__WEBPACK_IMPORTED_MODULE_7__.default, {
-      className: classes.fieldContainer
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_form_Form__WEBPACK_IMPORTED_MODULE_3__.default, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_9__.default, {
+      className: classes.formadd,
+      elevation: 3
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_form_MUIFormInputText__WEBPACK_IMPORTED_MODULE_4__.default, {
       label: t('form.user.add.name'),
       name: "name"
@@ -249,12 +95,13 @@ function AddUser() {
       label: t('form.user.add.password'),
       name: "pass",
       type: "password"
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_container_MUIContainer__WEBPACK_IMPORTED_MODULE_7__.default, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_10__.default, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_10__.default, {
       variant: "contained",
       color: "primary",
       disabled: isSubmitting,
       onClick: submitForm,
-      endIcon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_material_ui_icons_Save__WEBPACK_IMPORTED_MODULE_11__.default, null)
+      endIcon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_material_ui_icons_Save__WEBPACK_IMPORTED_MODULE_11__.default, null),
+      className: classes.buttonContainer
     }, t('general.add'))));
   }));
 }
@@ -273,9 +120,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ AdminUser)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _AddUser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddUser */ "./src/main/js/components/admin/AddUser.js");
+/* harmony import */ var _UserTable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./UserTable */ "./src/main/js/components/admin/UserTable.js");
+
+
 
 function AdminUser() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_AddUser__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_UserTable__WEBPACK_IMPORTED_MODULE_2__.default, null));
 }
 
 /***/ }),
@@ -343,9 +194,6 @@ function MainWindow() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_AdminUser__WEBPACK_IMPORTED_MODULE_5__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_TabPanel__WEBPACK_IMPORTED_MODULE_3__.default, {
     value: tab,
     index: 1
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_AddUser__WEBPACK_IMPORTED_MODULE_4__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_TabPanel__WEBPACK_IMPORTED_MODULE_3__.default, {
-    value: tab,
-    index: 2
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_Funciones__WEBPACK_IMPORTED_MODULE_6__.default, null)));
 }
 
@@ -393,13 +241,9 @@ function TabBar(_ref) {
     scrollButtons: "auto"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_material_ui_core_Tab__WEBPACK_IMPORTED_MODULE_4__.default, (0,_babel_runtime_corejs3_helpers_extends__WEBPACK_IMPORTED_MODULE_0__.default)({
     label: "Usuarios"
-  }, a11yProps(0), {
-    disabled: true
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_material_ui_core_Tab__WEBPACK_IMPORTED_MODULE_4__.default, (0,_babel_runtime_corejs3_helpers_extends__WEBPACK_IMPORTED_MODULE_0__.default)({
-    label: "A\xF1adir Usuario"
-  }, a11yProps(1))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_material_ui_core_Tab__WEBPACK_IMPORTED_MODULE_4__.default, (0,_babel_runtime_corejs3_helpers_extends__WEBPACK_IMPORTED_MODULE_0__.default)({
+  }, a11yProps(0))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_material_ui_core_Tab__WEBPACK_IMPORTED_MODULE_4__.default, (0,_babel_runtime_corejs3_helpers_extends__WEBPACK_IMPORTED_MODULE_0__.default)({
     label: "Funciones"
-  }, a11yProps(2)))));
+  }, a11yProps(1)))));
 }
 
 /***/ }),
@@ -421,13 +265,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_Box__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/Box */ "./node_modules/@material-ui/core/esm/Box/Box.js");
 
 
+var _excluded = ["children", "value", "index"];
 
 
 function TabPanel(props) {
   var children = props.children,
       value = props.value,
       index = props.index,
-      other = (0,_babel_runtime_corejs3_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__.default)(props, ["children", "value", "index"]);
+      other = (0,_babel_runtime_corejs3_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__.default)(props, _excluded);
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("div", (0,_babel_runtime_corejs3_helpers_extends__WEBPACK_IMPORTED_MODULE_0__.default)({
     role: "tabpanel",
@@ -437,6 +282,79 @@ function TabPanel(props) {
   }, other), value === index && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(_material_ui_core_Box__WEBPACK_IMPORTED_MODULE_3__.default, {
     p: 3
   }, children));
+}
+
+/***/ }),
+
+/***/ "./src/main/js/components/admin/UserTable.js":
+/*!***************************************************!*\
+  !*** ./src/main/js/components/admin/UserTable.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useStyles": () => (/* binding */ useStyles),
+/* harmony export */   "default": () => (/* binding */ UserTable)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/Paper */ "./node_modules/@material-ui/core/esm/Paper/Paper.js");
+/* harmony import */ var _material_ui_data_grid__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/data-grid */ "./node_modules/@material-ui/data-grid/dist/index-esm.js");
+/* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/useTranslation.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
+
+
+
+
+
+var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__.default)(function (theme) {
+  return {
+    tablecontainer: {
+      display: 'flex',
+      height: '100%'
+    }
+  };
+});
+
+var columns = function columns(t) {
+  return [{
+    field: 'name',
+    headerName: t('table.user.name'),
+    type: 'string'
+  }, {
+    field: 'surname',
+    headerName: t('table.user.surname'),
+    type: 'string'
+  }, {
+    field: 'username',
+    headerName: t('table.user.username'),
+    type: 'string'
+  }, {
+    field: 'pass',
+    headerName: t('table.user.pass'),
+    type: 'string'
+  }, {
+    field: 'creationDate',
+    headerName: t('table.user.creationDate'),
+    type: 'dateTime'
+  }];
+};
+
+function UserTable() {
+  var _useTranslation = (0,react_i18next__WEBPACK_IMPORTED_MODULE_2__.useTranslation)(),
+      t = _useTranslation.t;
+
+  var classes = useStyles();
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_3__.default, {
+    elevation: 3,
+    className: classes.tablecontainer
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_data_grid__WEBPACK_IMPORTED_MODULE_4__.DataGrid, {
+    components: {
+      Toolbar: _material_ui_data_grid__WEBPACK_IMPORTED_MODULE_4__.GridToolbar
+    },
+    columns: columns(t)
+  }));
 }
 
 /***/ }),

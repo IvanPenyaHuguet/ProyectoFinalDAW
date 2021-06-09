@@ -6,11 +6,27 @@ import FormInputText from '../form/MUIFormInputText';
 import User from '../../lib/entities/User';
 import { useTranslation } from 'react-i18next';
 import Alert from '../popups/Alert';
-import Container from '../container/MUIContainer';
+import Paper from '@material-ui/core/Paper';
 import SaveIcon from '@material-ui/icons/Save';
-import { useStyles } from '../add/StylesAdd';
 
 import Button from '@material-ui/core/Button';
+
+import { makeStyles } from '@material-ui/core/styles';
+
+
+export const useStyles = makeStyles((theme) => ({    
+    formadd: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        padding: '10px 15px 20px'        
+    },
+    buttonContainer: {
+        margin: '0 20px', 
+        alignSelf: 'center'       
+    }
+}));
 
 
 
@@ -33,8 +49,8 @@ export default function AddUser () {
                 }}
             >
                 { ({ submitForm, isSubmitting }) => (
-                    <Form className={classes.formadd}>
-                        <Container className={classes.fieldContainer}>                      
+                    <Form>
+                        <Paper className={classes.formadd} elevation={3}>                                           
                             <FormInputText 
                                 label={t('form.user.add.name')}                                
                                 name="name"   
@@ -51,19 +67,18 @@ export default function AddUser () {
                                 label={t('form.user.add.password')}                                
                                 name="pass"
                                 type="password"   
-                            />                            
-                        </Container>                                               
-                        <Container>                                                
+                            />                           
                             <Button
                                 variant="contained"
                                 color="primary"
                                 disabled={isSubmitting}
                                 onClick={submitForm}
                                 endIcon={<SaveIcon />}
+                                className={classes.buttonContainer}
                             >
                                 {t('general.add')}
-                            </Button>                            
-                        </Container> 
+                            </Button> 
+                        </Paper>                            
                     </Form>
                 )}                
             </Formik>

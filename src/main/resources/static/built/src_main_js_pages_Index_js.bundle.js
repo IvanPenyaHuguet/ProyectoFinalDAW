@@ -22,6 +22,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
 
 
+var _excluded = ["title", "url", "description", "avatar"];
 
 
 
@@ -53,7 +54,7 @@ function IndexButton(_ref) {
       description = _ref$description === void 0 ? "" : _ref$description,
       _ref$avatar = _ref.avatar,
       avatar = _ref$avatar === void 0 ? "" : _ref$avatar,
-      props = (0,_babel_runtime_corejs3_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__.default)(_ref, ["title", "url", "description", "avatar"]);
+      props = (0,_babel_runtime_corejs3_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__.default)(_ref, _excluded);
 
   var classes = useStyles();
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_4__.default, {
