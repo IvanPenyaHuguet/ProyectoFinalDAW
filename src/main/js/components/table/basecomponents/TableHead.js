@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import MUITableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
-import Styles from '../../../css/components/table/base/TableHead.module.css';
+
+import { ResponsiveContext } from '../../../context/utils/ResponsiveContext';
+
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({ 
+  cell: {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  }
+}));
 
 export default function TableHead({ headerGroups }) {
+  const classes = useStyles();
+  const { resolution } = useContext(ResponsiveContext);  
 
   return (
     <MUITableHead>
@@ -16,10 +29,10 @@ export default function TableHead({ headerGroups }) {
             <TableCell
               {...column.getHeaderProps()}           
             >
-              <div className={Styles.cell}>
+              <div className={classes.cell}>
                 <div {...column.getHeaderProps(column.getSortByToggleProps())}>
                   <strong>{column.render("Header")}</strong>
-                  {column.canSort=== true && 
+                  {(column.canSort=== true && resolution==='xl' ) && 
                     <TableSortLabel
                       active={column.isSorted}
                       direction={column.isSortedDesc ? "desc" : "asc"}

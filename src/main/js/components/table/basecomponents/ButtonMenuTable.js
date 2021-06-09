@@ -8,6 +8,7 @@ import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTranslation } from 'react-i18next';
 import { SpeedDialContext } from '../../../context/utils/SpeedDialContext';
+import { ResponsiveContext } from '../../../context/utils/ResponsiveContext';
 
 import Container from '../../container/Container';
 
@@ -35,6 +36,7 @@ export default function ButtonMenuTable () {
     const  speedDial = useContext(SpeedDialContext);
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
+    const { resolution } = useContext(ResponsiveContext);    
     
     const handleClose = () => {
         setOpen(false);
@@ -52,7 +54,7 @@ export default function ButtonMenuTable () {
             <SpeedDial
                 ariaLabel={t('table.tooltip.export')}                                       
                 icon={<SpeedDialIcon />}
-                FabProps={{size: "medium"}}                
+                FabProps={{size: resolution=='xl'? "medium" : "small"}}                
                 onClose={handleClose}
                 onOpen={handleOpen}
                 open={open}

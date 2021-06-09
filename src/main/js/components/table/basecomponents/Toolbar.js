@@ -19,10 +19,13 @@ export default function Toolbar ({ allColumns, getToggleHideAllColumnsProps, tit
         },        
         title: {          
           fontSize: "2rem",
+            [theme.breakpoints.down('lg')]: {
+                width: '140px',
+            },
         },
         icon: {
             height: "35px",
-            width: "35px"
+            width: "35px",            
         },
         button: {
             zIndex: "1000",
