@@ -19,7 +19,7 @@ export default function Toolbar ({ allColumns, getToggleHideAllColumnsProps, tit
         },        
         title: {          
           fontSize: "2rem",
-            [theme.breakpoints.down('lg')]: {
+            [theme.breakpoints.down('md')]: {
                 width: '140px',
             },
         },
