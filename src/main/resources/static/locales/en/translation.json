@@ -208,6 +208,13 @@
       "print": "Print",
       "save": "Save",
       "search": "Search"
+    },
+    "user": {
+      "name": "Name",
+      "surname": "Surname",
+      "username": "Username",
+      "pass": "Password",
+      "creationDate": "Creation Date"
     }
   },
   "username": "Username",

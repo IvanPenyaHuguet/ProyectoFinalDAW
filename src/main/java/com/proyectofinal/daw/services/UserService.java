@@ -1,7 +1,10 @@
 package com.proyectofinal.daw.services;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import com.proyectofinal.daw.entities.Role;
 import com.proyectofinal.daw.entities.User;
@@ -10,6 +13,7 @@ import com.proyectofinal.daw.repositories.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -26,23 +30,44 @@ public class UserService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public boolean save (User newUser) {
-        boolean saved;
-
-        if (! userRepo.findByUsername(newUser.getUsername()).isPresent()) {
+    public ResponseEntity<User> save (User newUser) {
+        
+        try {
+            Optional<User> userInDB = userRepo.findById(newUser.getId());
+            if ( userInDB.isPresent() ) {                
+                if (! newUser.getPass().equals("")) {
+                    newUser.setPass(bCryptPasswordEncoder.encode(newUser.getPass()));
+                }
+                else {
+                    newUser.setPass(userInDB.get().getPass());
+                }
+            }
+            else {
+                newUser.setPass(bCryptPasswordEncoder.encode(newUser.getPass()));
+                List<Role> roles = new ArrayList<>();
+                roles.add(roleRepo.findByDescription("ROLE_ONLY_GUEST"));
+                newUser.setRole(roles);  
+            }
+            User userSaved = userRepo.save(newUser);
+            userSaved.setPass("");       
+            return new ResponseEntity<User>(userSaved, HttpStatus.OK);
+        }
+        catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.PRECONDITION_FAILED);
         }
-        try {
-            newUser.setPass(bCryptPasswordEncoder.encode(newUser.getPass()));
-            List<Role> roles = new ArrayList<>();
-            roles.add(roleRepo.findByDescription("ROLE_ONLY_GUEST"));
-            newUser.setRole(roles);
-            userRepo.save(newUser);
-            saved = true;
+        
+    }
+
+    public ResponseEntity<Map<String, Object>> getAll () {
+        Map <String, Object> response = new HashMap<>();
+        List <User> usuarios = userRepo.findAll();
+        for (User user : usuarios) {
+            user.setPass("");
         }
-        catch (IllegalArgumentException e) {
-            saved = false;
-        }
-        return saved;
+        response.put("data" , usuarios);
+        response.put("numPages" , 1);
+        response.put("totalElements" , usuarios.size());
+
+        return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }
 }

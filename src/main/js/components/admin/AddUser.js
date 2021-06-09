@@ -30,7 +30,7 @@ export const useStyles = makeStyles((theme) => ({
 
 
 
-export default function AddUser () {
+export default function AddUser ({ reload, setReload }) {
 
     const user = new User();  
     const [ alert, setAlert ] = useState(false);    
@@ -44,8 +44,11 @@ export default function AddUser () {
             <Formik
                 initialValues={user.getValues()}
                 validationSchema={user.getValidationSchema(t)}                
-                onSubmit= {(values, { setSubmitting }) => {                    
-                    user.save(values, setSubmitting, setAlert )
+                onSubmit= {(values, { setSubmitting, resetForm }) => {                    
+                    user.save(values, setSubmitting, setAlert).then(() => {
+                        setReload(reload + 1);
+                        resetForm(user.getValues());
+                    });
                 }}
             >
                 { ({ submitForm, isSubmitting }) => (

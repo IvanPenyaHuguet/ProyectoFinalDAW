@@ -51,7 +51,7 @@ export default class User {
     }
 
     save(values, setSubmitting, setAlert) {   
-        service.save(values).then((res) => {
+        return service.save(values).then((res) => {
             if (res.status != 200 && res.status != 412) {
                 setAlert ? setAlert({type: 'error', message: i18next.t('form.add.errors.unsuccesful')}) : null;
             }
@@ -61,7 +61,8 @@ export default class User {
             if (res.status == 200) {
                 setAlert ? setAlert({type: 'success', message: i18next.t('form.message.add.success')}) : null;
             }
-            setSubmitting(false);               
+            setSubmitting(false);
+            return res;               
         }) 
         .catch(e => {
             errorService.checkError(e, setAlert); 
@@ -95,6 +96,10 @@ export default class User {
             errorService.checkError(e, setAlert); 
             setSubmitting(false);
         }); 
+    }
+
+    getAll() {
+        return service.getAll();
     }
 
 
