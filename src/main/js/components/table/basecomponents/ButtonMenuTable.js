@@ -9,7 +9,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useTranslation } from 'react-i18next';
 import { SpeedDialContext } from '../../../context/utils/SpeedDialContext';
 
-import styles from '../../../css/components/table/ButtonMenuTable.module.css';
 import Container from '../../container/Container';
 
 const useStyles = makeStyles((theme) => ({    
@@ -18,6 +17,15 @@ const useStyles = makeStyles((theme) => ({
       top: 0,
       left: 0              
     },
+    container: {
+        position: 'relative',
+        width: '56px',
+        height: '56px',    
+        margin: '0 0 0 20px',
+        [theme.breakpoints.down('md')]: {
+            margin: '0 0 0 5px',
+        },
+    }
 }));
 
 
@@ -40,7 +48,7 @@ export default function ButtonMenuTable () {
     }
 
     return (
-        <Container className={styles.container}>          
+        <Container className={classes.container}>          
             <SpeedDial
                 ariaLabel={t('table.tooltip.export')}                                       
                 icon={<SpeedDialIcon />}

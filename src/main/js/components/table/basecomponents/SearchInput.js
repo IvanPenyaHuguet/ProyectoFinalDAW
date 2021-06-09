@@ -11,11 +11,17 @@ import AddBoxIcon from '@material-ui/icons/AddBox';
 import Container from '../../container/Container';
 import PopperSearchInput from './PopperSearchInput';
 
-import styles from '../../../css/components/table/SearchInput.module.css';
 import { useTranslation } from 'react-i18next';
 import { SearchTextContext } from '../../../context/SearchTextContext';
 
-const useStyles = makeStyles((theme) => ({    
+const useStyles = makeStyles((theme) => ({ 
+    searchContainer: {
+        width: '400px',
+        margin: '0 50px',
+        [theme.breakpoints.down('md')]: {
+            margin: '0 5px',
+        },
+    },   
     container: {
       width: "100%",      
     },
@@ -62,7 +68,7 @@ export default function SearchInput () {
     }
 
     return (
-        <Container className={styles.searchContainer}>
+        <Container className={classes.searchContainer}>
             <Box display="flex" alignItems="flex-end" flexDirection="row" justifyContent="center" className={classes.container}>
                 <Tooltip title={t('table.tooltip.fieldSearch')}>
                     <IconButton  aria-label={t('table.tooltip.fieldSearch')} className={classes.iconContainer} onClick={onButtonShowColumn}>
