@@ -103,8 +103,19 @@ const theme = createMuiTheme({
             root: {
                 margin: '2px'
             }
-        }
-
+        },
+        MuiTableCell: {
+            root: {
+                padding: '5px',
+                minHeight: '45px'
+            }
+        },
+        MuiTableRow: {
+            root: {                
+                minHeight: '45px',
+                height: '45px'
+            }
+        },
     }
 }, locale);
 
