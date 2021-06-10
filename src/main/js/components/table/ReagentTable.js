@@ -133,7 +133,7 @@ const ReagentTable = () => {
                 setLoading(false);       
                 setControlledPageCount(result.data.numPages);  
                 setTotalElements(result.data.totalElements);  
-                setData(result.data.data);
+                setData(result.data.data);               
                 previousStates.current.sortBy = sortBy;
                 previousStates.current.pageIndex = pageindex;
                 previousStates.current.pageSize = pagesize;                
