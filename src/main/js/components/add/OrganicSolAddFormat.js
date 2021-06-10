@@ -33,7 +33,7 @@ export default function OrganicSolAddFormat () {
     sol.getInitialValue();    
     const { t } = useTranslation();  
     const history = useHistory(); 
-    const classe = useStyles();   
+    const classes = useStyles();   
 
     const onReturnClick = () => {
         history.goBack();
@@ -75,7 +75,7 @@ export default function OrganicSolAddFormat () {
                             />
                         </Container>
                         <ElementsInput values={values}/>
-                        <Container> 
+                        <Container className={classes.buttonContainer}> 
                             <Button
                                 variant="contained"
                                 color="secondary"                            

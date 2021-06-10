@@ -16,8 +16,11 @@ import RefMaskStoreProvider from '../../context/store/RefMaskStore';
 
 const useStyles = makeStyles((theme) => ({    
     container: {
-      width: '100%',
-      maxWidth: '100%'   
+        width: '100%',
+        maxWidth: '100%',
+        [theme.breakpoints.down('md')]: {
+            padding: 0
+        },     
     },
     conttitle: {
         width: '100%',
@@ -25,7 +28,10 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'flex-start',
-        margin: '10px 5px 30px'      
+        margin: '10px 5px 30px', 
+        [theme.breakpoints.down('md')]: {
+            margin: '10px 5px 0px', 
+        },      
     },
     addselect: {
         width: '300px',

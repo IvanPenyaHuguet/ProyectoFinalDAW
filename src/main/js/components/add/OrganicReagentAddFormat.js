@@ -87,7 +87,7 @@ export default function OrganicReagentAddFormat () {
                             />
                         </Container>
                         <ElementsInput values={values}/>
-                        <Container> 
+                        <Container className={classes.buttonContainer}> 
                             <Button
                                 variant="contained"
                                 color="secondary"                            

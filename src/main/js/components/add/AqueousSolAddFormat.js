@@ -79,7 +79,7 @@ export default function AqueousSolAddFormat () {
                             /> 
                         </Container>
                         <ElementsInput values={values}/>
-                        <Container> 
+                        <Container className={classes.buttonContainer}> 
                             <Button
                                 variant="contained"
                                 color="secondary"                            
