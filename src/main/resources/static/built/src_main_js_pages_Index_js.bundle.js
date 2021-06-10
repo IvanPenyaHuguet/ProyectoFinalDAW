@@ -143,6 +143,10 @@ function Index() {
     url: "/solution/organic",
     title: t('index.title.solorganic'),
     description: t('index.description.solorganic')
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_button_IndexButton__WEBPACK_IMPORTED_MODULE_1__.default, {
+    url: "/reagent/add",
+    title: t('index.title.add'),
+    description: t('index.description.add')
   })));
 }
 

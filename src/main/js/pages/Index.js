@@ -30,7 +30,8 @@ export default function Index() {
         <IndexButton url="/reagent/organic" title={t('index.title.reagentorganic')} description={t('index.description.reagentorganic')} />
         <IndexButton url="/reagent/inorganic" title={t('index.title.reagentinorganic')} description={t('index.description.reagentinorganic')}/>
         <IndexButton url="/solution/water" title={t('index.title.solacuosas')} description={t('index.description.solacuosas')}/>
-        <IndexButton url="/solution/organic" title={t('index.title.solorganic')} description={t('index.description.solorganic')}/>        
+        <IndexButton url="/solution/organic" title={t('index.title.solorganic')} description={t('index.description.solorganic')}/>  
+        <IndexButton url="/reagent/add" title={t('index.title.add')} description={t('index.description.add')}/>      
     </Grid> 
       {/* <Paper m={2} className={classes.container}>
         <PeriodicTable />

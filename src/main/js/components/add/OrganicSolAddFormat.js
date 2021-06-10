@@ -51,7 +51,7 @@ export default function OrganicSolAddFormat () {
                 }}
             >
                 { ({ submitForm, isSubmitting, values }) => (
-                    <Form className={classes.formadd}>
+                    <Form className={classes.formadd}>                        
                         <Container className={classes.fieldContainer}>                         
                             <RefMaskInput value={refMask} setValue={setRefMask} />
                             <IntRefInput mask={refMask} />                        

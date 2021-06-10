@@ -46,8 +46,7 @@ public abstract class StandardSol implements Serializable, Compound{
     private String internalReference; 
     @FullTextField( analyzer= "spanish")
     private String name;
-    @ManyToMany(mappedBy = "standards")
-    @JsonIgnoreProperties("standards")
+    @ManyToMany(mappedBy = "standards")    
     @IndexedEmbedded(includeEmbeddedObjectId = true)
     private List<Element> elements;
     @ManyToMany(mappedBy = "standards")

@@ -44,14 +44,15 @@ public class Element implements Serializable{
     private String element;    
     @ManyToMany(cascade = {
         CascadeType.PERSIST,
-        CascadeType.MERGE
+        CascadeType.MERGE,
+        CascadeType.REFRESH
     })
     @JoinTable(
         name = "element_standardSol",
         joinColumns = {@JoinColumn(name = "element_id")},
         inverseJoinColumns = {@JoinColumn(name = "standard_id")}
     )
-    @JsonIgnoreProperties("standards")
+    @JsonIgnore
     private List<StandardSol> standards;
     @Column(nullable = false)
     private int period;    

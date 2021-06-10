@@ -118,6 +118,7 @@
   },
   "index": {
     "description": {
+      "add": "Page to add new reagents or standards",
       "reagentall": "Show all reagents",
       "reagentinorganic": "Show inorganic reagents",
       "reagentorganic": "Show organic reagents",
@@ -125,6 +126,7 @@
       "solorganic": "Show organic standard solutions"
     },
     "title": {
+      "add": "Add reagent",
       "reagentall": "All reagents",
       "reagentinorganic": "Inorganic reagents",
       "reagentorganic": "Organic reagents",

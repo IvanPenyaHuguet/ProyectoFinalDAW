@@ -6,11 +6,15 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import com.proyectofinal.daw.entities.AqueousStandardSolution;
+import com.proyectofinal.daw.entities.Element;
 import com.proyectofinal.daw.entities.OrganicStandardSolution;
 import com.proyectofinal.daw.entities.StandardSol;
 import com.proyectofinal.daw.entities.dto.PageSearchDTO;
 import com.proyectofinal.daw.repositories.AqueousStdSolRepository;
+import com.proyectofinal.daw.repositories.ElementRepository;
 import com.proyectofinal.daw.repositories.OrganicStdSolRepository;
 import com.proyectofinal.daw.repositories.StandardSolBaseRepository;
 import com.proyectofinal.daw.repositories.StandardSolImplRepository;
@@ -60,6 +64,9 @@ public class StdSolService {
 
     @Autowired
     UserRepository userRepo;
+
+    @Autowired
+    ElementRepository elementRepo;
     
     
     private <T extends StandardSol> StandardSolBaseRepository getRepo (Class<T> clazz){
@@ -112,11 +119,13 @@ public class StdSolService {
         return deleted;
     }
 
+    @Transactional
     private StandardSol modifyOrAddStandardSol (StandardSol sol, StandardSol newSol) {
 
         sol.setInternalReference(newSol.getInternalReference());
         sol.setName(newSol.getName());
         sol.setElements(newSol.getElements());
+        sol.setLocation(newSol.getLocation());
         sol.setSuppliers(newSol.getSuppliers());
         sol.setConcentration(newSol.getConcentration());
         if (Objects.isNull(sol.getEntryDate())) 
@@ -169,7 +178,12 @@ public class StdSolService {
             sol.setMedium(newSol.getMedium());                       
 
             LOGGER.info("Has received a request to save a organic solution");
-            return organicRepo.save(sol);   
+            for (Element el: sol.getElements()) {
+                Element elDb = elementRepo.findById(el.getAtomicNumber()).get();
+                elDb.getStandards().add(sol);
+                elementRepo.save(elDb);
+            }
+            return solRepo.save(sol);   
         } 
         catch (Exception e) {
             LOGGER.warn("Has received a request to save a regent and something bad happened. ");
