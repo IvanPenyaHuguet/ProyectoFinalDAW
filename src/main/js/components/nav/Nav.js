@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext} from 'react';
 import styles from "../../css/components/nav/Nav.module.css";
-import authService from "../../service/AuthService";
 import Container from "../container/Container";
 import BurgerButton from "./BurgerButton";
 import LinkOfMenu from "./LinkOfMenu";
@@ -9,7 +8,6 @@ import InorganicIcon from "../icons/InorganicIcon";
 import OrganicIcon from "../icons/OrganicIcon";
 import WaterSolIcon from "../icons/WaterSolIcon";
 import OrganicSolIcon from "../icons/OrganicSolIcon";
-import StandardIcon from "../icons/Standard";
 import AdminIcon from "../icons/AdminIcon";
 import {AuthContext} from "../../context/AuthContextProvider";
 import { useTranslation } from "react-i18next";
@@ -47,7 +45,7 @@ export default function Nav ({children}) {
                     <LinkOfMenu to="/solution/water" text={t('nav.link.standardsol')} icon={<WaterSolIcon />} isOpen={isOpen}/>
                     <LinkOfMenu to="/solution/organic" text={t('nav.link.orgstdsol')} icon={<OrganicSolIcon />} isOpen={isOpen}/>
                     {/* <LinkOfMenu to="/standard/all" text={t('nav.link.standards')} icon={<StandardIcon />} isOpen={isOpen}/> */}
-                    {userRole.includes("ROLE_MODIFY_USERS") && <LinkOfMenu to="/admin" text={t('nav.link.manage')} icon={<AdminIcon />}isOpen={isOpen} />}
+                    {userRole.includes("ROLE_PAGE_ADMIN") && <LinkOfMenu to="/admin" text={t('nav.link.manage')} icon={<AdminIcon />}isOpen={isOpen} />}
                 </Container>              
             </nav>
             <Container className={styles.body}>

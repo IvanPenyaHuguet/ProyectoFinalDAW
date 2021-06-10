@@ -4,7 +4,7 @@ import Container from '../../components/container/BoxContainer';
 import MainTitle from "../../components/title/MainTitle";
 
 import Molecules from '../../images/molecules.jpg';
-import Border from '../../images/bordercarbon.jpg';
+
 
 import { makeStyles } from '@material-ui/core/styles';
 
