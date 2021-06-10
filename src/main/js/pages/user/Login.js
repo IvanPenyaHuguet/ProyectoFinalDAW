@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     container: {
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'flex-start',
+        justifyContent: 'space-around',
         height: '100%', 
         padding: '10px',
         background: 'transparent'        
@@ -27,13 +27,6 @@ const useStyles = makeStyles((theme) => ({
         backgroundSize: 'cover',
         opacity: '0.4',
         zIndex: '-1'
-    },
-    imagetwo: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        height: '100%', 
-        padding: '10px'   
     }
 }));
 

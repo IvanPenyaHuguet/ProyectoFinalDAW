@@ -1,6 +1,6 @@
 .form {
   border: 2px solid var(--var-primary-color);
-  margin: auto;
+  margin: 0 auto 100px;
   position: relative;
   width: 600px;
   min-width: 400px;
@@ -40,6 +40,11 @@
 .formInput {
   height: 2rem;
   padding: 0 1rem;
+}
+@media (max-width: 1200px) {
+  .form {    
+    margin: 0 auto 20px;   
+  }
 }
 @media (max-width: 800px) {
   .form {    

@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import PrimaryButton from "../button/PrimaryButton";
-import SecondaryButton from "../button/SecondaryButton";
 import FormInput from "./FormInput";
 import ErrorSmall from "./ErrorSmall";
 import styles from "../../css/components/form/LoginForm.module.css";
