@@ -45,8 +45,9 @@ export default function AqueousSolAddFormat () {
             <Formik
                 initialValues={sol.getValues()}
                 validationSchema={sol.getValidationSchema(t)}                
-                onSubmit= {(values, { setSubmitting }) => {                    
-                    sol.addReagent(values, setSubmitting, setAlert, elements)
+                onSubmit= {(values, { setSubmitting , resetForm  }) => {                    
+                    sol.addReagent(values, setSubmitting, setAlert, elements);
+                    resetForm(sol.getValues());
                 }}
             >
                 { ({ submitForm, isSubmitting, values }) => (

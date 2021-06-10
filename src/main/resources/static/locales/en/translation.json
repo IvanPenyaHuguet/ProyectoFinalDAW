@@ -41,6 +41,9 @@
       "quantity": "Quantity",
       "secintref": "Secondary Reference",
       "spanishname": "Spanish Name",
+      "succesful": {
+        "reagent": "Reagent added succesfully"
+      },
       "typetoadd": "Type to add",
       "utilization": "Utilization"
     },
@@ -210,11 +213,11 @@
       "search": "Search"
     },
     "user": {
+      "creationDate": "Creation Date",
       "name": "Name",
-      "surname": "Surname",
-      "username": "Username",
       "pass": "Password",
-      "creationDate": "Creation Date"
+      "surname": "Surname",
+      "username": "Username"
     }
   },
   "username": "Username",

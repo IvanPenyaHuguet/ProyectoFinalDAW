@@ -69,6 +69,9 @@ export default class AqueousSol {
             if (res.status != 200) {
                 setAlert ? setAlert({type: 'error', message: i18next.t('form.add.errors.unsuccesful')}) : null;
             }
+            if (res.status == 200) {
+                setAlert ? setAlert({type: 'success', message: i18next.t('form.add.succesful.reagent')}) : null;
+            }
             setSubmitting(false);               
         }) 
         .catch(e => {

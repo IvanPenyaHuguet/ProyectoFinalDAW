@@ -46,8 +46,9 @@ export default function InorganicReagentAddFormat () {
             <Formik
                 initialValues={inorganicReagent.getValues()}
                 validationSchema={inorganicReagent.getValidationSchema(t)}                
-                onSubmit= {(values, { setSubmitting }) => {                    
-                    inorganicReagent.addReagent(values, setSubmitting, setAlert, elements)
+                onSubmit= {(values, { setSubmitting, resetForm }) => {                    
+                    inorganicReagent.addReagent(values, setSubmitting, setAlert, elements);
+                    resetForm(inorganicReagent.getValues());
                 }}
             >
                 { ({ submitForm, isSubmitting, values }) => (

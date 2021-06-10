@@ -41,6 +41,9 @@
       "quantity": "Cantidad",
       "secintref": "Referencia Secundaria",
       "spanishname": "Nombre en Español",
+      "succesful": {
+        "reagent": "Reactivo añadido sactisfactoriamente"
+      },
       "typetoadd": "Tipo a añadir",
       "utilization": "Uso"
     },
@@ -208,6 +211,13 @@
       "print": "Imprimir",
       "save": "Guardar",
       "search": "Buscar"
+    },
+    "user": {
+      "creationDate": "",
+      "name": "",
+      "pass": "",
+      "surname": "",
+      "username": ""
     }
   },
   "username": "Nombre de usuario",

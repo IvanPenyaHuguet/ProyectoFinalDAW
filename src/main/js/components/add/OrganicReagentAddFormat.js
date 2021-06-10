@@ -45,8 +45,9 @@ export default function OrganicReagentAddFormat () {
             <Formik
                 initialValues={organicReagent.getValues()}
                 validationSchema={organicReagent.getValidationSchema(t)}                
-                onSubmit= {(values, { setSubmitting }) => {                    
-                    organicReagent.addReagent(values, setSubmitting, setAlert, elements)
+                onSubmit= {(values, { setSubmitting , resetForm }) => {                    
+                    organicReagent.addReagent(values, setSubmitting, setAlert, elements);
+                    resetForm(organicReagent.getValues());
                 }}
             >
                 { ({ submitForm, isSubmitting, values }) => (

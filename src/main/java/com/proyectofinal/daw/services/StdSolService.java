@@ -20,6 +20,7 @@ import com.proyectofinal.daw.services.nativequeries.dao.StandardSolDAO;
 
 
 import org.hibernate.SessionFactory;
+import org.hibernate.exception.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -130,9 +131,12 @@ public class StdSolService {
      * @return Reagent modified or added
      */
     public StandardSol modifyOrAddAqueousSolution (AqueousStandardSolution newSol) {
-        try {
-            AqueousStandardSolution sol = (AqueousStandardSolution) aqueousRepo.findById(newSol.getId())
+        
+        AqueousStandardSolution sol = (AqueousStandardSolution) aqueousRepo.findById(newSol.getId())
             .orElse(new AqueousStandardSolution());
+        
+        try {
+            
             
             sol = (AqueousStandardSolution) modifyOrAddStandardSol(sol, newSol);
             sol.setExpiryDate(newSol.getExpiryDate());
@@ -140,11 +144,15 @@ public class StdSolService {
 
             LOGGER.info("Has received a request to save a aqueous solution");
             return aqueousRepo.save(sol);   
-        } 
+        }
         catch (Exception e) {
+            // System.out.println(newSol.getId());
+            // sol.setId(sol.getId() + 1L);            
+            // return modifyOrAddAqueousSolution(sol);
             LOGGER.warn("Has received a request to save a regent and something bad happened. ");
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Data to save is invalid.");
-        }  
+        }
+         
     }
 
     /**
