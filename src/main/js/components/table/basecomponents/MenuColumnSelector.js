@@ -2,11 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import MenuList from '@material-ui/core/MenuList';
 import Grow from '@material-ui/core/Grow';
 import Paper from '@material-ui/core/Paper';
-import Popper from '@material-ui/core/Popper';
+import Popover from '@material-ui/core/Popover';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -22,8 +21,8 @@ export default function MenuColumnSelector ({ allColumns, getToggleHideAllColumn
     const { t } = useTranslation();
     const [ showColumnSelector , setShowColumnSelector ] = useState(false);
     const prevOpen = useRef(showColumnSelector);   
-    const anchorRef = useRef(null);
-    const [checked, setChecked] = React.useState([0]);
+    const anchorRef = useRef(null);  
+    const idn = showColumnSelector ? 'columnselector' : undefined;    
 
     const onButtonShowColumn = (e) => {
         setShowColumnSelector((prevOpen) => !prevOpen);
@@ -51,15 +50,17 @@ export default function MenuColumnSelector ({ allColumns, getToggleHideAllColumn
                         <FilterListIcon className={classes.icon}/>
                     </IconButton>
             </Tooltip>
-            <Popper open={showColumnSelector} anchorEl={anchorRef.current} role={undefined} transition disablePortal className={classes.button}>
-            {({ TransitionProps, placement }) => (
-                <Grow
-                {...TransitionProps}
-                style={{ tranformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-                >
-                <Paper>
-                    <ClickAwayListener onClickAway={handleCloseShowColumn}>
-                    <MenuList autoFocusItem={showColumnSelector} id="menu-list-grow" >
+            <Popover anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'center',
+            }}
+            transformOrigin={{
+                vertical: 'top',
+                horizontal: 'center',
+            }}
+            open={showColumnSelector} anchorEl={anchorRef.current} onClose={handleCloseShowColumn} id={idn}>           
+                <Paper>                    
+                    <MenuList autoFocusItem={showColumnSelector} id="menu-columns-grow" >
                     <AllColumnMenuSelector {...getToggleHideAllColumnsProps()} toggleHideAllColumns={toggleHideAllColumns}/>
                     {allColumns.map((column) => (
                         <ListItem key={column.id} role={undefined} dense button onClick={() => column.toggleHidden()}>
@@ -74,12 +75,9 @@ export default function MenuColumnSelector ({ allColumns, getToggleHideAllColumn
                             <ListItemText id={column.id} primary={column.Header} />                        
                         </ListItem>                        
                         ))}
-                    </MenuList>
-                    </ClickAwayListener>
-                </Paper>
-                </Grow>
-            )}
-            </Popper>
+                    </MenuList>                    
+                </Paper>                         
+            </Popover>
         </>
     )
 }

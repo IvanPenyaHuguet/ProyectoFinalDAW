@@ -146,9 +146,9 @@ export const RTCColumns = t => {return [
             return (
                 <>
                     {Object.keys(suppliers).map((item, i) => (
-                        <div key={suppliers[item].supplier.id}>
+                        <div key={suppliers[item].supplier ? suppliers[item].supplier.id : i}>
                             <span className="">
-                            {suppliers[item].supplier.name} 
+                            {suppliers[item].supplier?.name} 
                             </span> 
                             <Divider orientation="vertical" flexItem /> 
                         </div>                          
