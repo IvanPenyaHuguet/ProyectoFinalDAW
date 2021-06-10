@@ -37,6 +37,7 @@ export default function Router() {
         <PrivateRoute exact path="/solution/organic" component={IndexSolOrg}/>   
         <PrivateRoute exact path="/reagent/add" component={ReagentAdd}/>
         <PrivateRoute exact path="/admin" component={AdminPage} />
+        <Route component={NotFound} />          
       </Switch>
     </Suspense>
   );
