@@ -151,6 +151,11 @@ public class StdSolService {
             sol.setExpiryDate(newSol.getExpiryDate());
             sol.setMolecularWeight(newSol.getMolecularWeight());           
 
+            for (Element el: sol.getElements()) {
+                Element elDb = elementRepo.findById(el.getAtomicNumber()).get();
+                elDb.getStandards().add(sol);
+                elementRepo.save(elDb);
+            }
             LOGGER.info("Has received a request to save a aqueous solution");
             return aqueousRepo.save(sol);   
         }
