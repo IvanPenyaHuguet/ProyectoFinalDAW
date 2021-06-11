@@ -926,7 +926,6 @@ function Funciones(_ref) {
       var newUser = _objectSpread({}, user);
 
       newUser.role = right;
-      console.log(newUser);
       _service_backend_Services_UserService__WEBPACK_IMPORTED_MODULE_14__.default.save(newUser).then(function (res) {
         setUser(res.data);
         setSubmitting(false);

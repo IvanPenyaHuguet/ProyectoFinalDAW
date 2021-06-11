@@ -82,8 +82,7 @@ export default function Funciones ({ user , setUser, allRoles }) {
         if ( user.role.length != right.length && right.length != 0) {
             setSubmitting(true);
             const newUser = {...user};
-            newUser.role = right;
-            console.log(newUser);
+            newUser.role = right;            
             UserService.save(newUser)
             .then(res => {
                 setUser(res.data);

@@ -23,7 +23,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 
 import { useTranslation } from 'react-i18next';
 import { makeStyles } from '@material-ui/core/styles';
-import autoprefixer from 'autoprefixer';
+import {AuthContext} from "../../context/AuthContextProvider";
 
 
 const useStyles = makeStyles((theme) => ({    
@@ -62,6 +62,7 @@ const useStyles = makeStyles((theme) => ({
 export default function ReagentModify ({ row, setOpen, setAlert, modify, setModify }) {
     
     const tableStrContext = row.reagentType == 'Organic' ? 'OrganicReagent' : useContext(TableContext); 
+    const { user } = useContext(AuthContext);
     
     const OPTIONS_CONTEXT = {
         InorganicReagent: () => new InorganicReagent(),           
@@ -115,7 +116,7 @@ export default function ReagentModify ({ row, setOpen, setAlert, modify, setModi
                     </Container>
                     <DialogActions className={classes.actions}>
                         <ButtonPrincipal color='default' onClick={handleClose} startIcon={<CloseIcon />}>{t('general.close')}</ButtonPrincipal>                              
-                        <ButtonPrincipal color='secondary' onClick={onDeleteClick} endIcon={<DeleteIcon />}>{t('general.delete')}</ButtonPrincipal>
+                        <ButtonPrincipal color='secondary' onClick={onDeleteClick} endIcon={<DeleteIcon />} disabled={! user.role.includes("ROLE_DELETE_ALL")}>{t('general.delete')}</ButtonPrincipal>
                         <ButtonPrincipal 
                             color='primary' 
                             disabled={isSubmitting}
