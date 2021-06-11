@@ -8,7 +8,9 @@ import com.proyectofinal.daw.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,6 +43,24 @@ public class UserApiController implements BaseApiController {
     @GetMapping("/user")
     public ResponseEntity<Map<String, Object>> getAll() {        
         return userService.getAll();
+    }
+
+    /**
+     * Api for register new users
+     * @param user User to register in the database
+     */
+    @GetMapping("/user/{id}")
+    public ResponseEntity<User> getById(@PathVariable Long id) {        
+        return userService.getById(id);
+    }
+
+    /**
+     * Api for register new users
+     * @param user User to register in the database
+     */
+    @DeleteMapping("/user/{id}")
+    public ResponseEntity<Boolean> signUp(@PathVariable Long id) {        
+        return userService.deleteById(id);
     }
 
     

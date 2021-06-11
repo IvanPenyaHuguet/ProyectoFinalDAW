@@ -41,6 +41,7 @@ public class UserService {
                 else {
                     newUser.setPass(userInDB.get().getPass());
                 }
+                newUser.setCommentaries(userInDB.get().getCommentaries());
             }
             else {
                 newUser.setPass(bCryptPasswordEncoder.encode(newUser.getPass()));
@@ -69,5 +70,24 @@ public class UserService {
         response.put("totalElements" , usuarios.size());
 
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+    }
+
+
+    public ResponseEntity<User> getById (Long id) {        
+        Optional<User> user = userRepo.findById(id);        
+        if (!user.isPresent()){
+            throw new ResponseStatusException(HttpStatus.NO_CONTENT);
+        }        
+        user.get().setPass("");
+        return new ResponseEntity<User>(user.get(), HttpStatus.OK);
+    }
+
+    public ResponseEntity<Boolean> deleteById(Long id) {
+        boolean deleted = false;        
+        if (userRepo.existsById(id)) {
+            userRepo.deleteById(id);
+            deleted = true;
+        } 
+        return new ResponseEntity<Boolean>(deleted, HttpStatus.OK);
     }
 }

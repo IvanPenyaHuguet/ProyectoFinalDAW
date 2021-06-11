@@ -1,4 +1,16 @@
 {
+  "admin": {
+    "funciones": {
+      "selectfunciones": {
+        "rolestoassign": ""
+      },
+      "selectuser": {
+        "deleteerror": "",
+        "deletesuccess": "",
+        "user": ""
+      }
+    }
+  },
   "all": "Todo",
   "comp": {
     "periodictable": {
@@ -118,6 +130,7 @@
   },
   "index": {
     "description": {
+      "add": "",
       "reagentall": "Muestra todos los reactivos",
       "reagentinorganic": "Muestra los reactivos inorgánicos",
       "reagentorganic": "Muestra los reactivos orgánicos",

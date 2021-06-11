@@ -1,4 +1,17 @@
 {
+  "admin": {
+    "funciones": {
+      "selectfunciones": {
+        "rolestoassign": "Available roles",
+        "userroles": "User roles"
+      },
+      "selectuser": {
+        "deleteerror": "Something bad happened deleting, try again or coantact support...",
+        "deletesuccess": "The user has been deleted succesfully",
+        "user": "User"
+      }
+    }
+  },
   "all": "All",
   "comp": {
     "periodictable": {

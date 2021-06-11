@@ -11,8 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table
@@ -29,7 +28,7 @@ public class Role implements Serializable{
     @Column(nullable = false, unique = true)
     private String description;
     @ManyToMany(mappedBy = "role")
-    @JsonIgnoreProperties("role")    
+    @JsonIgnore  
     private List<User> user;
 
     

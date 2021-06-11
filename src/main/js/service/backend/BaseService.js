@@ -87,6 +87,13 @@ class BaseService {
       })
     }
 
+    async getById ( values ) {
+      return await axios({
+        method: 'GET',
+        url: "/api" + this.URL + "/" + values.id,        
+      })
+    }
+
 
 }  
     
