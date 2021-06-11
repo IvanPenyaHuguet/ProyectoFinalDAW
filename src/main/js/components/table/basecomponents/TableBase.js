@@ -60,7 +60,7 @@ export default function TableBase ({columns,  data, fetchData, loading, setLoadi
      
        
     
-    useEffect(() => {
+    useEffect(() => {        
         onFetchDataDebounced( pageIndex, pageSize, textToSearch, elementsToSearch, sortBy, filter );   
     }, [ onFetchDataDebounced, pageIndex, pageSize, textToSearch, elementsToSearch, sortBy, filter, modify ]); 
 

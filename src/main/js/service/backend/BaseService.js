@@ -28,7 +28,7 @@ class BaseService {
           page: page,
           size: size,
           sortBy: sortBy[0] ? sortBy[0].id : null,
-          sortByDirection: sortBy[0] ? sortBy.desc === true ? 'DESC': 'ASC' : null,
+          direction: sortBy[0] ? sortBy[0].desc === true ? 'DESC': 'ASC' : null,
         }        
       })
     }
@@ -40,7 +40,7 @@ class BaseService {
           page: page,
           size: size,
           sortBy: sortBy[0] ? sortBy[0].id : null,
-          sortByDirection: sortBy[0] ? sortBy.desc === true ? 'DESC': 'ASC' : null,
+          direction: sortBy[0] ? sortBy[0].desc === true ? 'DESC': 'ASC' : null,
         }        
       })
     }
@@ -52,7 +52,7 @@ class BaseService {
           page: page,
           size: size,
           sortBy: sortBy[0] ? sortBy[0].id : null,
-          sortByDirection: sortBy[0] ? sortBy.desc === true ? 'DESC': 'ASC' : null,
+          direction: sortBy[0] ? sortBy[0].desc === true ? 'DESC': 'ASC' : null,
         }        
       })
     }

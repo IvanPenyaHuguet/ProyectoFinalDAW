@@ -90,6 +90,7 @@ export default function ReagentModify ({ row, setOpen, setAlert, modify, setModi
 
     const onDeleteClick = () => {
         service.deleteReagent(row , setAlert);
+        setModify(modify+1);
         handleClose();
     }    
 
