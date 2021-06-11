@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-import com.proyectofinal.daw.entities.Element;
 import com.proyectofinal.daw.entities.InorganicReagent;
 import com.proyectofinal.daw.entities.OrganicReagent;
 import com.proyectofinal.daw.entities.Reagent;

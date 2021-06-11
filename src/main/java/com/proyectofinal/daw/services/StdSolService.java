@@ -24,7 +24,6 @@ import com.proyectofinal.daw.services.nativequeries.dao.StandardSolDAO;
 
 
 import org.hibernate.SessionFactory;
-import org.hibernate.exception.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -149,13 +148,8 @@ public class StdSolService {
             
             sol = (AqueousStandardSolution) modifyOrAddStandardSol(sol, newSol);
             sol.setExpiryDate(newSol.getExpiryDate());
-            sol.setMolecularWeight(newSol.getMolecularWeight());           
+            sol.setMolecularWeight(newSol.getMolecularWeight());          
 
-            for (Element el: sol.getElements()) {
-                Element elDb = elementRepo.findById(el.getAtomicNumber()).get();
-                elDb.getStandards().add(sol);
-                elementRepo.save(elDb);
-            }
             LOGGER.info("Has received a request to save a aqueous solution");
             return aqueousRepo.save(sol);   
         }

@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -46,7 +48,14 @@ public abstract class StandardSol implements Serializable, Compound{
     private String internalReference; 
     @FullTextField( analyzer= "spanish")
     private String name;
-    @ManyToMany(mappedBy = "standards")    
+    @ManyToMany(cascade = {        
+        CascadeType.MERGE,        
+    })
+    @JoinTable(
+        name = "element_standardSol",
+        joinColumns = {@JoinColumn(name = "standard_id")},
+        inverseJoinColumns = {@JoinColumn(name = "element_id")}
+    )  
     @IndexedEmbedded(includeEmbeddedObjectId = true)
     private List<Element> elements;
     @ManyToMany(mappedBy = "standards")

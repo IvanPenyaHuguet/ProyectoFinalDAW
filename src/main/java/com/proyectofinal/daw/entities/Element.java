@@ -3,14 +3,11 @@ package com.proyectofinal.daw.entities;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -41,17 +38,8 @@ public class Element implements Serializable{
     private float mass;
     @Column(nullable = false)
     @KeywordField
-    private String element;    
-    @ManyToMany(cascade = {
-        CascadeType.PERSIST,
-        CascadeType.MERGE,
-        CascadeType.REFRESH
-    })
-    @JoinTable(
-        name = "element_standardSol",
-        joinColumns = {@JoinColumn(name = "element_id")},
-        inverseJoinColumns = {@JoinColumn(name = "standard_id")}
-    )
+    private String element;  
+    @ManyToMany(mappedBy = "elements")  
     @JsonIgnore
     private List<StandardSol> standards;
     @Column(nullable = false)
