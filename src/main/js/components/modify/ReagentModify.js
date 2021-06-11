@@ -59,8 +59,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function ReagentModify ({ row, setOpen, setAlert }) {
-    
+export default function ReagentModify ({ row, setOpen, setAlert, modify, setModify }) {
     
     const tableStrContext = row.reagentType == 'Organic' ? 'OrganicReagent' : useContext(TableContext); 
     
@@ -100,7 +99,9 @@ export default function ReagentModify ({ row, setOpen, setAlert }) {
                 initialValues={initialValues}
                 validationSchema={service.getValidationSchema(t)}                
                 onSubmit= {(values, { setSubmitting }) => {                    
-                    service.addReagent(values, setSubmitting, setAlert )
+                    service.addReagent(values, setSubmitting, setAlert);
+                    setModify(modify+1);
+                    handleClose();
                 }}
             >
             { ({ submitForm, isSubmitting, values }) => (

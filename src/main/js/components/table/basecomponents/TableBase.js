@@ -56,12 +56,13 @@ export default function TableBase ({columns,  data, fetchData, loading, setLoadi
     const [ textToSearch, setTextToSearch ] = useState('');
     const { elementsToSearch } = useContext(SearchElementsContext); 
     const [ alert, setAlert ] = useState(false);
+    const [ modify, setModify ] = useState(0);
      
        
     
     useEffect(() => {
-        (onFetchDataDebounced( pageIndex, pageSize, textToSearch, elementsToSearch, sortBy, filter ));        
-    }, [ onFetchDataDebounced, pageIndex, pageSize, textToSearch, elementsToSearch, sortBy, filter ]); 
+        onFetchDataDebounced( pageIndex, pageSize, textToSearch, elementsToSearch, sortBy, filter );   
+    }, [ onFetchDataDebounced, pageIndex, pageSize, textToSearch, elementsToSearch, sortBy, filter, modify ]); 
 
     const onFetchDataDebounced = useAsyncDebounce(fetchData, 100);
     
@@ -121,7 +122,7 @@ export default function TableBase ({columns,  data, fetchData, loading, setLoadi
                         }          
                     </MUITable >                        
                 </Container>
-                { showModify != false && <ModifyRowTable row={ showModify } setOpen={ setShowModify } setAlert={setAlert}/> }          
+                { showModify != false && <ModifyRowTable row={ showModify } setOpen={ setShowModify } setAlert={setAlert} setModify={setModify} modify={modify}/> }          
             </SearchTextContext.Provider>         
         </>
     )
