@@ -57,16 +57,8 @@ public class Element implements Serializable{
     @Column(nullable = false)
     private int period;    
     private int tableGroup;    
-    private float electronegativity;
-    @ManyToMany(cascade = {
-        CascadeType.PERSIST,
-        CascadeType.MERGE
-    })
-    @JoinTable(
-        name = "elements_reagents",
-        joinColumns = {@JoinColumn(name = "element_id")},
-        inverseJoinColumns = {@JoinColumn(name = "reagent_id")}
-    )
+    private float electronegativity;   
+    @ManyToMany(mappedBy = "elements")
     @JsonIgnore
     private List<Reagent> reagents;
 

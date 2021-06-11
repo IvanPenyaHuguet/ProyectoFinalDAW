@@ -18,6 +18,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -97,7 +98,15 @@ public abstract class Reagent implements Serializable, Compound {
     private Date entryDate;  
     @FullTextField 
     private String cas;
-    @ManyToMany(mappedBy = "reagents")    
+    @ManyToMany(cascade = {
+        // CascadeType.PERSIST,
+        CascadeType.MERGE
+    })
+    @JoinTable(
+        name = "elements_reagents",
+        joinColumns = {@JoinColumn(name = "reagent_id")},
+        inverseJoinColumns = {@JoinColumn(name = "element_id")}
+    )    
     @IndexedEmbedded(includeEmbeddedObjectId = true)
     private List<Element> elements;  
     @ManyToOne()

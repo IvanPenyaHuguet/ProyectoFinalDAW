@@ -7,11 +7,13 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+import com.proyectofinal.daw.entities.Element;
 import com.proyectofinal.daw.entities.InorganicReagent;
 import com.proyectofinal.daw.entities.OrganicReagent;
 import com.proyectofinal.daw.entities.Reagent;
 import com.proyectofinal.daw.entities.dto.PageSearchDTO;
 import com.proyectofinal.daw.exceptions.ReagentNotFoundException;
+import com.proyectofinal.daw.repositories.ElementRepository;
 import com.proyectofinal.daw.repositories.ReagentRepositoryImpl;
 import com.proyectofinal.daw.repositories.UserRepository;
 import com.proyectofinal.daw.search.GenericSearchImpl;
@@ -50,6 +52,9 @@ public class ReagentService {
 
     @Autowired
     UserRepository userRepo;
+
+    @Autowired
+    ElementRepository elementRepo;
 
     public List<Reagent> findAll() {
         return (List<Reagent>) reagentRepo.findAll();
@@ -236,8 +241,7 @@ public class ReagentService {
             }
             
 
-            LOGGER.info("Has received a request to save a reagent");
-
+            LOGGER.info("Has received a request to save a reagent");           
             return reagentRepo.save(reagent);   
         } 
         catch (Exception e) {
