@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useCallback, useContext } from 'react';
 
 import Paper from '@material-ui/core/Paper';
 import { DataGrid, GridToolbar, GridOverlay } from '@material-ui/data-grid';
@@ -6,7 +6,9 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 
 import User from '../../lib/entities/User';
 import errorService from '../../service/error/ErrorController';
+import {GRID_EN_LOCALE_TEXT , GRID_ES_LOCALE_TEXT} from '../../lib/conf/DataGridLocale';
 
+import { LocalizationContext } from '../../context/LocalizationContext';
 import { useTranslation } from 'react-i18next';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -99,7 +101,8 @@ export default function UserTable ({reload}) {
     const [ loading, setLoading ] = useState(false);
     const [ totalElements, setTotalElements ] = useState(0);    
     const fetchIdRef = useRef(0);
-    const [editRowsModel, setEditRowsModel] = useState({});    
+    const [editRowsModel, setEditRowsModel] = useState({});  
+    const { language } = useContext(LocalizationContext);  
 
     useEffect(() => {
         getData(setLoading, setData, setTotalElements, fetchIdRef);
@@ -195,7 +198,8 @@ export default function UserTable ({reload}) {
                 autoHeight
                 editRowsModel={editRowsModel}                
                 onEditCellChange={handleEditCellChange}
-                onEditCellChangeCommitted={handleEditCellChangeCommitted}               
+                onEditCellChangeCommitted={handleEditCellChangeCommitted}
+                localeText={language == 'en' ? GRID_EN_LOCALE_TEXT : GRID_ES_LOCALE_TEXT}               
             />
         </Paper>
     )

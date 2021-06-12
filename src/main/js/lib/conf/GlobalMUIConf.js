@@ -116,6 +116,13 @@ const theme = createMuiTheme({
                 height: '45px'
             }
         },
+        MuiDataGridFilterForm: {
+            closeIcon: {
+                width: '25px',
+                minWidth: 0,
+                margin: '0px 0px'
+            }
+        }
     }
 }, locale);
 

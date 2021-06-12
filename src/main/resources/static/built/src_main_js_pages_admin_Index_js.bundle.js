@@ -423,13 +423,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/map */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/map.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_10__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @material-ui/core/Paper */ "./node_modules/@material-ui/core/esm/Paper/Paper.js");
-/* harmony import */ var _material_ui_data_grid__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @material-ui/data-grid */ "./node_modules/@material-ui/data-grid/dist/index-esm.js");
-/* harmony import */ var _material_ui_core_LinearProgress__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @material-ui/core/LinearProgress */ "./node_modules/@material-ui/core/esm/LinearProgress/LinearProgress.js");
+/* harmony import */ var _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @material-ui/core/Paper */ "./node_modules/@material-ui/core/esm/Paper/Paper.js");
+/* harmony import */ var _material_ui_data_grid__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @material-ui/data-grid */ "./node_modules/@material-ui/data-grid/dist/index-esm.js");
+/* harmony import */ var _material_ui_core_LinearProgress__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @material-ui/core/LinearProgress */ "./node_modules/@material-ui/core/esm/LinearProgress/LinearProgress.js");
 /* harmony import */ var _lib_entities_User__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../lib/entities/User */ "./src/main/js/lib/entities/User.js");
 /* harmony import */ var _service_error_ErrorController__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../service/error/ErrorController */ "./src/main/js/service/error/ErrorController.js");
-/* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/useTranslation.js");
-/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
+/* harmony import */ var _lib_conf_DataGridLocale__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../lib/conf/DataGridLocale */ "./src/main/js/lib/conf/DataGridLocale.js");
+/* harmony import */ var _context_LocalizationContext__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../context/LocalizationContext */ "./src/main/js/context/LocalizationContext.js");
+/* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/useTranslation.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
 
 
 
@@ -454,7 +456,9 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 
 
-var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_14__.default)(function (theme) {
+
+
+var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_16__.default)(function (theme) {
   return {
     tablecontainer: {
       margin: '20px 0',
@@ -533,7 +537,7 @@ var getData = function getData(setLoading, setData, setTotalElements, fetchIdRef
 function UserTable(_ref) {
   var reload = _ref.reload;
 
-  var _useTranslation = (0,react_i18next__WEBPACK_IMPORTED_MODULE_15__.useTranslation)(),
+  var _useTranslation = (0,react_i18next__WEBPACK_IMPORTED_MODULE_17__.useTranslation)(),
       t = _useTranslation.t;
 
   var classes = useStyles();
@@ -559,6 +563,9 @@ function UserTable(_ref) {
       _useState8 = (0,_babel_runtime_corejs3_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_8__.default)(_useState7, 2),
       editRowsModel = _useState8[0],
       setEditRowsModel = _useState8[1];
+
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_11__.useContext)(_context_LocalizationContext__WEBPACK_IMPORTED_MODULE_15__.LocalizationContext),
+      language = _useContext.language;
 
   (0,react__WEBPACK_IMPORTED_MODULE_11__.useEffect)(function () {
     getData(setLoading, setData, setTotalElements, fetchIdRef);
@@ -648,13 +655,13 @@ function UserTable(_ref) {
       _service_error_ErrorController__WEBPACK_IMPORTED_MODULE_13__.default.checkError(err);
     });
   }, [data]);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_16__.default, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_18__.default, {
     elevation: 3,
     className: classes.tablecontainer
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement(_material_ui_data_grid__WEBPACK_IMPORTED_MODULE_17__.DataGrid, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement(_material_ui_data_grid__WEBPACK_IMPORTED_MODULE_19__.DataGrid, {
     className: classes.root,
     components: {
-      Toolbar: _material_ui_data_grid__WEBPACK_IMPORTED_MODULE_17__.GridToolbar,
+      Toolbar: _material_ui_data_grid__WEBPACK_IMPORTED_MODULE_19__.GridToolbar,
       LoadingOverlay: CustomLoadingOverlay
     },
     columns: columns(t),
@@ -664,18 +671,19 @@ function UserTable(_ref) {
     autoHeight: true,
     editRowsModel: editRowsModel,
     onEditCellChange: handleEditCellChange,
-    onEditCellChangeCommitted: handleEditCellChangeCommitted
+    onEditCellChangeCommitted: handleEditCellChangeCommitted,
+    localeText: language == 'en' ? _lib_conf_DataGridLocale__WEBPACK_IMPORTED_MODULE_14__.GRID_EN_LOCALE_TEXT : _lib_conf_DataGridLocale__WEBPACK_IMPORTED_MODULE_14__.GRID_ES_LOCALE_TEXT
   }));
 }
 
 function CustomLoadingOverlay() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement(_material_ui_data_grid__WEBPACK_IMPORTED_MODULE_17__.GridOverlay, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement(_material_ui_data_grid__WEBPACK_IMPORTED_MODULE_19__.GridOverlay, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("div", {
     style: {
       position: 'absolute',
       top: 0,
       width: '100%'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement(_material_ui_core_LinearProgress__WEBPACK_IMPORTED_MODULE_18__.default, null)));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement(_material_ui_core_LinearProgress__WEBPACK_IMPORTED_MODULE_20__.default, null)));
 }
 
 /***/ }),
@@ -1483,14 +1491,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/map */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/map.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_10__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @material-ui/core/Paper */ "./node_modules/@material-ui/core/esm/Paper/Paper.js");
-/* harmony import */ var _material_ui_data_grid__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @material-ui/data-grid */ "./node_modules/@material-ui/data-grid/dist/index-esm.js");
-/* harmony import */ var _material_ui_core_LinearProgress__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @material-ui/core/LinearProgress */ "./node_modules/@material-ui/core/esm/LinearProgress/LinearProgress.js");
+/* harmony import */ var _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @material-ui/core/Paper */ "./node_modules/@material-ui/core/esm/Paper/Paper.js");
+/* harmony import */ var _material_ui_data_grid__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @material-ui/data-grid */ "./node_modules/@material-ui/data-grid/dist/index-esm.js");
+/* harmony import */ var _material_ui_core_LinearProgress__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @material-ui/core/LinearProgress */ "./node_modules/@material-ui/core/esm/LinearProgress/LinearProgress.js");
 /* harmony import */ var _lib_entities_Location__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../lib/entities/Location */ "./src/main/js/lib/entities/Location.js");
 /* harmony import */ var _service_error_ErrorController__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../../service/error/ErrorController */ "./src/main/js/service/error/ErrorController.js");
 /* harmony import */ var _CustomFooterDelete__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./CustomFooterDelete */ "./src/main/js/components/admin/locations/CustomFooterDelete.js");
-/* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/useTranslation.js");
-/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
+/* harmony import */ var _lib_conf_DataGridLocale__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../../lib/conf/DataGridLocale */ "./src/main/js/lib/conf/DataGridLocale.js");
+/* harmony import */ var _context_LocalizationContext__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../../context/LocalizationContext */ "./src/main/js/context/LocalizationContext.js");
+/* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/useTranslation.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
 
 
 
@@ -1516,7 +1526,9 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 
 
-var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_15__.default)(function (theme) {
+
+
+var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_17__.default)(function (theme) {
   return {
     tablecontainer: {
       margin: '20px 0',
@@ -1592,7 +1604,7 @@ var getData = function getData(setLoading, setData, fetchIdRef) {
 };
 
 function Locations() {
-  var _useTranslation = (0,react_i18next__WEBPACK_IMPORTED_MODULE_16__.useTranslation)(),
+  var _useTranslation = (0,react_i18next__WEBPACK_IMPORTED_MODULE_18__.useTranslation)(),
       t = _useTranslation.t;
 
   var classes = useStyles();
@@ -1623,6 +1635,9 @@ function Locations() {
       _useState10 = (0,_babel_runtime_corejs3_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_8__.default)(_useState9, 2),
       reload = _useState10[0],
       setReload = _useState10[1];
+
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_11__.useContext)(_context_LocalizationContext__WEBPACK_IMPORTED_MODULE_16__.LocalizationContext),
+      language = _useContext.language;
 
   (0,react__WEBPACK_IMPORTED_MODULE_11__.useEffect)(function () {
     getData(setLoading, setData, fetchIdRef);
@@ -1691,13 +1706,13 @@ function Locations() {
     setSelectionModel(newSelection.selectionModel);
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_17__.default, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_19__.default, {
     elevation: 3,
     className: classes.tablecontainer
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement(_material_ui_data_grid__WEBPACK_IMPORTED_MODULE_18__.DataGrid, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement(_material_ui_data_grid__WEBPACK_IMPORTED_MODULE_20__.DataGrid, {
     className: classes.root,
     components: {
-      Toolbar: _material_ui_data_grid__WEBPACK_IMPORTED_MODULE_18__.GridToolbar,
+      Toolbar: _material_ui_data_grid__WEBPACK_IMPORTED_MODULE_20__.GridToolbar,
       LoadingOverlay: CustomLoadingOverlay,
       Pagination: _CustomFooterDelete__WEBPACK_IMPORTED_MODULE_14__.default
     },
@@ -1721,19 +1736,205 @@ function Locations() {
     selectionModel: selectionModel,
     isRowSelectable: function isRowSelectable(params) {
       return params.row.id != 0;
-    }
+    },
+    localeText: language == 'en' ? _lib_conf_DataGridLocale__WEBPACK_IMPORTED_MODULE_15__.GRID_EN_LOCALE_TEXT : _lib_conf_DataGridLocale__WEBPACK_IMPORTED_MODULE_15__.GRID_ES_LOCALE_TEXT
   }));
 }
 
 function CustomLoadingOverlay() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement(_material_ui_data_grid__WEBPACK_IMPORTED_MODULE_18__.GridOverlay, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement(_material_ui_data_grid__WEBPACK_IMPORTED_MODULE_20__.GridOverlay, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("div", {
     style: {
       position: 'absolute',
       top: 0,
       width: '100%'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement(_material_ui_core_LinearProgress__WEBPACK_IMPORTED_MODULE_19__.default, null)));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement(_material_ui_core_LinearProgress__WEBPACK_IMPORTED_MODULE_21__.default, null)));
 }
+
+/***/ }),
+
+/***/ "./src/main/js/lib/conf/DataGridLocale.js":
+/*!************************************************!*\
+  !*** ./src/main/js/lib/conf/DataGridLocale.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "GRID_EN_LOCALE_TEXT": () => (/* binding */ GRID_EN_LOCALE_TEXT),
+/* harmony export */   "GRID_ES_LOCALE_TEXT": () => (/* binding */ GRID_ES_LOCALE_TEXT)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/concat */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/concat.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0__);
+
+var GRID_EN_LOCALE_TEXT = {
+  // Root
+  noRowsLabel: 'No rows',
+  noResultsOverlayLabel: 'No results found.',
+  errorOverlayDefaultLabel: 'An error occurred.',
+  // Density selector toolbar button text
+  toolbarDensity: 'Density',
+  toolbarDensityLabel: 'Density',
+  toolbarDensityCompact: 'Compact',
+  toolbarDensityStandard: 'Standard',
+  toolbarDensityComfortable: 'Comfortable',
+  // Columns selector toolbar button text
+  toolbarColumns: 'Columns',
+  toolbarColumnsLabel: 'Select columns',
+  // Filters toolbar button text
+  toolbarFilters: 'Filters',
+  toolbarFiltersLabel: 'Show filters',
+  toolbarFiltersTooltipHide: 'Hide filters',
+  toolbarFiltersTooltipShow: 'Show filters',
+  toolbarFiltersTooltipActive: function toolbarFiltersTooltipActive(count) {
+    return count !== 1 ? "".concat(count, " active filters") : "".concat(count, " active filter");
+  },
+  // Export selector toolbar button text
+  toolbarExport: 'Export',
+  toolbarExportLabel: 'Export',
+  toolbarExportCSV: 'Download as CSV',
+  // Columns panel text
+  columnsPanelTextFieldLabel: 'Find column',
+  columnsPanelTextFieldPlaceholder: 'Column title',
+  columnsPanelDragIconLabel: 'Reorder column',
+  columnsPanelShowAllButton: 'Show all',
+  columnsPanelHideAllButton: 'Hide all',
+  // Filter panel text
+  filterPanelAddFilter: 'Add filter',
+  filterPanelDeleteIconLabel: 'Delete',
+  filterPanelOperators: 'Operators',
+  filterPanelOperatorAnd: 'And',
+  filterPanelOperatorOr: 'Or',
+  filterPanelColumns: 'Columns',
+  filterPanelInputLabel: 'Value',
+  filterPanelInputPlaceholder: 'Filter value',
+  // Filter operators text
+  filterOperatorContains: 'contains',
+  filterOperatorEquals: 'equals',
+  filterOperatorStartsWith: 'starts with',
+  filterOperatorEndsWith: 'ends with',
+  filterOperatorIs: 'is',
+  filterOperatorNot: 'is not',
+  filterOperatorAfter: 'is after',
+  filterOperatorOnOrAfter: 'is on or after',
+  filterOperatorBefore: 'is before',
+  filterOperatorOnOrBefore: 'is on or before',
+  // Filter values text
+  filterValueAny: 'any',
+  filterValueTrue: 'true',
+  filterValueFalse: 'false',
+  // Column menu text
+  columnMenuLabel: 'Menu',
+  columnMenuShowColumns: 'Show columns',
+  columnMenuFilter: 'Filter',
+  columnMenuHideColumn: 'Hide',
+  columnMenuUnsort: 'Unsort',
+  columnMenuSortAsc: 'Sort by ASC',
+  columnMenuSortDesc: 'Sort by DESC',
+  // Column header text
+  columnHeaderFiltersTooltipActive: function columnHeaderFiltersTooltipActive(count) {
+    return count !== 1 ? "".concat(count, " active filters") : "".concat(count, " active filter");
+  },
+  columnHeaderFiltersLabel: 'Show filters',
+  columnHeaderSortIconLabel: 'Sort',
+  // Rows selected footer text
+  footerRowSelected: function footerRowSelected(count) {
+    return count !== 1 ? "".concat(count.toLocaleString(), " rows selected") : "".concat(count.toLocaleString(), " row selected");
+  },
+  // Total rows footer text
+  footerTotalRows: 'Total Rows:',
+  // Total visible rows footer text
+  footerTotalVisibleRows: function footerTotalVisibleRows(visibleCount, totalCount) {
+    var _context;
+
+    return _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default()(_context = "".concat(visibleCount.toLocaleString(), " of ")).call(_context, totalCount.toLocaleString());
+  },
+  // Checkbox selection text
+  checkboxSelectionHeaderName: 'Checkbox selection',
+  // Boolean cell text
+  booleanCellTrueLabel: 'true',
+  booleanCellFalseLabel: 'false'
+};
+var GRID_ES_LOCALE_TEXT = {
+  // Root
+  noRowsLabel: 'Sin filas',
+  noResultsOverlayLabel: 'No se han encontrado resultados.',
+  errorOverlayDefaultLabel: 'Ha ocurrido un error.',
+  // Density selector toolbar button text
+  toolbarDensity: 'Densidad',
+  toolbarDensityLabel: 'Densidad',
+  toolbarDensityCompact: 'Compacta',
+  toolbarDensityStandard: 'Standard',
+  toolbarDensityComfortable: 'Comoda',
+  // Columns selector toolbar button text
+  toolbarColumns: 'Columnas',
+  toolbarColumnsLabel: 'Seleccionar columnas',
+  // Filters toolbar button text
+  toolbarFilters: 'Filtros',
+  toolbarFiltersLabel: 'Mostrar filtros',
+  toolbarFiltersTooltipHide: 'Ocultar filtros',
+  toolbarFiltersTooltipShow: 'Mostrar filtros',
+  toolbarFiltersTooltipActive: function toolbarFiltersTooltipActive(count) {
+    return count > 1 ? "".concat(count, " filtros activos") : "".concat(count, " filtro activo");
+  },
+  // Export selector toolbar button text
+  toolbarExport: 'Exportar',
+  toolbarExportLabel: 'Exportar',
+  toolbarExportCSV: 'Descargar como CSV',
+  // Columns panel text
+  columnsPanelTextFieldLabel: 'Columna de búsqueda',
+  columnsPanelTextFieldPlaceholder: 'Título de columna',
+  columnsPanelDragIconLabel: 'Reorder columna',
+  columnsPanelShowAllButton: 'Mostrar todo',
+  columnsPanelHideAllButton: 'Ocultar todo',
+  // Filter panel text
+  filterPanelAddFilter: 'Agregar filtro',
+  filterPanelDeleteIconLabel: 'Borrar',
+  filterPanelOperators: 'Operadores',
+  filterPanelOperatorAnd: 'Y',
+  filterPanelOperatorOr: 'O',
+  filterPanelColumns: 'Columnas',
+  filterPanelInputLabel: 'Valor',
+  filterPanelInputPlaceholder: 'Valor de filtro',
+  // Filter operators text
+  filterOperatorContains: 'contiene',
+  filterOperatorEquals: 'es igual',
+  filterOperatorStartsWith: 'comienza con',
+  filterOperatorEndsWith: 'termina con',
+  filterOperatorIs: 'es',
+  filterOperatorNot: 'no es',
+  filterOperatorAfter: 'es posterior',
+  filterOperatorOnOrAfter: 'es en o posterior',
+  filterOperatorBefore: 'es anterior',
+  filterOperatorOnOrBefore: 'es en o anterior',
+  // Column menu text
+  columnMenuLabel: 'Menú',
+  columnMenuShowColumns: 'Mostrar columnas',
+  columnMenuFilter: 'Filtro',
+  columnMenuHideColumn: 'Ocultar',
+  columnMenuUnsort: 'Desordenar',
+  columnMenuSortAsc: 'Ordenar ASC',
+  columnMenuSortDesc: 'Ordenar DESC',
+  // Column header text
+  columnHeaderFiltersTooltipActive: function columnHeaderFiltersTooltipActive(count) {
+    return count > 1 ? "".concat(count, " filtros activos") : "".concat(count, " filtro activo");
+  },
+  columnHeaderFiltersLabel: 'Mostrar filtros',
+  columnHeaderSortIconLabel: 'Ordenar',
+  // Rows selected footer text
+  footerRowSelected: function footerRowSelected(count) {
+    return count > 1 ? "".concat(count.toLocaleString(), " filas seleccionadas") : "".concat(count.toLocaleString(), " fila seleccionada");
+  },
+  // Total rows footer text
+  footerTotalRows: 'Filas Totales:',
+  // Total visible rows footer text
+  footerTotalVisibleRows: function footerTotalVisibleRows(visibleCount, totalCount) {
+    var _context2;
+
+    return _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default()(_context2 = "".concat(visibleCount.toLocaleString(), " de ")).call(_context2, totalCount.toLocaleString());
+  }
+};
 
 /***/ }),
 

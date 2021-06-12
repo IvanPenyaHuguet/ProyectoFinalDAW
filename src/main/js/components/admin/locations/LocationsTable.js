@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useContext } from 'react';
 
 import Paper from '@material-ui/core/Paper';
 import { DataGrid, GridToolbar, GridOverlay } from '@material-ui/data-grid';
@@ -7,7 +7,9 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import Location from '../../../lib/entities/Location';
 import errorService from '../../../service/error/ErrorController';
 import CustomFooterDelete from './CustomFooterDelete';
+import {GRID_EN_LOCALE_TEXT , GRID_ES_LOCALE_TEXT} from '../../../lib/conf/DataGridLocale';
 
+import { LocalizationContext } from '../../../context/LocalizationContext';
 import { useTranslation } from 'react-i18next';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -101,6 +103,7 @@ export default function Locations () {
     const [editRowsModel, setEditRowsModel] = useState({}); 
     const [ selectionModel, setSelectionModel ] = useState([]); 
     const [ reload, setReload ] = useState(0);  
+    const { language } = useContext(LocalizationContext);
 
 
     useEffect(() => {
@@ -187,6 +190,7 @@ export default function Locations () {
                 onSelectionModelChange={(newSelection) => onSelectionChange(newSelection)}   
                 selectionModel={selectionModel}   
                 isRowSelectable={(params) => params.row.id != 0}  
+                localeText={language == 'en' ? GRID_EN_LOCALE_TEXT : GRID_ES_LOCALE_TEXT}
             />
         </Paper>
     )
