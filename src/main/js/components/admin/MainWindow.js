@@ -2,9 +2,9 @@ import React, {useState} from "react";
 
 import TabBar from "./TabBar";
 import TabPanel from "./TabPanel";
-import AddUser from "./AddUser";
 import AdminUser from "./AdminUser";
 import Funciones from "./Funciones";
+import Locations from './locations/Locations';
 
 export default function MainWindow() {
 
@@ -18,10 +18,13 @@ export default function MainWindow() {
     <>
       <TabBar value={tab} handleChange={handleTabChange}/>
       <TabPanel value={tab} index={0}>
-          <AdminUser />        
+        <AdminUser />        
       </TabPanel>     
       <TabPanel value={tab} index={1}>
         <Funciones />
+      </TabPanel>
+      <TabPanel value={tab} index={2}>
+        <Locations />
       </TabPanel>
     </>
   );

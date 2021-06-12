@@ -45,6 +45,9 @@ public class Location implements Serializable {
     @JoinColumn(name = "location_id")
     @JsonIgnore
     private List<StandardSol> solutions;
+    @Column(nullable = false, unique = true)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private long viewOrder;
 
     
     /** 
@@ -109,4 +112,14 @@ public class Location implements Serializable {
     public void setReagents(List<Reagent> reagents) {
         this.reagents = reagents;
     }
+
+
+    public long getViewOrder() {
+        return this.viewOrder;
+    }
+
+    public void setViewOrder(long viewOrder) {
+        this.viewOrder = viewOrder;
+    }
+
 }

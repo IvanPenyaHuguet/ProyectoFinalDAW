@@ -10,6 +10,21 @@
         "deletesuccess": "The user has been deleted succesfully",
         "user": "User"
       }
+    },
+    "locations": {
+      "delete": "Delete selected row",
+      "table": {
+        "id": "ID",
+        "name": "Name",
+        "vieworder": "Order on list"
+      }
+    },
+    "tab": {
+      "title": {
+        "locations": "Locations",
+        "roles": "Roles",
+        "users": "Users"
+      }
     }
   },
   "all": "All",
@@ -37,6 +52,7 @@
       "entryDate": "Date of arriving",
       "errors": {
         "integer": "Only integer numbers",
+        "locationexist": "A location exist with this name",
         "number": "Has to be a number",
         "positive": "Only positive numbers",
         "required": "Required",
@@ -89,11 +105,15 @@
     },
     "message": {
       "add": {
+        "locationsuccess": "Location succesful added",
         "success": "User succesful saved"
       }
     },
     "modify": {
       "delete": {
+        "location": {
+          "succesful": "Location deleted succesfully"
+        },
         "succesful": "The reagent has been deleted",
         "unsuccesful": "Something bad happened when deleting, contact support....",
         "user": {

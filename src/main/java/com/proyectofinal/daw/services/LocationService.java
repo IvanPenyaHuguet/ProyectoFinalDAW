@@ -11,7 +11,9 @@ import org.slf4j.LoggerFactory;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
  
 @Service
 public class LocationService {
@@ -38,17 +40,24 @@ public class LocationService {
         return locationRepo.findById(id).orElseThrow(() -> new LocationNotFoundException(id));        
     }    
     
-    public boolean save (Location loc) {
-        boolean saved;
+    public Location save (Location newLoc) {
+        
         try {
-            locationRepo.save(loc);
-            saved = true;
-        }
-        catch (IllegalArgumentException e) {
-            saved = false;
-        }
+            Location location = locationRepo.findById(newLoc.getId())
+            .orElse(new Location());
+            
+            location.setName(newLoc.getName());
+            location.setViewOrder(newLoc.getViewOrder());          
+            
 
-        return saved;
+            LOGGER.info("Has received a request to save a location");           
+            return locationRepo.save(location);   
+        } 
+        catch (Exception e) {
+            LOGGER.warn("Has received a request to save a location and something bad happened. ");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Data to save is invalid.");
+        } 
+        
     }
 
     public Location modifyByLocation (Location toChange) {
@@ -62,6 +71,7 @@ public class LocationService {
         })
         .orElseThrow(() -> new LocationNotFoundException(toChange.getId()));        
     }
+    
     public Location addReagentById (Long id, Reagent toAdd) {
         
         return locationRepo.findById(id)

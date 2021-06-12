@@ -2,12 +2,27 @@
   "admin": {
     "funciones": {
       "selectfunciones": {
-        "rolestoassign": ""
+        "rolestoassign": "",
+        "userroles": ""
       },
       "selectuser": {
         "deleteerror": "",
         "deletesuccess": "",
         "user": ""
+      }
+    },
+    "locations": {
+      "table": {
+        "id": "",
+        "name": "",
+        "vieworder": ""
+      }
+    },
+    "tab": {
+      "title": {
+        "locations": "",
+        "roles": "",
+        "users": ""
       }
     }
   },
@@ -36,6 +51,7 @@
       "entryDate": "Fecha de recepción",
       "errors": {
         "integer": "Solo números enteros",
+        "locationexist": "",
         "number": "Debe ser un número",
         "positive": "Solo números positivos",
         "required": "Obligatorio",
@@ -88,11 +104,15 @@
     },
     "message": {
       "add": {
+        "locationsuccess": "",
         "success": "Usuario guardado"
       }
     },
     "modify": {
       "delete": {
+        "location": {
+          "succesful": ""
+        },
         "succesful": "El reactivo ha sido borrado",
         "unsuccesful": "Algo malo ha pasado mientras se borraba, contacte soporte...",
         "user": {
