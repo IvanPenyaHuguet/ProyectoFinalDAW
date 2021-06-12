@@ -2,27 +2,28 @@
   "admin": {
     "funciones": {
       "selectfunciones": {
-        "rolestoassign": "",
-        "userroles": ""
+        "rolestoassign": "Funciones disponibles",
+        "userroles": "Funciones usuario"
       },
       "selectuser": {
-        "deleteerror": "",
-        "deletesuccess": "",
-        "user": ""
+        "deleteerror": "Hubo un error mientras se borraba, intentalo de nuevo o contacte soporte...",
+        "deletesuccess": "El usuario ha sido borrado con éxito",
+        "user": "Usuario"
       }
     },
     "locations": {
+      "delete": "Borra la selección",
       "table": {
-        "id": "",
-        "name": "",
-        "vieworder": ""
+        "id": "ID",
+        "name": "Nombre",
+        "vieworder": "Orden en listas"
       }
     },
     "tab": {
       "title": {
-        "locations": "",
-        "roles": "",
-        "users": ""
+        "locations": "Localizaciones",
+        "roles": "Funciones",
+        "users": "Usuarios"
       }
     }
   },
@@ -51,7 +52,7 @@
       "entryDate": "Fecha de recepción",
       "errors": {
         "integer": "Solo números enteros",
-        "locationexist": "",
+        "locationexist": "Una localización existe con ese nombre",
         "number": "Debe ser un número",
         "positive": "Solo números positivos",
         "required": "Obligatorio",
@@ -104,14 +105,14 @@
     },
     "message": {
       "add": {
-        "locationsuccess": "",
+        "locationsuccess": "Localización guardada satisfactoriamente",
         "success": "Usuario guardado"
       }
     },
     "modify": {
       "delete": {
         "location": {
-          "succesful": ""
+          "succesful": "Localización borrada con éxito"
         },
         "succesful": "El reactivo ha sido borrado",
         "unsuccesful": "Algo malo ha pasado mientras se borraba, contacte soporte...",
@@ -150,7 +151,7 @@
   },
   "index": {
     "description": {
-      "add": "",
+      "add": "Página para añadir nuevos reactivos o estándares",
       "reagentall": "Muestra todos los reactivos",
       "reagentinorganic": "Muestra los reactivos inorgánicos",
       "reagentorganic": "Muestra los reactivos orgánicos",
@@ -158,7 +159,7 @@
       "solorganic": "Muestra las soluciones estándar orgánicas"
     },
     "title": {
-      "add": "",
+      "add": "Añadir reactivos",
       "reagentall": "Todos los reactivos",
       "reagentinorganic": "Reactivos Inorgánicos",
       "reagentorganic": "Reactivos Orgánicos",
@@ -247,11 +248,11 @@
       "search": "Buscar"
     },
     "user": {
-      "creationDate": "",
-      "name": "",
-      "pass": "",
-      "surname": "",
-      "username": ""
+      "creationDate": "Fecha creación",
+      "name": "Nombre",
+      "pass": "Contraseña",
+      "surname": "Apellido",
+      "username": "Usuario"
     }
   },
   "username": "Nombre de usuario",
