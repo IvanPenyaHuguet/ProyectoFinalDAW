@@ -2,8 +2,7 @@ import React, {useContext, Suspense} from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 import Login from "./pages/user/Login";
-//import Index from "./pages/Index";
-const Index = React.lazy(() => import("./pages/Index.js"));
+import Index from "./pages/Index.js";
 import PrivateRoute from "./service/PrivateRoute";
 import AllReagents from './pages/reagent/AllReagents';
 import IndexInorganic from './pages/reagent/inorganic/Index';
@@ -11,7 +10,7 @@ import IndexOrganic from './pages/reagent/organic/Index';
 import IndexSolWater from './pages/solution/water/Index';
 import IndexSolOrg from './pages/solution/organic/Index';
 import ReagentAdd from './pages/reagent/Add';
-const AdminPage = React.lazy(() => import ('./pages/admin/Index'));
+import AdminPage from './pages/admin/Index';
 import NotFound from './pages/404';
 
 import Loader from './components/container/Loader';
