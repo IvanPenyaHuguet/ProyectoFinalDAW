@@ -60,7 +60,7 @@ const columns = (t) => { return  [
 
 function validateText(text) {
     const re =
-      /^[a-zA-Z ]{3,50}/;
+      /^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ]{3,50}/;
     return re.test(String(text).toLowerCase());
 }
 function validateNumber(text) {

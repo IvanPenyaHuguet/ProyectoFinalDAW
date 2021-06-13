@@ -56,10 +56,7 @@ export default class Reagent {
             ,quantity: Yup.number(t('form.add.errors.number'))
                 .required(t('form.add.errors.required'))
                 .positive(t('form.add.errors.positive'))
-                .integer(t('form.add.errors.integer'))                
-            ,entryDate: Yup.date().default(function () {
-                return dayjs();
-            }).required(t('form.add.errors.required'))
+                .integer(t('form.add.errors.integer'))               
             ,location: Yup.object().required(t('form.add.errors.required'))   
             ,suppliers: Yup.array().of(Yup.object().required(t('form.add.errors.required'))).required(t('form.add.errors.required'))         
         })
