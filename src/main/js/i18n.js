@@ -18,7 +18,7 @@ i18n
         return value;
       }
     },
-    debug: true,
+    debug: false,
     backend: {
       loadPath: '/locales/{{lng}}/{{ns}}.json',
     },
